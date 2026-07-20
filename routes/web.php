@@ -48,5 +48,12 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
+//for admin
+Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
+    Route::get('/dashboard', function(){
+        return Inertia::render('admin/dashboard');
+    })->name('admin.dashboard');
+});
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
