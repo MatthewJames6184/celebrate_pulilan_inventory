@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable no-empty-pattern */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Head, Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import PublicLayout from '@/layouts/public-layout';
@@ -16,23 +20,23 @@ const homepageBackgrounds = [
     '/images/image-5.jpg'
 ];
 
-const cards = [
-    {
-        title: 'Resorts & Lodging',
-        description: 'Discover local resorts, guesthouses, and quiet stays near Pulilan’s scenic areas.',
-        label: '01',
-    },
-    {
-        title: 'Local Cuisine',
-        description: 'Taste classic Bulacan flavors, native delicacies, and Pulilan specialties.',
-        label: '02',
-    },
-    {
-        title: 'Heritage & Festivals',
-        description: 'Experience the town’s history, traditions, and colorful community celebrations.',
-        label: '03',
-    },
-];
+// const cards = [
+//     {
+//         title: 'Resorts & Lodging',
+//         description: 'Discover local resorts, guesthouses, and quiet stays near Pulilan’s scenic areas.',
+//         label: '01',
+//     },
+//     {
+//         title: 'Local Cuisine',
+//         description: 'Taste classic Bulacan flavors, native delicacies, and Pulilan specialties.',
+//         label: '02',
+//     },
+//     {
+//         title: 'Heritage & Festivals',
+//         description: 'Experience the town’s history, traditions, and colorful community celebrations.',
+//         label: '03',
+//     },
+// ];
 
 const featuredCards = [
     { title: 'Religious', image: '/images/carousel-images/Religious.jpg', href: route('about.religious') },
