@@ -58,11 +58,8 @@ const authItems = [
     { title: 'Login', url: route('login') },
 ];
 
-interface PublicHeaderProps {
-    // Removed transparent prop - header is now consistently dark
-}
 
-export default function PublicHeader({}: PublicHeaderProps) {
+export default function PublicHeader() {
     const page = usePage<SharedData>();
     const currentUrl = page.url;
     const sectionMatchMap: Record<string, string> = {

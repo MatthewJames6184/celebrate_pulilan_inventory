@@ -200,7 +200,7 @@ export default function Home() {
         handlePointerUp(event);
     };
 
-    const handleCardClick: React.MouseEventHandler<HTMLAnchorElement> = (event) => {
+    const handleCardClick = (event: React.MouseEvent) => {
         if (isDragging || dragMovedRef.current || suppressClickRef.current) {
             event.preventDefault();
         }
