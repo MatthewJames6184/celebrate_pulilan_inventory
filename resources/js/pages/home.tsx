@@ -219,8 +219,8 @@ export default function Home() {
 
             <div className="relative overflow-hidden text-white">
                 <div className=" inset-0 bg-slate-950/35" />
-
-                <div className="relative z-10 mx-auto grid min-h-[85vh] max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            
+                <div className="bg-white relative z-10 mx-auto grid min-h-[85vh] max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
                     <div className="space-y-8">
                         <span className="inline-flex rounded-full bg-amber-400/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-950">
                             Municipal Government of Pulilan
@@ -266,8 +266,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-            <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8 select-none">
+            {/* this is container for what see and under */}
+            <div className="bg-white"> 
+            <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8 select-none bg-black">
                 <div className="mb-8 flex items-center justify-between gap-4">
                     <div>
                         <p className="text-sm uppercase tracking-[0.35em] text-emerald-100">What to See</p>
@@ -333,7 +334,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="mt-10">
+            <section className="mt-10 p-10 bg-black">
                 <div className="rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-2xl">
                     <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
                         <div className="space-y-6">
@@ -348,6 +349,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            </div>
         </PublicLayout>
     );
 }

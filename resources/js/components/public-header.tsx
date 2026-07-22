@@ -176,10 +176,18 @@ export default function PublicHeader() {
                         </Link>
                     ))}
                 </div> */} 
+
+                {/* This is an auth block */}
                 <div className="hidden items-center gap-3 md:flex">
                     {auth.user ? (
                         <div className="flex items-center gap-3">
-                            <span className="text-sm font-medium text-amber-100">{auth.user.name}</span>
+                            <Link 
+                                href={route('profile.edit')}
+                                className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-white/20"
+
+                            >
+                                {auth.user.name}
+                            </Link>
                             <Link
                                 href={route('logout')}
                                 method="post"
