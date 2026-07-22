@@ -62,6 +62,7 @@ const authItems = [
 export default function PublicHeader() {
     const page = usePage<SharedData>();
     const currentUrl = page.url;
+    const {auth} = page.props;
     const sectionMatchMap: Record<string, string> = {
         [route('about')]: '/about/',
         [route('stay.dine')]: '/stay-dine/',
@@ -168,13 +169,35 @@ export default function PublicHeader() {
                     ))}
                 </div>
 
-                <div className="hidden items-center gap-3 md:flex">
+                {/* <div className="hidden items-center gap-3 md:flex">
                     {authItems.map((item) => (
                         <Link key={item.title} href={item.url} className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20">
                             {item.title}
                         </Link>
                     ))}
+                </div> */} 
+                <div className="hidden items-center gap-3 md:flex">
+                    {auth.user ? (
+                        <div className="flex items-center gap-3">
+                            <span className="text-sm font-medium text-amber-100">{auth.user.name}</span>
+                            <Link
+                                href={route('logout')}
+                                method="post"
+                                as="button"
+                                className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20"
+                            >
+                                Logout
+                            </Link>
+                        </div>
+                    ) : (
+                        authItems.map((item) => (
+                            <Link key={item.title} href={item.url} className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20">
+                                {item.title}
+                            </Link>
+                        ))
+                    )}
                 </div>
+
 
                 <Sheet>
                     <SheetTrigger asChild>
@@ -267,15 +290,29 @@ export default function PublicHeader() {
                             ))}
                         </nav>
                         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-5">
-                            {authItems.map((item) => (
-                                <Link
-                                    key={item.title}
-                                    href={item.url}
-                                    className="rounded-md border border-white/20 bg-white/10 px-4 py-3 text-base text-white transition hover:bg-white/20"
-                                >
-                                    {item.title}
-                                </Link>
-                            ))}
+                            {auth.user ? (
+                                <>
+                                    <p className="px-4 text-sm font-medium text-amber-100">{auth.user.name}</p>
+                                    <Link
+                                        href={route('logout')}
+                                        method="post"
+                                        as="button"
+                                        className="rounded-md border border-white/20 bg-white/10 px-4 py-3 text-left text-base text-white transition hover:bg-white/20"
+                                    >
+                                        Logout
+                                    </Link>
+                                </>
+                            ) : (
+                                authItems.map((item) => (
+                                    <Link
+                                        key={item.title}
+                                        href={item.url}
+                                        className="rounded-md border border-white/20 bg-white/10 px-4 py-3 text-base text-white transition hover:bg-white/20"
+                                    >
+                                        {item.title}
+                                    </Link>
+                                ))
+                            )}
                         </div>
                     </SheetContent>
                 </Sheet>

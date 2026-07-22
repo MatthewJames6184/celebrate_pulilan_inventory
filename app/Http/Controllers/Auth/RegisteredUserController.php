@@ -48,6 +48,6 @@ class RegisteredUserController extends Controller
 
         return $user->isAdmin()
         ? to_route('admin.dashboard')
-        : to_route('dashboard');
+        : to_route('home');
     }
 }
