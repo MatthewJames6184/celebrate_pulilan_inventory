@@ -1,10 +1,9 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown,User, LogOut  } from 'lucide-react';
 import { type SharedData } from '@/types';
 import { cn } from '@/lib/utils';
-
 const navItems = [
     { title: 'Home', url: route('home') },
     {
@@ -94,17 +93,17 @@ export default function PublicHeader() {
                             {/* Item has submenu - render as dropdown */}
                             {'submenu' in item && item.submenu ? (
                                 <>
-                                    <div className="flex items-center gap-1">
-                                        <Link
-                                            href={item.url}
-                                            className={cn(
-                                                'text-sm transition duration-150 hover:text-amber-200',
-                                                isItemActive(item.url) ? 'font-semibold text-amber-100' : 'text-white/90',
-                                            )}
-                                        >
-                                            {item.title}
-                                        </Link>
-                                        <ChevronDown className="h-4 w-4 text-white/80" />
+                                    <div className="flex items-center gap-1 rounded-full px-3 py-1.5 transition group-hover:bg-white/10">
+                                    <Link
+                                        href={item.url}
+                                        className={cn(
+                                            'py-1.5 text-sm transition duration-150 hover:text-amber-200',
+                                            isItemActive(item.url) ? 'font-bold text-amber-100' : 'text-white/90',
+                                        )}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                        <ChevronDown className="h-4 w-4 text-white/70 transition group-hover:rotate-180 group-hover:text-amber-200" />
                                     </div>
 
                                     {/* Dropdown Menu */}
@@ -161,7 +160,7 @@ export default function PublicHeader() {
                                     )}
                                 >
                                     {item.title}
-                                </Link>
+                                </Link> 
                             )}
                         </div>
                     ))}
@@ -176,40 +175,55 @@ export default function PublicHeader() {
                 </div> */} 
 
                 {/* This is an auth block */}
-                <div className="hidden items-center gap-3 md:flex">
+                <div className="hidden items-center md:flex">
                     {auth.user ? (
-                        <div className="flex items-center gap-3">
-                            <Link 
+                        <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 p-1">
+                            <Link
                                 href={route('profile.edit')}
-                                className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-white/20"
-
+                                className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-amber-100 transition hover:bg-white/10"
                             >
+                                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400/20 text-amber-200">
+                                    <User className="h-3.5 w-3.5" />
+                                </span>
                                 {auth.user.name}
                             </Link>
                             <Link
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20"
+                                className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
                             >
+                                <LogOut className="h-3.5 w-3.5" />
                                 Logout
                             </Link>
                         </div>
                     ) : (
-                        authItems.map((item) => (
-                            <Link key={item.title} href={item.url} className="rounded border border-white/20 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/20">
-                                {item.title}
+                        <div className="flex items-center gap-2">
+                            <Link
+                                href={route('login')}
+                                className="rounded-full px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-white/10 hover:text-white"
+                            >
+                                Login
                             </Link>
-                        ))
+                            <Link
+                                href={route('register')}
+                                className="rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-emerald-900 shadow-sm transition hover:bg-amber-300 hover:shadow-md"
+                            >
+                                Register
+                            </Link>
+                        </div>
                     )}
                 </div>
 
-
                 <Sheet>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" className="md:hidden rounded-full border border-white/20 bg-white/10 text-white">
-                            <Menu className="h-5 w-5" />
-                        </Button>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/15 md:hidden"
+                    >
+                        <Menu className="h-5 w-5" />
+                    </Button>
                     </SheetTrigger>
                     <SheetContent side="left" className="bg-emerald-900 text-white w-64">
                         <SheetHeader>
@@ -286,7 +300,7 @@ export default function PublicHeader() {
                                             href={item.url}
                                             className={cn(
                                                 'rounded-md px-4 py-3 text-base transition hover:bg-white/10',
-                                                isItemActive(item.url) ? 'bg-white/10 font-semibold' : 'bg-transparent',
+                                                isItemActive(item.url) ? 'bg-white/10 font-semibold' : 'text-yellow',
                                             )}
                                         >
                                             {item.title}
@@ -298,26 +312,37 @@ export default function PublicHeader() {
                         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-5">
                             {auth.user ? (
                                 <>
-                                    <p className="px-4 text-sm font-medium text-amber-100">{auth.user.name}</p>
+                                    <div className="flex items-center gap-2 rounded-md px-4 py-2">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-400/20 text-amber-200">
+                                            <User className="h-4 w-4" />
+                                        </span>
+                                        <p className="text-sm font-medium text-amber-100">{auth.user.name}</p>
+                                    </div>
                                     <Link
                                         href={route('logout')}
                                         method="post"
                                         as="button"
-                                        className="rounded-md border border-white/20 bg-white/10 px-4 py-3 text-left text-base text-white transition hover:bg-white/20"
+                                        className="flex items-center justify-center gap-2 rounded-md border border-white/15 bg-white/5 px-4 py-3 text-base text-white transition hover:bg-white/15"
                                     >
+                                        <LogOut className="h-4 w-4" />
                                         Logout
                                     </Link>
                                 </>
                             ) : (
-                                authItems.map((item) => (
+                                <>
                                     <Link
-                                        key={item.title}
-                                        href={item.url}
-                                        className="rounded-md border border-white/20 bg-white/10 px-4 py-3 text-base text-white transition hover:bg-white/20"
+                                        href={route('login')}
+                                        className="rounded-md border border-white/15 bg-white/5 px-4 py-3 text-center text-base text-white transition hover:bg-white/15"
                                     >
-                                        {item.title}
+                                        Login
                                     </Link>
-                                ))
+                                    <Link
+                                        href={route('register')}
+                                        className="rounded-md bg-amber-400 px-4 py-3 text-center text-base font-semibold text-emerald-900 shadow-sm transition hover:bg-amber-300"
+                                    >
+                                        Register
+                                    </Link>
+                                </>
                             )}
                         </div>
                     </SheetContent>
