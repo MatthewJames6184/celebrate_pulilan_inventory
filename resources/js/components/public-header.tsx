@@ -83,10 +83,8 @@ export default function PublicHeader() {
         <header className="sticky top-0 z-50 border-b border-amber-400 bg-emerald-800 text-white">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 md:px-6">
                 <Link href={route('home')} className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-white">
-                    <div className="flex h-11 w-11 items-center justify-center rounded border border-white/20 bg-white/10 text-lg font-black">P</div>
-                    <div>
-                        <p className="text-xs text-amber-200">Municipality of</p>
-                        <p className="text-lg">Pulilan</p>
+                    <div className="logo-container">
+                       <img src ="/images/logo-images/logo-tourism-pulilan.png" alt='logo-republic'  className="h-21 w-auto"/> 
                     </div>
                 </Link>
 
