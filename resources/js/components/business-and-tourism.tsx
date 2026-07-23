@@ -18,7 +18,8 @@ export default function BusinessAndTourism() {
     ];
 
     return (
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6">
+        
+        <div className=" bg-slate-50">
             <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Business & Tourism</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {items.map((it) => (

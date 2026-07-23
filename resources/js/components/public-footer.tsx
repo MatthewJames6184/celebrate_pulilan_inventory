@@ -3,9 +3,10 @@ import { Link } from '@inertiajs/react';
 export default function PublicFooter() {
     return (
         <footer className="border-t border-slate-200 bg-[#bebebe] text-slate-700 ">
-            <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6 bg-[#bebebe]">
+            <section>
+            <div className="flex flex-col justify-center gap-10 bg-[#bebebe] py-12 px-10 md:flex-row md:items-start">
                 <div className="space-y-3">
-                    <div className="logo-container">
+                    <div className="logo-container m-5">
                        <img src ="/images/logo-images/logo-republic-of-the-philippines.png" alt='logo-republic' className="logo-img" /> 
                     </div>
                     <h4 className="font-bold text-[#333]">
@@ -55,9 +56,11 @@ export default function PublicFooter() {
                         </a>
                 </div>
             </div>
+            </section>
+
 
             <div className="border-t border-slate-200 bg-slate-200 px-4 py-4 text-sm text-slate-600 md:px-6">
-                <div className="mx-auto flex max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="mx-auto max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between justify-items-center">
                     <p>© Copyright 2026. James Matthew Arias. All rights reserved.</p>
                 </div>
             </div>

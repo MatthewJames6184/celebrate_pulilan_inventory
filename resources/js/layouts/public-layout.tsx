@@ -32,7 +32,7 @@ export default function PublicLayout({ children, headerTransparent = false, back
             }}
         >
             <PublicHeader transparent={headerTransparent} />
-            <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 lg:py-10">{children}</main>
+            <main className="mx-auto w-full">{children}</main>
             <PublicFooter />
         </div>
     );

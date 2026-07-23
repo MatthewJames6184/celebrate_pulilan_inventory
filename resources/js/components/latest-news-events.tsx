@@ -23,14 +23,15 @@ export default function LatestNewsEvents() {
     ];
 
     return (
-        <div className="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+        
+        <div className="p-8 shadow-sm">
             <div className="space-y-4">
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Latest News & Events</h2>
                 <p className="text-base leading-7 text-slate-600">
                     Stay updated with the latest announcements, calendar highlights, and featured local stories from Pulilan.
                 </p>
             </div>
-
+           
             <div className="mt-8 grid gap-4 md:grid-cols-2">
                 {newsItems.map((item) => (
                     <article key={item.title} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-0.5">

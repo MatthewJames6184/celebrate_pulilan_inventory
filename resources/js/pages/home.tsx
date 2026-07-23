@@ -216,11 +216,9 @@ export default function Home() {
             backgroundImage={`linear-gradient(rgba(8, 64, 52, 0.45), rgba(6, 39, 30, 0.45)), url('${backgroundImage}')`}
         >
             <Head title="Home" />
-
+            {/* HERO SECTION */}
             <div className="relative overflow-hidden text-white">
-                <div className=" inset-0 bg-slate-950/35" />
-            
-                <div className="bg-white relative z-10 mx-auto grid min-h-[85vh] max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                <div className=" z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
                     <div className="space-y-8">
                         <span className="inline-flex rounded-full bg-amber-400/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-950">
                             Municipal Government of Pulilan
@@ -266,17 +264,15 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            {/* this is container for what see and under */}
+            {/* CAROUSEL AND CONTENT SECTION */}
             <div className="bg-white"> 
-            <section className="mx-auto mt-10 max-w-7xl px-4 sm:px-6 lg:px-8 select-none bg-black">
+            {/* CAROUSEL SECTION */}
+            <section className=" select-none ">
                 <div className="mb-8 flex items-center justify-between gap-4">
-                    <div>
-                        <p className="text-sm uppercase tracking-[0.35em] text-emerald-100">What to See</p>
-                        <h2 className="mt-3 text-3xl font-semibold text-slate-950">Featured destinations</h2>
-                    </div>
-                    <p className="text-sm text-white">Swipe to explore the highlights.</p>
+                        <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
+                        <p className="text-sm text-black mr-10">Swipe to explore the highlights.</p> 
                 </div>
-                <div className="-mx-4 overflow-hidden px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <div className="-mx-4  px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
                         ref={carouselRef}
                         className="flex select-none gap-5 overflow-x-hidden overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 cursor-grab active:cursor-grabbing"
@@ -295,7 +291,7 @@ export default function Home() {
                                 onDragStart={(e) => e.preventDefault()}
                                 onClick={handleCardClick}
                                 data-carousel-card
-                                className="group relative h-48 min-w-[340px] flex-none overflow-hidden rounded-3xl shadow-xl snap-start cursor-pointer"
+                                className="group relative h-48 min-w-[340px] flex-none overflow-hidden shadow-xl snap-start cursor-pointer"
                             >
                                 <img
                                     src={card.image}
@@ -333,20 +329,20 @@ export default function Home() {
                     ))}
                 </div>
             </section>
+            {/* CONTENT SECTION */}
+            {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
+            <section className= "justify-items-center bg-black">
+                <div className="mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center">
+                    <LatestNewsEvents />
+                    <BusinessAndTourism />
+                </div>
 
-            <section className="mt-10 p-10 bg-black">
-                <div className="rounded-[2rem] border border-slate-200 bg-white/95 p-8 shadow-2xl">
-                    <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-                        <div className="space-y-6">
-                            <LatestNewsEvents />
-                            <BusinessAndTourism />
-                        </div>
-                        <div className="space-y-6">
-                            <VisitorQuickLinks />
-                            <WhyVisitPulilan />
-                            <LocalInformation />
-                        </div>
-                    </div>
+            </section>
+            <section className="justify-items-center">
+                <div className="mt-10 pb-10 grid lg:grid-flow-col gap-4 justify-items-center">
+                    <VisitorQuickLinks />
+                    <WhyVisitPulilan />
+                    <LocalInformation />
                 </div>
             </section>
             </div>
