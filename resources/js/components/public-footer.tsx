@@ -6,7 +6,7 @@ export default function PublicFooter() {
             <section>
             <div className="flex flex-col justify-center gap-10 bg-[#bebebe] py-12 px-10 md:flex-row md:items-start">
                 <div className="space-y-3">
-                    <div className="logo-container m-5">
+                    <div className="logo-container m-5 mt-0">
                        <img src ="/images/logo-images/logo-republic-of-the-philippines.png" alt='logo-republic' className="logo-img" /> 
                     </div>
                     <h4 className="font-bold text-[#333]">

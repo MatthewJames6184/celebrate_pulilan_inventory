@@ -73,7 +73,7 @@ export default function Home() {
         [],
     );
 
-    const desiredDotCount = 5;
+    const desiredDotCount = 3;
     const groupSize = Math.ceil(featuredCards.length/desiredDotCount);
     const dotCount = Math.ceil(featuredCards.length/groupSize);
     const activeDot = Math.floor(activeIndex/groupSize);
@@ -218,7 +218,8 @@ export default function Home() {
             <Head title="Home" />
             {/* HERO SECTION */}
             <div className="relative overflow-hidden text-white">
-                <div className=" z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                {/* z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center */}
+                <div className=" z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-50 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
                     <div className="space-y-8">
                         <span className="inline-flex rounded-full bg-amber-400/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-950">
                             Municipal Government of Pulilan
@@ -267,10 +268,10 @@ export default function Home() {
             {/* CAROUSEL AND CONTENT SECTION */}
             <div className="bg-white"> 
             {/* CAROUSEL SECTION */}
-            <section className=" select-none ">
-                <div className="mb-8 flex items-center justify-between gap-4">
+            <section className=" select-none mt-2 ">
+                <div className="mb-8 flex lg:mx-50 md:mx-1 items-center justify-between gap-4">
                         <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
-                        <p className="text-sm text-black mr-10">Swipe to explore the highlights.</p> 
+                        <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p> 
                 </div>
                 <div className="-mx-4  px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
@@ -331,17 +332,18 @@ export default function Home() {
             </section>
             {/* CONTENT SECTION */}
             {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
-            <section className= "justify-items-center bg-black">
-                <div className="mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center">
+            {/* mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center */}
+            <section className= "justify-items-center " >
                     <LatestNewsEvents />
-                    <BusinessAndTourism />
-                </div>
 
+            </section>
+            <section className = "justify-items-center">
+                    <BusinessAndTourism />
             </section>
             <section className="justify-items-center">
                 <div className="mt-10 pb-10 grid lg:grid-flow-col gap-4 justify-items-center">
-                    <VisitorQuickLinks />
                     <WhyVisitPulilan />
+                    <VisitorQuickLinks />
                     <LocalInformation />
                 </div>
             </section>
