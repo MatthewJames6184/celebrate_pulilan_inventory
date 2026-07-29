@@ -219,7 +219,7 @@ export default function Home() {
             {/* HERO SECTION */}
             <div className="relative overflow-hidden text-white">
                 {/* z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center */}
-                <div className=" z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-50 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+                <div className=" z-8 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-50 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
                     <div className="space-y-8">
                         <span className="inline-flex rounded-full bg-amber-400/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-950">
                             Municipal Government of Pulilan
@@ -273,50 +273,50 @@ export default function Home() {
                         <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
                         <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p> 
                 </div>
-                <div className="-mx-4  px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                    <div
-                        ref={carouselRef}
-                        className="flex select-none gap-5 overflow-x-hidden overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 cursor-grab active:cursor-grabbing"
-                        style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-                        onScroll={handleCarouselScroll}
-                        onPointerDown={handlePointerDown}
-                        onPointerMove={handlePointerMove}
-                        onPointerUp={handlePointerUp}
-                        onPointerCancel={handlePointerCancel}
-                    >
-                        {carouselCards.map((card, index) => (
-                            <Link
-                                key={`${card.title}-${index}`}
-                                href={card.href}
-                                draggable={false}
-                                onDragStart={(e) => e.preventDefault()}
-                                onClick={handleCardClick}
-                                data-carousel-card
-                                className="group relative h-48 min-w-[340px] flex-none overflow-hidden shadow-xl snap-start cursor-pointer"
-                            >
-                                <img
-                                    src={card.image}
-                                    alt={card.title}
-                                    draggable="false"
-                                    onDragStart={(event) => event.preventDefault()}
-                                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-white/20" />
-                                <div className="absolute bottom-0 left-0 right-0 p-5">
-                                    <h3 className="text-right text-xl font-bold uppercase tracking-[0.2em] text-white drop-shadow-lg">
-                                        {card.title}
-                                    </h3>
-                                    <div className="mt-3 flex justify-end">
-                                        <span className="inline-flex items-center rounded-full border border-white/40 bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                                            Learn more
-                                        </span>
-                                    </div>
+           
+                <div
+                    ref={carouselRef}
+                    className="flex select-none gap-5 overflow-x-hidden overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 cursor-grab active:cursor-grabbing"
+                    style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+                    onScroll={handleCarouselScroll}
+                    onPointerDown={handlePointerDown}
+                    onPointerMove={handlePointerMove}
+                    onPointerUp={handlePointerUp}
+                    onPointerCancel={handlePointerCancel}
+                >
+                    {carouselCards.map((card, index) => (
+                        <Link
+                            key={`${card.title}-${index}`}
+                            href={card.href}
+                            draggable={false}
+                            onDragStart={(e) => e.preventDefault()}
+                            onClick={handleCardClick}
+                            data-carousel-card
+                            className="group relative h-48 min-w-[340px] flex-none overflow-hidden shadow-xl snap-start cursor-pointer"
+                        >
+                            <img
+                                src={card.image}
+                                alt={card.title}
+                                draggable="false"
+                                onDragStart={(event) => event.preventDefault()}
+                                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-white/20" />
+                            <div className="absolute bottom-0 left-0 right-0 p-5">
+                                <h3 className="text-right text-xl font-bold uppercase tracking-[0.2em] text-white drop-shadow-lg">
+                                    {card.title}
+                                </h3>
+                                <div className="mt-3 flex justify-end">
+                                    <span className="inline-flex items-center rounded-full border border-white/40 bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                                        Learn more
+                                    </span>
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-                <div className="mt-6 flex items-center justify-center gap-3">
+            
+                <div className="mt-6 mb-10 flex items-center justify-center gap-3">
                     {Array.from({length: dotCount}).map((_, index) => (
                         <button
                             key={index}
@@ -333,18 +333,16 @@ export default function Home() {
             {/* CONTENT SECTION */}
             {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
             {/* mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center */}
-            <section className= "justify-items-center " >
+            <section className= "flex justify-center " >
                     <LatestNewsEvents />
-
             </section>
-            <section className = "justify-items-center">
+            <section className = "flex justify-center">
                     <BusinessAndTourism />
             </section>
-            <section className="justify-items-center">
-                <div className="mt-10 pb-10 grid lg:grid-flow-col gap-4 justify-items-center">
-                    <WhyVisitPulilan />
-                    <VisitorQuickLinks />
+            <section className="flex justify-center">
+                <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
                     <LocalInformation />
+                    <VisitorQuickLinks />
                 </div>
             </section>
             </div>

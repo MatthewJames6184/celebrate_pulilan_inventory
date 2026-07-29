@@ -19,12 +19,13 @@ export default function BusinessAndTourism() {
 
     return (
         
-        <div className="p-4 shadow-sm flex gap-4">
+        <div className="p-4 shadow-sm flex shrink basis-[1200px] flex-col">
             <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Business & Tourism</p>
             
             <div className="mt-5 grid gap-4 sm:grid-cols-3 ">
+                
                 {items.map((it) => (
-                    <div key={it.title} className="overflow-hidden bg-black shadow-sm">
+                    <div key={it.title} className="overflow-hidden shadow-sm">
                         <div className="h-28 overflow-hidden bg-slate-100">
                             <img src={it.image} alt={it.title} className="h-full w-full object-cover" />
                         </div>

@@ -21,15 +21,9 @@ export default function LatestNewsEvents() {
 
     return (
         
-        <div className="p-4 shadow-sm flex gap-4 justify-items-center">
-            {/* <div className="space-y-4">
-                <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Latest News</h2>
-                <p className="text-base leading-7 text-slate-600">
-                    Stay updated with the latest announcements, calendar highlights, and featured local stories from Pulilan.
-                </p>
-            </div> */}
+        <div className="p-4 shadow-sm flex shrink basis-[1200px] justify-center gap-4">
            
-            <div className="w-full">
+            <div className="flex-[2]">
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Latest News & Events</h2>
                 {latestNewsItems.map((item) => (
                     <article key={item.title} className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 mt-5 shadow-sm transition hover:-translate-y-0.5">
@@ -39,7 +33,7 @@ export default function LatestNewsEvents() {
                     </article>
                 ))}
             </div>
-            <div>
+            <div className="flex-[1]">
                 <h2 className="text-3xl font-base tracking-tight text-slate-950">
                     Other News
                 </h2>
