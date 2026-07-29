@@ -31,7 +31,7 @@ export default function PublicLayout({ children, headerTransparent = false, back
                 backgroundAttachment: 'fixed',
             }}
         >
-            <PublicHeader transparent={headerTransparent} />
+            <PublicHeader  />
             <main className="mx-auto w-full">{children}</main>
             <PublicFooter />
         </div>

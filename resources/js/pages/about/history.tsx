@@ -26,5 +26,6 @@ export default function History() {
             intro="Learn how Pulilan developed from its early settlement into a lively municipality with a strong sense of heritage and civic pride."
             sections={sections}
         />
+
     );
 }

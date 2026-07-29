@@ -21,7 +21,7 @@ export default function LatestNewsEvents() {
 
     return (
         
-        <div className="p-4 shadow-sm flex shrink basis-[1200px] justify-center gap-4">
+        <div className="p-4 border  border-black flex shrink basis-[1200px] justify-center gap-4">
            
             <div className="flex-[2]">
                 <h2 className="text-3xl font-semibold tracking-tight text-slate-950">Latest News & Events</h2>

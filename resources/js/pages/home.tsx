@@ -131,17 +131,27 @@ export default function Home() {
 
         const minScroll = carouselItemSize * 0.2;
         const maxScroll = carouselItemSize * (featuredCards.length + 0.8);
+        const centerIndex = Math.floor(featuredCards.length/2);
 
-        if (carousel.scrollLeft <= minScroll) {
-            carousel.scrollLeft = carouselItemSize * featuredCards.length;
-            updateActiveIndex(carousel.scrollLeft);
+        // if (carousel.scrollLeft <= minScroll) {
+        //     carousel.scrollLeft = carouselItemSize * featuredCards.length;
+        //     updateActiveIndex(carousel.scrollLeft);
+        //     return;
+        // }
+
+        // if (carousel.scrollLeft >= maxScroll) {
+        //     carousel.scrollLeft = carouselItemSize;
+        //     updateActiveIndex(carousel.scrollLeft);
+        //     return;
+        // }
+
+        if(carousel.scrollLeft <= minScroll){
+            scrollToIndex(centerIndex);
             return;
         }
-
-        if (carousel.scrollLeft >= maxScroll) {
-            carousel.scrollLeft = carouselItemSize;
-            updateActiveIndex(carousel.scrollLeft);
-            return;
+        if(carousel.scrollLeft >= maxScroll){
+            scrollToIndex(centerIndex);
+            return
         }
 
         updateActiveIndex(carousel.scrollLeft);
@@ -333,14 +343,14 @@ export default function Home() {
             {/* CONTENT SECTION */}
             {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
             {/* mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center */}
-            <section className= "flex justify-center " >
+            <section className= "flex justify-center my-10 " >
                     <LatestNewsEvents />
             </section>
-            <section className = "flex justify-center">
+            <section className = "flex justify-center my-10">
                     <BusinessAndTourism />
             </section>
             <section className="flex justify-center">
-                <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
+                <div className="border border-black mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
                     <LocalInformation />
                     <VisitorQuickLinks />
                 </div>
