@@ -1,7 +1,7 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu, ChevronDown,User, LogOut  } from 'lucide-react';
+import { Menu, ChevronDown,ChevronLeft,User, LogOut  } from 'lucide-react';
 import { type SharedData } from '@/types';
 import { cn } from '@/lib/utils';
 const navItems = [
@@ -115,7 +115,7 @@ export default function PublicHeader() {
                                                     <>
                                                         <button className="w-full text-left px-4 py-2 text-white/90 hover:text-amber-200 hover:bg-emerald-600 transition flex items-center justify-between whitespace-nowrap">
                                                             <span>{subitem.title}</span>
-                                                            <ChevronDown className="h-4 w-4 rotate-180" />
+                                                            <ChevronLeft className="h-4 w-4 rotate-180" />
                                                         </button>
 
                                                         {/* Nested Dropdown */}
