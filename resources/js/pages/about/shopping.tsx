@@ -20,11 +20,19 @@ const sections = [
 export default function Shopping() {
     return (
         <PublicTopicPage
-            headTitle="Shopping in Pulilan"
-            eyebrow="What to See"
-            title="Local markets and everyday shopping stops."
-            intro="Find practical shopping spots and local goods that give visitors a small but useful glimpse of daily life in Pulilan."
-            sections={sections}
-        />
+            headTitle="Shopping"
+            title="Pulilan Shopping"
+            imageSubHeader={{ src: '/images/carousel-images/Shopping.jpg', alt: 'shopping' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Shopping' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

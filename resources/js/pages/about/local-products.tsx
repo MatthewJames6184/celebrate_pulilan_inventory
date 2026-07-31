@@ -20,11 +20,19 @@ const sections = [
 export default function LocalProducts() {
     return (
         <PublicTopicPage
-            headTitle="Local Products in Pulilan"
-            eyebrow="What to See"
-            title="Homegrown products and community-made goods."
-            intro="Browse the local products that reflect the town’s agricultural base, market culture, and small-business creativity."
-            sections={sections}
-        />
+            headTitle="Local Products"
+            title="Pulilan Local Products"
+            imageSubHeader={{ src: '/images/carousel-images/Local-Products.jpg', alt: 'local products' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Local Products' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

@@ -19,11 +19,19 @@ const sections = [
 export default function Attraction() {
     return (
         <PublicTopicPage
-            headTitle="Attractions in Pulilan"
-            eyebrow="What to See"
-            title="Featured places around Pulilan."
-            intro="Discover points of interest that reflect Pulilan’s community life, heritage, and welcoming local character."
-            sections={sections}
-        />
+            headTitle="Attraction"
+            title="Pulilan Attractions"
+            imageSubHeader={{ src: '/images/carousel-images/Attraction.jpg', alt: 'attraction' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Attraction' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

@@ -20,11 +20,19 @@ const sections = [
 export default function Festivals() {
     return (
         <PublicTopicPage
-            headTitle="Festivals in Pulilan"
-            eyebrow="What to See"
-            title="Colorful events and community celebrations."
-            intro="See how festivals and special events shape Pulilan’s identity through music, movement, food, and shared community spirit."
-            sections={sections}
-        />
+            headTitle="Festival"
+            title="Pulilan Festivals"
+            imageSubHeader={{ src: '/images/carousel-images/Festival.jpg', alt: 'festivals' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Festivals' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

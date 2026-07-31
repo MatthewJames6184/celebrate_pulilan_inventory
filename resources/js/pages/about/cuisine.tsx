@@ -20,11 +20,19 @@ const sections = [
 export default function Cuisine() {
     return (
         <PublicTopicPage
-            headTitle="Cuisine in Pulilan"
-            eyebrow="What to See"
-            title="Local flavors and everyday favorites."
-            intro="Discover the dishes, snacks, and food experiences that make Pulilan a comfortable stop for visitors who want to eat like a local."
-            sections={sections}
-        />
+            headTitle="Cuisine"
+            title="Pulilan Cuisines"
+            imageSubHeader={{ src: '/images/carousel-images/Cuisine.jpg', alt: 'cuisine' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Cuisines' },
+            ]}
+        >
+            <section>
+
+            </section>
+
+        </PublicTopicPage>
     );
 }

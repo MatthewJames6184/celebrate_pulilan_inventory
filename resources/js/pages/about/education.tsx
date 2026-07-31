@@ -18,11 +18,19 @@ const sections = [
 export default function Education() {
     return (
         <PublicTopicPage
-            headTitle="Education in Pulilan"
-            eyebrow="What to See"
-            title="Schools, learning, and youth development."
-            intro="Explore the educational side of Pulilan, from local schools to community programs that support lifelong learning."
-            sections={sections}
-        />
+            headTitle="Education"
+            title="Education in Pulilan"
+            imageSubHeader={{ src: '/images/carousel-images/Education.jpg', alt: 'education' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Education' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }
