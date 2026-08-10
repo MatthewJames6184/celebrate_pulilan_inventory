@@ -11,6 +11,7 @@ import VisitorQuickLinks from '@/components/visitor-quick-links';
 import WhyVisitPulilan from '@/components/why-visit-pulilan';
 import LocalInformation from '@/components/local-information';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import {Carousel, CarouselContent, CarouselItem,} from '@/components/ui/carousel';
 
 const homepageBackgrounds = [
     '/images/image-1.jpg',
@@ -59,166 +60,6 @@ export default function Home() {
         return homepageBackgrounds[index];
     }, []);
 
-    const carouselRef = useRef<HTMLDivElement | null>(null);
-    const dragMovedRef = useRef(false);
-    const suppressClickRef = useRef(false);
-    const [carouselItemSize, setCarouselItemSize] = useState(0);
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [dragStartX, setDragStartX] = useState<number | null>(null);
-    const [dragStartScroll, setDragStartScroll] = useState(0);
-    const [isDragging, setIsDragging] = useState(false);
-    const gap = 20;
-    const carouselCards = useMemo(
-        () => [featuredCards[featuredCards.length - 1], ...featuredCards, featuredCards[0]],
-        [],
-    );
-
-    const desiredDotCount = 3;
-    const groupSize = Math.ceil(featuredCards.length/desiredDotCount);
-    const dotCount = Math.ceil(featuredCards.length/groupSize);
-    const activeDot = Math.floor(activeIndex/groupSize);
-
-    useEffect(() => {
-        const updateSize = () => {
-            const carousel = carouselRef.current;
-            const firstCard = carousel?.querySelector<HTMLDivElement>('[data-carousel-card]');
-            if (firstCard) {
-                setCarouselItemSize(firstCard.offsetWidth + gap);
-            }
-        };
-
-        updateSize();
-        window.addEventListener('resize', updateSize);
-        return () => window.removeEventListener('resize', updateSize);
-    }, [gap]);
-
-    useEffect(() => {
-        if (!carouselItemSize) {
-            return;
-        }
-
-        const carousel = carouselRef.current;
-        if (carousel) {
-            carousel.scrollLeft = carouselItemSize;
-            setActiveIndex(0);
-        }
-    }, [carouselItemSize]);
-
-    const scrollToIndex = (index: number) => {
-        const carousel = carouselRef.current;
-        if (!carousel || !carouselItemSize) {
-            return;
-        }
-
-        carousel.scrollTo({
-            left: carouselItemSize * (index + 1),
-            behavior: 'auto',
-        });
-        setActiveIndex(index);
-    };
-
-    const updateActiveIndex = (scrollLeft: number) => {
-        const offset = scrollLeft - carouselItemSize;
-        const index = Math.round(offset / carouselItemSize);
-        setActiveIndex(Math.min(Math.max(index, 0), featuredCards.length - 1));
-    };
-
-    const handleCarouselScroll = () => {
-        const carousel = carouselRef.current;
-        if (!carousel || !carouselItemSize) {
-            return;
-        }
-
-        const minScroll = carouselItemSize * 0.2;
-        const maxScroll = carouselItemSize * (featuredCards.length + 0.8);
-        const centerIndex = Math.floor(featuredCards.length/2);
-
-        // if (carousel.scrollLeft <= minScroll) {
-        //     carousel.scrollLeft = carouselItemSize * featuredCards.length;
-        //     updateActiveIndex(carousel.scrollLeft);
-        //     return;
-        // }
-
-        // if (carousel.scrollLeft >= maxScroll) {
-        //     carousel.scrollLeft = carouselItemSize;
-        //     updateActiveIndex(carousel.scrollLeft);
-        //     return;
-        // }
-
-        if(carousel.scrollLeft <= minScroll){
-            scrollToIndex(centerIndex);
-            return;
-        }
-        if(carousel.scrollLeft >= maxScroll){
-            scrollToIndex(centerIndex);
-            return
-        }
-
-        updateActiveIndex(carousel.scrollLeft);
-    };
-
-    const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-        const carousel = carouselRef.current;
-        if (!carousel) {
-            return;
-        }
-
-        dragMovedRef.current = false;
-        suppressClickRef.current = false;
-        setIsDragging(false);
-        setDragStartX(event.clientX);
-        setDragStartScroll(carousel.scrollLeft);
-        event.currentTarget.setPointerCapture(event.pointerId);
-    };
-
-    const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-        if (dragStartX === null) {
-            return;
-        }
-
-        const carousel = carouselRef.current;
-        if (!carousel) {
-            return;
-        }
-
-        const delta = event.clientX - dragStartX;
-        if (Math.abs(delta) > 6) {
-            dragMovedRef.current = true;
-            setIsDragging(true);
-        }
-        carousel.scrollLeft = dragStartScroll - delta;
-    };
-
-    const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-        const carousel = carouselRef.current;
-        if (carousel) {
-            handleCarouselScroll();
-        }
-
-        if (dragMovedRef.current) {
-            suppressClickRef.current = true;
-            window.setTimeout(() => {
-                suppressClickRef.current = false;
-            }, 0);
-        }
-
-        setDragStartX(null);
-        setDragStartScroll(0);
-        setIsDragging(false);
-        if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-            event.currentTarget.releasePointerCapture(event.pointerId);
-        }
-    };
-
-    const handlePointerCancel = (event: React.PointerEvent<HTMLDivElement>) => {
-        handlePointerUp(event);
-    };
-
-    const handleCardClick = (event: React.MouseEvent) => {
-        if (isDragging || dragMovedRef.current || suppressClickRef.current) {
-            event.preventDefault();
-        }
-    };
 
     return (
         <PublicLayout
@@ -276,39 +117,35 @@ export default function Home() {
                 </div>
             </div>
             {/* CAROUSEL AND CONTENT SECTION */}
-            <div className="bg-white"> 
+            <div className="bg-white">
             {/* CAROUSEL SECTION */}
-            <section className=" select-none mt-2 ">
-                <div className="mb-8 flex lg:mx-50 md:mx-1 items-center justify-between gap-4">
-                        <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
-                        <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p> 
-                </div>
-           
-                <div
-                    ref={carouselRef}
-                    className="flex select-none gap-5 overflow-x-hidden overflow-x-auto scroll-smooth snap-x snap-mandatory pb-3 cursor-grab active:cursor-grabbing"
-                    style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-                    onScroll={handleCarouselScroll}
-                    onPointerDown={handlePointerDown}
-                    onPointerMove={handlePointerMove}
-                    onPointerUp={handlePointerUp}
-                    onPointerCancel={handlePointerCancel}
-                >
-                    {carouselCards.map((card, index) => (
+    <section className="select-none mt-2 overflow-hidden">
+        <div className="mb-8 flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+            <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
+            <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p>
+        </div>
+
+        <Carousel
+            opts={{
+                align: 'start',
+                dragFree: true,
+                skipSnaps: true,
+                dragThreshold: 2,
+                loop: true,
+            }}
+            className="relative left-1/2 w-screen max-w-none -translate-x-1/2 px-4 sm:px-6 lg:px-8"
+        >
+            <CarouselContent className="-ml-5 touch-pan-y">
+                {featuredCards.map((card, index) => (
+                    <CarouselItem key={`${card.title}-${index}`} className="pl-5 basis-[340px] grow-0">
                         <Link
-                            key={`${card.title}-${index}`}
                             href={card.href}
-                            draggable={false}
-                            onDragStart={(e) => e.preventDefault()}
-                            onClick={handleCardClick}
-                            data-carousel-card
-                            className="group relative h-48 min-w-[340px] flex-none overflow-hidden shadow-xl snap-start cursor-pointer"
+                            className="group relative block h-48 overflow-hidden shadow-xl touch-pan-y"
                         >
                             <img
                                 src={card.image}
                                 alt={card.title}
                                 draggable="false"
-                                onDragStart={(event) => event.preventDefault()}
                                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-white/20" />
@@ -323,23 +160,11 @@ export default function Home() {
                                 </div>
                             </div>
                         </Link>
-                    ))}
-                </div>
-            
-                <div className="mt-6 mb-10 flex items-center justify-center gap-3">
-                    {Array.from({length: dotCount}).map((_, index) => (
-                        <button
-                            key={index}
-                            type="button"
-                            aria-label={`Go to slide ${index + 1}`}
-                            className={`h-3 w-3 rounded-full transition-colors ${
-                                activeDot === index ? 'bg-emerald-900' : 'bg-slate-300'
-                            }`}
-                            onClick={() => scrollToIndex(Math.min(index * groupSize, featuredCards.length - 1))}
-                        />
-                    ))}
-                </div>
-            </section>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+        </Carousel>
+    </section>
             {/* CONTENT SECTION */}
             {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
             {/* mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center */}
