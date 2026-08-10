@@ -120,7 +120,7 @@ export default function Home() {
             <div className="bg-white">
             {/* CAROUSEL SECTION */}
     <section className="select-none mt-2 overflow-hidden">
-        <div className="mb-8 flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-45">
             <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
             <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p>
         </div>
@@ -175,7 +175,7 @@ export default function Home() {
                     <BusinessAndTourism />
             </section>
             <section className="flex justify-center">
-                <div className="border border-black mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
+                <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
                     <LocalInformation />
                     <VisitorQuickLinks />
                 </div>

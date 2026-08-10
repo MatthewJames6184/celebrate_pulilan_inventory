@@ -88,6 +88,14 @@ class PageController extends Controller
         return Inertia::render('about/shopping');
     }
 
+    public function detail(string $topic, string $slug): Response
+    {
+        return Inertia::render('about/detail', [
+            'topic' => $topic,
+            'slug' => $slug,
+        ]);
+    }
+
     public function stayDine(): Response
     {
         return Inertia::render('stay-dine');

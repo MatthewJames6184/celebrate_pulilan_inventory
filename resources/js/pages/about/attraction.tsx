@@ -1,37 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Town Destinations',
-        description:
-            'Pulilan offers community destinations where visitors can explore local culture, public spaces, and day-trip highlights.',
-    },
-    {
-        title: 'Visitor Favorites',
-        items: ['Heritage stops', 'Community centers', 'Nature-side views'],
-    },
-    {
-        title: 'Planning Tips',
-        description: 'Start with nearby landmarks, then combine food, history, and local products in one easy itinerary.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Attraction() {
+    const page = whatToSeePages.attraction;
+
     return (
         <PublicTopicPage
-            headTitle="Attraction"
-            title="Pulilan Attractions"
-            imageSubHeader={{ src: '/images/carousel-images/Attraction.jpg', alt: 'attraction' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'attraction' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Attraction' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="attraction" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Town Celebrations',
-        description:
-            'Pulilan is known for community events that bring together residents, schools, businesses, and local leaders in a shared celebration of culture.',
-    },
-    {
-        title: 'Festival Highlights',
-        items: ['Street programs', 'Parades', 'Cultural showcases'],
-    },
-    {
-        title: 'Why It Matters',
-        description:
-            'These gatherings help preserve traditions, support local pride, and give visitors a memorable look at Pulilan’s character.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Festivals() {
+    const page = whatToSeePages.festivals;
+
     return (
         <PublicTopicPage
-            headTitle="Festival"
-            title="Pulilan Festivals"
-            imageSubHeader={{ src: '/images/carousel-images/Festival.jpg', alt: 'festivals' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'festivals' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Festivals' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="festivals" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

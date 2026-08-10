@@ -24,3 +24,10 @@ test('about subpages are registered', function (string $routeName, string $contr
     ['about.resorts', 'resorts', 'about/resorts'],
     ['about.shopping', 'shopping', 'about/shopping'],
 ]);
+
+test('about detail page route is registered', function () {
+    expect(Route::has('about.detail'))->toBeTrue();
+    expect(route('about.detail', ['topic' => 'shopping', 'slug' => 'robinson-pulilan'], false))->toContain('/about/shopping/');
+    expect(method_exists(PageController::class, 'detail'))->toBeTrue();
+    expect(file_exists(resource_path('js/pages/about/detail.tsx')))->toBeTrue();
+});

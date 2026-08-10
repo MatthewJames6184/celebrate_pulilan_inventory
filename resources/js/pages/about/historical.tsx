@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Historic Landmarks',
-        description:
-            'The town includes locations tied to local memory, public life, and long-running traditions that have shaped its identity.',
-    },
-    {
-        title: 'Local Stories',
-        items: ['Old town narratives', 'Generational stories', 'Shared civic history'],
-    },
-    {
-        title: 'Walking Through Time',
-        description:
-            'A historical visit in Pulilan can be simple and local, from churches and public spaces to community corners with stories behind them.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Historical() {
+    const page = whatToSeePages.historical;
+
     return (
         <PublicTopicPage
-            headTitle="Historical"
-            title="Pulilan Historicals"
-            imageSubHeader={{ src: '/images/carousel-images/Historical.jpg', alt: 'historicals' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'historicals' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Historicals' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="historical" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

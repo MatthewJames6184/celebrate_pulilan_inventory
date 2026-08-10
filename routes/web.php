@@ -22,6 +22,7 @@ Route::prefix('about')->name('about.')->controller(PageController::class)->group
     Route::get('/religious', 'religious')->name('religious');
     Route::get('/resorts', 'resorts')->name('resorts');
     Route::get('/shopping', 'shopping')->name('shopping');
+    Route::get('/{topic}/{slug}', 'detail')->name('detail');
 });
 Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine');
 Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class)->group(function () {
