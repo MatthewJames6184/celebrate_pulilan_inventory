@@ -43,7 +43,7 @@ export default function About() {
         <PublicLayout>
             <Head title="About Pulilan" />
 
-            <section className="space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
+            <section className="space-y-6  border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
                 <div className="space-y-3">
                     <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">About Pulilan</p>
                     <h1 className="text-4xl font-semibold text-slate-950">History, culture, and points of interest.</h1>

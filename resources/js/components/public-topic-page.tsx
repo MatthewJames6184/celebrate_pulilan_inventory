@@ -1,53 +1,70 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import PublicLayout from '@/layouts/public-layout';
+import { ChevronRight } from 'lucide-react';
+import { ReactNode } from 'react';
 
-type TopicSection = {
-    title: string;
-    description?: string;
-    items?: string[];
+type BreadCrumbs = {
+    label: string;
+    href?: string;
+};
+
+type ImageSubHeader = {
+    alt: string;
+    src: string;
 };
 
 interface PublicTopicPageProps {
     headTitle: string;
-    eyebrow: string;
     title: string;
-    intro: string;
-    sections: TopicSection[];
-    gridClassName?: string;
+    imageSubHeader: ImageSubHeader;
+    breadcrumbs?: BreadCrumbs[];
+    children: ReactNode;
 }
 
-export default function PublicTopicPage({ headTitle, eyebrow, title, intro, sections, gridClassName = 'md:grid-cols-2 lg:grid-cols-3' }: PublicTopicPageProps) {
+export default function PublicTopicPage({ headTitle, title, imageSubHeader, breadcrumbs, children }: PublicTopicPageProps) {
     return (
         <PublicLayout>
             <Head title={headTitle} />
 
-            <section className="space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
-                <div className="space-y-3">
-                    <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">{eyebrow}</p>
-                    <h1 className="text-4xl font-semibold text-slate-950">{title}</h1>
-                    <p className="max-w-3xl text-base leading-8 text-slate-600">{intro}</p>
+            {/* subheader */}
+            <section className="relative h-25 flex overflow-hidden">
+                <img src={imageSubHeader.src} alt={imageSubHeader.alt} className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-white/80" />
+                <div className="absolute inset-0 flex basis-[1200px] lg:w-270 md:w-110 sm:w-110 sm:shrink justify-center items-center bg-white/5">
+                    <h1 className="text-5xl font-bold text-slate-900">{title}</h1>
                 </div>
+            </section>
 
-                <div className={`grid gap-5 ${gridClassName}`}>
-                    {sections.map((section) => (
-                        <article key={section.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                            <h2 className="text-xl font-semibold text-slate-950">{section.title}</h2>
+            <section className="min-h-screen border-emerald-200 bg-white shadow-sm shadow-slate-200/80 md:p-10 pl-0">
+                {/* Breadcrumbs */}
+                <section className="flex justify-center">
+                    <div className="w-300">
+                        {breadcrumbs && breadcrumbs.length > 0 && (
+                            <nav aria-label="Breadcrumb" className="mb-4">
+                                <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
+                                    {breadcrumbs.map((crumb, index) => {
+                                        const isLast = index === breadcrumbs.length - 1;
+                                        return (
+                                            <li key={crumb.label} className="flex items-center gap-1.5">
+                                                {crumb.href && !isLast ? (
+                                                    <Link href={crumb.href} className="transition-colors hover:text-emerald-700">
+                                                        {crumb.label}
+                                                    </Link>
+                                                ) : (
+                                                    <span className={isLast ? 'font-medium text-slate-950' : ''}>{crumb.label}</span>
+                                                )}
+                                                {!isLast && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
+                                            </li>
+                                        );
+                                    })}
+                                </ol>
+                            </nav>
+                        )}
+                    </div>
+                </section>
 
-                            {section.description ? <p className="mt-3 text-sm leading-7 text-slate-600">{section.description}</p> : null}
-
-                            {section.items ? (
-                                <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                                    {section.items.map((item) => (
-                                        <li key={item} className="flex items-center gap-3">
-                                            <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-700" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : null}
-                        </article>
-                    ))}
-                </div>
+                {/* Page-specific content goes here */}
+                {children}
             </section>
         </PublicLayout>
     );

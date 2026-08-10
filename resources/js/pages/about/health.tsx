@@ -18,11 +18,19 @@ const sections = [
 export default function Health() {
     return (
         <PublicTopicPage
-            headTitle="Health Services in Pulilan"
-            eyebrow="What to See"
-            title="Healthcare and wellness services."
-            intro="Find a quick overview of healthcare support and wellness resources available to Pulilan residents and visitors."
-            sections={sections}
-        />
+            headTitle="Health"
+            title="Pulilan Health"
+            imageSubHeader={{ src: '/images/carousel-images/Health.jpg', alt: 'health' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Health' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

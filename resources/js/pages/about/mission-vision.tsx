@@ -19,11 +19,19 @@ const sections = [
 export default function MissionVision() {
     return (
         <PublicTopicPage
-            headTitle="Mission and Vision of Pulilan"
-            eyebrow="What to See"
-            title="Public service goals and direction."
-            intro="Read the mission and vision highlights that guide Pulilan’s programs, governance priorities, and service delivery."
-            sections={sections}
-        />
+            headTitle="Mission Vision"
+            title="Pulilan Mission Vision"
+            imageSubHeader={{ src: '/images/carousel-images/Mission-Vision.jpg', alt: 'mission vision' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Mission Vision' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

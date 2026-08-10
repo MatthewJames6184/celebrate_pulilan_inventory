@@ -1,30 +1,45 @@
 import PublicTopicPage from '@/components/public-topic-page';
 
-const sections = [
-    {
-        title: 'Town Roots',
-        description:
-            'Pulilan grew from an agricultural community shaped by fertile land, river systems, and long-standing local traditions passed through generations.',
-    },
-    {
-        title: 'Community Growth',
-        description:
-            'As Pulilan expanded, it developed stronger public services, schools, businesses, and cultural programs that helped define modern town life.',
-    },
-    {
-        title: 'Legacy Today',
-        items: ['Local heritage', 'Family traditions', 'Community events'],
-    },
-];
-
 export default function History() {
     return (
         <PublicTopicPage
             headTitle="History of Pulilan"
-            eyebrow="About Pulilan"
-            title="History, roots, and community identity."
-            intro="Learn how Pulilan developed from its early settlement into a lively municipality with a strong sense of heritage and civic pride."
-            sections={sections}
-        />
+            title="History of Pulilan"
+            imageSubHeader={{ src: '/images/carousel-images/Historical.jpg', alt: 'history' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'History' },
+            ]}
+        >
+        <section className="max-w-7xl mx-auto px-6 flex gap-10">
+            {/* Main content */}
+            <div className="flex flex-[3] mt-8 gap-6 flex-col">
+                <img
+                    src="/images/image-3.jpg"
+                    alt="geography map of pulilan"
+                    className="w-full h-auto object-cover rounded-3xl shadow-sm"
+                />
+
+                <article className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                    <h2 className="text-xl font-semibold text-slate-950">Town Roots</h2>
+                    <p className="mt-3 text-sm leading-7 text-slate-600">
+                        Pulilan grew from an agricultural community shaped by fertile land, river systems, and long-standing local traditions
+                        passed through generations.
+                    </p>
+                </article>
+            </div>
+
+            {/* Sidebar */}
+            <aside className="flex flex-[1] mt-8 flex-col gap-4 max-w-xs">
+                <h3 className="text-base font-semibold text-slate-900">Related Pages</h3>
+
+                <nav className="flex flex-col rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                    
+                </nav>
+            </aside>
+        </section>
+
+        </PublicTopicPage>
     );
 }

@@ -20,11 +20,19 @@ const sections = [
 export default function Resorts() {
     return (
         <PublicTopicPage
-            headTitle="Resorts in Pulilan"
-            eyebrow="What to See"
-            title="Where to stay and unwind."
-            intro="Explore resort-style stays and nearby lodging choices that fit family trips, weekend breaks, and event travel."
-            sections={sections}
-        />
+            headTitle="Resorts"
+            title="Pulilan Resorts"
+            imageSubHeader={{ src: '/images/carousel-images/Resorts.jpg', alt: 'resorts' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Resorts' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

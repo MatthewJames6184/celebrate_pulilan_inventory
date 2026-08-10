@@ -20,11 +20,19 @@ const sections = [
 export default function Religious() {
     return (
         <PublicTopicPage
-            headTitle="Religious Sites in Pulilan"
-            eyebrow="What to See"
-            title="Faith, tradition, and community devotion."
-            intro="Find the places and traditions that reflect Pulilan’s long-standing religious life and the role of faith in daily community culture."
-            sections={sections}
-        />
+            headTitle="Religious"
+            title="Religions in Pulilan"
+            imageSubHeader={{ src: '/images/carousel-images/Religious.jpg', alt: 'religious' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Religious' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

@@ -20,11 +20,19 @@ const sections = [
 export default function Heritage() {
     return (
         <PublicTopicPage
-            headTitle="Heritage of Pulilan"
-            eyebrow="What to See"
-            title="Historic places and cultural preservation."
-            intro="Step into Pulilan’s heritage through landmarks, stories, and traditions that continue to shape the town today."
-            sections={sections}
-        />
+            headTitle="Heritage"
+            title="Pulilan Heritages"
+            imageSubHeader={{ src: '/images/carousel-images/Heritage.jpg', alt: 'Heritage' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Heritage' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

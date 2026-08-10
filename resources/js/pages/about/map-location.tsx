@@ -20,11 +20,19 @@ const sections = [
 export default function MapLocation() {
     return (
         <PublicTopicPage
-            headTitle="Map Location of Pulilan"
-            eyebrow="What to See"
-            title="Where Pulilan sits and how to explore it."
-            intro="Use this page as a simple guide to Pulilan’s location, access routes, and nearby areas worth including in your trip."
-            sections={sections}
-        />
+            headTitle="Map Location"
+            title="Pulilan Map Locations"
+            imageSubHeader={{ src: '/images/carousel-images/Map-Location.jpg', alt: 'Map Location' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Festivals' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

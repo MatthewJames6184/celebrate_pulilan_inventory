@@ -20,11 +20,19 @@ const sections = [
 export default function Historical() {
     return (
         <PublicTopicPage
-            headTitle="Historical Places in Pulilan"
-            eyebrow="What to See"
-            title="Historical landmarks and local stories."
-            intro="Explore the places and memories that helped shape Pulilan’s civic life, public spaces, and sense of place."
-            sections={sections}
-        />
+            headTitle="Historical"
+            title="Pulilan Historicals"
+            imageSubHeader={{ src: '/images/carousel-images/Historical.jpg', alt: 'historicals' }}
+            breadcrumbs={[
+                { label: 'Home', href: route('home') },
+                { label: 'About Pulilan', href: route('about') },
+                { label: 'Historicals' },
+            ]}
+        >
+            <section>
+                
+            </section>
+
+        </PublicTopicPage>
     );
 }

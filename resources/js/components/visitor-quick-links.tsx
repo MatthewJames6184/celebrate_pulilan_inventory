@@ -7,7 +7,7 @@ export default function VisitorQuickLinks() {
     ];
 
     return (
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+        <div className="flex-[1] shrink rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
             <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Visitor quick links</p>
             <ul className="mt-5 space-y-3 text-sm text-slate-700">
                 {links.map((link) => (
