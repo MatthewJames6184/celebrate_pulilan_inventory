@@ -27,11 +27,13 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, brea
             <Head title={headTitle} />
 
             {/* subheader */}
-            <section className="relative h-25 flex overflow-hidden">
+            <section className="relative h-25 overflow-hidden">
                 <img src={imageSubHeader.src} alt={imageSubHeader.alt} className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-white/80" />
-                <div className="absolute inset-0 flex basis-[1200px] lg:w-270 md:w-110 sm:w-110 sm:shrink justify-center items-center bg-white/5">
-                    <h1 className="text-5xl font-bold text-slate-900">{title}</h1>
+                <div className="absolute inset-0 flex items-center bg-white/5">
+                    <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <h1 className="max-w-5xl text-4xl font-bold leading-tight text-slate-900 md:text-5xl">{title}</h1>
+                    </div>
                 </div>
             </section>
 
