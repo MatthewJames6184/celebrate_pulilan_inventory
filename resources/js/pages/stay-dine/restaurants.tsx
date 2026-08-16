@@ -57,7 +57,7 @@ export default function StayDineRestaurants() {
         <StayDineDirectoryPage
             headTitle="Restaurants in Pulilan"
             eyebrow="Where to Stay and Dine"
-            title="Restaurants, cafes, and local food stops in one directory."
+            title="Restaurants in Pulilan"
             intro="Search by name, narrow by food type, and browse the alphabet when you already know the restaurant you want."
             imageSubHeader={{ src: '/images/carousel-images/Cuisine.jpg', alt: 'Pulilan restaurant and food stops' }}
             breadcrumbs={[
