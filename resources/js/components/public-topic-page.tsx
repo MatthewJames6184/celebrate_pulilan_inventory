@@ -96,7 +96,7 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
             <section className="min-h-screen border-emerald-200 bg-white shadow-sm shadow-slate-200/80 md:p-10 pl-0">
                 {/* Breadcrumbs */}
                 <section className="flex justify-center">
-                    <div className="w-300">
+                    <div className="w-90 md:w-300">
                         {breadcrumbs && breadcrumbs.length > 0 && (
                             <nav aria-label="Breadcrumb" className="mb-4">
                                 <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
