@@ -248,64 +248,65 @@ export default function StayDineDirectoryPage({
                                         viewMode === 'grid' ? 'grid md:grid-cols-2 xl:grid-cols-3' : 'space-y-4',
                                     )}
                                 >
-                                    {filteredItems.map((item) => {
-                                                                            const slug = item.name
-                                                                                .toLowerCase()
-                                                                                .trim()
-                                                                                .replace(/\s+/g, '-')
-                                                                                .replace(/[^a-z0-9\-]/g, '');
+                        {filteredItems.map((item) => {
+                            const slug = item.name
+                                .toLowerCase()
+                                .trim()
+                                .replace(/\s+/g, '-')
+                                .replace(/[^a-z0-9-]/g, '');
 
-                                                                            return (
-                                                                                <Link
-                                                                                    key={item.name}
-                                                                                    href={route('stay.dine.detail', { type, slug })}
-                                                                                    className={cn(
-                                                                                        'block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60 transition hover:-translate-y-0.5 hover:shadow-md',
-                                                                                        viewMode === 'list' && 'md:grid md:grid-cols-[1.25fr_0.95fr] md:items-start',
-                                                                                    )}
-                                                                                >
-                                                                                    <div className="space-y-4">
-                                                <div className="flex flex-wrap items-center gap-2">
-                                                    <span className="rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
-                                                        {item.category}
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={route('stay.dine.detail', { type, slug })}
+                                    className={cn(
+                                        'block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60 transition hover:-translate-y-0.5 hover:shadow-md',
+                                        viewMode === 'list' && 'md:grid md:grid-cols-[1.25fr_0.95fr] md:items-start',
+                                    )}
+                                >
+                                    <div className="space-y-4">
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <span className="rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                                                {item.category}
+                                            </span>
+                                            {item.featured ? (
+                                                <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
+                                                    Featured
+                                                </span>
+                                            ) : null}
+                                        </div>
+
+                                        <div>
+                                            <h4 className="text-xl font-semibold text-slate-950">{item.name}</h4>
+                                            <div className="mt-2 flex items-start gap-2 text-sm text-slate-600">
+                                                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" />
+                                                <span>{item.address}</span>
+                                            </div>
+                                        </div>
+
+                                        <p className="text-sm leading-7 text-slate-600">{item.summary}</p>
+                                    </div>
+
+                                    <div className={cn('mt-5 space-y-4 md:mt-0', viewMode === 'grid' && 'border-t border-slate-200 pt-4')}>
+                                        <div>
+                                            <div className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Location</div>
+                                            <p className="mt-2 text-sm font-medium text-slate-800">{item.area}</p>
+                                        </div>
+
+                                        <div>
+                                            <div className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Highlights</div>
+                                            <div className="mt-3 flex flex-wrap gap-2">
+                                                {item.highlights.map((highlight) => (
+                                                    <span key={highlight} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                                                        {highlight}
                                                     </span>
-                                                    {item.featured ? (
-                                                        <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
-                                                            Featured
-                                                        </span>
-                                                    ) : null}
-                                                </div>
-
-                                                <div>
-                                                    <h4 className="text-xl font-semibold text-slate-950">{item.name}</h4>
-                                                    <div className="mt-2 flex items-start gap-2 text-sm text-slate-600">
-                                                        <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" />
-                                                        <span>{item.address}</span>
-                                                    </div>
-                                                </div>
-
-                                                <p className="text-sm leading-7 text-slate-600">{item.summary}</p>
+                                                ))}
                                             </div>
-
-                                            <div className={cn('mt-5 space-y-4 md:mt-0', viewMode === 'grid' && 'border-t border-slate-200 pt-4')}>
-                                                <div>
-                                                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Location</div>
-                                                    <p className="mt-2 text-sm font-medium text-slate-800">{item.area}</p>
-                                                </div>
-
-                                                <div>
-                                                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">Highlights</div>
-                                                    <div className="mt-3 flex flex-wrap gap-2">
-                                                        {item.highlights.map((highlight) => (
-                                                            <span key={highlight} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
-                                                                {highlight}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ))}
+                                        </div>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                                 </div>
                             ) : (
                                 <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm shadow-slate-200/60">
