@@ -71,6 +71,7 @@ export default function StayDineAccommodations() {
                 { value: '6', label: 'Areas represented' },
             ]}
             items={accommodations}
+            type="accommodations"
             focusLabel="Stay guide"
             focusNote="This page is designed like a directory first: start with search, narrow by category or area, then browse the alphabetical index if you already know the name."
         />

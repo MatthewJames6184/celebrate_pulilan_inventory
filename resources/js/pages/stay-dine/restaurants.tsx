@@ -70,6 +70,7 @@ export default function StayDineRestaurants() {
                 { value: '6', label: 'Areas represented' },
             ]}
             items={restaurants}
+            type="restaurants"
             focusLabel="Food guide"
             focusNote="This layout keeps the archive easy to scan while still giving visitors the search, category, and alphabet tools they need to find a place fast."
         />

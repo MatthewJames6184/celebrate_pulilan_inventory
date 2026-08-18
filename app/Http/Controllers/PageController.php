@@ -111,6 +111,16 @@ class PageController extends Controller
         return Inertia::render('stay-dine/restaurants');
     }
 
+    public function stayDineDetail(string $type, string $slug): Response
+    {
+        // Server-side can later resolve the real listing by type+slug from DB.
+        // For now return the type and slug so the page can render details and map by address.
+        return Inertia::render('stay-dine/detail', [
+            'type' => $type,
+            'slug' => $slug,
+        ]);
+    }
+
     public function contact(): Response
     {
         return Inertia::render('contact');

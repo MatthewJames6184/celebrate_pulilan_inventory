@@ -31,10 +31,14 @@ type StayDineDirectoryPageProps = {
         alt: string;
     };
     breadcrumbs: Breadcrumb[];
+    // new prop: type of listing used to build the detail route (e.g. 'accommodations' or 'restaurants')
+    type?: string;
     items: DirectoryItem[];
 };
 
 const alphabet = ['#', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+
+import { Link } from '@inertiajs/react';
 
 export default function StayDineDirectoryPage({
     headTitle,
@@ -43,6 +47,7 @@ export default function StayDineDirectoryPage({
     intro,
     imageSubHeader,
     breadcrumbs,
+    type = 'list',
     items,
 }: StayDineDirectoryPageProps) {
     const [query, setQuery] = useState('');
@@ -243,15 +248,23 @@ export default function StayDineDirectoryPage({
                                         viewMode === 'grid' ? 'grid md:grid-cols-2 xl:grid-cols-3' : 'space-y-4',
                                     )}
                                 >
-                                    {filteredItems.map((item) => (
-                                        <article
-                                            key={item.name}
-                                            className={cn(
-                                                'rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60 transition hover:-translate-y-0.5 hover:shadow-md',
-                                                viewMode === 'list' && 'md:grid md:grid-cols-[1.25fr_0.95fr] md:items-start',
-                                            )}
-                                        >
-                                            <div className="space-y-4">
+                                    {filteredItems.map((item) => {
+                                                                            const slug = item.name
+                                                                                .toLowerCase()
+                                                                                .trim()
+                                                                                .replace(/\s+/g, '-')
+                                                                                .replace(/[^a-z0-9\-]/g, '');
+
+                                                                            return (
+                                                                                <Link
+                                                                                    key={item.name}
+                                                                                    href={route('stay.dine.detail', { type, slug })}
+                                                                                    className={cn(
+                                                                                        'block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60 transition hover:-translate-y-0.5 hover:shadow-md',
+                                                                                        viewMode === 'list' && 'md:grid md:grid-cols-[1.25fr_0.95fr] md:items-start',
+                                                                                    )}
+                                                                                >
+                                                                                    <div className="space-y-4">
                                                 <div className="flex flex-wrap items-center gap-2">
                                                     <span className="rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
                                                         {item.category}
@@ -291,7 +304,7 @@ export default function StayDineDirectoryPage({
                                                     </div>
                                                 </div>
                                             </div>
-                                        </article>
+                                        </Link>
                                     ))}
                                 </div>
                             ) : (

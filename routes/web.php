@@ -28,6 +28,8 @@ Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine')
 Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class)->group(function () {
     Route::get('/accommodations', 'stayDineAccommodations')->name('accommodations');
     Route::get('/restaurants', 'stayDineRestaurants')->name('restaurants');
+    // detail route for individual stay/dine listings
+    Route::get('/{type}/{slug}', 'stayDineDetail')->name('detail');
 });
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/others', [PageController::class, 'others'])->name('others');
