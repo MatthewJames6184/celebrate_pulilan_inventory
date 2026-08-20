@@ -1,37 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Municipal Mission',
-        description:
-            'Pulilan is committed to responsive governance, public service improvement, and community-centered development.',
-    },
-    {
-        title: 'Long-Term Vision',
-        items: ['Inclusive progress', 'Sustainable growth', 'Stronger local identity'],
-    },
-    {
-        title: 'Service Direction',
-        description: 'These guiding principles shape planning, programs, and public initiatives across the municipality.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function MissionVision() {
+    const page = whatToSeePages['mission-vision'];
+
     return (
         <PublicTopicPage
-            headTitle="Mission Vision"
-            title="Pulilan Mission Vision"
-            imageSubHeader={{ src: '/images/carousel-images/Mission-Vision.jpg', alt: 'mission vision' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'mission vision' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Mission Vision' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="mission-vision" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

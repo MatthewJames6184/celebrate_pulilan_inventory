@@ -1,36 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Learning Hubs',
-        description: 'Pulilan supports education through public and private schools, training spaces, and student-centered programs.',
-    },
-    {
-        title: 'Community Learning',
-        items: ['Primary and secondary schools', 'Youth activities', 'Skills programs'],
-    },
-    {
-        title: 'Why It Matters',
-        description: 'Education helps shape local progress and prepares families for long-term growth in the municipality.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Education() {
+    const page = whatToSeePages.education;
+
     return (
         <PublicTopicPage
-            headTitle="Education"
-            title="Education in Pulilan"
-            imageSubHeader={{ src: '/images/carousel-images/Education.jpg', alt: 'education' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'education' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Education' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="education" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

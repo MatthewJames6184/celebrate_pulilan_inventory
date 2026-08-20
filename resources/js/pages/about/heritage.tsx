@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Heritage Sites',
-        description:
-            'Pulilan’s heritage includes churches, older homes, civic buildings, and landmarks that tell the story of the town’s past.',
-    },
-    {
-        title: 'Cultural Preservation',
-        items: ['Historic structures', 'Traditional arts', 'Community memory'],
-    },
-    {
-        title: 'Visitor Value',
-        description:
-            'Exploring heritage places helps visitors understand how Pulilan balances growth with respect for its roots.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Heritage() {
+    const page = whatToSeePages.heritage;
+
     return (
         <PublicTopicPage
-            headTitle="Heritage"
-            title="Pulilan Heritages"
-            imageSubHeader={{ src: '/images/carousel-images/Heritage.jpg', alt: 'Heritage' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'heritage' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Heritage' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="heritage" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

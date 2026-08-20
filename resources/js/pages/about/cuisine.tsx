@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Native Flavors',
-        description:
-            'Pulilan’s food culture includes classic Bulacan dishes, rice-based snacks, and homemade delicacies shared at gatherings and celebrations.',
-    },
-    {
-        title: 'Local Dining',
-        items: ['Family eateries', 'Comfort food', 'Seasonal specialties'],
-    },
-    {
-        title: 'Tasting Notes',
-        description:
-            'Visitors can explore savory meals, sweet treats, and small-town culinary stops that reflect everyday life in Pulilan.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Cuisine() {
+    const page = whatToSeePages.cuisine;
+
     return (
         <PublicTopicPage
-            headTitle="Cuisine"
-            title="Pulilan Cuisines"
-            imageSubHeader={{ src: '/images/carousel-images/Cuisine.jpg', alt: 'cuisine' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'cuisine' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Cuisines' },
+                { label: page.title },
             ]}
         >
-            <section>
-
-            </section>
-
+            <TopicCardGrid topic="cuisine" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

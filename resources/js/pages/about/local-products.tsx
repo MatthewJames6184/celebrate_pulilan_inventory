@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Farm and Food Products',
-        description:
-            'Pulilan produces goods that reflect its agricultural roots, from fresh ingredients to packaged snacks and native treats.',
-    },
-    {
-        title: 'Craft and Trade',
-        items: ['Local packaging', 'Market goods', 'Community-made items'],
-    },
-    {
-        title: 'Take-Home Favorites',
-        description:
-            'These products make it easy for visitors to bring home a taste of Pulilan and support small local sellers at the same time.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function LocalProducts() {
+    const page = whatToSeePages['local-products'];
+
     return (
         <PublicTopicPage
-            headTitle="Local Products"
-            title="Pulilan Local Products"
-            imageSubHeader={{ src: '/images/carousel-images/Local-Products.jpg', alt: 'local products' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'local products' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Local Products' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="local-products" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

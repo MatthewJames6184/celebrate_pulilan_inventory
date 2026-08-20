@@ -22,11 +22,14 @@ Route::prefix('about')->name('about.')->controller(PageController::class)->group
     Route::get('/religious', 'religious')->name('religious');
     Route::get('/resorts', 'resorts')->name('resorts');
     Route::get('/shopping', 'shopping')->name('shopping');
+    Route::get('/{topic}/{slug}', 'detail')->name('detail');
 });
 Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine');
 Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class)->group(function () {
     Route::get('/accommodations', 'stayDineAccommodations')->name('accommodations');
     Route::get('/restaurants', 'stayDineRestaurants')->name('restaurants');
+    // detail route for individual stay/dine listings
+    Route::get('/{type}/{slug}', 'stayDineDetail')->name('detail');
 });
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/others', [PageController::class, 'others'])->name('others');

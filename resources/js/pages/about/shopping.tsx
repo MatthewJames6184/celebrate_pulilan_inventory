@@ -1,38 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Markets and Stores',
-        description:
-            'Shoppers can look for local markets, small stores, and neighborhood sellers that offer useful goods and Pulilan-made items.',
-    },
-    {
-        title: 'Common Finds',
-        items: ['Pasalubong items', 'Daily essentials', 'Local snacks'],
-    },
-    {
-        title: 'Practical Stops',
-        description:
-            'Shopping in Pulilan is often simple, local, and community-driven, which makes it easy to pick up what you need while supporting residents.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Shopping() {
+    const page = whatToSeePages.shopping;
+
     return (
         <PublicTopicPage
-            headTitle="Shopping"
-            title="Pulilan Shopping"
-            imageSubHeader={{ src: '/images/carousel-images/Shopping.jpg', alt: 'shopping' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'shopping' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Shopping' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="shopping" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }

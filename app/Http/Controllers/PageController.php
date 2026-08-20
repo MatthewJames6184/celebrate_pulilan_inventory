@@ -88,6 +88,14 @@ class PageController extends Controller
         return Inertia::render('about/shopping');
     }
 
+    public function detail(string $topic, string $slug): Response
+    {
+        return Inertia::render('about/detail', [
+            'topic' => $topic,
+            'slug' => $slug,
+        ]);
+    }
+
     public function stayDine(): Response
     {
         return Inertia::render('stay-dine');
@@ -101,6 +109,16 @@ class PageController extends Controller
     public function stayDineRestaurants(): Response
     {
         return Inertia::render('stay-dine/restaurants');
+    }
+
+    public function stayDineDetail(string $type, string $slug): Response
+    {
+        // Server-side can later resolve the real listing by type+slug from DB.
+        // For now return the type and slug so the page can render details and map by address.
+        return Inertia::render('stay-dine/detail', [
+            'type' => $type,
+            'slug' => $slug,
+        ]);
     }
 
     public function contact(): Response

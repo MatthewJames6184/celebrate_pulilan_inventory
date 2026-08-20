@@ -1,36 +1,22 @@
 import PublicTopicPage from '@/components/public-topic-page';
-
-const sections = [
-    {
-        title: 'Healthcare Access',
-        description: 'Residents and visitors can access public health services and private care providers across and near Pulilan.',
-    },
-    {
-        title: 'Health Services',
-        items: ['Primary care support', 'Preventive services', 'Community health programs'],
-    },
-    {
-        title: 'Wellness Focus',
-        description: 'Local health programs help families maintain preventive care and improve overall community well-being.',
-    },
-];
+import TopicCardGrid from '@/components/topic-card-grid';
+import { whatToSeePages } from '@/lib/what-to-see';
 
 export default function Health() {
+    const page = whatToSeePages.health;
+
     return (
         <PublicTopicPage
-            headTitle="Health"
-            title="Pulilan Health"
-            imageSubHeader={{ src: '/images/carousel-images/Health.jpg', alt: 'health' }}
+            headTitle={page.title}
+            title={page.title}
+            imageSubHeader={{ src: page.detailImage, alt: 'health' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
                 { label: 'About Pulilan', href: route('about') },
-                { label: 'Health' },
+                { label: page.title },
             ]}
         >
-            <section>
-                
-            </section>
-
+            <TopicCardGrid topic="health" eyebrow={page.eyebrow} title={page.title} summary={page.summary} cards={page.cards} />
         </PublicTopicPage>
     );
 }
