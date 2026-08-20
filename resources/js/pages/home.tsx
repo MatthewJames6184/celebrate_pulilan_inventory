@@ -3,23 +3,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Head, Link } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
 import PublicLayout from '@/layouts/public-layout';
 import LatestNewsEvents from '@/components/latest-news-events';
 import BusinessAndTourism from '@/components/business-and-tourism';
 import VisitorQuickLinks from '@/components/visitor-quick-links';
-import WhyVisitPulilan from '@/components/why-visit-pulilan';
 import LocalInformation from '@/components/local-information';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import {Carousel, CarouselContent, CarouselItem,} from '@/components/ui/carousel';
-
-const homepageBackgrounds = [
-    '/images/image-1.jpg',
-    '/images/image-2.jpg',
-    '/images/image-3.jpg',
-    '/images/image-4.jpg',
-    '/images/image-5.jpg'
-];
+import { useEffect, useState } from 'react';
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+    type CarouselApi,
+} from '@/components/ui/carousel';
 
 // const cards = [
 //     {
@@ -54,66 +51,125 @@ const featuredCards = [
     { title: 'Festival', image: '/images/carousel-images/Festival.jpg', href: route('about.festivals') },
 ];
 
-export default function Home() {
-    const backgroundImage = useMemo(() => {
-        const index = Math.floor(Math.random() * homepageBackgrounds.length);
-        return homepageBackgrounds[index];
-    }, []);
+const heroSlides = [
+    {
+        title: 'PANUNUMPA SA TUNGKULIN',
+        tag: '#RAMDMANASERBISYO',
+        image: '/images/carousel-images/Festival.jpg',
+        href: route('about.festivals'),
+    },
+    {
+        title: 'WELCOME TO PULILAN',
+        tag: '#DISCOVERLOCAL',
+        image: '/images/carousel-images/Heritage.jpg',
+        href: route('about.heritage'),
+    },
+    {
+        title: 'CELEBRATE COMMUNITY',
+        tag: '#GROWTOGETHER',
+        image: '/images/carousel-images/Religious.jpg',
+        href: route('about.religious'),
+    },
+];
 
+export default function Home() {
+    const [api, setApi] = useState<CarouselApi | null>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+
+        const updateIndex = () => setActiveIndex(api.selectedScrollSnap());
+
+        updateIndex();
+        api.on('select', updateIndex);
+        api.on('reInit', updateIndex);
+
+        return () => {
+            api.off('select', updateIndex);
+            api.off('reInit', updateIndex);
+        };
+    }, [api]);
+
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+
+        const autoplay = window.setInterval(() => {
+            api.scrollNext();
+        }, 5000);
+
+        return () => window.clearInterval(autoplay);
+    }, [api]);
 
     return (
-        <PublicLayout
-            headerTransparent
-            backgroundImage={`linear-gradient(rgba(8, 64, 52, 0.45), rgba(6, 39, 30, 0.45)), url('${backgroundImage}')`}
-        >
+        <PublicLayout headerTransparent>
             <Head title="Home" />
-            {/* HERO SECTION */}
             <div className="relative overflow-hidden text-white">
-                {/* z-10 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center */}
-                <div className=" z-8 mx-auto grid min-h-[85vh] gap-10 px-4 py-20 sm:px-6 lg:px-50 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-                    <div className="space-y-8">
-                        <span className="inline-flex rounded-full bg-amber-400/90 px-4 py-1.5 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-950">
-                            Municipal Government of Pulilan
-                        </span>
-                        <div className="space-y-6">
-                            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-                                Celebrate Pulilan with every event, service, and visitor.
-                            </h1>
-                            <p className="max-w-2xl text-lg leading-8 text-white/90 sm:text-xl">
-                                Find the perfect way to stay, dine, and move around Pulilan with official events, travel tips, and community services.
-                            </p>
-                        </div>
-                        <div className="flex flex-wrap gap-4">
-                            <Button asChild>
-                                <a href={route('about')} className="inline-flex items-center justify-center rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-amber-300">
-                                    Learn more
-                                </a>
-                            </Button>
-                            <Button variant="secondary" asChild>
-                                <a href={route('stay.dine')} className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
-                                    Where to stay and dine
-                                </a>
-                            </Button>
-                        </div>
-                    </div>
+                <Carousel
+                    setApi={setApi}
+                    opts={{
+                        loop: true,
+                        align: 'center',
+                        containScroll: 'trimSnaps',
+                    }}
+                    className="relative"
+                >
+                    <CarouselContent className="h-[72vh] min-h-[500px]">
+                        {heroSlides.map((slide) => (
+                            <CarouselItem key={slide.title} className="basis-full">
+                                <div className="relative h-full w-full overflow-hidden">
+                                    <img
+                                        src={slide.image}
+                                        alt={slide.title}
+                                        className="h-full w-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-800/45 to-slate-900/60" />
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />
+                                    <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+                                        <div className="w-full max-w-6xl text-center">
+                                            <h1 className="mx-auto max-w-5xl text-4xl font-black uppercase tracking-tight text-white sm:text-5xl lg:text-[5.2rem] lg:leading-[1.02]">
+                                                {slide.title}
+                                            </h1>
+                                            <p className="mt-6 text-base font-semibold tracking-[0.22em] text-white/90 sm:text-xl">
+                                                {slide.tag}
+                                            </p>
+                                            <div className="mt-8 flex items-center justify-center gap-3 sm:gap-5">
+                                                <span className="h-px w-10 bg-white/70 sm:w-16" />
+                                                <Link
+                                                    href={slide.href}
+                                                    className="inline-flex items-center justify-center rounded-full border border-white/80 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-sm transition hover:bg-white/20"
+                                                >
+                                                    Read more
+                                                </Link>
+                                                <span className="h-px w-10 bg-white/70 sm:w-16" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
 
-                    <div className="rounded-[2rem] border border-white/20 bg-white/10 p-8 shadow-2xl shadow-black/20 backdrop-blur-xl">
-                        <p className="text-sm uppercase tracking-[0.35em] text-amber-200">Discover Pulilan</p>
-                        <h2 className="mt-4 text-3xl font-semibold text-white">Explore local culture, hospitality, and attractions.</h2>
-                        <p className="mt-5 text-base leading-7 text-white/85">
-                            Browse this quick selection of destinations and local experiences, then dive deeper into the best of Pulilan.
-                        </p>
-                        <div className="mt-8 space-y-4">
-                            <div className="rounded-3xl bg-white/10 p-5 text-white shadow-inner shadow-black/10">
-                                <p className="text-sm uppercase tracking-[0.35em] text-amber-200">Events & Festivals</p>
-                                <p className="mt-2 text-base leading-6 text-white/85">Stay updated on celebrations, parades, and official programs.</p>
-                            </div>
-                            <div className="rounded-3xl bg-white/10 p-5 text-white shadow-inner shadow-black/10">
-                                <p className="text-sm uppercase tracking-[0.35em] text-amber-200">Food & Travel</p>
-                                <p className="mt-2 text-base leading-6 text-white/85">Plan where to eat, stay, and discover local favorites.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <CarouselPrevious className="left-4 z-20 h-12 w-12 rounded-full border border-white/35 bg-black/20 text-white shadow-lg backdrop-blur-sm hover:bg-black/35 sm:left-8" />
+                    <CarouselNext className="right-4 z-20 h-12 w-12 rounded-full border border-white/35 bg-black/20 text-white shadow-lg backdrop-blur-sm hover:bg-black/35 sm:right-8" />
+                </Carousel>
+
+                <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
+                    {heroSlides.map((slide, index) => (
+                        <button
+                            key={slide.title}
+                            type="button"
+                            aria-label={`Go to slide ${index + 1}`}
+                            onClick={() => api?.scrollTo(index)}
+                            className={`h-2.5 rounded-full transition-all duration-300 ${
+                                activeIndex === index ? 'w-9 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/80'
+                            }`}
+                        />
+                    ))}
                 </div>
             </div>
             {/* CAROUSEL AND CONTENT SECTION */}
