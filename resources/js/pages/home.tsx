@@ -8,7 +8,7 @@ import LatestNewsEvents from '@/components/latest-news-events';
 import BusinessAndTourism from '@/components/business-and-tourism';
 import VisitorQuickLinks from '@/components/visitor-quick-links';
 import LocalInformation from '@/components/local-information';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
     Carousel,
     CarouselContent,
@@ -105,10 +105,20 @@ export default function Home() {
         return () => window.clearInterval(autoplay);
     }, [api]);
 
+    const scrollToFeatured = useCallback(() => {
+        const el = document.getElementById('featured-destinations');
+        if (!el) return;
+        const header = document.querySelector('header');
+        const headerHeight = header?.clientHeight ?? 64;
+        const top = el.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+        window.scrollTo({ top, behavior: 'smooth' });
+    }, []);
+
     return (
         <PublicLayout headerTransparent>
             <Head title="Home" />
-            <div className="relative overflow-hidden text-white">
+            {/* HERO SECTION */}
+            <div className="relative overflow-hidden text-white mb-0">
                 <Carousel
                     setApi={setApi}
                     opts={{
@@ -118,7 +128,7 @@ export default function Home() {
                     }}
                     className="relative"
                 >
-                    <CarouselContent className="h-[72vh] min-h-[500px]">
+                    <CarouselContent className="h-[72vh] min-h-[500px] ">
                         {heroSlides.map((slide) => (
                             <CarouselItem key={slide.title} className="basis-full">
                                 <div className="relative h-full w-full overflow-hidden">
@@ -139,12 +149,6 @@ export default function Home() {
                                             </p>
                                             <div className="mt-8 flex items-center justify-center gap-3 sm:gap-5">
                                                 <span className="h-px w-10 bg-white/70 sm:w-16" />
-                                                <Link
-                                                    href={slide.href}
-                                                    className="inline-flex items-center justify-center rounded-full border border-white/80 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/20 backdrop-blur-sm transition hover:bg-white/20"
-                                                >
-                                                    Read more
-                                                </Link>
                                                 <span className="h-px w-10 bg-white/70 sm:w-16" />
                                             </div>
                                         </div>
@@ -157,6 +161,16 @@ export default function Home() {
                     <CarouselPrevious className="left-4 z-20 h-12 w-12 rounded-full border border-white/35 bg-black/20 text-white shadow-lg backdrop-blur-sm hover:bg-black/35 sm:left-8" />
                     <CarouselNext className="right-4 z-20 h-12 w-12 rounded-full border border-white/35 bg-black/20 text-white shadow-lg backdrop-blur-sm hover:bg-black/35 sm:right-8" />
                 </Carousel>
+
+                <div className="absolute z-30 left-1/2 -translate-x-1/2 bottom-20">
+                    <button
+                        type="button"
+                        onClick={scrollToFeatured}
+                        className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 backdrop-blur-sm hover:bg-white/20"
+                    >
+                        What to see
+                    </button>
+                </div>
 
                 <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3">
                     {heroSlides.map((slide, index) => (
@@ -172,10 +186,12 @@ export default function Home() {
                     ))}
                 </div>
             </div>
+            {/* HERO SECTION END */}
+
             {/* CAROUSEL AND CONTENT SECTION */}
             <div className="bg-white">
-            {/* CAROUSEL SECTION */}
-    <section className="select-none mt-2 overflow-hidden">
+                {/* CAROUSEL SECTION */}
+    <section id="featured-destinations" className="select-none mt-0 overflow-hidden pb-20">
         <div className="mb-8 flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-45">
             <h2 className="mt-10 ml-10 text-3xl font-semibold text-slate-950">Featured destinations</h2>
             <p className="text-sm mt-10 text-black mr-10">Swipe to explore the highlights.</p>
@@ -221,21 +237,26 @@ export default function Home() {
             </CarouselContent>
         </Carousel>
     </section>
-            {/* CONTENT SECTION */}
-            {/* space-y-6 mt-10 grid lg:grid-cols-[1.2fr_0.8fr] justify-items-center */}
-            {/* mt-10 mb-10 grid lg:grid-flow-col gap-4 justify-items-center */}
-            <section className= "flex justify-center my-10 " >
-                    <LatestNewsEvents />
-            </section>
-            <section className = "flex justify-center my-10">
-                    <BusinessAndTourism />
-            </section>
-            <section className="flex justify-center">
+            </div>
+
+   
+
+            <section className="bg-white/50  flex justify-center ">
                 <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
-                    <LocalInformation />
-                    <VisitorQuickLinks />
+                    <LatestNewsEvents />
+                    <BusinessAndTourism />
                 </div>
             </section>
+
+
+            {/* White band for LocalInformation and VisitorQuickLinks (keep white background) */}
+            <div className="bg-white">
+                <section className="flex justify-center">
+                    <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
+                        <LocalInformation />
+                        <VisitorQuickLinks />
+                    </div>
+                </section>
             </div>
         </PublicLayout>
     );

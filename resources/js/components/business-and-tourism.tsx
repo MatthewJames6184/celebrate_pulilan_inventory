@@ -19,7 +19,7 @@ export default function BusinessAndTourism() {
 
     return (
         
-        <div className="p-4 border border-black flex shrink basis-[1200px] flex-col">
+        <div className="p-4 border border-black flex shrink basis-[1200px] flex-col bg-white">
             <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Business & Tourism</p>
             
             <div className="mt-5 grid gap-4 sm:grid-cols-3 ">
