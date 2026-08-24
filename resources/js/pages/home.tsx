@@ -241,10 +241,14 @@ export default function Home() {
 
    
 
-            <section className="bg-white/50  flex justify-center ">
-                <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
-                    <LatestNewsEvents />
-                    <BusinessAndTourism />
+            <section className="bg-white/50 flex justify-center py-10">
+                <div className="mx-5 w-full max-w-[1200px] flex flex-col items-center gap-6">
+                    <div className="w-full max-w-[980px] h-auto">
+                        <LatestNewsEvents />
+                    </div>
+                    <div className="w-full max-w-[980px] h-auto">
+                        <BusinessAndTourism />
+                    </div>
                 </div>
             </section>
 
