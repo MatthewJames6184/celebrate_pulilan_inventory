@@ -53,21 +53,21 @@ const featuredCards = [
 
 const heroSlides = [
     {
-        title: 'PANUNUMPA SA TUNGKULIN',
-        tag: '#RAMDMANASERBISYO',
-        image: '/images/carousel-images/Festival.jpg',
+        title: 'DISCOVER PULILAN',
+        tag: '#EXPERIENCEPULILAN',
+        image: '/images/hero-images/hero-1.jpg',
         href: route('about.festivals'),
     },
     {
         title: 'WELCOME TO PULILAN',
         tag: '#DISCOVERLOCAL',
-        image: '/images/carousel-images/Heritage.jpg',
+        image: '/images/hero-images/hero-2.jpg',
         href: route('about.heritage'),
     },
     {
         title: 'CELEBRATE COMMUNITY',
         tag: '#GROWTOGETHER',
-        image: '/images/carousel-images/Religious.jpg',
+        image: '/images/carousel-images/hero-3.jpg',
         href: route('about.religious'),
     },
 ];
@@ -168,7 +168,10 @@ export default function Home() {
                         onClick={scrollToFeatured}
                         className="inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-black/30 backdrop-blur-sm hover:bg-white/20"
                     >
-                        What to see
+                        <span>What to see</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2 h-4 w-4 text-white animate-bounce">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
                 </div>
 
@@ -241,7 +244,7 @@ export default function Home() {
 
    
 
-            <section className="bg-white/50 flex justify-center py-10">
+            <section className="bg-white/60 flex justify-center py-10">
                 <div className="mx-5 w-full max-w-[1200px] flex flex-col items-center gap-6">
                     <div className="w-full max-w-[980px] h-auto">
                         <LatestNewsEvents />

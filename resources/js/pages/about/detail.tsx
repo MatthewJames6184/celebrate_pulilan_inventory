@@ -19,7 +19,6 @@ export default function Detail({ topic, slug }: DetailPageProps) {
             imageSubHeader={{ src: page.detailImage, alt: card.title }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
-                { label: 'About Pulilan', href: route('about') },
                 { label: page.title, href: route(`about.${topic}`) },
                 { label: card.title },
             ]}

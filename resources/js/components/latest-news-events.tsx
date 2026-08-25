@@ -10,6 +10,21 @@ export default function LatestNewsEvents() {
             'In coordination with the Municipal Tourism Office and the Department of Environment and Natural Resources, residents, local officials, and volunteers worked together to plant native trees and restore key community areas across Pulilan. The activity highlighted the town’s commitment to environmental stewardship, public participation, and sustainable growth for future generations.',
     };
 
+    const upcomingEvents = [
+        {
+            title: 'Kasedihan Festival',
+            date: 'October 10, 2026',
+            image: '/images/placeholder-img/wat-da-dog-doin.jpg',
+            desc: 'Lorem ipsum dolor sit.'
+        },
+        {
+            title: 'Heritage Night',
+            date: 'November 8, 2026',
+            image: '/images/placeholder-img/wat-da-dog-doin.jpg',
+            desc: 'Lorem ipsum dolor.'
+        }
+    ];
+
     const otherNewsItems = [
         {
             title: 'Tree Planting Activity',
@@ -28,18 +43,33 @@ export default function LatestNewsEvents() {
         },
     ];
 
+    const otherEvents = [
+        {
+            title: 'Community Bazaar',
+            date: 'December 5, 2026',
+            image: '/images/placeholder-img/wat-da-dog-doin.jpg',
+            desc: 'Lorem ipsum.'
+        },
+        {
+            title: 'Local Food Fair',
+            date: 'January 15, 2027',
+            image: '/images/placeholder-img/wat-da-dog-doin.jpg',
+            desc: 'Lorem ipsum.'
+        }
+    ];
+
     return (
-        <div className="w-full rounded-[28px] border border-slate-200 bg-white/90 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:p-7">
-            <div className="flex items-center justify-between gap-3 border-slate-200 pb-4">
-                <h2 className="text-2xl font-black uppercase tracking-[0.12em] text-slate-900 sm:text-3xl">
-                    Latest News
-                </h2>
-                <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 sm:inline-flex">
-                    Updates
-                </span>
+        <div className="w-full rounded-[28px] border border-slate-200 bg-white/90 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:p-0">
+            <div className="bg-emerald-700 px-6 py-3 rounded-t-[28px]">
+                <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Latest News</p>
+                    <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 sm:inline-flex">
+                        Updates
+                    </span>
+                </div>
             </div>
 
-            <div className="mt-6 grid gap-6 lg:grid-cols-[1.7fr_0.9fr]">
+            <div className="p-6 mt-0 grid gap-6 lg:grid-cols-[1.7fr_0.9fr]">
                 <article className="space-y-4">
                     <div className="space-y-2">
                         <h3 className="text-2xl font-bold text-slate-900">{featuredStory.title}</h3>
@@ -58,9 +88,25 @@ export default function LatestNewsEvents() {
                     <p className="text-base leading-7 text-slate-700">{featuredStory.excerpt}</p>
                     <p className="text-base leading-7 text-slate-700">{featuredStory.body}</p>
 
+                    <div className="mt-4">
+                        <h4 className="mb-2 text-lg font-bold text-slate-900">Upcoming Events</h4>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                            {upcomingEvents.map((ev) => (
+                                <article key={ev.title} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                    <img src={ev.image} alt={ev.title} className="h-16 w-16 rounded-md object-cover" />
+                                    <div>
+                                        <h5 className="text-sm font-semibold text-slate-900">{ev.title}</h5>
+                                        <p className="mt-1 text-xs text-slate-500">{ev.date}</p>
+                                        <p className="mt-1 text-xs text-slate-600">{ev.desc}</p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+
                     <button
                         type="button"
-                        className="inline-flex items-center gap-2 border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-800"
+                        className="mt-4 inline-flex items-center gap-2 border border-slate-300 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-800"
                     >
                         Read more
                     </button>
@@ -84,6 +130,22 @@ export default function LatestNewsEvents() {
                                 </div>
                             </article>
                         ))}
+                    </div>
+
+                    <div className="pt-3">
+                        <h4 className="mb-2 text-lg font-bold text-slate-900">Other Events</h4>
+                        <div className="space-y-3">
+                            {otherEvents.map((ev) => (
+                                <article key={ev.title} className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                    <img src={ev.image} alt={ev.title} className="h-14 w-14 rounded-md object-cover" />
+                                    <div>
+                                        <h5 className="text-sm font-semibold text-slate-900">{ev.title}</h5>
+                                        <p className="mt-1 text-xs text-slate-500">{ev.date}</p>
+                                        <p className="mt-1 text-xs text-slate-600">{ev.desc}</p>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
                     </div>
                 </aside>
             </div>

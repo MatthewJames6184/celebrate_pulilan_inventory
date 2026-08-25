@@ -12,7 +12,6 @@ export default function LocalProducts() {
             imageSubHeader={{ src: page.detailImage, alt: 'local products' }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
-                { label: 'About Pulilan', href: route('about') },
                 { label: page.title },
             ]}
         >

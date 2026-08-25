@@ -1,40 +1,67 @@
+import { Link } from '@inertiajs/react';
+import { whatToSeePages } from '@/lib/what-to-see';
+
 export default function BusinessAndTourism() {
-    const items = [
+    // use the existing whatToSeePages to pull featured content for each column
+    const local = whatToSeePages['local-products'];
+    const attraction = whatToSeePages['attraction'];
+    const shopping = whatToSeePages['shopping'];
+
+    const columns = [
         {
-            title: 'Local Product',
-            subtitle: "Charmes native to Pulilan",
-            image: '/images/carousel-images/cp-11.jpg',
+            key: 'local-products',
+            eyebrow: 'LOCAL PRODUCT',
+            title: local.title,
+            moreHref: route('about.local-products'),
+            item: local.cards[0],
         },
         {
-            title: 'Tourist Attraction',
-            subtitle: 'Makahoy Private Resort',
-            image: '/images/carousel-images/cp-10.jpg',
+            key: 'attraction',
+            eyebrow: 'TOURIST ATTRACTION',
+            title: attraction.title,
+            moreHref: route('about.attraction'),
+            item: attraction.cards[0],
         },
         {
-            title: 'Top Businesses',
-            subtitle: 'SM Center Pulilan & more',
-            image: '/images/carousel-images/cp-5.jpg',
+            key: 'shopping',
+            eyebrow: 'TOP BUSINESSES',
+            title: shopping.title,
+            moreHref: route('about.shopping'),
+            item: shopping.cards[0],
         },
     ];
 
     return (
-        
-        <div className="p-4 border border-black flex shrink basis-[1200px] flex-col bg-white">
-            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Business & Tourism</p>
-            
-            <div className="mt-5 grid gap-4 sm:grid-cols-3 ">
-                
-                {items.map((it) => (
-                    <div key={it.title} className="overflow-hidden shadow-sm">
-                        <div className="h-28 overflow-hidden bg-slate-100">
-                            <img src={it.image} alt={it.title} className="h-full w-full object-cover" />
-                        </div>
-                        <div className="p-4">
-                            <h3 className="text-sm font-semibold text-slate-900">{it.title}</h3>
-                            <p className="mt-1 text-xs text-slate-600">{it.subtitle}</p>
-                        </div>
-                    </div>
-                ))}
+        <div className="w-[980px] mx-auto bg-white rounded-2xl border border-slate-200">
+            <div className="bg-emerald-700 px-6 py-3 rounded-t-2xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Business &amp; Tourism</p>
+            </div>
+
+            <div className="p-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                    {columns.map((col) => (
+                                            <div key={col.key}>
+                                                <div className="flex items-center justify-between">
+                                                    <h4 className="text-sm font-bold text-slate-900">{col.eyebrow}</h4>
+                                                    <Link href={col.moreHref} className="text-xs font-semibold text-emerald-700 inline-flex items-center">
+                                                        EXPLORE
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2 h-3 w-3 text-emerald-700">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </Link>
+                                                </div>
+
+                                                <div className="mt-3 overflow-hidden rounded border border-slate-200 bg-slate-50">
+                                                    <img src={col.item.image} alt={col.item.title} className="h-36 w-full object-cover" />
+                                                </div>
+
+                                                <div className="mt-3">
+                                                    <Link href={route('about.detail', { topic: col.key, slug: col.item.slug })} className="text-sm font-semibold text-emerald-700">{col.item.title}</Link>
+                                                    <p className="mt-2 text-sm leading-6 text-slate-600">{col.item.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                </div>
             </div>
         </div>
     );
