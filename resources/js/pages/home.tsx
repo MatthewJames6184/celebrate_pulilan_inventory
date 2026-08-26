@@ -135,8 +135,7 @@ export default function Home() {
                                     <img
                                         src={slide.image}
                                         alt={slide.title}
-                                        className="h-full w-full object-cover object-center"
-                                        style={{ objectPosition: 'center center' }}
+                                        className="h-full w-full object-cover"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-800/45 to-slate-900/60" />
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />
