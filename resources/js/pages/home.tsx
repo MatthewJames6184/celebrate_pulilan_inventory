@@ -67,7 +67,7 @@ const heroSlides = [
     {
         title: 'CELEBRATE COMMUNITY',
         tag: '#GROWTOGETHER',
-        image: '/images/carousel-images/hero-3.jpg',
+        image: '/images/hero-images/hero-3.jpg',
         href: route('about.religious'),
     },
 ];
@@ -128,14 +128,15 @@ export default function Home() {
                     }}
                     className="relative"
                 >
-                    <CarouselContent className="h-[72vh] min-h-[500px] ">
+                    <CarouselContent className="h-[74vh] min-h-[500px] ">
                         {heroSlides.map((slide) => (
                             <CarouselItem key={slide.title} className="basis-full">
                                 <div className="relative h-full w-full overflow-hidden">
                                     <img
                                         src={slide.image}
                                         alt={slide.title}
-                                        className="h-full w-full object-cover"
+                                        className="h-full w-full object-cover object-center"
+                                        style={{ objectPosition: 'center center' }}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-800/45 to-slate-900/60" />
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />

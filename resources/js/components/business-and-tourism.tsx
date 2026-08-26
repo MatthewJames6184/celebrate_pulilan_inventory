@@ -32,17 +32,17 @@ export default function BusinessAndTourism() {
     ];
 
     return (
-        <div className="w-[980px] mx-auto bg-white rounded-2xl border border-slate-200">
-            <div className="bg-emerald-700 px-6 py-3 rounded-t-2xl">
+        <div className="w-full max-w-[980px] mx-auto bg-white  overflow-hidden">
+            <div className="bg-emerald-700 px-6 py-5">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Business &amp; Tourism</p>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     {columns.map((col) => (
-                                            <div key={col.key}>
+                                            <div key={col.key} className="min-w-0">
                                                 <div className="flex items-center justify-between">
-                                                    <h4 className="text-sm font-bold text-slate-900">{col.eyebrow}</h4>
+                                                    <h4 className="text-sm font-bold text-slate-900 truncate">{col.eyebrow}</h4>
                                                     <Link href={col.moreHref} className="text-xs font-semibold text-emerald-700 inline-flex items-center">
                                                         EXPLORE
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-2 h-3 w-3 text-emerald-700">
@@ -52,11 +52,11 @@ export default function BusinessAndTourism() {
                                                 </div>
 
                                                 <div className="mt-3 overflow-hidden rounded border border-slate-200 bg-slate-50">
-                                                    <img src={col.item.image} alt={col.item.title} className="h-36 w-full object-cover" />
+                                                    <img src={col.item.image} alt={col.item.title} className="h-28 sm:h-36 w-full object-cover object-center" />
                                                 </div>
 
                                                 <div className="mt-3">
-                                                    <Link href={route('about.detail', { topic: col.key, slug: col.item.slug })} className="text-sm font-semibold text-emerald-700">{col.item.title}</Link>
+                                                    <Link href={route('about.detail', { topic: col.key, slug: col.item.slug })} className="text-sm font-semibold text-emerald-700 block truncate">{col.item.title}</Link>
                                                     <p className="mt-2 text-sm leading-6 text-slate-600">{col.item.description}</p>
                                                 </div>
                                             </div>

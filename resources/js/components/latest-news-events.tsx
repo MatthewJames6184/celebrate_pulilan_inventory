@@ -59,8 +59,8 @@ export default function LatestNewsEvents() {
     ];
 
     return (
-        <div className="w-full rounded-[28px] border border-slate-200 bg-white/90 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:p-0">
-            <div className="bg-emerald-700 px-6 py-3 rounded-t-[28px]">
+        <div className="w-full bg-white shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:p-0">
+            <div className="bg-emerald-700 px-6 py-5 ">
                 <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Latest News</p>
                     <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700 sm:inline-flex">
