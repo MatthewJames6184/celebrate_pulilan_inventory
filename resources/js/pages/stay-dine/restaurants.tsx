@@ -71,6 +71,7 @@ export default function StayDineRestaurants() {
             ]}
             items={restaurants}
             type="restaurants"
+            defaultView="grid"
             focusLabel="Food guide"
             focusNote="This layout keeps the archive easy to scan while still giving visitors the search, category, and alphabet tools they need to find a place fast."
         />
