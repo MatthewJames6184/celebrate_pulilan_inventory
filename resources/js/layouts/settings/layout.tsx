@@ -1,61 +1,46 @@
-import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 const sidebarNavItems: NavItem[] = [
-    {
-        title: 'Profile',
-        url: '/settings/profile',
-        icon: null,
-    },
-    {
-        title: 'Password',
-        url: '/settings/password',
-        icon: null,
-    },
-    {
-        title: 'Appearance',
-        url: '/settings/appearance',
-        icon: null,
-    },
+    { title: 'Profile', url: '/settings/profile', icon: null },
+    { title: 'Password', url: '/settings/password', icon: null },
+    { title: 'Appearance', url: '/settings/appearance', icon: null },
 ];
 
 export default function SettingsLayout({ children }: { children: React.ReactNode }) {
-    const currentPath = window.location.pathname;
+    const page = usePage();
+    const currentPath = page.url;
 
     return (
-        <div className="px-4 py-6">
-            <Heading title="Settings" description="Manage your profile and account settings" />
+        <div className="flex min-h-full flex-col gap-6 bg-[#f3f3f3] p-4 md:p-6">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Profile Settings</h1>
+                <p className="mt-1 text-sm text-slate-500">Manage your account details and preferences.</p>
+            </div>
 
-            <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">
-                <aside className="w-full max-w-xl lg:w-48">
-                    <nav className="flex flex-col space-y-1 space-x-0">
-                        {sidebarNavItems.map((item) => (
-                            <Button
-                                key={item.url}
-                                size="sm"
-                                variant="ghost"
-                                asChild
-                                className={cn('w-full justify-start', {
-                                    'bg-muted': currentPath === item.url,
-                                })}
-                            >
-                                <Link href={item.url} prefetch>
+            <div className="flex flex-col gap-6 lg:flex-row">
+                <aside className="w-full lg:w-64">
+                    <nav className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+                        <div className="space-y-1">
+                            {sidebarNavItems.map((item) => (
+                                <Link
+                                    key={item.url}
+                                    href={item.url}
+                                    prefetch
+                                    className={cn(
+                                        'block rounded-lg px-3 py-2 text-sm font-medium transition',
+                                        currentPath === item.url ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                                    )}
+                                >
                                     {item.title}
                                 </Link>
-                            </Button>
-                        ))}
+                            ))}
+                        </div>
                     </nav>
                 </aside>
 
-                <Separator className="my-6 md:hidden" />
-
-                <div className="flex-1 md:max-w-2xl">
-                    <section className="max-w-xl space-y-12">{children}</section>
-                </div>
+                <div className="flex-1 rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">{children}</div>
             </div>
         </div>
     );
