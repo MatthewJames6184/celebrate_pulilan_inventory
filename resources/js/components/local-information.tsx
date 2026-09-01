@@ -12,7 +12,7 @@ export default function LocalInformation() {
 
 
             <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div className="mt-5 border mx-3 bg-slate-50 p-4">
                     <div className="mb-3 flex items-center gap-2 text-slate-800">
                         <MapPin className="h-4 w-4 text-emerald-600" />
                         <span className="text-sm font-semibold">Municipal Hall</span>
@@ -21,7 +21,7 @@ export default function LocalInformation() {
                     <p className="mt-2 text-xs leading-6 text-slate-500">Barangay 1, Pulilan, Bulacan</p>
                 </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div className="mt-5 border bg-slate-50 p-4">
                     <div className="mb-3 flex items-center gap-2 text-slate-800">
                         <Phone className="h-4 w-4 text-emerald-600" />
                         <span className="text-sm font-semibold">Contact</span>
@@ -31,7 +31,7 @@ export default function LocalInformation() {
                 </div>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <div className="mt-5 mb-5 mx-3 border bg-slate-50 p-4">
                 <div className="mb-3 flex items-center gap-2 text-slate-800">
                     <Share2 className="h-4 w-4 text-emerald-600" />
                     <span className="text-sm font-semibold">Social</span>
