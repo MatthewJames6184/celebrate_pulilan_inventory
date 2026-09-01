@@ -1,5 +1,5 @@
 import { Head, Link, useForm } from '@inertiajs/react';
-import { ArrowLeft, LoaderCircle, ShieldCheck, UserRound } from 'lucide-react';
+import { ArrowLeft, LoaderCircle } from 'lucide-react';
 import { FormEventHandler } from 'react';
 
 import InputError from '@/components/input-error';
@@ -34,52 +34,58 @@ export default function Register() {
         <>
             <Head title="Register" />
 
-            <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4 sm:p-6 lg:p-8">
-                <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-500 p-8 text-white lg:min-h-[620px] lg:p-10">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.25),transparent_35%)]" />
-                        <div className="relative z-10 flex items-center gap-3">
-                            <div className="flex h-21 w-auto items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
-                                <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="w-auto h-21 object-cover" />
-                            </div>
-                            <div>
-                                <p className="text-xs uppercase tracking-[0.3em] text-emerald-100">Pulilan</p>
-                                <p className="text-lg font-semibold">Portal</p>
-                            </div>
-                        </div>
+            <div className="flex min-h-screen items-center justify-center bg-[#edf7f0] p-4 sm:p-6 lg:p-8">
+                <div className="grid w-full max-w-6xl overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] lg:grid-cols-[1.08fr_0.92fr]">
+                    <div className="relative flex min-h-[340px] flex-col overflow-hidden bg-gradient-to-br from-[#0f8c5a] via-[#0f9d63] to-[#0f8a54] p-6 text-white sm:p-8 lg:min-h-[680px] lg:p-10">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),transparent_28%)]" />
 
-                        <div className="relative z-10 flex justify-start">
+                        <div className="relative z-10 flex items-start justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                                <div className="flex h-21 w-auto items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 shadow-[0_10px_25px_rgba(0,0,0,0.12)] backdrop-blur-sm">
+                                    <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="h-21 w-auto object-contain" />
+                                </div>
+                            </div>
                             <Link
                                 href={route('home')}
-                                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/15"
+                                className="mt-2 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/15"
                             >
                                 <ArrowLeft className="h-4 w-4" />
                                 Back to home
                             </Link>
                         </div>
 
-                        {/* <div className="relative z-10">
-                            <p className="text-sm uppercase tracking-[0.25em] text-emerald-100">New account</p>
-                            <h1 className="mt-4 text-3xl font-semibold leading-tight lg:text-5xl">Create your portal account</h1>
-                            <p className="mt-4 max-w-md text-sm text-emerald-50 lg:text-base">
-                                Register to access updates, announcements, and admin-managed content for Pulilan.
-                            </p>
-                        </div> */}
+                        <div className="relative z-10 mt-10 lg:mt-12">
+                            <h1 className="max-w-[640px] text-[4rem] font-black leading-[0.88] tracking-[-0.06em] text-white sm:text-[3rem] lg:text-[5rem]">
+                                Create
+                                <br />
+                                your
+                                <br />
+                                Account.
+                            </h1>
+                        </div>
 
-                        <div className="relative z-10 grid gap-3 sm:grid-cols-2">
-                            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
-                                <div className="flex items-center gap-2 text-emerald-100">
-                                    <UserRound className="h-4 w-4" />
-                                    <span className="text-xs uppercase tracking-[0.2em]">User</span>
+                        <div className="relative z-10 mt-6 max-w-[620px] text-[16px] leading-[1.5] text-emerald-50/90">
+                            Keep up with updates, announcements, local events, and essential services from Pulilan in one place.
+                        </div>
+
+                        <div className="relative z-10 mt-8 grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-[1.5rem] border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-2 text-emerald-50">
+                                    <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-white/10">
+                                        <span className="h-3.5 w-3.5 rounded-full border border-white/80" />
+                                    </div>
+                                    <span className="text-[12px] font-semibold uppercase tracking-[0.22em]">Local</span>
                                 </div>
-                                <p className="mt-3 text-sm text-white/90">Join and access the public portal.</p>
+                                <p className="mt-3 text-[16px] leading-[1.35] text-white/90">Explore community updates and announcements.</p>
                             </div>
-                            <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">
-                                <div className="flex items-center gap-2 text-emerald-100">
-                                    <ShieldCheck className="h-4 w-4" />
-                                    <span className="text-xs uppercase tracking-[0.2em]">Admin</span>
+                            <div className="rounded-[1.5rem] border border-white/20 bg-white/10 p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-2 text-emerald-50">
+                                    <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-white/10">
+                                        <span className="h-3.5 w-3.5 rounded-full border border-white/80" />
+                                    </div>
+                                    <span className="text-[12px] font-semibold uppercase tracking-[0.22em]">Secure</span>
                                 </div>
-                                <p className="mt-3 text-sm text-white/90">Use the same portal for internal tools.</p>
+                                <p className="mt-3 text-[16px] leading-[1.35] text-white/90">Sign in to your personalized portal access.</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +94,7 @@ export default function Register() {
                         <div className="w-full max-w-md">
                             <div className="mb-8">
                                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-600">Register</p>
-                                <h2 className="mt-3 text-2xl font-semibold text-slate-900">Create an account</h2>
+                                <h2 className="mt-3 text-3xl font-semibold text-slate-900">Create an account</h2>
                                 <p className="mt-2 text-sm text-slate-500">Enter your details below to create your account.</p>
                             </div>
 
@@ -108,7 +114,7 @@ export default function Register() {
                                         onChange={(e) => setData('name', e.target.value)}
                                         disabled={processing}
                                         placeholder="Full name"
-                                        className="h-11 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                        className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4 text-slate-900 shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500"
                                     />
                                     <InputError message={errors.name} className="mt-2" />
                                 </div>
@@ -127,7 +133,7 @@ export default function Register() {
                                         onChange={(e) => setData('email', e.target.value)}
                                         disabled={processing}
                                         placeholder="email@example.com"
-                                        className="h-11 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                        className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4 text-slate-900 shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500"
                                     />
                                     <InputError message={errors.email} />
                                 </div>
@@ -146,7 +152,7 @@ export default function Register() {
                                         onChange={(e) => setData('password', e.target.value)}
                                         disabled={processing}
                                         placeholder="Password"
-                                        className="h-11 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                        className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4 text-slate-900 shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500"
                                     />
                                     <InputError message={errors.password} />
                                 </div>
@@ -165,12 +171,17 @@ export default function Register() {
                                         onChange={(e) => setData('password_confirmation', e.target.value)}
                                         disabled={processing}
                                         placeholder="Confirm password"
-                                        className="h-11 rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                        className="h-12 rounded-2xl border-slate-200 bg-slate-50 px-4 text-slate-900 shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500"
                                     />
                                     <InputError message={errors.password_confirmation} />
                                 </div>
 
-                                <Button type="submit" className="h-11 w-full rounded-xl bg-emerald-600 text-white hover:bg-emerald-700" tabIndex={5} disabled={processing}>
+                                <Button
+                                    type="submit"
+                                    className="h-12 w-full rounded-2xl bg-emerald-600 text-base font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700"
+                                    tabIndex={5}
+                                    disabled={processing}
+                                >
                                     {processing && <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />}
                                     Create account
                                 </Button>
@@ -178,7 +189,7 @@ export default function Register() {
 
                             <div className="mt-6 flex items-center justify-center gap-2 text-sm text-slate-500">
                                 <span>Already have an account?</span>
-                                <TextLink href={route('login')} tabIndex={6} className="font-medium text-emerald-600">
+                                <TextLink href={route('login')} tabIndex={6} className="font-semibold text-emerald-600">
                                     Log in
                                 </TextLink>
                             </div>

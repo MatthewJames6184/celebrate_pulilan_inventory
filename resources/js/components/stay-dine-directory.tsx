@@ -101,16 +101,20 @@ export default function StayDineDirectoryPage({
     return (
         <PublicTopicPage headTitle={headTitle} title={title} imageSubHeader={imageSubHeader} breadcrumbs={breadcrumbs}>
             <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                <section className="rounded-3xl border border-emerald-200 bg-white px-6 py-7 shadow-sm shadow-slate-200/80 md:px-8">
-                    <div className="space-y-3">
-                        <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">{eyebrow}</p>
-                        {/* <h2 className="max-w-4xl text-4xl font-semibold leading-tight text-slate-950 md:text-5xl">{title}</h2> */}
-                        <p className="max-w-4xl text-base leading-8 text-slate-600 md:text-lg">{intro}</p>
-                    </div>
-                </section>
+            <section className="border border-emerald-700 bg-emerald-900 px-6 py-7 shadow-sm md:px-8">
+                <div className="space-y-3">
+                    <p className="text-sm uppercase tracking-[0.35em] text-emerald-200">
+                        {eyebrow}
+                    </p>
 
-                <section className="mt-8">
-                    <div className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60">
+                    <p className="max-w-4xl text-base leading-8 text-emerald-100 md:text-lg">
+                        {intro}
+                    </p>
+                </div>
+            </section>
+
+                <section className="mt-8 border border-slate-200 px-5 pb-5">
+                    <div className="bg-white p-5 shadow-sm shadow-slate-200/60">
                         <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
                             <div>
                                 <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">{filteredItems.length} results</p>
