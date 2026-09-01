@@ -39,8 +39,8 @@ export default function Register() {
                     <div className="relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-500 p-8 text-white lg:min-h-[620px] lg:p-10">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.25),transparent_35%)]" />
                         <div className="relative z-10 flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
-                                <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="h-full w-full object-cover" />
+                            <div className="flex h-21 w-auto items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
+                                <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="w-auto h-21 object-cover" />
                             </div>
                             <div>
                                 <p className="text-xs uppercase tracking-[0.3em] text-emerald-100">Pulilan</p>
@@ -58,13 +58,13 @@ export default function Register() {
                             </Link>
                         </div>
 
-                        <div className="relative z-10">
+                        {/* <div className="relative z-10">
                             <p className="text-sm uppercase tracking-[0.25em] text-emerald-100">New account</p>
                             <h1 className="mt-4 text-3xl font-semibold leading-tight lg:text-5xl">Create your portal account</h1>
                             <p className="mt-4 max-w-md text-sm text-emerald-50 lg:text-base">
                                 Register to access updates, announcements, and admin-managed content for Pulilan.
                             </p>
-                        </div>
+                        </div> */}
 
                         <div className="relative z-10 grid gap-3 sm:grid-cols-2">
                             <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-sm">

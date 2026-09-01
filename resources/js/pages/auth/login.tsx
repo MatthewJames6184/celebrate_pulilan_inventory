@@ -42,14 +42,11 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                 <div className="grid w-full max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl lg:grid-cols-[1.1fr_0.9fr]">
                     <div className="relative flex min-h-[340px] flex-col justify-between overflow-hidden bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-500 p-8 text-white lg:min-h-[560px] lg:p-10">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.25),transparent_35%)]" />
-                        <div className="relative z-10 flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
-                                <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="h-full w-full object-cover" />
+                        <div className="relative z-10 flex items-center gap-3 ">
+                            <div className="flex h-21 w-auto items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
+                                <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="w-auto h-21 object-cover" />
                             </div>
-                            <div>
-                                <p className="text-xs uppercase tracking-[0.3em] text-emerald-100">Pulilan</p>
-                                <p className="text-lg font-semibold">Portal</p>
-                            </div>
+                            
                         </div>
 
                         <div className="relative z-10 flex justify-start">
