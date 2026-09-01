@@ -46,7 +46,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                             <div className="flex h-21 w-auto items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm">
                                 <img src="/images/logo-images/logo-tourism-pulilan.png" alt="Pulilan logo" className="w-auto h-21 object-cover" />
                             </div>
-                            
+
                         </div>
 
                         <div className="relative z-10 flex justify-start">

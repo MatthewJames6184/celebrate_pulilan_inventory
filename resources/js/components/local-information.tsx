@@ -2,11 +2,14 @@ import { Facebook, MapPin, Phone, Share2 } from 'lucide-react';
 
 export default function LocalInformation() {
     return (
-        <div className="flex-[2] rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="mb-5 flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Local Information</p>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-slate-600">Municipality</span>
+        <div className="flex-[2] border border-slate-200 bg-white shadow-sm">
+            <div className="bg-emerald-700 px-6 py-5 ">
+                <div className=" flex items-center justify-between gap-3">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white">Municipal Information</p>
+                 
+                </div>
             </div>
+
 
             <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">

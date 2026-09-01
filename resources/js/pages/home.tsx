@@ -256,12 +256,12 @@ export default function Home() {
             </section>
 
 
-            {/* White band for LocalInformation and VisitorQuickLinks (keep white background) */}
-            <div className="bg-white">
+          
+            <div className="bg-slate-50">
                 <section className="flex justify-center">
-                    <div className="mt-10 mx-5 pb-10 flex shrink basis-[1200px] gap-4">
+                    <div className="w-full max-w-[980px] h-auto py-10">
                         <LocalInformation />
-                        <VisitorQuickLinks />
+                        {/* <VisitorQuickLinks /> */}
                     </div>
                 </section>
             </div>
