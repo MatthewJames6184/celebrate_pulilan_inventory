@@ -13,6 +13,16 @@ test('stay dine subpages are registered', function (string $routeName, string $c
     ['stay.dine.restaurants', 'stayDineRestaurants', 'stay-dine/restaurants'],
 ]);
 
+test('news archive and detail routes are registered', function () {
+    expect(Route::has('news.archive'))->toBeTrue();
+    expect(Route::has('news.show'))->toBeTrue();
+    expect(route('news.archive', [], false))->toBe('/news');
+    expect(method_exists(PageController::class, 'newsArchive'))->toBeTrue();
+    expect(method_exists(PageController::class, 'newsShow'))->toBeTrue();
+    expect(file_exists(resource_path('js/pages/news/archive.tsx')))->toBeTrue();
+    expect(file_exists(resource_path('js/pages/news/show.tsx')))->toBeTrue();
+});
+
 test('others subpages are registered', function (string $routeName, string $controllerMethod, string $componentPath) {
     expect(Route::has($routeName))->toBeTrue();
     expect(route($routeName, [], false))->toContain('/others/');

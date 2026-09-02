@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -143,7 +142,19 @@ class PageController extends Controller
 
     public function othersNews(): Response
     {
-        return Inertia::render('others/news');
+        return Inertia::render('news/archive');
+    }
+
+    public function newsArchive(): Response
+    {
+        return Inertia::render('news/archive');
+    }
+
+    public function newsShow(string $slug): Response
+    {
+        return Inertia::render('news/show', [
+            'slug' => $slug,
+        ]);
     }
 
     public function othersSiteMap(): Response
