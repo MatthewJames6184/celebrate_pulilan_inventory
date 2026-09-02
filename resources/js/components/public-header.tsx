@@ -8,6 +8,7 @@ const navItems = [
     { title: 'Home', url: route('home') },
     {
         title: 'About Pulilan',
+        // top-level overview intentionally present in data but will be rendered as non-clickable label
         url: route('about'),
         submenu: [
             { title: 'History', url: route('about.history') },
@@ -94,15 +95,14 @@ export default function PublicHeader() {
                             {'submenu' in item && item.submenu ? (
                                 <>
                                     <div className="flex items-center gap-1 rounded-full px-3 py-1.5 transition group-hover:bg-white/10">
-                                    <Link
-                                        href={item.url}
+                                    <span
                                         className={cn(
-                                            'py-1.5 text-sm transition duration-150 hover:text-amber-200',
+                                            'py-1.5 text-sm transition duration-150',
                                             isItemActive(item.url) ? 'font-bold text-amber-100' : 'text-white/90',
                                         )}
                                     >
                                         {item.title}
-                                    </Link>
+                                    </span>
                                         <ChevronDown className="h-4 w-4 text-white/70 transition group-hover:rotate-180 group-hover:text-amber-200" />
                                     </div>
 
@@ -245,15 +245,6 @@ export default function PublicHeader() {
                                                 <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
                                             </summary>
                                             <div className="ml-4 mt-2 flex flex-col gap-2 border-l border-white/10 pl-3">
-                                                <Link
-                                                    href={item.url}
-                                                    className={cn(
-                                                        'rounded-md px-3 py-2 text-sm transition hover:bg-white/10',
-                                                        isItemActive(item.url) ? 'bg-white/10 text-white' : 'text-white/80 hover:text-white',
-                                                    )}
-                                                >
-                                                    Overview
-                                                </Link>
                                                 {item.submenu.map((subitem) => (
                                                     <div key={subitem.title}>
                                                         {/* Submenu item with nested items */}

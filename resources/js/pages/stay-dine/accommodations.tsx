@@ -72,6 +72,7 @@ export default function StayDineAccommodations() {
             ]}
             items={accommodations}
             type="accommodations"
+            defaultView="grid"
             focusLabel="Stay guide"
             focusNote="This page is designed like a directory first: start with search, narrow by category or area, then browse the alphabetical index if you already know the name."
         />

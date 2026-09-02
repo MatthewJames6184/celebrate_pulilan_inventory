@@ -32,6 +32,9 @@ Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class
     Route::get('/{type}/{slug}', 'stayDineDetail')->name('detail');
 });
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/news', [PageController::class, 'newsArchive'])->name('news.archive');
+Route::get('/news/{slug}', [PageController::class, 'newsShow'])->name('news.show');
+
 Route::get('/others', [PageController::class, 'others'])->name('others');
 Route::prefix('others')->name('others.')->controller(PageController::class)->group(function () {
     Route::get('/downloads', 'othersDownloads')->name('downloads');
@@ -51,9 +54,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
-//for admin
-Route::middleware(['auth','admin'])->prefix('admin')->group(function(){
-    Route::get('/dashboard', function(){
+// for admin
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
         return Inertia::render('admin/dashboard');
     })->name('admin.dashboard');
 });

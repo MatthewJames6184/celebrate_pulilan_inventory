@@ -19,7 +19,6 @@ export default function Detail({ topic, slug }: DetailPageProps) {
             imageSubHeader={{ src: page.detailImage, alt: card.title }}
             breadcrumbs={[
                 { label: 'Home', href: route('home') },
-                { label: 'About Pulilan', href: route('about') },
                 { label: page.title, href: route(`about.${topic}`) },
                 { label: card.title },
             ]}
@@ -67,7 +66,7 @@ export default function Detail({ topic, slug }: DetailPageProps) {
 
                         <Link
                             href={route(`about.${topic}`)}
-                            className="block rounded-3xl border border-slate-200 bg-slate-50 px-6 py-5 text-sm font-semibold text-slate-900 transition hover:border-emerald-300 hover:bg-emerald-50"
+                            className="block rounded-3xl border border-slate-200 bg-emerald-900 px-6 py-5 leading-tight text-white transition hover:border-emerald-300 hover:text-yellow-500"
                         >
                             Back to {page.title}
                         </Link>

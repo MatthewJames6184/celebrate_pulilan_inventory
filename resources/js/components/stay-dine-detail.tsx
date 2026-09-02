@@ -75,12 +75,13 @@ export default function StayDineDetail({
                         </div>
 
                         <div className="mt-6 flex items-center gap-3">
-                            <Link href={route('stay.dine')} className="text-sm text-emerald-700 hover:underline">
+                            <Link href={
+                                category === "Accomodation" ? route('stay.dine.accommodations') : route('stay.dine.restaurants')
+                            } className="text-sm text-emerald-700 hover:underline">
                                 Back to listings
                             </Link>
                         </div>
                     </div>
-
                     <div className="w-96 shrink-0">
                         <div className="h-64 w-full overflow-hidden rounded-xl border border-slate-200">
                             <iframe title="map" className="h-full w-full" src={mapSrc} />

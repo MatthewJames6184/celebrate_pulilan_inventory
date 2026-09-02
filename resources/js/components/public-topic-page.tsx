@@ -101,20 +101,14 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
                             <nav aria-label="Breadcrumb" className="mb-4">
                                 <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500">
                                     {breadcrumbs.map((crumb, index) => {
-                                        const isLast = index === breadcrumbs.length - 1;
-                                        return (
-                                            <li key={crumb.label} className="flex items-center gap-1.5">
-                                                {crumb.href && !isLast ? (
-                                                    <Link href={crumb.href} className="transition-colors hover:text-emerald-700">
-                                                        {crumb.label}
-                                                    </Link>
-                                                ) : (
-                                                    <span className={isLast ? 'font-medium text-slate-950' : ''}>{crumb.label}</span>
-                                                )}
-                                                {!isLast && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
-                                            </li>
-                                        );
-                                    })}
+                                                                            const isLast = index === breadcrumbs.length - 1;
+                                                                            return (
+                                                                                <li key={crumb.label} className="flex items-center gap-1.5">
+                                                                                    <span className={isLast ? 'font-medium text-slate-950' : 'text-slate-500'}>{crumb.label}</span>
+                                                                                    {!isLast && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
+                                                                                </li>
+                                                                            );
+                                                                        })}
                                 </ol>
                             </nav>
                         )}
