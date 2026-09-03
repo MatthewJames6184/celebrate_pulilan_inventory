@@ -1,9 +1,9 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Link, usePage } from '@inertiajs/react';
-import { Menu, ChevronDown,ChevronLeft,User, LogOut  } from 'lucide-react';
-import { type SharedData } from '@/types';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import { type SharedData } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import { ChevronDown, ChevronLeft, LogOut, Menu, User } from 'lucide-react';
 const navItems = [
     { title: 'Home', url: route('home') },
     {
@@ -53,16 +53,10 @@ const navItems = [
     },
 ];
 
-const authItems = [
-    { title: 'Register', url: route('register') },
-    { title: 'Login', url: route('login') },
-];
-
-
 export default function PublicHeader() {
     const page = usePage<SharedData>();
     const currentUrl = page.url;
-    const {auth} = page.props;
+    const { auth } = page.props;
     const sectionMatchMap: Record<string, string> = {
         [route('about')]: '/about/',
         [route('stay.dine')]: '/stay-dine/',
@@ -80,53 +74,68 @@ export default function PublicHeader() {
     };
 
     return (
-        <header className="sticky top-0 z-50 border-b border-amber-400 bg-emerald-800 text-white">
+        <header className="sticky top-0 z-50 border-b-4 border-blue-500/40 bg-blue-950 text-white shadow-lg shadow-blue-950/10">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 md:px-6">
-                <Link href={route('home')} className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-white">
-                    <div className="logo-container">
-                       <img src ="/images/logo-images/logo-tourism-pulilan.png" alt='logo-republic'  className="h-21 w-auto"/> 
-                    </div>
+                <Link href={route('home')} className="flex items-center gap-3 text-white">
+                    <span
+                        className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-amber-300 bg-blue-800 text-xl shadow-inner shadow-blue-950/40"
+                        aria-hidden="true"
+                    >
+                        P
+                    </span>
+                    <span className="leading-none">
+                        <span className="block text-lg font-black tracking-tight">Discover Pulilan</span>
+                        <span className="mt-1 block text-[9px] font-bold tracking-[0.2em] text-amber-300 uppercase">Municipal tourism portal</span>
+                    </span>
                 </Link>
 
                 <div className="hidden items-center gap-6 md:flex">
                     {navItems.map((item) => (
-                        <div key={item.title} className="relative group">
+                        <div key={item.title} className="group relative">
                             {/* Item has submenu - render as dropdown */}
                             {'submenu' in item && item.submenu ? (
                                 <>
-                                    <div className="flex items-center gap-1 rounded-full px-3 py-1.5 transition group-hover:bg-white/10">
-                                    <span
+                                    <Link
+                                        href={item.url}
                                         className={cn(
-                                            'py-1.5 text-sm transition duration-150',
-                                            isItemActive(item.url) ? 'font-bold text-amber-100' : 'text-white/90',
+                                            'flex items-center gap-1 rounded-full px-3 py-1.5 transition hover:bg-white/10 active:scale-95',
+                                            isItemActive(item.url) ? 'bg-white/10' : '',
                                         )}
                                     >
-                                        {item.title}
-                                    </span>
+                                        <span
+                                            className={cn(
+                                                'relative py-1.5 text-sm transition duration-200 group-hover:-translate-y-0.5 after:absolute after:right-0 after:bottom-0 after:left-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-sky-300 after:transition-transform after:duration-300 group-hover:after:scale-x-100',
+                                                isItemActive(item.url) ? 'font-bold text-amber-100' : 'text-white/90',
+                                            )}
+                                        >
+                                            {item.title}
+                                        </span>
                                         <ChevronDown className="h-4 w-4 text-white/70 transition group-hover:rotate-180 group-hover:text-amber-200" />
-                                    </div>
+                                    </Link>
 
                                     {/* Dropdown Menu */}
-                                    <div className="absolute left-0 top-full pt-2 hidden group-hover:block bg-emerald-700 border border-emerald-600 rounded-md shadow-lg min-w-max">
+                                    <div className="absolute top-full left-0 hidden min-w-max rounded-md border border-blue-700 bg-blue-900 pt-2 shadow-lg group-hover:block">
                                         {item.submenu.map((subitem) => (
-                                            <div key={subitem.title} className="relative group/sub">
+                                            <div key={subitem.title} className="group/sub relative">
                                                 {/* Submenu item has nested submenu */}
                                                 {'submenu' in subitem && subitem.submenu ? (
                                                     <>
-                                                        <button className="w-full text-left px-4 py-2 text-white/90 hover:text-amber-200 hover:bg-emerald-600 transition flex items-center justify-between whitespace-nowrap">
+                                                        <button className="flex w-full items-center justify-between px-4 py-2 text-left whitespace-nowrap text-white/90 transition hover:bg-blue-800 hover:text-amber-200">
                                                             <span>{subitem.title}</span>
                                                             <ChevronLeft className="h-4 w-4 rotate-180" />
                                                         </button>
 
                                                         {/* Nested Dropdown */}
-                                                        <div className="absolute left-full top-0 pt-0 pl-1 hidden group-hover/sub:block bg-emerald-700 border border-emerald-600 rounded-md shadow-lg min-w-max">
+                                                        <div className="absolute top-0 left-full hidden min-w-max rounded-md border border-blue-700 bg-blue-900 pt-0 pl-1 shadow-lg group-hover/sub:block">
                                                             {subitem.submenu.map((nestedItem) => (
                                                                 <Link
                                                                     key={nestedItem.title}
                                                                     href={nestedItem.url}
                                                                     className={cn(
-                                                                        'block px-4 py-2 transition whitespace-nowrap hover:bg-emerald-600 hover:text-amber-200',
-                                                                        isItemActive(nestedItem.url) ? 'font-semibold text-amber-100' : 'text-white/90',
+                                                                        'block px-4 py-2 whitespace-nowrap transition hover:bg-blue-800 hover:text-amber-200',
+                                                                        isItemActive(nestedItem.url)
+                                                                            ? 'font-semibold text-amber-100'
+                                                                            : 'text-white/90',
                                                                     )}
                                                                 >
                                                                     {nestedItem.title}
@@ -138,10 +147,10 @@ export default function PublicHeader() {
                                                     /* Regular submenu item without nested menu */
                                                     <Link
                                                         href={subitem.url}
-                                                            className={cn(
-                                                                'block px-4 py-2 transition whitespace-nowrap hover:bg-emerald-600 hover:text-amber-200',
-                                                                isItemActive(subitem.url) ? 'font-semibold text-amber-100' : 'text-white/90',
-                                                            )}
+                                                        className={cn(
+                                                            'block px-4 py-2 whitespace-nowrap transition hover:bg-blue-800 hover:text-amber-200',
+                                                            isItemActive(subitem.url) ? 'font-semibold text-amber-100' : 'text-white/90',
+                                                        )}
                                                     >
                                                         {subitem.title}
                                                     </Link>
@@ -155,12 +164,13 @@ export default function PublicHeader() {
                                 <Link
                                     href={item.url}
                                     className={cn(
-                                        'text-sm transition duration-150 hover:text-amber-200',
-                                            isItemActive(item.url) ? 'font-semibold text-amber-100' : 'text-white/90',
+                                        'group/link relative text-sm transition duration-200 after:absolute after:right-0 after:-bottom-2 after:left-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-sky-300 after:transition-transform after:duration-300 hover:-translate-y-0.5 hover:text-amber-200 hover:after:scale-x-100 active:scale-95',
+                                        isItemActive(item.url) ? 'font-semibold text-amber-100' : 'text-white/90',
+                                        isItemActive(item.url) ? 'after:scale-x-100' : '',
                                     )}
                                 >
                                     {item.title}
-                                </Link> 
+                                </Link>
                             )}
                         </div>
                     ))}
@@ -172,7 +182,7 @@ export default function PublicHeader() {
                             {item.title}
                         </Link>
                     ))}
-                </div> */} 
+                </div> */}
 
                 {/* This is an auth block */}
                 <div className="hidden items-center md:flex">
@@ -207,9 +217,9 @@ export default function PublicHeader() {
                             </Link>
                             <Link
                                 href={route('register')}
-                                className="rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-emerald-900 shadow-sm transition hover:bg-amber-300 hover:shadow-md"
+                                className="rounded-full bg-amber-300 px-4 py-2 text-sm font-semibold text-blue-950 shadow-sm transition hover:bg-amber-200 hover:shadow-md"
                             >
-                                Register
+                                + Add your business
                             </Link>
                         </div>
                     )}
@@ -217,15 +227,15 @@ export default function PublicHeader() {
 
                 <Sheet>
                     <SheetTrigger asChild>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/15 md:hidden"
-                    >
-                        <Menu className="h-5 w-5" />
-                    </Button>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="rounded-full border border-white/15 bg-white/5 text-white hover:bg-white/15 md:hidden"
+                        >
+                            <Menu className="h-5 w-5" />
+                        </Button>
                     </SheetTrigger>
-                    <SheetContent side="left" className="bg-emerald-900 text-white w-64">
+                    <SheetContent side="left" className="w-64 bg-blue-950 text-white">
                         <SheetHeader>
                             <SheetTitle className="text-lg font-semibold text-white">Menu</SheetTitle>
                         </SheetHeader>
@@ -237,31 +247,33 @@ export default function PublicHeader() {
                                         <details className="group">
                                             <summary
                                                 className={cn(
-                                                    'rounded-md px-4 py-3 text-base transition hover:bg-white/10 cursor-pointer flex items-center justify-between',
+                                                    'flex cursor-pointer items-center justify-between rounded-md px-4 py-3 text-base transition hover:bg-white/10',
                                                     isItemActive(item.url) ? 'bg-white/10 font-semibold' : 'bg-transparent',
                                                 )}
                                             >
                                                 <span>{item.title}</span>
                                                 <ChevronDown className="h-4 w-4 transition group-open:rotate-180" />
                                             </summary>
-                                            <div className="ml-4 mt-2 flex flex-col gap-2 border-l border-white/10 pl-3">
+                                            <div className="mt-2 ml-4 flex flex-col gap-2 border-l border-white/10 pl-3">
                                                 {item.submenu.map((subitem) => (
                                                     <div key={subitem.title}>
                                                         {/* Submenu item with nested items */}
                                                         {'submenu' in subitem && subitem.submenu ? (
                                                             <details className="group/sub">
-                                                                <summary className="rounded-md px-3 py-2 text-sm text-white/80 hover:bg-white/10 hover:text-white transition cursor-pointer flex items-center justify-between">
+                                                                <summary className="flex cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white">
                                                                     <span>{subitem.title}</span>
                                                                     <ChevronDown className="h-3 w-3 transition group-open/sub:rotate-180" />
                                                                 </summary>
-                                                                <div className="ml-3 mt-2 flex flex-col gap-2 border-l border-white/10 pl-2">
+                                                                <div className="mt-2 ml-3 flex flex-col gap-2 border-l border-white/10 pl-2">
                                                                     {subitem.submenu.map((nestedItem) => (
                                                                         <Link
                                                                             key={nestedItem.title}
                                                                             href={nestedItem.url}
                                                                             className={cn(
                                                                                 'rounded-md px-2 py-1.5 text-xs transition hover:bg-white/10 hover:text-white',
-                                                                                isItemActive(nestedItem.url) ? 'bg-white/10 text-white' : 'text-white/70',
+                                                                                isItemActive(nestedItem.url)
+                                                                                    ? 'bg-white/10 text-white'
+                                                                                    : 'text-white/70',
                                                                             )}
                                                                         >
                                                                             {nestedItem.title}
@@ -331,7 +343,7 @@ export default function PublicHeader() {
                                         href={route('register')}
                                         className="rounded-md bg-amber-400 px-4 py-3 text-center text-base font-semibold text-emerald-900 shadow-sm transition hover:bg-amber-300"
                                     >
-                                        Register
+                                        + Add your business
                                     </Link>
                                 </>
                             )}
@@ -339,6 +351,7 @@ export default function PublicHeader() {
                     </SheetContent>
                 </Sheet>
             </div>
+            <div className="h-1.5 bg-[repeating-linear-gradient(110deg,#facc15_0_16px,#2563eb_16px_32px,#60a5fa_32px_48px)]" aria-hidden="true" />
         </header>
     );
 }

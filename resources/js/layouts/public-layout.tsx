@@ -1,8 +1,6 @@
 import PublicFooter from '@/components/public-footer';
 import PublicHeader from '@/components/public-header';
-import { type ReactNode, useMemo } from 'react';
-
-const homepageBackgrounds = ['/images/image-1.jpg', '/images/image-2.jpg', '/images/image-3.jpg', '/images/image-4.jpg', '/images/image-5.jpg'];
+import { type ReactNode } from 'react';
 
 interface PublicLayoutProps {
     children: ReactNode;
@@ -10,27 +8,9 @@ interface PublicLayoutProps {
     backgroundImage?: string;
 }
 
-export default function PublicLayout({ children, headerTransparent = false, backgroundImage }: PublicLayoutProps) {
-    const fallbackBackgroundImage = useMemo(() => {
-        const index = Math.floor(Math.random() * homepageBackgrounds.length);
-        const image = homepageBackgrounds[index];
-
-        return `linear-gradient(rgba(8, 64, 52, 0.45), rgba(6, 39, 30, 0.45)), url('${image}')`;
-    }, []);
-
-    const pageBackgroundImage = backgroundImage ?? fallbackBackgroundImage;
-
+export default function PublicLayout({ children }: PublicLayoutProps) {
     return (
-        <div
-            className="min-h-screen text-slate-900"
-            style={{
-                backgroundImage: pageBackgroundImage,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundAttachment: 'fixed',
-            }}
-        >
+        <div className="min-h-screen bg-white text-slate-900">
             <PublicHeader />
             <main className="mx-auto w-full">{children}</main>
             <PublicFooter />
