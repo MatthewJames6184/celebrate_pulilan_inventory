@@ -142,7 +142,7 @@ export default function Home() {
             <Head title="Discover Pulilan" />
 
             <section
-                className="relative isolate min-h-[650px] overflow-hidden bg-[#0b132b] text-white sm:min-h-[720px]"
+                className="relative isolate min-h-[650px] overflow-hidden bg-blue-950 text-white sm:min-h-[720px]"
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
             >
@@ -151,7 +151,7 @@ export default function Home() {
                     alt={quickAccess.title}
                     className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_32%]"
                 />
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(5,24,84,0.96),rgba(15,58,145,0.72)_52%,rgba(7,29,90,0.34))]" />
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(105deg,rgba(30,58,138,0.96),rgba(29,78,216,0.72)_52%,rgba(23,37,84,0.34))]" />
                 <div className="absolute -top-40 -right-32 -z-10 h-[30rem] w-[30rem] rounded-full bg-blue-400/20 blur-3xl" />
                 <div className="mx-auto flex min-h-[650px] max-w-7xl items-center px-6 py-24 lg:px-8">
                     <div className="max-w-2xl">
@@ -232,7 +232,7 @@ export default function Home() {
                 </form>
             </section>
 
-            <section className="bg-[#f5f8ff] px-6 py-20 lg:px-8">
+            <section className="bg-blue-50 px-6 py-20 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
                         <div>
@@ -312,7 +312,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#e8f4fb] px-6 py-20 lg:px-8">
+            <section className="bg-blue-50 px-6 py-20 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     <div className="mb-8 max-w-2xl">
                         <p className="text-sm font-bold tracking-[0.22em] text-blue-700 uppercase">Find your way around</p>
@@ -345,9 +345,9 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#fffaf0] px-6 py-20 lg:px-8">
+            <section className="bg-white px-6 py-20 lg:px-8">
                 <div className="mx-auto max-w-7xl">
-                    <div className="rounded-3xl bg-white p-7 shadow-lg shadow-blue-950/5">
+                    <div className="rounded-3xl border border-blue-100 bg-white p-7 shadow-lg shadow-blue-950/5">
                         <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
                             <div>
                                 <p className="text-xs font-bold tracking-[0.2em] text-blue-700 uppercase">Stay in the know</p>
@@ -397,7 +397,7 @@ export default function Home() {
                             <Link
                                 key={card.title}
                                 href={card.href}
-                                className="group overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur transition hover:-translate-y-1 hover:bg-white/15"
+                                className="group overflow-hidden rounded-3xl border border-blue-800/70 bg-blue-900/80 backdrop-blur transition hover:-translate-y-1 hover:bg-blue-900"
                             >
                                 <img src={card.image} alt="" className="h-40 w-full object-cover transition duration-500 group-hover:scale-105" />
                                 <div className="p-5">
