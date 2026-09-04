@@ -74,22 +74,22 @@ export default function PublicHeader() {
     };
 
     return (
-        <header className="sticky top-0 z-50 border-b-4 border-blue-500/40 bg-blue-950 text-white shadow-lg shadow-blue-950/10">
-            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3 md:px-6">
+        <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0f1e3d] text-white shadow-lg shadow-blue-950/10">
+            <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-3 px-4 py-2 md:px-8">
                 <Link href={route('home')} className="flex items-center gap-3 text-white">
                     <span
-                        className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-amber-300 bg-blue-800 text-xl shadow-inner shadow-blue-950/40"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-amber-300 bg-blue-800 text-sm shadow-inner shadow-blue-950/40"
                         aria-hidden="true"
                     >
                         P
                     </span>
                     <span className="leading-none">
-                        <span className="block text-lg font-black tracking-tight">Discover Pulilan</span>
-                        <span className="mt-1 block text-[9px] font-bold tracking-[0.2em] text-amber-300 uppercase">Municipal tourism portal</span>
+                        <span className="font-display block text-base font-semibold tracking-tight">Discover Pulilan</span>
+                        <span className="mt-0.5 block text-[8px] font-bold tracking-[0.16em] text-amber-300 uppercase">Municipal tourism portal</span>
                     </span>
                 </Link>
 
-                <div className="hidden items-center gap-6 md:flex">
+                <div className="hidden items-center gap-4 md:flex">
                     {navItems.map((item) => (
                         <div key={item.title} className="group relative">
                             {/* Item has submenu - render as dropdown */}
