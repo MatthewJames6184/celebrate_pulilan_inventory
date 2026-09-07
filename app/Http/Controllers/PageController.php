@@ -22,69 +22,14 @@ class PageController extends Controller
         return Inertia::render('about/attraction');
     }
 
-    public function education(): Response
-    {
-        return Inertia::render('about/education');
-    }
-
     public function history(): Response
     {
         return Inertia::render('about/history');
     }
 
-    public function health(): Response
-    {
-        return Inertia::render('about/health');
-    }
-
-    public function cuisine(): Response
-    {
-        return Inertia::render('about/cuisine');
-    }
-
     public function festivals(): Response
     {
         return Inertia::render('about/festivals');
-    }
-
-    public function heritage(): Response
-    {
-        return Inertia::render('about/heritage');
-    }
-
-    public function historical(): Response
-    {
-        return Inertia::render('about/historical');
-    }
-
-    public function localProducts(): Response
-    {
-        return Inertia::render('about/local-products');
-    }
-
-    public function mapLocation(): Response
-    {
-        return Inertia::render('about/map-location');
-    }
-
-    public function missionVision(): Response
-    {
-        return Inertia::render('about/mission-vision');
-    }
-
-    public function religious(): Response
-    {
-        return Inertia::render('about/religious');
-    }
-
-    public function resorts(): Response
-    {
-        return Inertia::render('about/resorts');
-    }
-
-    public function shopping(): Response
-    {
-        return Inertia::render('about/shopping');
     }
 
     public function detail(string $topic, string $slug): Response

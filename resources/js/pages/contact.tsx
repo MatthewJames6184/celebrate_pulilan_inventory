@@ -1,146 +1,212 @@
-import { Head, useForm, usePage } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import InputError from '@/components/input-error';
 import PublicLayout from '@/layouts/public-layout';
-import { type SharedData } from '@/types';
-import { FormEventHandler } from 'react';
-import { Clock3, Mail, MapPin, Phone } from 'lucide-react';
-
-interface ContactForm {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-}
+import { Head, useForm } from '@inertiajs/react';
+import { type FormEventHandler, useState } from 'react';
 
 export default function Contact() {
-    const page = usePage<SharedData>();
-    const flash = page.props.flash as { success?: string } | undefined;
-    const { data, setData, post, processing, errors, reset } = useForm<ContactForm>({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-    });
+    const [submitted, setSubmitted] = useState(false);
+    const { data: form, setData, post, processing, errors, reset } = useForm({ name: '', email: '', subject: '', message: '' });
 
-    const submit: FormEventHandler = (e) => {
+    const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('contact.store'), {
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                setSubmitted(true);
+                reset();
+            },
         });
     };
 
     return (
         <PublicLayout>
-            <Head title="Contact Us" />
+            <Head title="Contact & Plan Your Visit" />
+            <div className="min-h-screen bg-[#0d1b2a]">
+                {/* Hero */}
+                <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 text-center">
+                    <div className="mb-4 flex items-center justify-center gap-2">
+                        <div className="h-px w-6 bg-[#d4a853]" />
+                        <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Get in Touch</span>
+                        <div className="h-px w-6 bg-[#d4a853]" />
+                    </div>
+                    <h1 className="font-display mb-4 text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">
+                        Contact &<br />
+                        <em className="text-[#d4a853]">Plan Your Visit</em>
+                    </h1>
+                    <p className="text-base leading-relaxed text-[#f5f0e8]/50">
+                        Have questions about visiting Pulilan, planning an event, or seeking municipal services? We're here to help.
+                    </p>
+                </div>
 
-            <section className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8">
-                <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-950/60 via-emerald-900/45 to-slate-950/70" />
+                <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
+                        {/* Contact form */}
+                        <div className="lg:col-span-3">
+                            <div className="rounded-3xl border border-white/5 bg-[#122236] p-8">
+                                <h2 className="font-display mb-6 text-2xl font-semibold text-[#f5f0e8]">Send us a Message</h2>
 
-                <div className="mx-auto max-w-6xl">
-                    <div className="rounded-[2rem] border border-white/60 bg-white/92 p-6 shadow-2xl shadow-emerald-950/20 backdrop-blur-sm md:p-10">
-                        <header className="text-center">
-                            <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Contact Us</p>
-                            <h1 className="mt-4 text-3xl font-semibold leading-tight text-slate-950 md:text-5xl">Send us a message or visit our town office.</h1>
-                            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-                                Our office is ready to help visitors, residents, and business owners with tourism, permits, and local services.
-                            </p>
-                        </header>
-
-                        {flash?.success ? (
-                            <div className="mb-8 mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-900">
-                                {flash.success}
+                                {submitted ? (
+                                    <div className="py-12 text-center">
+                                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/30 bg-[#d4a853]/15">
+                                            <svg className="h-8 w-8 text-[#d4a853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <h3 className="font-display mb-2 text-xl font-semibold text-[#f5f0e8]">Message Sent!</h3>
+                                        <p className="text-sm text-[#f5f0e8]/50">
+                                            Thank you for reaching out. We'll get back to you within 1–2 business days.
+                                        </p>
+                                        <button
+                                            onClick={() => {
+                                                setSubmitted(false);
+                                                reset();
+                                            }}
+                                            className="mt-6 rounded-full border border-[#d4a853]/40 px-6 py-2.5 text-sm text-[#d4a853] transition-all hover:bg-[#d4a853]/10"
+                                        >
+                                            Send Another Message
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <form onSubmit={handleSubmit} className="space-y-5">
+                                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                                            <div>
+                                                <label className="mb-2 block text-xs font-medium tracking-widest text-[#f5f0e8]/50 uppercase">
+                                                    Full Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={form.name}
+                                                    onChange={(e) => setData('name', e.target.value)}
+                                                    placeholder="Juan dela Cruz"
+                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                />
+                                                <InputError message={errors.name} />
+                                            </div>
+                                            <div>
+                                                <label className="mb-2 block text-xs font-medium tracking-widest text-[#f5f0e8]/50 uppercase">
+                                                    Email
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    required
+                                                    value={form.email}
+                                                    onChange={(e) => setData('email', e.target.value)}
+                                                    placeholder="juan@example.com"
+                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                />
+                                                <InputError message={errors.email} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label className="mb-2 block text-xs font-medium tracking-widest text-[#f5f0e8]/50 uppercase">
+                                                Subject
+                                            </label>
+                                            <select
+                                                required
+                                                value={form.subject}
+                                                onChange={(e) => setData('subject', e.target.value)}
+                                                className="h-[52px] w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8]/70 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                            >
+                                                <option value="">Select a topic...</option>
+                                                <option>Tourism Inquiry</option>
+                                                <option>Festival Information</option>
+                                                <option>Business & Investment</option>
+                                                <option>Municipal Services</option>
+                                                <option>Heritage & Culture</option>
+                                                <option>Other</option>
+                                            </select>
+                                            <InputError message={errors.subject} />
+                                        </div>
+                                        <div>
+                                            <label className="mb-2 block text-xs font-medium tracking-widest text-[#f5f0e8]/50 uppercase">
+                                                Message
+                                            </label>
+                                            <textarea
+                                                required
+                                                rows={5}
+                                                value={form.message}
+                                                onChange={(e) => setData('message', e.target.value)}
+                                                placeholder="Tell us how we can help..."
+                                                className="w-full resize-none rounded-xl border border-white/10 bg-[#0d1b2a] px-4 py-3 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                            />
+                                            <InputError message={errors.message} />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            className="h-[52px] w-full rounded-xl bg-[#d4a853] font-semibold text-[#0d1b2a] shadow-lg shadow-[#d4a853]/20 transition-colors hover:bg-[#e8b96a] disabled:cursor-not-allowed disabled:opacity-60"
+                                        >
+                                            {processing ? 'Sending...' : 'Send Message'}
+                                        </button>
+                                    </form>
+                                )}
                             </div>
-                        ) : null}
+                        </div>
 
-                        <div className="mt-10 grid gap-10 lg:grid-cols-[1.25fr_0.85fr] lg:items-start">
-                            <section>
-                                <h2 className="text-2xl font-semibold text-slate-950">Send Us a Message</h2>
-                                <p className="mt-2 text-sm leading-7 text-slate-600">Complete the form below and our team will get back to you as soon as possible.</p>
-
-                                <form onSubmit={submit} className="mt-8 space-y-6">
-                                    <div className="grid gap-6 md:grid-cols-2">
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="name">Name</Label>
-                                            <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required />
-                                            <InputError message={errors.name} />
-                                        </div>
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="email">Email</Label>
-                                            <Input id="email" type="email" value={data.email} onChange={(e) => setData('email', e.target.value)} required />
-                                            <InputError message={errors.email} />
-                                        </div>
+                        {/* Contact info */}
+                        <div className="space-y-5 lg:col-span-2">
+                            {[
+                                {
+                                    icon: '📍',
+                                    title: 'Address',
+                                    lines: ['Municipal Hall, Poblacion', 'Pulilan, Bulacan 3005', 'Philippines'],
+                                },
+                                {
+                                    icon: '📞',
+                                    title: 'Phone',
+                                    lines: ['(044) 672-0001', '(044) 672-0002', 'Mon–Fri, 8AM–5PM'],
+                                },
+                                {
+                                    icon: '✉️',
+                                    title: 'Email',
+                                    lines: ['info@pulilan.gov.ph', 'tourism@pulilan.gov.ph'],
+                                },
+                                {
+                                    icon: '🕐',
+                                    title: 'Office Hours',
+                                    lines: ['Monday – Friday', '8:00 AM – 5:00 PM', 'Closed on Philippine holidays'],
+                                },
+                            ].map((card) => (
+                                <div key={card.title} className="flex gap-4 rounded-2xl border border-white/5 bg-[#122236] p-6">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#d4a853]/10 text-lg">
+                                        {card.icon}
                                     </div>
-
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="subject">Subject</Label>
-                                        <Input id="subject" value={data.subject} onChange={(e) => setData('subject', e.target.value)} required />
-                                        <InputError message={errors.subject} />
+                                    <div>
+                                        <h4 className="font-display mb-2 text-xs font-semibold tracking-widest text-[#d4a853] uppercase">
+                                            {card.title}
+                                        </h4>
+                                        {card.lines.map((line) => (
+                                            <p key={line} className="text-sm text-[#f5f0e8]/55">
+                                                {line}
+                                            </p>
+                                        ))}
                                     </div>
-
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="message">Message</Label>
-                                        <Textarea id="message" value={data.message} onChange={(e) => setData('message', e.target.value)} required />
-                                        <InputError message={errors.message} />
-                                    </div>
-
-                                    <Button type="submit" disabled={processing} className="w-full bg-emerald-700 text-white hover:bg-emerald-800 md:w-auto">
-                                        {processing ? 'Sending...' : 'Send Message'}
-                                    </Button>
-                                </form>
-                            </section>
-
-                            <aside className="space-y-8 rounded-3xl bg-emerald-50/60 p-6 lg:self-start lg:border-l lg:border-emerald-200 lg:bg-transparent lg:pl-8">
-                                <div>
-                                    <h2 className="text-2xl font-semibold text-slate-950">Office Information</h2>
-                                    <p className="mt-2 text-sm leading-7 text-slate-600">Visit, call, or email us for inquiries and local assistance.</p>
-
-                                    <dl className="mt-6 space-y-5 text-sm text-slate-700">
-                                        <div className="flex items-start gap-3">
-                                            <span className="mt-0.5 rounded-full bg-emerald-100 p-2 text-emerald-700">
-                                                <MapPin className="h-4 w-4" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <dt className="font-semibold text-slate-900">Municipal Hall</dt>
-                                                <dd className="mt-1 text-slate-600">Brgy. Poblacion, Pulilan, Bulacan</dd>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-3">
-                                            <span className="mt-0.5 rounded-full bg-emerald-100 p-2 text-emerald-700">
-                                                <Phone className="h-4 w-4" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <dt className="font-semibold text-slate-900">Phone</dt>
-                                                <dd className="mt-1 text-slate-600">(044) 123 4567</dd>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-start gap-3">
-                                            <span className="mt-0.5 rounded-full bg-emerald-100 p-2 text-emerald-700">
-                                                <Mail className="h-4 w-4" aria-hidden="true" />
-                                            </span>
-                                            <div>
-                                                <dt className="font-semibold text-slate-900">Email</dt>
-                                                <dd className="mt-1 text-slate-600">info@pulilan.gov.ph</dd>
-                                            </div>
-                                        </div>
-                                    </dl>
                                 </div>
+                            ))}
 
-                                <div>
-                                    <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
-                                        <Clock3 className="h-4 w-4 text-emerald-700" aria-hidden="true" />
-                                        Visitor Hours
-                                    </h3>
-                                    <p className="mt-3 text-sm leading-7 text-slate-600">Monday to Friday, 8:00 AM to 5:00 PM. Closed on national holidays.</p>
+                            {/* Map placeholder */}
+                            <div className="relative h-48 overflow-hidden rounded-2xl border border-white/5 bg-[#122236]">
+                                <img
+                                    src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=600&h=300&fit=crop&auto=format"
+                                    alt="Pulilan location"
+                                    className="h-full w-full object-cover opacity-30"
+                                />
+                                <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+                                    <svg className="h-8 w-8 text-[#d4a853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={1.5}
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                        />
+                                    </svg>
+                                    <p className="text-sm text-[#f5f0e8]/60">Pulilan, Bulacan</p>
+                                    <p className="text-xs text-[#f5f0e8]/30">14.9022° N, 120.8367° E</p>
                                 </div>
-                            </aside>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </PublicLayout>
     );
 }

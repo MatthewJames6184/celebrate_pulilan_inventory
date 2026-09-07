@@ -31,7 +31,7 @@ export default function StayDineListingDetail() {
             title={sampleData.name}
             imageSubHeader={{ src: '/images/image-1.jpg', alt: sampleData.name }}
             breadcrumbs={[
-                { label: 'Where to Stay and Dine', href: route('stay.dine') },
+                { label: 'Where to Stay and Dine' },
                 { label: type === 'restaurants' ? 'Restaurants' : 'Accommodations', href: route(`stay.dine.${type}`) },
                 { label: sampleData.name },
             ]}

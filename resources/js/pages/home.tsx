@@ -1,275 +1,223 @@
-import { featuredNews } from '@/data/news';
+import { featuredNews, newsItems } from '@/data/news';
 import PublicLayout from '@/layouts/public-layout';
 import { Head, Link } from '@inertiajs/react';
-import { ArrowRight, CalendarDays, ChevronLeft, ChevronRight, MapPin, Search, Sparkles, Utensils, Waves } from 'lucide-react';
-import { useEffect, useRef, useState, type TouchEvent } from 'react';
+import { ArrowRight, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+const heroSlides = [
+    {
+        eyebrow: 'WELCOME TO PULILAN',
+        title: 'Where Heritage\nMeets Horizons',
+        description: 'Discover the Carabao Capital of the Philippines — a municipality rich in colonial history, vibrant festivals, and warm Filipino hospitality.',
+        image: 'https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=1600&h=900&fit=crop&auto=format',
+        href: route('about.attraction'),
+        action: 'Explore Pulilan',
+    },
+    {
+        eyebrow: 'PLAN YOUR VISIT',
+        title: 'Your Next\nAdventure Awaits',
+        description: 'From sacred churches to scenic riverbanks, Pulilan offers a journey through centuries of faith, culture, and natural beauty.',
+        image: 'https://images.unsplash.com/photo-1760549310131-b09d86c601e3?w=1600&h=900&fit=crop&auto=format',
+        href: route('contact'),
+        action: 'Start Planning',
+    },
+    {
+        eyebrow: 'PULILAN FESTIVALS',
+        title: 'Celebrate With\nOur Community',
+        description: 'Experience the Carabao Festival — a UNESCO-recognized tradition where decorated water buffaloes kneel before San Isidro Labrador.',
+        image: 'https://images.unsplash.com/photo-1630192226649-1934968dca48?w=1600&h=900&fit=crop&auto=format',
+        href: route('about.festivals'),
+        action: 'See Festivals',
+    },
+    {
+        eyebrow: 'LOCAL CUISINE',
+        title: 'Taste the\nFlavors of Bulacan',
+        description: 'Savor authentic Bulakeño dishes — from crispy pata to classic kare-kare, prepared with generations of culinary tradition.',
+        image: 'https://images.unsplash.com/photo-1537495988501-f9cd94a78f3e?w=1600&h=900&fit=crop&auto=format',
+        href: `${route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' })}`,
+        action: 'Discover Cuisine',
+    },
+    {
+        eyebrow: 'OUR HERITAGE',
+        title: 'Centuries of\nStories to Tell',
+        description: "Walk through Pulilan's storied past — from Spanish-era churches and ancestral homes to the battles that shaped our nation.",
+        image: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=1600&h=900&fit=crop&auto=format',
+        href: route('about.history'),
+        action: 'Our History',
+    },
+];
 
 const discoveryCards = [
-    { title: 'Religious', label: 'Faith and tradition', image: '/images/carousel-images/Religious.jpg', href: route('about.religious') },
-    { title: 'Historical', label: 'Stories from the past', image: '/images/carousel-images/Historical.jpg', href: route('about.historical') },
-    { title: 'Heritage', label: 'Walk through our story', image: '/images/carousel-images/Heritage.jpg', href: route('about.heritage') },
-    { title: 'Cuisine', label: 'Taste local flavors', image: '/images/carousel-images/Cuisine.jpg', href: route('about.cuisine') },
-    { title: 'Shopping', label: 'Find local favorites', image: '/images/carousel-images/Shopping.jpg', href: route('about.shopping') },
-    { title: 'Education', label: 'Learning in Pulilan', image: '/images/carousel-images/Education.jpg', href: route('about.education') },
-    { title: 'Health', label: 'Care for the community', image: '/images/carousel-images/Health.jpg', href: route('about.health') },
-    { title: 'Attractions', label: 'Places worth visiting', image: '/images/carousel-images/Attraction.jpg', href: route('about.attraction') },
-    { title: 'Mission & vision', label: 'Our direction', image: '/images/carousel-images/Mission-and-Vision.jpg', href: route('about.mission-vision') },
-    { title: 'Resorts', label: 'Stay and unwind', image: '/images/carousel-images/Resorts.jpg', href: route('about.resorts') },
-    { title: 'Local products', label: 'Made nearby', image: '/images/carousel-images/Local-Products.jpg', href: route('about.local-products') },
-    { title: 'Festivals', label: 'Feel the Pulilan spirit', image: '/images/carousel-images/Festival.jpg', href: route('about.festivals') },
+    { title: 'Religious', badge: 'Faith and tradition', image: '/images/carousel-images/Religious.jpg', href: `${route('about.attraction')}?category=religious` },
+    { title: 'Historical', badge: 'Stories from the past', image: '/images/carousel-images/Historical.jpg', href: route('about.history') },
+    { title: 'Heritage', badge: 'Walk through our story', image: '/images/carousel-images/Heritage.jpg', href: `${route('about.attraction')}?category=heritage` },
+    { title: 'Cuisine', badge: 'Taste local flavors', image: '/images/carousel-images/Cuisine.jpg', href: route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' }) },
+    { title: 'Shopping', badge: 'Find local favorites', image: '/images/carousel-images/Shopping.jpg', href: `${route('about.attraction')}?category=shopping` },
+    { title: 'Education', badge: 'Learning in Pulilan', image: '/images/carousel-images/Education.jpg', href: `${route('about.attraction')}?category=education` },
+    { title: 'Health', badge: 'Care for the community', image: '/images/carousel-images/Health.jpg', href: `${route('about.attraction')}?category=health` },
+    { title: 'Attractions', badge: 'Places worth visiting', image: '/images/carousel-images/Attraction.jpg', href: route('about.attraction') },
+    { title: 'Mission & vision', badge: 'Our direction', image: '/images/carousel-images/Mission-and-Vision.jpg', href: route('about') },
+    { title: 'Resorts', badge: 'Stay and unwind', image: '/images/carousel-images/Resorts.jpg', href: route('stay.dine.accommodations') },
+    { title: 'Local products', badge: 'Made nearby', image: '/images/carousel-images/Local-Products.jpg', href: `${route('about.attraction')}?category=shopping` },
+    { title: 'Festivals', badge: 'Feel the Pulilan spirit', image: '/images/carousel-images/Festival.jpg', href: route('about.festivals') },
 ];
 
-const stayAndDine = [
+const stayCards = [
     {
-        title: 'Find a place to stay',
-        description: 'Rest easy in welcoming accommodations close to Pulilan’s best experiences.',
+        title: 'Accommodations',
         image: '/images/carousel-images/Resorts.jpg',
-        href: route('stay.dine.accommodations'),
-        icon: Waves,
+        href: 'stay.dine.accommodations',
+        items: ['Pulilan Garden Resort', 'Heritage Inn Pulilan', 'Balatong Countryside Lodge'],
     },
     {
-        title: 'Eat like a local',
-        description: 'Discover restaurants and neighborhood favorites worth sharing.',
+        title: 'Local Cuisine',
         image: '/images/carousel-images/Cuisine.jpg',
-        href: route('stay.dine.restaurants'),
-        icon: Utensils,
+        href: 'stay.dine.restaurants',
+        items: ["Aling Nena's Carinderia", 'Dulabayan Kitchen', 'Riverside Grill'],
     },
 ];
 
-const upcomingEvents = [
-    { title: 'Kasedihan Festival', date: 'October 10, 2026', image: '/images/carousel-images/Festival.jpg' },
-    { title: 'Heritage Night', date: 'November 8, 2026', image: '/images/carousel-images/Heritage.jpg' },
-];
-
-const businessAndTourism = [
-    {
-        title: 'Build your business',
-        description: 'Put your accommodation, restaurant, shop, or experience in front of curious visitors.',
-        label: 'For entrepreneurs',
-        image: '/images/carousel-images/Local-Products.jpg',
-        href: route('register'),
-        action: 'Add your business',
-    },
-    {
-        title: 'Plan your itinerary',
-        description: 'Pair heritage, riverside moments, local food, and festivals into one memorable day.',
-        label: 'For visitors',
-        image: '/images/carousel-images/Attraction.jpg',
-        href: route('about'),
-        action: 'Explore experiences',
-    },
-    {
-        title: 'Stay connected',
-        description: 'Keep up with announcements, community stories, and the events that bring Pulilan together.',
-        label: 'For the community',
-        image: '/images/carousel-images/Festival.jpg',
-        href: route('news.archive'),
-        action: 'Read latest updates',
-    },
-];
-
-const quickAccessSlides = [
-    {
-        eyebrow: 'Explore Pulilan',
-        title: 'Find places worth remembering.',
-        description: 'Browse attractions, heritage sites, festivals, and local stories for your next day out.',
-        image: '/images/image-1.jpg',
-        href: route('about'),
-        action: 'Explore destinations',
-    },
-    {
-        eyebrow: 'Plan your visit',
-        title: 'Stay, dine, and enjoy the journey.',
-        description: 'Find welcoming accommodations and local restaurants that make your visit feel complete.',
-        image: '/images/image-2.jpg',
-        href: route('stay.dine'),
-        action: 'View stay & dine',
-    },
-    {
-        eyebrow: 'Keep up with Pulilan',
-        title: 'See what is happening next.',
-        description: 'Check community news, upcoming events, announcements, and celebrations around town.',
-        image: '/images/image-3.jpg',
-        href: route('news.archive'),
-        action: 'Read news & events',
-    },
-    {
-        eyebrow: 'Find your way around',
-        title: 'Explore every corner of Pulilan.',
-        description: 'Use our barangay map to get familiar with the places, communities, and routes around town.',
-        image: '/images/image-4.jpg',
-        href: route('about.map-location'),
-        action: 'Open the map',
-    },
-    {
-        eyebrow: 'Support local',
-        title: 'Discover products made nearby.',
-        description: 'Meet local makers and find meaningful products to take home from your Pulilan visit.',
-        image: '/images/image-5.jpg',
-        href: route('about.local-products'),
-        action: 'Shop local',
-    },
+const barangays = [
+    'Balatong A',
+    'Balatong B',
+    'Cutcot',
+    'Dampol 1st',
+    'Dampol 2nd A',
+    'Dampol 2nd B',
+    'Inaon',
+    'Longos',
+    'Lumbang',
+    'Paltao',
+    'Penabatan',
+    'Poblacion',
+    'Sta. Peregrina',
+    'Santo Cristo',
+    'Sto. Niño',
+    'Tagucan',
+    'Tibag',
+    'Tinejero',
 ];
 
 export default function Home() {
-    const [activeQuickAccess, setActiveQuickAccess] = useState(0);
-    const touchStartX = useRef<number | null>(null);
-    const quickAccess = quickAccessSlides[activeQuickAccess];
-
-    const moveSlide = (direction: 1 | -1) => {
-        setActiveQuickAccess((current) => (current + direction + quickAccessSlides.length) % quickAccessSlides.length);
-    };
+    const [active, setActive] = useState(0);
+    const slide = heroSlides[active];
 
     useEffect(() => {
-        const timer = window.setInterval(() => {
-            setActiveQuickAccess((current) => (current + 1) % quickAccessSlides.length);
-        }, 6000);
-
+        const timer = window.setInterval(() => setActive((current) => (current + 1) % heroSlides.length), 7000);
         return () => window.clearInterval(timer);
     }, []);
-
-    const handleTouchStart = (event: TouchEvent<HTMLElement>) => {
-        touchStartX.current = event.touches[0]?.clientX ?? null;
-    };
-
-    const handleTouchEnd = (event: TouchEvent<HTMLElement>) => {
-        if (touchStartX.current === null) {
-            return;
-        }
-
-        const distance = (event.changedTouches[0]?.clientX ?? touchStartX.current) - touchStartX.current;
-        touchStartX.current = null;
-
-        if (Math.abs(distance) > 45) {
-            moveSlide(distance > 0 ? -1 : 1);
-        }
-    };
 
     return (
         <PublicLayout>
             <Head title="Discover Pulilan" />
 
-            <section
-                className="relative isolate min-h-[420px] overflow-hidden bg-[#0f1e3d] font-sans text-white"
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-            >
+            <section className="relative isolate h-screen min-h-[600px] overflow-hidden bg-[#071827]">
                 <img
-                    src={quickAccess.image}
-                    alt={quickAccess.title}
-                    className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_32%]"
+                    src={slide.image}
+                    alt={slide.title}
+                    className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(15,30,61,0.94)_0%,rgba(15,30,61,0.55)_45%,rgba(15,30,61,0.25)_100%)]" />
-                <div className="absolute -top-40 -right-32 -z-10 h-[30rem] w-[30rem] rounded-full bg-blue-400/20 blur-3xl" />
-                <div className="mx-auto grid min-h-[420px] max-w-[1180px] items-end gap-10 px-6 pt-[54px] pb-[70px] sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:pb-[105px]">
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,19,32,0.96)_0%,rgba(5,19,32,0.76)_36%,rgba(5,19,32,0.2)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#071827] to-transparent" />
+                <div className="mx-auto flex min-h-[600px] max-w-7xl items-start px-6 pt-32 lg:px-10 lg:pt-[28vh]">
                     <div className="max-w-2xl">
-                        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#2f5d3a] px-3 py-1.5 text-xs font-semibold text-white">
-                            <Sparkles className="h-3.5 w-3.5 text-[#f0b429]" /> {quickAccess.eyebrow}
+                        <div className="mb-6 flex items-center gap-2">
+                            <div className="h-px w-8 bg-[#d4a853]" />
+                            <p className="text-sm font-medium tracking-widest text-[#d4a853] uppercase">{slide.eyebrow}</p>
                         </div>
-                        <button
-                            type="button"
-                            aria-label="Previous quick access slide"
-                            onClick={() => moveSlide(-1)}
-                            className="absolute top-1/2 left-4 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-blue-950/40 text-white backdrop-blur transition hover:bg-blue-950/70 sm:left-8"
-                        >
-                            <ChevronLeft className="h-6 w-6" />
-                        </button>
-                        <button
-                            type="button"
-                            aria-label="Next quick access slide"
-                            onClick={() => moveSlide(1)}
-                            className="absolute top-1/2 right-4 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-blue-950/40 text-white backdrop-blur transition hover:bg-blue-950/70 sm:right-8"
-                        >
-                            <ChevronRight className="h-6 w-6" />
-                        </button>
-                        <h1 className="font-display max-w-[460px] text-[42px] leading-[1.1] font-semibold tracking-[-0.01em]">{quickAccess.title}</h1>
-                        <p className="mt-3 max-w-[400px] text-[14.5px] leading-[1.6] text-white/78">{quickAccess.description}</p>
-                        <div className="mt-[22px] flex flex-wrap items-center gap-2.5">
+                        <h1 className="font-display mb-6 max-w-2xl text-5xl leading-tight font-semibold whitespace-pre-line text-[#f5f0e8] lg:text-7xl">
+                            {slide.title}
+                        </h1>
+                        <p className="mb-10 max-w-xl text-lg leading-relaxed text-[#f5f0e8]/65">{slide.description}</p>
+                        <div className="flex flex-wrap gap-4">
                             <Link
-                                href={quickAccess.href}
-                                className="inline-flex items-center gap-2 rounded-md bg-[#f0b429] px-[18px] py-2.5 text-[13.5px] font-bold text-[#0f1e3d] shadow-lg shadow-black/20 transition hover:bg-[#d69a1e]"
+                                href={slide.href}
+                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-8 py-3.5 text-sm font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
                             >
-                                {quickAccess.action} <ArrowRight className="h-4 w-4" />
+                                {slide.action} <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
-                            <span className="rounded-md border border-white/40 px-[18px] py-2.5 text-[13.5px] font-semibold text-white">Learn more</span>
+                            <Link
+                                href={route('about')}
+                                className="inline-flex items-center rounded-full border border-white/20 px-8 py-3.5 font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
+                            >
+                                Our Heritage
+                            </Link>
                         </div>
                     </div>
-                    <div className="hidden max-w-sm self-center text-[13.5px] leading-[1.7] text-white/78 lg:block">
-                        <p>
-                            Pulilan is a welcoming community where heritage, local flavor, and everyday celebrations come together.
-                            Discover a town worth slowing down for.
-                        </p>
-                    </div>
                 </div>
-                <div className="absolute right-6 bottom-8 left-6 flex justify-end gap-2 lg:right-8 lg:left-auto">
-                    {quickAccessSlides.map((slide, index) => (
-                        <button
-                            key={slide.eyebrow}
-                            type="button"
-                            aria-label={`Show ${slide.eyebrow}`}
-                            onClick={() => setActiveQuickAccess(index)}
-                            className={`h-2 rounded-full transition-all ${activeQuickAccess === index ? 'w-12 bg-amber-300' : 'w-2 bg-white/60 hover:bg-white'}`}
-                        />
-                    ))}
-                </div>
-            </section>
-
-            <section className="relative z-10 bg-[#efdfc0] px-5 pb-0 lg:px-8">
-                <form
-                    action={route('about')}
-                    method="get"
-                    className="mx-auto grid max-w-[1180px] -translate-y-[26px] overflow-hidden rounded-[10px] border border-[#e7e1d2] bg-white shadow-[0_14px_30px_rgba(15,30,61,0.18)] md:grid-cols-[200px_1fr_auto]"
-                >
-                    <label className="border-b border-slate-200 px-5 py-2.5 md:border-r md:border-b-0">
-                        <span className="block text-[11px] font-bold tracking-[0.12em] text-slate-500 uppercase">Looking for</span>
-                        <select name="type" className="mt-1 w-full bg-transparent text-sm font-medium text-slate-900 outline-none">
-                            <option value="attractions">Attractions</option>
-                            <option value="food">Food &amp; dining</option>
-                            <option value="stays">Places to stay</option>
-                            <option value="events">Events</option>
-                        </select>
-                    </label>
-                    <label className="flex items-center gap-3 px-5 py-2.5">
-                        <Search className="h-5 w-5 shrink-0 text-blue-700" />
-                        <span className="w-full">
-                            <span className="block text-[11px] font-bold tracking-[0.12em] text-slate-500 uppercase">Search</span>
-                            <input
-                                name="q"
-                                placeholder="Try “ancestral houses” or “Longos”"
-                                className="mt-1 w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                <div className="absolute inset-x-0 bottom-10 z-10 flex justify-center">
+                    <div className="flex items-center gap-2">
+                        {heroSlides.map((item, index) => (
+                            <button
+                                key={item.eyebrow}
+                                type="button"
+                                aria-label={`Show ${item.eyebrow}`}
+                                onClick={() => setActive(index)}
+                                className={`h-2 rounded-full transition-all duration-200 hover:bg-[#d4a853] active:bg-[#d4a853] ${active === index ? 'w-8 bg-[#d4a853]' : 'w-2 bg-white/30'}`}
                             />
-                        </span>
-                    </label>
-                    <button type="submit" className="bg-[#16295a] px-[26px] text-sm font-bold text-white transition hover:bg-[#0f1e3d]">
-                        Search
-                    </button>
-                </form>
+                        ))}
+                    </div>
+                    <div className="absolute right-6 bottom-0 flex gap-2 lg:right-10">
+                        <button
+                            type="button"
+                            onClick={() => setActive((active - 1 + heroSlides.length) % heroSlides.length)}
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
+                        >
+                            <ChevronLeft className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setActive((active + 1) % heroSlides.length)}
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
+                        >
+                            <ChevronRight className="h-3.5 w-3.5" />
+                        </button>
+                    </div>
+                </div>
             </section>
 
-            <section className="bg-[#efdfc0] px-6 pt-11 pb-[70px] lg:px-8">
-                <div className="mx-auto max-w-[1180px]">
-                    <div className="mb-6">
-                        <div>
-                            <p className="text-[11.5px] font-bold tracking-[0.1em] text-[#d69a1e] uppercase">More about Pulilan</p>
-                            <h2 className="font-display mt-2 text-[27px] font-semibold tracking-[-0.01em] text-[#0f1e3d]">See what makes Pulilan special</h2>
-                        </div>
-                    </div>
-                    <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+            <section className="border-y border-white/5 bg-[#132940] px-6 py-7">
+                <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row">
+                    <label className="relative flex-1">
+                        <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/35" />
+                        <input
+                            name="q"
+                            placeholder="Search attractions, food, events..."
+                            className="h-[52px] w-full rounded-lg border border-white/10 bg-[#1a3048] px-11 text-xs text-white outline-none placeholder:text-white/35 focus:border-[#dcae4e]"
+                        />
+                    </label>
+                    <select name="type" className="h-[52px] rounded-lg border border-white/10 bg-[#1a3048] px-4 text-xs text-white/60 outline-none">
+                        <option>All Categories</option>
+                        <option>Attractions</option>
+                        <option>Food</option>
+                        <option>Events</option>
+                    </select>
+                    <button className="h-[52px] rounded-lg bg-[#dcae4e] px-7 text-xs font-bold text-[#102033] hover:bg-[#edc568]">Search</button>
+                </form>
+                <div className="mx-auto mt-3 flex max-w-5xl flex-wrap gap-2 text-[10px] text-white/40">
+                    <span className="rounded-full border border-white/10 px-3 py-1">Carabao Festival</span>
+                    <span className="rounded-full border border-white/10 px-3 py-1">San Isidro Parish</span>
+                    <span className="rounded-full border border-white/10 px-3 py-1">Longos Church</span>
+                    <span className="rounded-full border border-white/10 px-3 py-1">Local Delicacies</span>
+                </div>
+            </section>
+
+            <section className="bg-[#f3e6c9] px-6 py-16 text-[#102033] lg:py-24">
+                <div className="mx-auto max-w-7xl">
+                    <p className="text-[10px] font-bold tracking-[0.25em] text-[#b7872f] uppercase">More about Pulilan</p>
+                    <h2 className="font-display mt-3 text-3xl font-semibold lg:text-4xl">See what makes Pulilan special</h2>
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                         {discoveryCards.map((card) => (
                             <Link
                                 key={card.title}
                                 href={card.href}
-                                className="group relative aspect-[3/4] overflow-hidden rounded-[10px] bg-[#0f1e3d] shadow-[0_10px_20px_rgba(15,30,61,0.18)] transition hover:-translate-y-1"
+                                className="group relative h-52 overflow-hidden rounded-xl shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                             >
-                                <img
-                                    src={card.image}
-                                    alt={card.title}
-                                    className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0f1e3d]/90 via-[#0f1e3d]/10 to-transparent" />
-                                <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                                    <p className="mb-2 inline-block rounded-full bg-[#f0b429] px-[9px] py-[3px] text-[10.5px] font-bold text-[#0f1e3d]">{card.label}</p>
-                                    <h3 className="font-display text-[15.5px] font-semibold tracking-[-0.01em]">{card.title}</h3>
+                                <img src={card.image} alt={card.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#102033] via-[#102033]/25 to-transparent" />
+                                <div className="absolute inset-x-3 bottom-3">
+                                    <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[9px] font-bold text-[#102033]">{card.badge}</span>
+                                    <h3 className="font-display mt-2 text-sm font-semibold text-white">{card.title}</h3>
                                 </div>
                             </Link>
                         ))}
@@ -277,151 +225,203 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#fbf8f1] px-6 py-14 lg:px-8">
-                <div className="mx-auto grid max-w-[1180px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-                    <div>
-                        <p className="text-[11.5px] font-bold tracking-[0.1em] text-[#d69a1e] uppercase">Stay &amp; get to it</p>
-                        <h2 className="font-display mt-3 text-[30px] font-semibold tracking-[-0.01em] text-[#0f1e3d]">Stay longer. Taste more. Feel at home.</h2>
-                        <p className="mt-3 max-w-[340px] text-[14.5px] leading-[1.7] text-[#5b6072]">
-                            From a comfortable overnight stay to a table filled with local flavors, find the people and places that make every visit
-                            feel personal.
+            <section className="bg-[#164b3b]">
+                <div className="mx-auto grid max-w-7xl md:grid-cols-2">
+                    <img src="/images/carousel-images/Attraction.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
+                    <div className="flex flex-col justify-center px-8 py-16 lg:px-16">
+                        <p className="text-[10px] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
+                        <h2 className="font-display mt-4 text-4xl text-white">
+                            The Carabao
+                            <br />
+                            <span className="text-[#e9bc5b] italic">Festival</span>
+                        </h2>
+                        <p className="mt-5 max-w-sm text-xs leading-6 text-white/65">
+                            Witness the spectacular Carabao Festival — a UNESCO Intangible Cultural Heritage tradition where farmers parade their
+                            decorated water buffaloes to honor their patron saint.
                         </p>
+                        <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[10px] text-white/60">
+                            <span>
+                                <b className="block text-lg text-white">300+</b>Years
+                            </span>
+                            <span>
+                                <b className="block text-lg text-white">18</b>Barangays
+                            </span>
+                            <span>
+                                <b className="block text-lg text-white">UNESCO</b>Heritage
+                            </span>
+                        </div>
                         <Link
-                            href={route('stay.dine')}
-                            className="mt-4 inline-flex items-center gap-2 rounded-md bg-[#f0b429] px-[18px] py-2.5 text-[13.5px] font-bold text-[#0f1e3d] transition hover:bg-[#d69a1e]"
+                            href={route('about.festivals')}
+                            className="mt-7 w-fit rounded-full bg-[#dcae4e] px-5 py-3 text-[10px] font-bold text-[#102033]"
                         >
-                            View the directory <ArrowRight className="h-4 w-4" />
+                            Learn About the Festival →
                         </Link>
                     </div>
-                    <div className="grid gap-5 sm:grid-cols-2">
-                        {stayAndDine.map(({ title, description, image, href, icon: Icon }) => (
-                            <Link
-                                key={title}
-                                href={href}
-                                className="group overflow-hidden rounded-[10px] border border-[#e7e1d2] bg-white shadow-sm transition hover:-translate-y-1"
-                            >
-                                <div className="relative aspect-[4/3] overflow-hidden">
-                                    <img
-                                        src={image}
-                                        alt={title}
-                                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                                    />
-                                    <span className="absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-blue-700 shadow">
-                                        <Icon className="h-5 w-5" />
-                                    </span>
+                </div>
+            </section>
+
+            <section className="bg-[#f3ede2] px-6 py-24 text-[#102033]">
+                <div className="mx-auto max-w-4xl text-center">
+                    <p className="text-[10px] font-bold tracking-[0.25em] text-[#b7872f]">— STAY &amp; DINE</p>
+                    <h2 className="font-display mt-3 text-4xl">
+                        Where to Stay,
+                        <br />
+                        What to Eat
+                    </h2>
+                    <p className="mx-auto mt-3 max-w-md text-xs leading-5 text-slate-500">
+                        Plan a comfortable overnight stay or discover local dining experiences to make your visit unforgettable.
+                    </p>
+                    <div className="mt-10 grid gap-4 text-left md:grid-cols-2">
+                        {stayCards.map((card) => (
+                            <div key={card.title} className="overflow-hidden rounded-xl border border-[#d8d0c0] bg-white">
+                                <img src={card.image} alt={card.title} className="h-56 w-full object-cover" />
+                                <div className="p-5">
+                                    <h3 className="font-display text-lg">{card.title}</h3>
+                                    {card.items.map((item) => (
+                                        <p key={item} className="mt-3 border-b border-slate-100 pb-2 text-[11px] text-slate-500">
+                                            • {item}
+                                        </p>
+                                    ))}
+                                    <Link
+                                        href={route(card.href)}
+                                        className="mt-5 block rounded-full border border-[#dcae4e] py-2 text-center text-[10px] font-semibold text-[#9c7324]"
+                                    >
+                                        View All {card.title} →
+                                    </Link>
                                 </div>
-                                <div className="p-4">
-                                    <h3 className="text-[15px] font-semibold text-[#171b26]">{title}</h3>
-                                    <p className="mt-2 text-xs leading-5 text-[#5b6072]">{description}</p>
-                                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[#16295a]">
-                                        Read more <ArrowRight className="h-3.5 w-3.5" />
-                                    </span>
-                                </div>
-                            </Link>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            <section className="bg-[#efdfc0] px-6 py-14 lg:px-8">
-                <div className="mx-auto max-w-[1180px]">
-                    <div className="mb-8 max-w-2xl">
-                        <p className="text-[11.5px] font-bold tracking-[0.1em] text-[#d69a1e] uppercase">Discover at a glance</p>
-                        <h2 className="font-display mt-2 text-[27px] font-semibold tracking-[-0.01em] text-[#0f1e3d]">Pulilan at a glance</h2>
-                        <p className="mt-3 leading-7 text-[#5b6072]">
-                            See the barangays, landmarks, and riverside communities that make every route through Pulilan feel different.
-                        </p>
-                    </div>
-                    <div className="grid overflow-hidden rounded-[14px] border border-[#e7e1d2] bg-white shadow-[0_10px_30px_rgba(15,30,61,0.12)] lg:grid-cols-[1.1fr_0.9fr]">
-                        <div className="relative min-h-[320px] overflow-hidden bg-[#f3ecda]">
-                            <img src="/images/image-3.jpg" alt="Map of Pulilan barangays" className="h-full w-full object-cover object-center" />
-                            <div className="absolute inset-0 bg-[#0f1e3d]/5" />
-                            <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-[#0f1e3d] shadow-lg">
-                            <MapPin className="h-4 w-4 text-[#2f5d3a]" /> Explore all 18 barangays
+            <section className="bg-[#0d1b2a] px-6 py-24">
+                <div className="mx-auto max-w-7xl">
+                    <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+                        <div>
+                            <div className="mb-4 flex items-center gap-2">
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">18 Barangays</span>
                             </div>
-                        </div>
-                        <div className="flex flex-col justify-center bg-[#0f1e3d] p-7 text-white sm:p-10">
-                            <h3 className="font-display text-[22px] font-semibold text-white">A community built on heritage and local industry</h3>
-                            <p className="mt-3 text-[13.5px] leading-[1.7] text-white/75">
-                                Use the full map to discover neighborhood stories, plan your next stop, and get a better sense of how close each
-                                experience is.
+                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-5xl">
+                                Explore Every
+                                <br />
+                                <em className="text-[#d4a853]">Corner of Pulilan</em>
+                            </h2>
+                            <p className="mb-8 max-w-xl text-base leading-relaxed text-[#f5f0e8]/50">
+                                Pulilan is composed of 18 barangays, each with its own character, community, and contribution to the municipality&apos;s
+                                rich cultural tapestry.
                             </p>
+                            <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-2">
+                                {barangays.map((barangay) => (
+                                    <div key={barangay} className="group flex items-center gap-2 border-b border-white/5 py-1.5">
+                                        <div className="h-1.5 w-1.5 rounded-full bg-[#d4a853]/40 transition-colors group-hover:bg-[#d4a853]" />
+                                        <span className="text-xs text-[#f5f0e8]/50 transition-colors group-hover:text-[#f5f0e8]">{barangay}</span>
+                                    </div>
+                                ))}
+                            </div>
                             <Link
-                                href={route('about.map-location')}
-                                className="mt-7 inline-flex w-fit items-center gap-2 rounded-md bg-[#f0b429] px-[18px] py-2.5 text-[13.5px] font-bold text-[#0f1e3d] transition hover:bg-[#d69a1e]"
+                                href={route('about')}
+                                className="inline-flex rounded-full border border-[#d4a853]/40 px-7 py-3 text-sm font-medium text-[#d4a853] transition-all hover:bg-[#d4a853]/10"
                             >
-                                Open the interactive map <ArrowRight className="h-4 w-4" />
+                                About Pulilan
                             </Link>
                         </div>
+                        <div className="relative">
+                            <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/5 bg-[#122236]">
+                                <img
+                                    src="https://images.unsplash.com/photo-1682724425247-f34019858601?w=600&h=600&fit=crop&auto=format"
+                                    alt="Pulilan Bulacan landscape"
+                                    className="h-full w-full object-cover opacity-40"
+                                />
+                                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/40 bg-[#d4a853]/20">
+                                        <span className="text-3xl text-[#d4a853]">⌖</span>
+                                    </div>
+                                    <p className="font-display text-sm text-[#f5f0e8]/60">Interactive Map</p>
+                                    <p className="text-xs text-[#f5f0e8]/30">Pulilan, Bulacan — 14.9°N 120.8°E</p>
+                                    <span className="mt-2 rounded-full border border-[#d4a853]/30 bg-[#d4a853]/15 px-4 py-1.5 text-xs text-[#d4a853]">
+                                        Coming Soon
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="absolute -top-4 -right-4 grid h-24 w-24 grid-cols-5 gap-2 opacity-20">
+                                {Array.from({ length: 25 }).map((_, index) => (
+                                    <div key={index} className="h-1.5 w-1.5 rounded-full bg-[#d4a853]" />
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section className="bg-[#fbf8f1] px-6 py-14 lg:px-8">
-                <div className="mx-auto max-w-[1180px]">
-                    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-[0_10px_30px_rgba(15,23,42,0.06)] sm:p-7">
-                        <div className="flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
-                            <div>
-                                <p className="text-[11.5px] font-bold tracking-[0.1em] text-[#d69a1e] uppercase">Stay in the loop</p>
-                                <h2 className="font-display mt-1 text-[22px] font-semibold tracking-[-0.01em] text-[#0f1e3d]">News &amp; Updates</h2>
-                            </div>
-                            <CalendarDays className="h-7 w-7 text-[#d69a1e]" />
+            <section className="bg-[#122236] px-6 py-24">
+                <div className="mx-auto max-w-7xl">
+                    <div className="flex items-end justify-between">
+                        <div>
+                            <p className="text-[10px] font-bold tracking-[0.25em] text-[#dcae4e]">— LATEST UPDATES</p>
+                            <h2 className="font-display mt-3 text-4xl text-white">
+                                News &amp;
+                                <br />
+                                <span className="text-[#dcae4e] italic">Events</span>
+                            </h2>
                         </div>
                         <Link
-                            href={route('news.show', { slug: featuredNews.slug })}
-                            className="mt-5 block border-b border-slate-200 pb-5 transition hover:border-blue-300"
+                            href={route('news.archive')}
+                            className="hidden rounded-full border border-white/15 px-4 py-2 text-[10px] text-white/55 hover:border-[#dcae4e] hover:text-white sm:block"
                         >
-                            <p className="text-xs font-bold tracking-wide text-[#d69a1e] uppercase">{featuredNews.date}</p>
-                            <h3 className="font-display mt-2 text-[15.5px] font-semibold tracking-[-0.01em] text-[#171b26]">{featuredNews.title}</h3>
-                            <p className="mt-2 text-[13px] leading-[1.6] text-[#5b6072]">{featuredNews.excerpt}</p>
-                        </Link>
-                        <div className="mt-5 space-y-3">
-                            {upcomingEvents.map((event) => (
-                                <div key={event.title} className="flex items-center gap-3">
-                                    <img src={event.image} alt="" className="h-12 w-12 rounded-xl object-cover" />
-                                    <div>
-                                        <p className="text-sm font-bold text-[#0f1e3d]">{event.title}</p>
-                                        <p className="text-xs text-slate-500">{event.date}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <Link href={route('news.archive')} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-blue-700">
-                            Read all updates <ArrowRight className="h-4 w-4" />
+                            View All News
                         </Link>
                     </div>
-                </div>
-            </section>
-
-            <section className="relative overflow-hidden border-t-8 border-[#f8f1df] bg-[#132347] px-6 py-14 text-white lg:px-8 lg:py-[52px]">
-                <div className="absolute inset-x-0 top-0 h-1.5 bg-[repeating-linear-gradient(110deg,#facc15_0_16px,#2563eb_16px_32px,#60a5fa_32px_48px)]" />
-                <div className="absolute -top-24 -right-12 h-72 w-72 rounded-full border-[28px] border-blue-800/40" />
-                <div className="relative mx-auto max-w-[1180px]">
-                    <div className="mb-7 max-w-2xl">
-                        <p className="text-[11.5px] font-bold tracking-[0.1em] text-[#f0b429] uppercase">Products &amp; Pulilan</p>
-                        <h2 className="font-display mt-3 text-[30px] font-semibold tracking-[-0.01em]">There is room for every Pulilan story.</h2>
-                        <p className="mt-2 max-w-xl text-[14.5px] leading-[1.7] text-white/72">
-                            Whether you are visiting, building, or staying connected, start with the path that fits you.
-                        </p>
-                    </div>
-                    <div className="grid gap-4 md:grid-cols-3">
-                        {businessAndTourism.map((card) => (
+                    <div className="mt-10 grid gap-4 md:grid-cols-3">
+                        {[featuredNews, ...newsItems.slice(1, 3)].map((item) => (
                             <Link
-                                key={card.title}
-                                href={card.href}
-                                className="group overflow-hidden rounded-[10px] border border-white/10 bg-[#16295a] backdrop-blur transition hover:-translate-y-1 hover:bg-[#2f5d3a]"
+                                key={item.slug}
+                                href={route('news.show', { slug: item.slug })}
+                                className="group overflow-hidden rounded-2xl border border-white/5 bg-[#0d1b2a] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/30"
                             >
-                                <img src={card.image} alt="" className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105" />
-                                <div className="p-4">
-                                    <p className="text-[10.5px] font-bold tracking-[0.1em] text-[#f0b429] uppercase">{card.label}</p>
-                                    <h3 className="font-display mt-2 text-[15.5px] font-semibold tracking-[-0.01em]">{card.title}</h3>
-                                    <p className="mt-2 text-[13px] leading-[1.6] text-white/75">{card.description}</p>
-                                    <span className="mt-2 inline-flex items-center gap-2 text-xs font-semibold text-white">
-                                        {card.action} <ArrowRight className="h-4 w-4" />
-                                    </span>
+                                <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
+                                <div className="p-5">
+                                    <p className="mb-2 font-mono text-xs text-white/30">{item.date}</p>
+                                    <h3 className="font-display mb-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#dcae4e]">{item.title}</h3>
+                                    <p className="text-xs leading-relaxed text-white/45">{item.excerpt}</p>
+                                    <span className="mt-4 block text-xs font-medium text-[#dcae4e]">Read more →</span>
                                 </div>
                             </Link>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative overflow-hidden bg-[#0d1b2a] px-6 py-24">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#1a2f4a] to-[#0d1b2a]" />
+                <div className="relative mx-auto max-w-4xl text-center">
+                    <div className="mb-4 flex items-center justify-center gap-2">
+                        <div className="h-px w-8 bg-[#d4a853]" />
+                        <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Plan Your Visit</span>
+                        <div className="h-px w-8 bg-[#d4a853]" />
+                    </div>
+                    <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-6xl">
+                        Ready to Experience
+                        <br />
+                        <em className="text-[#d4a853]">Pulilan?</em>
+                    </h2>
+                    <p className="mx-auto mb-10 max-w-lg text-base leading-relaxed text-[#f5f0e8]/50">
+                        Whether you&apos;re a traveler, historian, entrepreneur, or local — Pulilan has something extraordinary waiting for you.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <Link
+                            href={route('contact')}
+                            className="rounded-full bg-[#d4a853] px-9 py-3.5 font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/20 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
+                        >
+                            Plan Your Visit
+                        </Link>
+                        <Link
+                            href={route('about.attraction')}
+                            className="rounded-full border border-white/20 px-9 py-3.5 font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
+                        >
+                            Explore What to See
+                        </Link>
                     </div>
                 </div>
             </section>

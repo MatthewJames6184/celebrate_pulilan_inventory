@@ -12,7 +12,7 @@ export default function BusinessAndTourism() {
             key: 'local-products',
             eyebrow: 'LOCAL PRODUCT',
             title: local.title,
-            moreHref: route('about.local-products'),
+            moreHref: `${route('about.attraction')}?category=shopping`,
             item: local.cards[0],
         },
         {
@@ -26,7 +26,7 @@ export default function BusinessAndTourism() {
             key: 'shopping',
             eyebrow: 'TOP BUSINESSES',
             title: shopping.title,
-            moreHref: route('about.shopping'),
+            moreHref: `${route('about.attraction')}?category=shopping`,
             item: shopping.cards[0],
         },
     ];

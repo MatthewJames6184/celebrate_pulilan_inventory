@@ -61,7 +61,7 @@ export default function StayDineRestaurants() {
             intro="Search by name, narrow by food type, and browse the alphabet when you already know the restaurant you want."
             imageSubHeader={{ src: '/images/carousel-images/Cuisine.jpg', alt: 'Pulilan restaurant and food stops' }}
             breadcrumbs={[
-                { label: 'Where to Stay and Dine', href: route('stay.dine') },
+                { label: 'Where to Stay and Dine' },
                 { label: 'Restaurants' },
             ]}
             stats={[

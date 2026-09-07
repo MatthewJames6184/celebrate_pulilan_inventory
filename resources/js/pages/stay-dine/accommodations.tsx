@@ -55,16 +55,13 @@ const accommodations: DirectoryItem[] = [
 export default function StayDineAccommodations() {
     return (
         <StayDineDirectoryPage
-            headTitle="Pulilan Accomodations"
+            headTitle="Pulilan Accommodations"
             eyebrow="Where to Stay and Dine"
             // title="Accommodations, resorts, and practical overnight stays."
-            title="Accomodations in Pulilan"
+            title="Accommodations in Pulilan"
             intro="Accommodations, resorts, and practical overnight stays."
             imageSubHeader={{ src: '/images/carousel-images/Resorts.jpg', alt: 'Pulilan resort stays' }}
-            breadcrumbs={[
-                { label: 'Where to Stay and Dine', href: route('stay.dine') },
-                { label: 'Accommodations' },
-            ]}
+            breadcrumbs={[{ label: 'Where to Stay and Dine' }, { label: 'Accommodations' }]}
             stats={[
                 { value: '6', label: 'Stay options shown' },
                 { value: '5', label: 'Categories available' },

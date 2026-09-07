@@ -1,41 +1,39 @@
-import { Head, Link } from '@inertiajs/react';
 import PublicLayout from '@/layouts/public-layout';
+import { Head, Link } from '@inertiajs/react';
 
-const sections = [
-    {
-        title: 'History of Pulilan',
-        description:
-            'Pulilan is known for its rich agricultural heritage and centuries-old traditions. Learn about the town’s roots, development, and community life.',
-    },
-    {
-        title: 'What to See',
-        items: ['Cuisine', 'Festivals', 'Heritage', 'Religious sites', 'Local products'],
-    },
-    {
-        title: 'Cuisine',
-        description:
-            'Taste Pulilan’s native delicacies, including local sweets, fresh produce, and restaurant specialties that highlight Bulacan flavors.',
-    },
-    {
-        title: 'Festivals',
-        description:
-            'Discover the annual celebrations that draw visitors from across the region, including vibrant street parades and cultural performances.',
-    },
+const officials = [
+    { name: 'Hon. John Dela Cruz', role: 'Mayor' },
+    { name: 'Hon. Maria Santos', role: 'Vice Mayor' },
+    { name: 'Engr. Roberto Reyes', role: 'Municipal Administrator' },
+    { name: 'Dr. Luz Macaraeg', role: 'Municipal Health Officer' },
 ];
 
-const topicLinks = [
-    { title: 'Religious', image: '/images/carousel-images/Religious.jpg', href: route('about.religious'), description: 'Discover faith-centered places and traditions.' },
-    { title: 'Historical', image: '/images/carousel-images/Historical.jpg', href: route('about.historical'), description: 'Read more about the places tied to local memory.' },
-    { title: 'Heritage', image: '/images/carousel-images/Heritage.jpg', href: route('about.heritage'), description: 'Visit the landmarks and traditions that endure.' },
-    { title: 'Cuisine', image: '/images/carousel-images/Cuisine.jpg', href: route('about.cuisine'), description: 'Explore local dishes and favorite flavors.' },
-    { title: 'Shopping', image: '/images/carousel-images/Shopping.jpg', href: route('about.shopping'), description: 'See where to pick up practical local finds.' },
-    { title: 'Education', image: '/images/carousel-images/Education.jpg', href: route('about.education'), description: 'Find schools and learning hubs in town.' },
-    { title: 'Health', image: '/images/carousel-images/Health.jpg', href: route('about.health'), description: 'Locate healthcare services and wellness support.' },
-    { title: 'Attraction', image: '/images/carousel-images/Attraction.jpg', href: route('about.attraction'), description: 'Discover places to visit across Pulilan.' },
-    { title: 'Mission Vision', image: '/images/carousel-images/Mission-and-Vision.jpg', href: route('about.mission-vision'), description: 'Read the town goals and service direction.' },
-    { title: 'Resort', image: '/images/carousel-images/Resorts.jpg', href: route('about.resorts'), description: 'Browse stay and unwind options near town.' },
-    { title: 'Local Products', image: '/images/carousel-images/Local-Products.jpg', href: route('about.local-products'), description: 'Find goods made and sold by Pulilan residents.' },
-    { title: 'Festival', image: '/images/carousel-images/Festival.jpg', href: route('about.festivals'), description: 'See the celebrations that bring the town together.' },
+const facts = [
+    { label: 'Land Area', value: '75.46', unit: 'km²' },
+    { label: 'Population', value: '101,756', unit: '2020 Census' },
+    { label: 'Barangays', value: '18', unit: 'communities' },
+    { label: 'Founded', value: '1572', unit: 'by Augustinians' },
+];
+
+const barangays = [
+    'Balatong A',
+    'Balatong B',
+    'Cutcot',
+    'Dampol 1st',
+    'Dampol 2nd A',
+    'Dampol 2nd B',
+    'Inaon',
+    'Longos',
+    'Lumbang',
+    'Paltao',
+    'Penabatan',
+    'Poblacion',
+    'Sta. Peregrina',
+    'Santo Cristo',
+    'Sto. Niño',
+    'Tagucan',
+    'Tibag',
+    'Tinejero',
 ];
 
 export default function About() {
@@ -43,55 +41,142 @@ export default function About() {
         <PublicLayout>
             <Head title="About Pulilan" />
 
-            <section className="space-y-6  border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
-                <div className="space-y-3">
-                    <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">About Pulilan</p>
-                    <h1 className="text-4xl font-semibold text-slate-950">History, culture, and points of interest.</h1>
-                    <p className="max-w-3xl text-base leading-8 text-slate-600">
-                        Pulilan is a welcoming municipality in Bulacan, known for its rich cultural heritage, historic landmarks, and local festivals. Explore the community’s
-                        attractions, dining options, and traditional craftsmanship.
-                    </p>
-                </div>
-
-                <div className="grid gap-5 md:grid-cols-2">
-                    {sections.map((section) => (
-                        <div key={section.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
-                            <h2 className="text-xl font-semibold text-slate-950">{section.title}</h2>
-                            {section.description ? (
-                                <p className="mt-3 text-sm leading-7 text-slate-600">{section.description}</p>
-                            ) : null}
-                            {section.items ? (
-                                <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                                    {section.items.map((item) => (
-                                        <li key={item} className="flex items-center gap-3">
-                                            <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-700" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : null}
+            <div className="min-h-screen bg-[#0d1b2a]">
+                <section className="relative h-80 overflow-hidden">
+                    <img
+                        src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=1600&h=600&fit=crop&auto=format"
+                        alt="Pulilan landscape"
+                        className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/70 via-[#0d1b2a]/50 to-[#0d1b2a]" />
+                    <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
+                        <div>
+                            <div className="mb-3 flex items-center justify-center gap-2">
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Municipality</span>
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                            </div>
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">About Pulilan</h1>
                         </div>
-                    ))}
-                </div>
-
-                <div className="space-y-4 border-t border-slate-200 pt-2">
-                    <div className="space-y-2">
-                        <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">Explore the details</p>
-                        <h2 className="text-2xl font-semibold text-slate-950">Open the dedicated pages for each topic.</h2>
                     </div>
-                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                        {topicLinks.map((topic) => (
-                            <Link key={topic.title} href={topic.href} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-                                <div className="mb-4 overflow-hidden rounded-2xl">
-                                    <img src={topic.image} alt={topic.title} className="h-36 w-full object-cover" />
-                                </div>
-                                <h3 className="text-lg font-semibold text-slate-950">{topic.title}</h3>
-                                <p className="mt-2 text-sm leading-7 text-slate-600">{topic.description}</p>
-                            </Link>
+                </section>
+
+                <section className="border-y border-white/5 bg-[#122236]">
+                    <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px px-6 py-10 md:grid-cols-4">
+                        {facts.map((fact) => (
+                            <div key={fact.label} className="px-6 text-center">
+                                <div className="font-display text-3xl font-semibold text-[#d4a853]">{fact.value}</div>
+                                <div className="mt-1 text-xs text-[#f5f0e8]/40">{fact.unit}</div>
+                                <div className="mt-0.5 text-xs font-medium text-[#f5f0e8]/60">{fact.label}</div>
+                            </div>
                         ))}
                     </div>
+                </section>
+
+                <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+                    <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
+                        <div>
+                            <div className="mb-4 flex items-center gap-2">
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Overview</span>
+                            </div>
+                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8]">
+                                A Community Rooted
+                                <br />
+                                <em className="text-[#d4a853]">in Faith and Culture</em>
+                            </h2>
+                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]/60">
+                                <p>
+                                    Pulilan is a first-class municipality in the province of Bulacan, Philippines. It is known as the{' '}
+                                    <strong className="text-[#d4a853]">Carabao Capital of the Philippines</strong>, celebrated through its
+                                    centuries-old Carabao Festival held every May 15 in honor of San Isidro Labrador.
+                                </p>
+                                <p>
+                                    Located in the fertile plains of Central Luzon, Pulilan is bounded by Calumpit and Bulacan to the west, Plaridel
+                                    and Norzagaray to the east, and Santa Maria to the south. Its rich agricultural heritage and proximity to Manila
+                                    make it a vibrant hub of commerce and culture.
+                                </p>
+                                <p>
+                                    The municipality is home to some of Bulacan&apos;s most significant colonial churches, ancestral houses, and
+                                    heritage sites — preserving centuries of Spanish colonial history alongside living Filipino traditions.
+                                </p>
+                            </div>
+                            <Link
+                                href={route('about.history')}
+                                className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#d4a853]/40 px-7 py-3 text-sm font-medium text-[#d4a853] transition-all hover:bg-[#d4a853]/10"
+                            >
+                                Read Full History <span aria-hidden="true">›</span>
+                            </Link>
+                        </div>
+
+                        <div className="space-y-5">
+                            <div className="rounded-2xl border border-white/5 bg-[#122236] p-7">
+                                <div className="mb-4 flex items-center gap-3">
+                                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4a853]/15">
+                                        <span className="text-sm text-[#d4a853]">🎯</span>
+                                    </div>
+                                    <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Mission</h3>
+                                </div>
+                                <p className="text-sm leading-relaxed text-[#f5f0e8]/55">
+                                    We are committed to delivering efficient, responsive, and transparent local governance that upholds the dignity
+                                    and welfare of every Pulileño. We strive to foster sustainable development, preserve our cultural heritage, and
+                                    build a progressive community grounded in integrity and service.
+                                </p>
+                            </div>
+                            <div className="rounded-2xl border border-white/5 bg-[#122236] p-7">
+                                <div className="mb-4 flex items-center gap-3">
+                                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#3d8b67]/15">
+                                        <span className="text-sm text-[#3d8b67]">👁</span>
+                                    </div>
+                                    <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Vision</h3>
+                                </div>
+                                <p className="text-sm leading-relaxed text-[#f5f0e8]/55">
+                                    Pulilan — a prosperous, culturally vibrant, and environmentally sustainable municipality where every citizen
+                                    enjoys a high quality of life, equitable access to services, and pride in their heritage as the Carabao Capital of
+                                    the Philippines.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section className="mt-20">
+                        <div className="mb-10 flex items-center gap-2">
+                            <div className="h-px w-6 bg-[#d4a853]" />
+                            <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Leadership</span>
+                        </div>
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">Municipal Officials</h2>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+                            {officials.map((official) => (
+                                <div
+                                    key={official.name}
+                                    className="rounded-2xl border border-white/5 bg-[#122236] p-6 transition-all hover:border-[#d4a853]/20"
+                                >
+                                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-[#243d5e] to-[#122236]">
+                                        <span className="text-xl">👤</span>
+                                    </div>
+                                    <h4 className="font-display text-sm font-semibold text-[#f5f0e8]">{official.name}</h4>
+                                    <p className="mt-1 text-xs text-[#d4a853]">{official.role}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="mt-20 rounded-3xl border border-white/5 bg-[#122236] p-6 sm:p-10">
+                        <div className="mb-2 flex items-center gap-2">
+                            <div className="h-px w-6 bg-[#d4a853]" />
+                            <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Communities</span>
+                        </div>
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">18 Barangays of Pulilan</h2>
+                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+                            {barangays.map((barangay) => (
+                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#0d1b2a]/60 px-3 py-2.5 text-center">
+                                    <span className="text-xs text-[#f5f0e8]/60">{barangay}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
                 </div>
-            </section>
+            </div>
         </PublicLayout>
     );
 }

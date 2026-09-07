@@ -9,22 +9,10 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::prefix('about')->name('about.')->controller(PageController::class)->group(function () {
     Route::get('/attraction', 'attraction')->name('attraction');
-    Route::get('/education', 'education')->name('education');
     Route::get('/history', 'history')->name('history');
-    Route::get('/health', 'health')->name('health');
-    Route::get('/cuisine', 'cuisine')->name('cuisine');
     Route::get('/festivals', 'festivals')->name('festivals');
-    Route::get('/heritage', 'heritage')->name('heritage');
-    Route::get('/historical', 'historical')->name('historical');
-    Route::get('/local-products', 'localProducts')->name('local-products');
-    Route::get('/map-location', 'mapLocation')->name('map-location');
-    Route::get('/mission-vision', 'missionVision')->name('mission-vision');
-    Route::get('/religious', 'religious')->name('religious');
-    Route::get('/resorts', 'resorts')->name('resorts');
-    Route::get('/shopping', 'shopping')->name('shopping');
     Route::get('/{topic}/{slug}', 'detail')->name('detail');
 });
-Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine');
 Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class)->group(function () {
     Route::get('/accommodations', 'stayDineAccommodations')->name('accommodations');
     Route::get('/restaurants', 'stayDineRestaurants')->name('restaurants');
