@@ -42,7 +42,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 value={data.email}
                                 onChange={(event) => setData('email', event.target.value)}
                                 placeholder="juan@example.com"
-                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#122236] px-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#173f82] px-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                         </span>
                         <InputError message={errors.email} />
@@ -65,7 +65,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                 value={data.password}
                                 onChange={(event) => setData('password', event.target.value)}
                                 placeholder="••••••••"
-                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#122236] px-11 pr-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#173f82] px-11 pr-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                             <button
                                 type="button"

@@ -18,7 +18,7 @@ export default function Detail({ topic, slug }: DetailPageProps) {
             <main className="min-h-screen bg-[#f3e6c9] text-[#102033]">
                 <section className="relative h-72 overflow-hidden">
                     <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-[#102033]/60" />
+                    <div className="absolute inset-0 bg-[#163b82]/60" />
                     <div className="absolute inset-0 flex items-end">
                         <div className="mx-auto w-full max-w-7xl px-6 pb-12 lg:px-10">
                             <p className="text-[10px] font-bold tracking-[0.25em] text-[#f5bd2f] uppercase">{page.highlightLabel}</p>
@@ -40,7 +40,7 @@ export default function Detail({ topic, slug }: DetailPageProps) {
                         </div>
                     </article>
 
-                    <aside className="rounded-2xl bg-[#102033] p-6 text-white">
+                    <aside className="rounded-2xl bg-[#163b82] p-6 text-white">
                         <p className="text-[10px] font-bold tracking-[0.25em] text-[#f5bd2f] uppercase">Explore more</p>
                         <div className="mt-5 space-y-2">
                             {page.cards.map((item) => (

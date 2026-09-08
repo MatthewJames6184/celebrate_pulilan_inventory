@@ -41,14 +41,14 @@ export default function About() {
         <PublicLayout>
             <Head title="About Pulilan" />
 
-            <div className="min-h-screen bg-[#0d1b2a]">
+            <div className="min-h-screen bg-[#123b8f]">
                 <section className="relative h-80 overflow-hidden">
                     <img
                         src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=1600&h=600&fit=crop&auto=format"
                         alt="Pulilan landscape"
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/70 via-[#0d1b2a]/50 to-[#0d1b2a]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/70 via-[#123b8f]/50 to-[#123b8f]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
@@ -61,7 +61,7 @@ export default function About() {
                     </div>
                 </section>
 
-                <section className="border-y border-white/5 bg-[#122236]">
+                <section className="border-y border-white/5 bg-[#173f82]">
                     <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px px-6 py-10 md:grid-cols-4">
                         {facts.map((fact) => (
                             <div key={fact.label} className="px-6 text-center">
@@ -110,7 +110,7 @@ export default function About() {
                         </div>
 
                         <div className="space-y-5">
-                            <div className="rounded-2xl border border-white/5 bg-[#122236] p-7">
+                            <div className="rounded-2xl border border-white/5 bg-[#173f82] p-7">
                                 <div className="mb-4 flex items-center gap-3">
                                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#d4a853]/15">
                                         <span className="text-sm text-[#d4a853]">🎯</span>
@@ -123,7 +123,7 @@ export default function About() {
                                     build a progressive community grounded in integrity and service.
                                 </p>
                             </div>
-                            <div className="rounded-2xl border border-white/5 bg-[#122236] p-7">
+                            <div className="rounded-2xl border border-white/5 bg-[#173f82] p-7">
                                 <div className="mb-4 flex items-center gap-3">
                                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#3d8b67]/15">
                                         <span className="text-sm text-[#3d8b67]">👁</span>
@@ -149,9 +149,9 @@ export default function About() {
                             {officials.map((official) => (
                                 <div
                                     key={official.name}
-                                    className="rounded-2xl border border-white/5 bg-[#122236] p-6 transition-all hover:border-[#d4a853]/20"
+                                    className="rounded-2xl border border-white/5 bg-[#173f82] p-6 transition-all hover:border-[#d4a853]/20"
                                 >
-                                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-[#243d5e] to-[#122236]">
+                                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-[#2859a5] to-[#173f82]">
                                         <span className="text-xl">👤</span>
                                     </div>
                                     <h4 className="font-display text-sm font-semibold text-[#f5f0e8]">{official.name}</h4>
@@ -161,7 +161,7 @@ export default function About() {
                         </div>
                     </section>
 
-                    <section className="mt-20 rounded-3xl border border-white/5 bg-[#122236] p-6 sm:p-10">
+                    <section className="mt-20 rounded-3xl border border-white/5 bg-[#173f82] p-6 sm:p-10">
                         <div className="mb-2 flex items-center gap-2">
                             <div className="h-px w-6 bg-[#d4a853]" />
                             <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Communities</span>
@@ -169,7 +169,7 @@ export default function About() {
                         <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">18 Barangays of Pulilan</h2>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                             {barangays.map((barangay) => (
-                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#0d1b2a]/60 px-3 py-2.5 text-center">
+                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 px-3 py-2.5 text-center">
                                     <span className="text-xs text-[#f5f0e8]/60">{barangay}</span>
                                 </div>
                             ))}

@@ -2,62 +2,67 @@ import { Link } from '@inertiajs/react';
 
 export default function PublicFooter() {
     return (
-        <footer className="border-t border-white/5 bg-[#06121f] text-white/55">
-            <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-[1.4fr_0.7fr_0.7fr] lg:px-10">
-                <div>
-                    <Link href={route('home')} className="flex items-center gap-3 text-white">
-                        <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-[#dcae4e] font-bold text-[#172554]">
-                            P
-                        </span>
-                        <span>
-                            <span className="font-display block text-sm">Discover</span>
-                            <span className="font-display text-[10px] tracking-[0.16em] text-[#dcae4e] italic">PULILAN</span>
-                        </span>
-                    </Link>
-                    <p className="mt-5 max-w-xs text-xs leading-6">
-                        Pulilan, Bulacan — the Carabao Capital of the Philippines. A municipality rich in heritage, culture, and natural beauty in the
-                        heart of Central Luzon.
+        <footer className="border-t border-slate-200 bg-[#bebebe] text-slate-700 ">
+            <section>
+            <div className="flex flex-col justify-center gap-10 bg-[#bebebe] py-12 px-10 md:flex-row md:items-start">
+                <div className="space-y-3">
+                    <div className="logo-container m-5 mt-0">
+                       <img src ="/images/logo-images/logo-republic-of-the-philippines.png" alt='logo-republic' className="logo-img" /> 
+                    </div>
+                    <h4 className="font-bold text-[#333]">
+                        Republic of the Philippines
+                    </h4>
+                    <p className="max-w-sm text-sm leading-6 text-[#333]">
+                       All content is in the public domain unless otherwise stated.
                     </p>
-                    <div className="mt-4 flex gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-[10px]">f</span>
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-[10px]">◎</span>
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-[10px]">Yt</span>
-                    </div>
                 </div>
-                <div>
-                    <p className="text-[10px] font-bold tracking-[0.2em] text-[#dcae4e] uppercase">Explore</p>
-                    <div className="mt-4 grid gap-3 text-xs">
-                        <Link href={route('about.attraction')} className="hover:text-white">
-                            What to See
-                        </Link>
-                        <Link href={route('about.festivals')} className="hover:text-white">
-                            Festivals
-                        </Link>
-                        <Link href={route('about.history')} className="hover:text-white">
-                            History
-                        </Link>
-                        <Link href={route('about')} className="hover:text-white">
-                            About Pulilan
-                        </Link>
-                    </div>
+
+                <div className="grid gap-2 text-sm">
+                    <h3 className="text-sm font-bold text-[#333] uppercase text-slate-900">About GOVPH</h3>
+                    <p>Learn more about the Philippine government, its structure, how government works and the people behind it.</p>
+                    <a href="https://www.gov.ph/" target="_blank" className="text-slate-600 hover:text-slate-900">
+                        Official Gazette
+                    </a>
+                    <a href="https://data.gov.ph/index/home" target="_blank" className="text-slate-600 hover:text-slate-900">
+                        Open data portal
+                    </a >
+                    <a href="https://www.gov.ph/feedback" target="_blank" className="text-slate-600 hover:text-slate-900">
+                        Send us your feedback
+                    </a >
                 </div>
-                <div>
-                    <p className="text-[10px] font-bold tracking-[0.2em] text-[#dcae4e] uppercase">Visit</p>
-                    <div className="mt-4 grid gap-3 text-xs">
-                        <span>Pulilan, Bulacan</span>
-                        <span>Philippines, 3005</span>
-                        <span>info@pulilan.gov.ph</span>
-                        <Link
-                            href={route('contact')}
-                            className="mt-1 w-fit rounded-full border border-[#dcae4e]/50 px-3 py-1.5 text-[#dcae4e] hover:bg-[#dcae4e] hover:text-[#172554]"
-                        >
-                            Contact Us →
-                        </Link>
-                    </div>
+
+                <div className="grid gap-1 text-sm">
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-900">Government Links</h3>
+                    <a href="https://president.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Office of the President
+                    </a>
+                    <a href="https://www.ovp.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Office of the Vice President
+                    </a>
+                    <a href="https://senate.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Senate of the Philippines 
+                    </a>
+                    <a href="https://www.congress.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        House of Representatives 
+                        </a>
+                    <a href="https://sc.judiciary.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Supreme Court
+                        </a>
+                    <a href="https://ca.judiciary.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Court of Appeals
+                        </a>
+                    <a href="https://sb.judiciary.gov.ph/" target="_blank" rel="noreferrer" className="text-slate-600 hover:text-slate-900">
+                        Sandiganbayan
+                        </a>
                 </div>
             </div>
-            <div className="border-t border-white/5 px-6 py-4 text-center text-[10px] text-white/30">
-                © 2026 Municipality of Pulilan, Bulacan. All rights reserved.
+            </section>
+
+
+            <div className="border-t border-slate-200 bg-slate-200 px-4 py-4 text-sm text-slate-600 md:px-6">
+                <div className="mx-auto max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between justify-items-center">
+                    <p>© Copyright 2026. James Matthew Arias. All rights reserved.</p>
+                </div>
             </div>
         </footer>
     );

@@ -49,7 +49,7 @@ export default function PublicHeader() {
         <header
             className={cn(
                 'fixed inset-x-0 top-0 z-50 text-white transition-all duration-500',
-                scrolled ? 'bg-[#060f1a]/95 shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
+                scrolled ? 'bg-[#4169E1]/95 shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
             )}
         >
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
@@ -74,26 +74,26 @@ export default function PublicHeader() {
                                 'rounded-full px-4 py-2 text-sm font-medium transition-all duration-200',
                                 currentPath === normalizePath(item.url)
                                     ? 'bg-[#d4a853]/20 text-[#d4a853]'
-                                    : 'text-[#f5f0e8]/70 hover:bg-white/5 hover:text-[#f5f0e8]',
+                                    : 'text-white hover:bg-white/5 hover:text-[#f5f0e8]',
                             )}
                         >
                             {item.title === 'Attractions' ? 'What to See' : item.title}
                         </Link>
                     ))}
                     <div className="group relative">
-                        <span className="flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-[#f5f0e8]/70">
+                        <span className="flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-white">
                             Stay &amp; Dine <ChevronDown className="h-3 w-3" />
                         </span>
-                        <div className="invisible absolute top-7 left-0 min-w-44 rounded-xl border border-white/10 bg-[#10263d] p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
+                        <div className="invisible absolute top-7 left-0 min-w-44 rounded-xl border border-white/10 bg-[#4169E1]/70 p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
                             <Link
                                 href={route('stay.dine.accommodations')}
-                                className="block rounded-lg px-3 py-2 text-xs text-white/80 hover:bg-white/10 hover:text-white"
+                                className="block rounded-lg px-3 py-2 text-xs text-white hover:bg-white/10 hover:text-white"
                             >
                                 Accommodations
                             </Link>
                             <Link
                                 href={route('stay.dine.restaurants')}
-                                className="block rounded-lg px-3 py-2 text-xs text-white/80 hover:bg-white/10 hover:text-white"
+                                className="block rounded-lg px-3 py-2 text-xs text-white hover:bg-white/10 hover:text-white"
                             >
                                 Restaurants
                             </Link>
@@ -134,7 +134,7 @@ export default function PublicHeader() {
                             <Menu className="h-5 w-5" />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="right" className="border-white/10 bg-[#071827] text-white">
+                    <SheetContent side="right" className="border-white/10 bg-[#0b1f4d] text-white">
                         <SheetHeader>
                             <SheetTitle className="font-display text-white">Discover Pulilan</SheetTitle>
                         </SheetHeader>

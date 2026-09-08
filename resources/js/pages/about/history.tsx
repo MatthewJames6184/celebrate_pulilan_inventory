@@ -76,7 +76,7 @@ const timeline = [
 export default function History() {
     return (
         <PublicLayout>
-            <div className="min-h-screen bg-[#0d1b2a]">
+            <div className="min-h-screen bg-[#123b8f]">
                 {/* Hero */}
                 <div className="relative h-80 overflow-hidden">
                     <img
@@ -84,7 +84,7 @@ export default function History() {
                         alt="Pulilan heritage"
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/50 via-[#0d1b2a]/60 to-[#0d1b2a]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/50 via-[#123b8f]/60 to-[#123b8f]" />
                     <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-16 lg:px-10">
                         <div>
                             <div className="mb-3 flex items-center gap-2">
@@ -102,7 +102,7 @@ export default function History() {
 
                 {/* Intro */}
                 <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10">
-                    <div className="rounded-3xl border border-white/5 bg-[#122236] p-10">
+                    <div className="rounded-3xl border border-white/5 bg-[#173f82] p-10">
                         <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
                             "From a humble Augustinian mission in 1572 to the Carabao Capital of the Philippines — Pulilan's history is a story of
                             faith, resilience, and enduring cultural pride."
@@ -164,7 +164,7 @@ export default function History() {
                 </div>
 
                 {/* Heritage Structures */}
-                <div className="border-t border-white/5 bg-[#122236]">
+                <div className="border-t border-white/5 bg-[#173f82]">
                     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
                         <div className="mb-10 flex items-center gap-2">
                             <div className="h-px w-6 bg-[#d4a853]" />
@@ -194,7 +194,7 @@ export default function History() {
                             ].map((s) => (
                                 <div
                                     key={s.name}
-                                    className="group overflow-hidden rounded-2xl border border-white/5 bg-[#0d1b2a] transition-all hover:border-[#d4a853]/20"
+                                    className="group overflow-hidden rounded-2xl border border-white/5 bg-[#123b8f] transition-all hover:border-[#d4a853]/20"
                                 >
                                     <div className="h-44 overflow-hidden">
                                         <img

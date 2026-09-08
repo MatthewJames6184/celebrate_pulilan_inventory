@@ -15,7 +15,7 @@ const schedule = [
 export default function Festivals() {
     return (
         <PublicLayout>
-            <div className="min-h-screen bg-[#0d1b2a]">
+            <div className="min-h-screen bg-[#123b8f]">
                 {/* Hero - full cinematic */}
                 <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
                     <img
@@ -23,7 +23,7 @@ export default function Festivals() {
                         alt="Carabao Festival in Pulilan"
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/30 via-[#0d1b2a]/40 to-[#0d1b2a]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/30 via-[#123b8f]/40 to-[#123b8f]" />
                     <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-20 lg:px-10">
                         <div>
                             <div className="mb-4 flex items-center gap-2">
@@ -85,7 +85,7 @@ export default function Festivals() {
                                     ['UNESCO', 'Heritage Status'],
                                     ['18', 'Barangays Join'],
                                 ].map(([val, label]) => (
-                                    <div key={label} className="rounded-xl border border-white/5 bg-[#122236] p-4 text-center">
+                                    <div key={label} className="rounded-xl border border-white/5 bg-[#173f82] p-4 text-center">
                                         <div className="font-display text-xl font-semibold text-[#d4a853]">{val}</div>
                                         <div className="mt-1 text-xs text-[#f5f0e8]/40">{label}</div>
                                     </div>
@@ -120,7 +120,7 @@ export default function Festivals() {
                                         className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                                     />
                                 </div>
-                                <div className="flex h-36 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-[#122236]">
+                                <div className="flex h-36 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-[#173f82]">
                                     <div className="px-4 text-center">
                                         <p className="font-display text-3xl font-semibold text-[#d4a853]">100K+</p>
                                         <p className="mt-1 text-xs text-[#f5f0e8]/40">Annual attendees</p>
@@ -143,12 +143,12 @@ export default function Festivals() {
                                 <div
                                     key={i}
                                     className={`flex items-center gap-4 rounded-xl border p-4 transition-all ${
-                                        item.highlight ? 'border-[#d4a853]/40 bg-[#d4a853]/10' : 'border-white/5 bg-[#122236] hover:border-white/10'
+                                        item.highlight ? 'border-[#d4a853]/40 bg-[#d4a853]/10' : 'border-white/5 bg-[#173f82] hover:border-white/10'
                                     }`}
                                 >
                                     <div
                                         className={`min-w-[64px] rounded-lg px-2 py-2 text-center ${
-                                            item.highlight ? 'bg-[#d4a853] text-[#0d1b2a]' : 'bg-[#0d1b2a] text-[#f5f0e8]/50'
+                                            item.highlight ? 'bg-[#d4a853] text-[#0d1b2a]' : 'bg-[#123b8f] text-[#f5f0e8]/50'
                                         }`}
                                     >
                                         <span className="font-mono text-xs font-bold">{item.month}</span>

@@ -9,7 +9,7 @@ interface PortalAuthShellProps {
 
 export default function PortalAuthShell({ children, mode }: PortalAuthShellProps) {
     return (
-        <div className="min-h-screen bg-[#0d1b2a] font-sans text-[#f5f0e8]">
+        <div className="min-h-screen bg-[#123b8f] font-sans text-[#f5f0e8]">
             <div className="grid min-h-screen lg:grid-cols-[52%_48%]">
                 <section className="relative hidden min-h-screen overflow-hidden px-14 py-14 lg:flex lg:flex-col">
                     <img
@@ -17,7 +17,7 @@ export default function PortalAuthShell({ children, mode }: PortalAuthShellProps
                         alt="San Isidro Parish Church, Pulilan"
                         className="absolute inset-0 h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,27,42,0.88),rgba(13,56,91,0.76)),linear-gradient(0deg,rgba(13,27,42,0.55),transparent_65%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,59,143,0.88),rgba(28,79,163,0.76)),linear-gradient(0deg,rgba(18,59,143,0.55),transparent_65%)]" />
                     <div
                         className="absolute top-10 right-10 h-40 w-40 opacity-20"
                         style={{ backgroundImage: 'radial-gradient(#d4a853 2px, transparent 2px)', backgroundSize: '18px 18px' }}
@@ -92,7 +92,7 @@ export default function PortalAuthShell({ children, mode }: PortalAuthShellProps
                         <Link href={route('home')} className="mb-8 inline-flex items-center gap-2 text-xs text-white/45 hover:text-white lg:hidden">
                             <ArrowLeft className="h-3.5 w-3.5" /> Back to home
                         </Link>
-                        <div className="mb-8 flex rounded-2xl border border-white/10 bg-[#122236] p-1.5">
+                        <div className="mb-8 flex rounded-2xl border border-white/10 bg-[#173f82] p-1.5">
                             <Link
                                 href={route('login')}
                                 className={`flex h-10 flex-1 items-center justify-center rounded-xl text-sm font-semibold transition ${mode === 'login' ? 'bg-[#d4a853] text-[#0d1b2a]' : 'text-white/40 hover:text-white'}`}

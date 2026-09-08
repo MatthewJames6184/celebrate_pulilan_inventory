@@ -22,16 +22,16 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
     return (
         <PublicLayout>
             <Head title={headTitle} />
-            <section className="relative h-28 overflow-hidden border-b border-white/5">
+            <section className="relative h-48 overflow-hidden  border-white/10 ">
                 <img src={imageSubHeader?.src ?? '/images/image-2.jpg'} alt={imageSubHeader?.alt ?? title} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-[#071827]/75" />
-                <div className="absolute inset-0 flex items-center">
+                <div className="absolute inset-0 bg-[#0b1f4d]/75" />
+                <div className="absolute inset-0 flex items-end pb-10">
                     <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8">
                         <h1 className="font-display text-3xl font-semibold text-white md:text-5xl">{title}</h1>
                     </div>
                 </div>
             </section>
-            <main className="min-h-screen bg-[#0b1b2a] py-8 md:py-10">
+            <main className="min-h-screen bg-[#102a72] py-8 md:py-10">
                 <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
                     {breadcrumbs && (
                         <nav aria-label="Breadcrumb" className="mb-8">

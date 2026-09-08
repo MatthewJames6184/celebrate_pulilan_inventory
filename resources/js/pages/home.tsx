@@ -84,16 +84,17 @@ const barangays = [
     'Dampol 1st',
     'Dampol 2nd A',
     'Dampol 2nd B',
+    'Dulong Malabon',
     'Inaon',
     'Longos',
-    'Lumbang',
+    'Lumbac',
     'Paltao',
     'Penabatan',
     'Poblacion',
     'Sta. Peregrina',
-    'Santo Cristo',
-    'Sto. Niño',
-    'Tagucan',
+    'Sto. Cristo',
+    'Taal',
+    'Tabon',
     'Tibag',
     'Tinejero',
 ];
@@ -111,14 +112,14 @@ export default function Home() {
         <PublicLayout>
             <Head title="Discover Pulilan" />
 
-            <section className="relative isolate h-screen min-h-[600px] overflow-hidden bg-[#071827]">
+            <section className="relative isolate h-screen min-h-[600px] overflow-hidden bg-[#0b1f4d]">
                 <img
                     src={slide.image}
                     alt={slide.title}
                     className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,19,32,0.96)_0%,rgba(5,19,32,0.76)_36%,rgba(5,19,32,0.2)_100%)]" />
-                <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#071827] to-transparent" />
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,59,160,0.95)_0%,rgba(37,59,160,0.5)_50%,rgba(37,59,160,0.1)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent" />
                 <div className="mx-auto flex min-h-[600px] max-w-7xl items-start px-6 pt-32 lg:px-10 lg:pt-[28vh]">
                     <div className="max-w-2xl">
                         <div className="mb-6 flex items-center gap-2">
@@ -176,17 +177,17 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="border-y border-white/5 bg-[#132940] px-6 py-7">
+            <section className="border-y border-white/5 bg-[rgb(65,105,225)] px-6 py-7">
                 <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row">
                     <label className="relative flex-1">
                         <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/35" />
                         <input
                             name="q"
                             placeholder="Search attractions, food, events..."
-                            className="h-[52px] w-full rounded-lg border border-white/10 bg-[#1a3048] px-11 text-xs text-white outline-none placeholder:text-white/35 focus:border-[#dcae4e]"
+                            className="h-[52px] w-full rounded-lg border border-white bg-[#214f9a] px-11 text-xs text-white outline-none placeholder:text-white/50 focus:border-[#dcae4e]"
                         />
                     </label>
-                    <select name="type" className="h-[52px] rounded-lg border border-white/10 bg-[#1a3048] px-4 text-xs text-white/60 outline-none">
+                    <select name="type" className="h-[52px] rounded-lg border border-white bg-[#214f9a] px-4 text-xs text-white/60 outline-none">
                         <option>All Categories</option>
                         <option>Attractions</option>
                         <option>Food</option>
@@ -214,7 +215,7 @@ export default function Home() {
                                 className="group relative h-52 overflow-hidden rounded-xl shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                             >
                                 <img src={card.image} alt={card.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#102033] via-[#102033]/25 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#163b82] via-[#163b82]/25 to-transparent" />
                                 <div className="absolute inset-x-3 bottom-3">
                                     <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[9px] font-bold text-[#102033]">{card.badge}</span>
                                     <h3 className="font-display mt-2 text-sm font-semibold text-white">{card.title}</h3>
@@ -225,7 +226,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#164b3b]">
+            <section className="bg-[#164b3b] py-16 text-[#f5f0e8] lg:py-24">
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
                     <img src="/images/carousel-images/Attraction.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
                     <div className="flex flex-col justify-center px-8 py-16 lg:px-16">
@@ -295,28 +296,28 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#0d1b2a] px-6 py-24">
+            <section className="bg-[#123b8f] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                         <div>
                             <div className="mb-4 flex items-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">18 Barangays</span>
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">19 Barangays</span>
                             </div>
                             <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-5xl">
                                 Explore Every
                                 <br />
                                 <em className="text-[#d4a853]">Corner of Pulilan</em>
                             </h2>
-                            <p className="mb-8 max-w-xl text-base leading-relaxed text-[#f5f0e8]/50">
-                                Pulilan is composed of 18 barangays, each with its own character, community, and contribution to the municipality&apos;s
+                            <p className="mb-8 max-w-xl text-base leading-relaxed text-[#f5f0e8]/75">
+                                Pulilan is composed of 19 barangays, each with its own character, community, and contribution to the municipality&apos;s
                                 rich cultural tapestry.
                             </p>
                             <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-2">
                                 {barangays.map((barangay) => (
                                     <div key={barangay} className="group flex items-center gap-2 border-b border-white/5 py-1.5">
                                         <div className="h-1.5 w-1.5 rounded-full bg-[#d4a853]/40 transition-colors group-hover:bg-[#d4a853]" />
-                                        <span className="text-xs text-[#f5f0e8]/50 transition-colors group-hover:text-[#f5f0e8]">{barangay}</span>
+                                        <span className="text-xs text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">{barangay}</span>
                                     </div>
                                 ))}
                             </div>
@@ -328,19 +329,19 @@ export default function Home() {
                             </Link>
                         </div>
                         <div className="relative">
-                            <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/5 bg-[#122236]">
+                            <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/5 bg-[#173f82]">
                                 <img
                                     src="https://images.unsplash.com/photo-1682724425247-f34019858601?w=600&h=600&fit=crop&auto=format"
                                     alt="Pulilan Bulacan landscape"
-                                    className="h-full w-full object-cover opacity-40"
+                                    className="h-full w-full object-cover"
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-[#d4a853]/40 bg-[#d4a853]/20">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full ">
                                         <span className="text-3xl text-[#d4a853]">⌖</span>
                                     </div>
                                     <p className="font-display text-sm text-[#f5f0e8]/60">Interactive Map</p>
                                     <p className="text-xs text-[#f5f0e8]/30">Pulilan, Bulacan — 14.9°N 120.8°E</p>
-                                    <span className="mt-2 rounded-full border border-[#d4a853]/30 bg-[#d4a853]/15 px-4 py-1.5 text-xs text-[#d4a853]">
+                                    <span className="mt-2 rounded-full border border-[#d4a853] bg-[#d4a853]/15 px-4 py-1.5 text-xs text-[#d4a853]">
                                         Coming Soon
                                     </span>
                                 </div>
@@ -355,7 +356,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#122236] px-6 py-24">
+            <section className="bg-[#173f82] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="flex items-end justify-between">
                         <div>
@@ -378,14 +379,16 @@ export default function Home() {
                             <Link
                                 key={item.slug}
                                 href={route('news.show', { slug: item.slug })}
-                                className="group overflow-hidden rounded-2xl border border-white/5 bg-[#0d1b2a] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/30"
+                                className="group overflow-hidden rounded-2xl border border-[#d5e0f0] bg-[#eaf0f8] transition-all duration-300 hover:-translate-y-1 hover:border-[#c89b33]"
                             >
                                 <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
-                                <div className="p-5">
-                                    <p className="mb-2 font-mono text-xs text-white/30">{item.date}</p>
-                                    <h3 className="font-display mb-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#dcae4e]">{item.title}</h3>
-                                    <p className="text-xs leading-relaxed text-white/45">{item.excerpt}</p>
-                                    <span className="mt-4 block text-xs font-medium text-[#dcae4e]">Read more →</span>
+                                <div className="bg-[#f8f9fa] p-5">
+                                    <p className="mb-2 font-mono text-xs text-[#1a3b70]/65">{item.date}</p>
+                                    <h3 className="mb-3 border-b border-[#1a3b70]/20 pb-2 font-display text-base leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-xs leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
+                                    <span className="mt-4 block text-xs font-medium text-[#c89b33]">Read more →</span>
                                 </div>
                             </Link>
                         ))}
@@ -393,8 +396,8 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="relative overflow-hidden bg-[#0d1b2a] px-6 py-24">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1a2f4a] to-[#0d1b2a]" />
+            <section className="relative overflow-hidden bg-[#123b8f] px-6 py-24">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1E3A8A]" />
                 <div className="relative mx-auto max-w-4xl text-center">
                     <div className="mb-4 flex items-center justify-center gap-2">
                         <div className="h-px w-8 bg-[#d4a853]" />

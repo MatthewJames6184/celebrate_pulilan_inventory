@@ -20,7 +20,7 @@ export default function Contact() {
     return (
         <PublicLayout>
             <Head title="Contact & Plan Your Visit" />
-            <div className="min-h-screen bg-[#0d1b2a]">
+            <div className="min-h-screen bg-[#123b8f]">
                 {/* Hero */}
                 <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 text-center">
                     <div className="mb-4 flex items-center justify-center gap-2">
@@ -41,7 +41,7 @@ export default function Contact() {
                     <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
                         {/* Contact form */}
                         <div className="lg:col-span-3">
-                            <div className="rounded-3xl border border-white/5 bg-[#122236] p-8">
+                            <div className="rounded-3xl border border-white/5 bg-[#173f82] p-8">
                                 <h2 className="font-display mb-6 text-2xl font-semibold text-[#f5f0e8]">Send us a Message</h2>
 
                                 {submitted ? (
@@ -78,7 +78,7 @@ export default function Contact() {
                                                     value={form.name}
                                                     onChange={(e) => setData('name', e.target.value)}
                                                     placeholder="Juan dela Cruz"
-                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#123b8f] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
                                                 />
                                                 <InputError message={errors.name} />
                                             </div>
@@ -92,7 +92,7 @@ export default function Contact() {
                                                     value={form.email}
                                                     onChange={(e) => setData('email', e.target.value)}
                                                     placeholder="juan@example.com"
-                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                    className="h-[52px] w-full rounded-xl border border-white/10 bg-[#123b8f] px-4 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
                                                 />
                                                 <InputError message={errors.email} />
                                             </div>
@@ -105,7 +105,7 @@ export default function Contact() {
                                                 required
                                                 value={form.subject}
                                                 onChange={(e) => setData('subject', e.target.value)}
-                                                className="h-[52px] w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#0d1b2a] px-4 text-sm text-[#f5f0e8]/70 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                className="h-[52px] w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#123b8f] px-4 text-sm text-[#f5f0e8]/70 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
                                             >
                                                 <option value="">Select a topic...</option>
                                                 <option>Tourism Inquiry</option>
@@ -127,7 +127,7 @@ export default function Contact() {
                                                 value={form.message}
                                                 onChange={(e) => setData('message', e.target.value)}
                                                 placeholder="Tell us how we can help..."
-                                                className="w-full resize-none rounded-xl border border-white/10 bg-[#0d1b2a] px-4 py-3 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                className="w-full resize-none rounded-xl border border-white/10 bg-[#123b8f] px-4 py-3 text-sm text-[#f5f0e8] placeholder-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
                                             />
                                             <InputError message={errors.message} />
                                         </div>
@@ -166,7 +166,7 @@ export default function Contact() {
                                     lines: ['Monday – Friday', '8:00 AM – 5:00 PM', 'Closed on Philippine holidays'],
                                 },
                             ].map((card) => (
-                                <div key={card.title} className="flex gap-4 rounded-2xl border border-white/5 bg-[#122236] p-6">
+                                <div key={card.title} className="flex gap-4 rounded-2xl border border-white/5 bg-[#173f82] p-6">
                                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#d4a853]/10 text-lg">
                                         {card.icon}
                                     </div>
@@ -184,7 +184,7 @@ export default function Contact() {
                             ))}
 
                             {/* Map placeholder */}
-                            <div className="relative h-48 overflow-hidden rounded-2xl border border-white/5 bg-[#122236]">
+                            <div className="relative h-48 overflow-hidden rounded-2xl border border-white/5 bg-[#173f82]">
                                 <img
                                     src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=600&h=300&fit=crop&auto=format"
                                     alt="Pulilan location"

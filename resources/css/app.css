@@ -154,7 +154,7 @@
     }
 
     body {
-        @apply bg-[#0b1b2a] text-foreground;
+        @apply bg-[#102a72] text-foreground;
     }
 
     html {

@@ -37,7 +37,7 @@ export default function Register() {
                             <input
                                 required
                                 placeholder="Juan"
-                                className="h-[52px] rounded-xl border border-[#294058] bg-[#122236] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                         </label>
                         <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
@@ -46,7 +46,7 @@ export default function Register() {
                                 required
                                 placeholder="Dela Cruz"
                                 onChange={(event) => setData('name', event.target.value)}
-                                className="h-[52px] rounded-xl border border-[#294058] bg-[#122236] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                         </label>
                     </div>
@@ -60,7 +60,7 @@ export default function Register() {
                                 value={data.email}
                                 onChange={(event) => setData('email', event.target.value)}
                                 placeholder="juan@example.com"
-                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#122236] px-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#173f82] px-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                         </span>
                         <InputError message={errors.email} />
@@ -75,7 +75,7 @@ export default function Register() {
                                 value={data.password}
                                 onChange={(event) => setData('password', event.target.value)}
                                 placeholder="Min. 8 characters"
-                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#122236] px-11 pr-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#173f82] px-11 pr-11 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
                             <button
                                 type="button"
@@ -95,7 +95,7 @@ export default function Register() {
                             value={data.password_confirmation}
                             onChange={(event) => setData('password_confirmation', event.target.value)}
                             placeholder="Re-enter your password"
-                            className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#122236] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                            className="h-[52px] w-full rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                         />
                     </label>
                     <div className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
@@ -109,13 +109,13 @@ export default function Register() {
                             </button>
                             <button
                                 type="button"
-                                className="h-16 rounded-xl border border-[#294058] bg-[#122236] px-2 text-xs tracking-normal text-white/55 normal-case"
+                                className="h-16 rounded-xl border border-[#294058] bg-[#173f82] px-2 text-xs tracking-normal text-white/55 normal-case"
                             >
                                 🏢 Business
                             </button>
                             <button
                                 type="button"
-                                className="h-16 rounded-xl border border-[#294058] bg-[#122236] px-2 text-xs tracking-normal text-white/55 normal-case"
+                                className="h-16 rounded-xl border border-[#294058] bg-[#173f82] px-2 text-xs tracking-normal text-white/55 normal-case"
                             >
                                 🏘 Resident
                             </button>
