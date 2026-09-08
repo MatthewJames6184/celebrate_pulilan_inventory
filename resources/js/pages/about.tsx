@@ -22,6 +22,7 @@ const barangays = [
     'Dampol 1st',
     'Dampol 2nd A',
     'Dampol 2nd B',
+    'Dulong Malabon',
     'Inaon',
     'Longos',
     'Lumbang',
@@ -29,9 +30,9 @@ const barangays = [
     'Penabatan',
     'Poblacion',
     'Sta. Peregrina',
-    'Santo Cristo',
-    'Sto. Niño',
-    'Tagucan',
+    'Sto. Cristo',
+    'Taal',
+    'Tabon',
     'Tibag',
     'Tinejero',
 ];
@@ -66,8 +67,8 @@ export default function About() {
                         {facts.map((fact) => (
                             <div key={fact.label} className="px-6 text-center">
                                 <div className="font-display text-3xl font-semibold text-[#d4a853]">{fact.value}</div>
-                                <div className="mt-1 text-xs text-[#f5f0e8]/40">{fact.unit}</div>
-                                <div className="mt-0.5 text-xs font-medium text-[#f5f0e8]/60">{fact.label}</div>
+                                <div className="mt-1 text-xs text-[#f5f0e8]/60">{fact.unit}</div>
+                                <div className="mt-0.5 text-xs font-medium text-[#f5f0e8]">{fact.label}</div>
                             </div>
                         ))}
                     </div>
@@ -85,7 +86,7 @@ export default function About() {
                                 <br />
                                 <em className="text-[#d4a853]">in Faith and Culture</em>
                             </h2>
-                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]/60">
+                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]">
                                 <p>
                                     Pulilan is a first-class municipality in the province of Bulacan, Philippines. It is known as the{' '}
                                     <strong className="text-[#d4a853]">Carabao Capital of the Philippines</strong>, celebrated through its
@@ -117,7 +118,7 @@ export default function About() {
                                     </div>
                                     <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Mission</h3>
                                 </div>
-                                <p className="text-sm leading-relaxed text-[#f5f0e8]/55">
+                                <p className="text-sm leading-relaxed text-[#f5f0e8]">
                                     We are committed to delivering efficient, responsive, and transparent local governance that upholds the dignity
                                     and welfare of every Pulileño. We strive to foster sustainable development, preserve our cultural heritage, and
                                     build a progressive community grounded in integrity and service.
@@ -130,7 +131,7 @@ export default function About() {
                                     </div>
                                     <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Vision</h3>
                                 </div>
-                                <p className="text-sm leading-relaxed text-[#f5f0e8]/55">
+                                <p className="text-sm leading-relaxed text-[#f5f0e8]">
                                     Pulilan — a prosperous, culturally vibrant, and environmentally sustainable municipality where every citizen
                                     enjoys a high quality of life, equitable access to services, and pride in their heritage as the Carabao Capital of
                                     the Philippines.
@@ -166,11 +167,11 @@ export default function About() {
                             <div className="h-px w-6 bg-[#d4a853]" />
                             <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Communities</span>
                         </div>
-                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">18 Barangays of Pulilan</h2>
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">19 Barangays of Pulilan</h2>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                             {barangays.map((barangay) => (
                                 <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 px-3 py-2.5 text-center">
-                                    <span className="text-xs text-[#f5f0e8]/60">{barangay}</span>
+                                    <span className="text-xs text-[#f5f0e8]/80">{barangay}</span>
                                 </div>
                             ))}
                         </div>
