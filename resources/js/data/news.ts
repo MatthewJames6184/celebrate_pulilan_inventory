@@ -10,82 +10,70 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
     {
-        slug: 'tree-planting-activity',
-        title: 'Tree Planting Activity',
-        date: 'September 25, 2023',
-        image: '/images/carousel-images/Religious.jpg',
-        category: 'Environment',
-        excerpt:
-            'The Municipal Government of Pulilan partnered with local stakeholders to strengthen environmental awareness through a community tree planting drive that promoted greener public spaces and stronger civic engagement.',
-        content: [
-            'The Municipal Government of Pulilan, in coordination with local stakeholders and volunteers, successfully conducted a tree planting activity designed to promote environmental stewardship and active civic participation across the municipality.',
-            'Residents, local leaders, and partner agencies joined the effort to plant native trees in community spaces, public roadsides, and selected green areas that need long-term care and protection. The initiative is part of the town’s broader push to improve urban biodiversity and strengthen climate resilience.',
-            'Community members expressed hope that projects like this will encourage future collaborations between the local government and residents to preserve Pulilan’s natural beauty while creating greener and healthier public spaces for generations to come.',
-        ],
-    },
-    {
-        slug: 'carabao-festival-celebration',
-        title: 'Carabao Festival Celebration',
-        date: 'April 16, 2024',
-        image: '/images/carousel-images/Festival.jpg',
+        slug: 'carabao-festival-2025',
+        title: 'Carabao Festival 2025: A Record-Breaking Celebration of Culture',
+        date: 'May 12, 2025',
+        image: 'https://images.unsplash.com/photo-1630192226649-1934968dca48?w=900&h=500&fit=crop&auto=format',
         category: 'Festival',
-        excerpt:
-            'Pulilan celebrated its annual Carabao Festival with colorful festivities, cultural presentations, and community gatherings that highlighted the town’s agricultural identity.',
+        excerpt: "This year's Carabao Festival surpassed all expectations with over 120,000 attendees and a grand procession through all 18 barangays.",
         content: [
-            'The Municipality of Pulilan welcomed residents and visitors for the annual Carabao Festival, a lively showcase of local culture, farming heritage, and community pride. The celebration brought together families, traders, and cultural groups for a vibrant day of music, food, and festive activities.',
-            'Highlights of the event included community performances, agricultural showcases, and a display of the craftsmanship and traditions that continue to shape Pulilan as a town deeply rooted in rural heritage. The festival also served as a platform to honor local workers, farmers, and contributors to the community.',
-            'By bringing together residents and visitors in a joyful and meaningful celebration, the Carabao Festival reminded everyone of Pulilan’s strong sense of identity, unity, and appreciation for the land and the people who cultivate it.',
+            "The 2025 Carabao Festival of Pulilan was nothing short of spectacular. Held every May 15 in honor of San Isidro Labrador, this year's celebration drew record crowds from across the Philippines and abroad.",
+            'Over 400 beautifully decorated carabaos from all 18 barangays of Pulilan joined the grand procession, each adorned with colorful flowers, garlands, and traditional decorations.',
+            'The municipal government has announced plans to further develop infrastructure around the festival route, ensuring a safer and more comfortable experience for visitors in future years.',
         ],
     },
     {
-        slug: 'education-drive-and-scholarship-support',
-        title: 'Education Drive and Scholarship Support',
-        date: 'June 7, 2024',
-        image: '/images/carousel-images/Education.jpg',
-        category: 'Education',
-        excerpt:
-            'Pulilan’s local education initiatives continue to expand access to learning through scholarship opportunities, learning support, and youth empowerment programs.',
-        content: [
-            'The local government and education partners launched another round of support for students across Pulilan with a focus on making learning more accessible, inclusive, and empowering for young residents. The initiative covered scholarship assistance, classroom support, and youth engagement efforts.',
-            'The campaign promotes stronger educational outcomes by encouraging active participation from students, families, and community stakeholders. Officials reiterated their commitment to investing in the next generation and creating pathways for academic growth and civic responsibility.',
-            'As more students benefit from these initiatives, Pulilan continues to strengthen its foundation for long-term development through education and skills-building opportunities aligned with the needs of the community.',
-        ],
+        slug: 'tree-planting-2025',
+        title: 'Municipal Tree Planting Activity Greens Pulilan’s Riverbanks',
+        date: 'March 18, 2025',
+        image: 'https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=900&h=500&fit=crop&auto=format',
+        category: 'Environment',
+        excerpt: 'The Municipal Government of Pulilan partnered with local stakeholders to strengthen environmental awareness through a community tree planting drive.',
+        content: ['The Municipal Government of Pulilan launched a large-scale tree planting initiative along the banks of the Pampanga River.', 'Over 5,000 native tree seedlings were planted across 12 kilometers of riverbank, involving more than 800 volunteers.', 'The initiative is part of Pulilan’s broader environmental program.'],
     },
     {
-        slug: 'community-health-and-wellness-program',
-        title: 'Community Health and Wellness Program',
-        date: 'August 12, 2024',
-        image: '/images/carousel-images/Health.jpg',
-        category: 'Health',
-        excerpt:
-            'A community health and wellness drive provided basic services, health education, and screenings that benefited residents across multiple barangays.',
-        content: [
-            'Municipal health teams conducted a community wellness program that offered health screening, consultation, and public education designed to improve awareness and support preventive care among families in Pulilan.',
-            'The initiative focused on health services that are easily accessible to residents while promoting stronger habits around nutrition, disease prevention, and regular checkups. Health workers also guided participants on the importance of early consultation and healthy living.',
-            'The success of the activity reflects Pulilan’s ongoing commitment to improving public health outcomes and ensuring that residents have access to practical, community-centered care and wellness support.',
-        ],
-    },
-    {
-        slug: 'heritage-house-and-cultural-tour',
-        title: 'Heritage House and Cultural Tour',
-        date: 'October 2, 2024',
-        image: '/images/carousel-images/Heritage.jpg',
+        slug: 'heritage-restoration-2025',
+        title: 'San Isidro Parish Church Restoration Project Completed',
+        date: 'April 28, 2025',
+        image: 'https://images.unsplash.com/photo-1760549310131-b09d86c601e3?w=900&h=500&fit=crop&auto=format',
         category: 'Heritage',
-        excerpt:
-            'A heritage-focused community tour showcased Pulilan’s historical houses and cultural landmarks, allowing residents and visitors to appreciate the town’s rich legacy.',
-        content: [
-            'Pulilan highlighted its historical legacy through a heritage house tour that invited residents and visitors to learn more about the town’s architectural and cultural heritage. The guided experience featured notable sites and ancestral structures that reflect the municipality’s story and identity.',
-            'The activity emphasized the value of preserving local traditions, architecture, and community memory while encouraging a deeper appreciation for Pulilan’s roots. Participants were able to reconnect with the town’s past through visual storytelling, local history, and community narratives.',
-            'As cultural tourism continues to grow, initiatives like this help strengthen local pride and create opportunities for heritage education, appreciation, and sustainable community engagement.',
-        ],
+        excerpt: 'After 18 months of careful restoration work, the historic 17th-century San Isidro Labrador Parish Church has been fully rehabilitated.',
+        content: ['After nearly 18 months of meticulous restoration work, the San Isidro Labrador Parish Church has been fully rehabilitated and blessed.', 'The project involved repair of the original stone facade, restoration of colonial-era interior murals, and structural reinforcement of the bell tower.', 'The church will serve as the focal point of the 2025 Carabao Festival procession and will be open for heritage tours beginning June 1.'],
+    },
+    {
+        slug: 'heritage-trail-2025',
+        title: 'New Heritage Walking Trail Opens Across Pulilan’s Historic District',
+        date: 'April 15, 2025',
+        image: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=900&h=500&fit=crop&auto=format',
+        category: 'Tourism',
+        excerpt: 'A newly designed self-guided walking trail connects Pulilan’s key historical landmarks, churches, and cultural sites starting this summer.',
+        content: ['The Municipality of Pulilan has officially launched a new Heritage Walking Trail through the town’s most historically significant sites.', 'The trail is marked by 24 informational heritage plaques in both Filipino and English.', 'The trail covers approximately 2.5 kilometers and can be completed in 1.5 to 2 hours.'],
+    },
+    {
+        slug: 'education-drive-2024',
+        title: 'Education Drive and Scholarship Support Reaches 500 Students',
+        date: 'June 7, 2024',
+        image: 'https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=900&h=500&fit=crop&auto=format',
+        category: 'Education',
+        excerpt: 'Pulilan’s local education initiatives expand access to learning through scholarship opportunities, learning support, and youth empowerment programs.',
+        content: ['The Municipal Government of Pulilan has extended its scholarship support program to cover 500 students.', 'The program provides monthly stipends, school supplies, and supplementary tutorial sessions.', 'Applications for the next cycle open in July at the Municipal Social Welfare and Development Office.'],
+    },
+    {
+        slug: 'community-health-2024',
+        title: 'Community Health and Wellness Program Expands to All 18 Barangays',
+        date: 'August 20, 2024',
+        image: 'https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=900&h=500&fit=crop&auto=format',
+        category: 'Health',
+        excerpt: 'The municipal health program now covers all 18 barangays with free medical consultations, vaccination drives, and wellness checkups.',
+        content: ['Pulilan’s Community Health and Wellness Program has expanded to all 18 barangays, offering free quarterly consultations, vaccination drives, dental services, and mental health support.', 'The program is supported by the Municipal Health Office and regional hospital partners.', 'The next round of barangay health missions is scheduled for October 2024.'],
     },
 ];
 
 export const featuredNews = newsItems[0];
 
-export const getNewsBySlug = (slug: string) => newsItems.find((item) => item.slug === slug) ?? newsItems[0];
+export const getNewsBySlug = (slug: string): NewsItem => newsItems.find((item) => item.slug === slug) ?? newsItems[0];
 
-export const getRelatedNews = (slug: string, count = 3) => {
+export const getRelatedNews = (slug: string, count = 3): NewsItem[] => {
     const currentIndex = newsItems.findIndex((item) => item.slug === slug);
     const safeIndex = currentIndex >= 0 ? currentIndex : 0;
 
