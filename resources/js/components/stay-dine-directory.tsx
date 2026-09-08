@@ -1,10 +1,8 @@
-import { Grid2x2, List, MapPin, Search } from 'lucide-react';
+import { Head, Link } from '@inertiajs/react';
+import { Grid2X2, List, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
-import PublicTopicPage from '@/components/public-topic-page';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+import PublicLayout from '@/layouts/public-layout';
 
 export type DirectoryItem = {
     name: string;
@@ -17,306 +15,122 @@ export type DirectoryItem = {
     image?: string;
 };
 
-type Breadcrumb = {
-    label: string;
-    href?: string;
-};
-
-type StayDineDirectoryPageProps = {
+type Props = {
     headTitle: string;
     eyebrow: string;
     title: string;
     intro: string;
-    imageSubHeader: {
-        src: string;
-        alt: string;
-    };
-    breadcrumbs: Breadcrumb[];
-    // new prop: type of listing used to build the detail route (e.g. 'accommodations' or 'restaurants')
+    imageSubHeader: { src: string; alt: string };
+    breadcrumbs?: { label: string; href?: string }[];
     type?: string;
     items: DirectoryItem[];
-    // default view for this listing: 'grid' or 'list'
-    defaultView?: 'grid' | 'list';
 };
 
-import { Link } from '@inertiajs/react';
-
-export default function StayDineDirectoryPage({
-    headTitle,
-    eyebrow,
-    title,
-    intro,
-    imageSubHeader,
-    breadcrumbs,
-    type = 'list',
-    items,
-    defaultView = 'list',
-}: StayDineDirectoryPageProps) {
+export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type = 'accommodations', items }: Props) {
     const [query, setQuery] = useState('');
-    const [category, setCategory] = useState('all');
-    const [area, setArea] = useState('all');
-    const [sortBy, setSortBy] = useState('name-asc');
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>(defaultView);
-
-    const categories = useMemo(() => ['all', ...new Set(items.map((item) => item.category))], [items]);
-    const areas = useMemo(() => ['all', ...new Set(items.map((item) => item.area))], [items]);
-
-    const filteredItems = useMemo(() => {
-        const normalizedQuery = query.trim().toLowerCase();
-
-        const results = items.filter((item) => {
-            const matchesQuery =
-                normalizedQuery.length === 0 ||
-                [item.name, item.category, item.area, item.address, item.summary, ...item.highlights].some((field) =>
-                    field.toLowerCase().includes(normalizedQuery),
-                );
-            const matchesCategory = category === 'all' || item.category === category;
-            const matchesArea = area === 'all' || item.area === area;
-            return matchesQuery && matchesCategory && matchesArea;
-        });
-
-        return results.sort((left, right) => {
-            switch (sortBy) {
-                case 'name-desc':
-                    return right.name.localeCompare(left.name);
-                case 'category':
-                    return left.category.localeCompare(right.category) || left.name.localeCompare(right.name);
-                case 'area':
-                    return left.area.localeCompare(right.area) || left.name.localeCompare(right.name);
-                case 'name-asc':
-                default:
-                    return left.name.localeCompare(right.name);
-            }
-        });
-    }, [area, category, items, query, sortBy]);
+    const [category, setCategory] = useState('All');
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const categories = useMemo(() => ['All', ...new Set(items.map((item) => item.category))], [items]);
+    const filteredItems = useMemo(
+        () =>
+            items.filter((item) => {
+                const searchable = `${item.name} ${item.category} ${item.area} ${item.summary}`.toLowerCase();
+                return (category === 'All' || item.category === category) && searchable.includes(query.toLowerCase());
+            }),
+        [category, items, query],
+    );
 
     return (
-        <PublicTopicPage headTitle={headTitle} title={title} imageSubHeader={imageSubHeader} breadcrumbs={breadcrumbs}>
-            <div className="mx-auto w-full max-w-[1040px] px-0 py-0">
-                <section className="border border-[#075b49] bg-[#075b49] px-6 py-6 shadow-sm md:px-8">
-                    <div className="space-y-3">
-                        <p className="text-[10px] font-bold tracking-[0.35em] text-emerald-200 uppercase">{eyebrow}</p>
-
-                        <p className="max-w-4xl text-sm leading-7 text-emerald-100">{intro}</p>
+        <PublicLayout>
+            <Head title={headTitle} />
+            <div className="min-h-screen bg-[#0b1640] text-white">
+                <section className="relative h-72 overflow-hidden">
+                    <img src={imageSubHeader.src} alt={imageSubHeader.alt} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0b1640]/60 via-[#0b1640]/55 to-[#0b1640]" />
+                    <div className="absolute inset-0 flex items-end justify-center pb-11 text-center">
+                        <div>
+                            <p className="mb-2 text-[10px] font-medium tracking-[0.3em] text-[#d4a853] uppercase">Pulilan, Bulacan</p>
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">Stay &amp; Dine</h1>
+                            <p className="mt-1 text-xs text-white/50">Accommodations, resorts, restaurants &amp; cafés</p>
+                        </div>
                     </div>
                 </section>
 
-                <section className="mt-4 border border-slate-200 bg-white px-3 pb-3 sm:px-5">
-                    <div className="bg-white p-5 shadow-sm shadow-slate-200/60">
-                        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                            <div>
-                                <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">{filteredItems.length} results</p>
-                                <h3 className="mt-2 text-2xl font-semibold text-slate-950">
-                                    {category === 'all' ? 'All listings' : category}
-                                    {area === 'all' ? '' : ` in ${area}`}
-                                </h3>
-                            </div>
-
-                            <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1">
-                                <button
-                                    type="button"
-                                    onClick={() => setViewMode('list')}
-                                    className={cn(
-                                        'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition',
-                                        viewMode === 'list' ? 'bg-emerald-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950',
-                                    )}
-                                >
-                                    <List className="h-4 w-4" />
-                                    List
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => setViewMode('grid')}
-                                    className={cn(
-                                        'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition',
-                                        viewMode === 'grid' ? 'bg-emerald-700 text-white shadow-sm' : 'text-slate-600 hover:text-slate-950',
-                                    )}
-                                >
-                                    <Grid2x2 className="h-4 w-4" />
-                                    Grid
-                                </button>
-                            </div>
+                <main className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+                    <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+                        <div className="flex rounded-2xl border border-white/5 bg-[#0e1c52] p-1.5">
+                            <Link
+                                href={route('stay.dine.accommodations')}
+                                className={`rounded-xl px-4 py-2.5 text-xs font-semibold transition ${type === 'accommodations' ? 'bg-[#d4a853] text-[#0b1640] shadow-lg' : 'text-white/45 hover:text-white/75'}`}
+                            >
+                                🏨 &nbsp; Accommodations
+                            </Link>
+                            <Link
+                                href={route('stay.dine.restaurants')}
+                                className={`rounded-xl px-4 py-2.5 text-xs font-semibold transition ${type === 'restaurants' ? 'bg-[#d4a853] text-[#0b1640] shadow-lg' : 'text-white/45 hover:text-white/75'}`}
+                            >
+                                🍽 &nbsp; Restaurants &amp; Cafés
+                            </Link>
                         </div>
-
-                        <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center">
-                            <div className="relative flex-1">
-                                <Search className="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slate-500" />
-                                <Input
-                                    value={query}
-                                    onChange={(event) => setQuery(event.target.value)}
-                                    placeholder="Search businesses, services, or areas"
-                                    aria-label="Search directory"
-                                    className="w-full rounded-full border-slate-200 bg-slate-50 pr-4 pl-11"
-                                />
-                            </div>
-
-                            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:flex-nowrap">
-                                <div className="min-w-[160px]">
-                                    <Select value={category} onValueChange={setCategory}>
-                                        <SelectTrigger className="rounded-full border-slate-200 bg-slate-50">
-                                            <SelectValue placeholder="All categories" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {categories.map((option) => (
-                                                <SelectItem key={option} value={option}>
-                                                    {option === 'all' ? 'All categories' : option}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                <div className="min-w-[140px]">
-                                    <Select value={area} onValueChange={setArea}>
-                                        <SelectTrigger className="rounded-full border-slate-200 bg-slate-50">
-                                            <SelectValue placeholder="All areas" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            {areas.map((option) => (
-                                                <SelectItem key={option} value={option}>
-                                                    {option === 'all' ? 'All areas' : option}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                <div className="min-w-[140px]">
-                                    <Select value={sortBy} onValueChange={setSortBy}>
-                                        <SelectTrigger className="rounded-full border-slate-200 bg-slate-50">
-                                            <SelectValue placeholder="Sort results" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="name-asc">Name A-Z</SelectItem>
-                                            <SelectItem value="name-desc">Name Z-A</SelectItem>
-                                            <SelectItem value="category">Category</SelectItem>
-                                            <SelectItem value="area">Area</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
+                        <div className="flex rounded-xl border border-white/5 bg-[#0e1c52] p-1">
+                            <button onClick={() => setViewMode('grid')} className={`rounded-lg p-2 ${viewMode === 'grid' ? 'bg-[#1a2f88] text-white' : 'text-white/30'}`} aria-label="Grid view">
+                                <Grid2X2 className="h-4 w-4" />
+                            </button>
+                            <button onClick={() => setViewMode('list')} className={`rounded-lg p-2 ${viewMode === 'list' ? 'bg-[#1a2f88] text-white' : 'text-white/30'}`} aria-label="List view">
+                                <List className="h-4 w-4" />
+                            </button>
                         </div>
                     </div>
 
-                    <div className="mt-5 xl:max-h-[70vh] xl:overflow-y-auto xl:pr-1">
-                        {filteredItems.length > 0 ? (
-                            <div className={cn('gap-5', viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'space-y-4')}>
-                                {filteredItems.map((item) => {
-                                    const slug = item.name
-                                        .toLowerCase()
-                                        .trim()
-                                        .replace(/\s+/g, '-')
-                                        .replace(/[^a-z0-9-]/g, '');
-
-                                    if (viewMode === 'grid') {
-                                        return (
-                                            <Link
-                                                key={item.name}
-                                                href={route('stay.dine.detail', { type, slug })}
-                                                className="block rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                                            >
-                                                <div className="overflow-hidden rounded-md bg-slate-100">
-                                                    <img
-                                                        src={'/images/placeholder-img/wat-da-dog-doin.jpg'}
-                                                        alt={item.name}
-                                                        className="h-36 w-full object-cover object-center"
-                                                    />
-                                                </div>
-
-                                                <div className="mt-3">
-                                                    <h4 className="truncate text-sm font-semibold text-slate-900">{item.name}</h4>
-                                                    <p className="mt-1 truncate text-xs text-slate-600">
-                                                        {item.category} • {item.area}
-                                                    </p>
-                                                    <p className="mt-2 line-clamp-3 text-sm text-slate-700">{item.summary}</p>
-                                                </div>
-
-                                                <div className="mt-3 flex items-center justify-between">
-                                                    <span className="text-xs font-medium text-slate-600">{item.address}</span>
-                                                    <span className="text-xs font-semibold text-emerald-700">View details →</span>
-                                                </div>
-                                            </Link>
-                                        );
-                                    }
-
-                                    return (
-                                        <Link
-                                            key={item.name}
-                                            href={route('stay.dine.detail', { type, slug })}
-                                            className={cn(
-                                                'block rounded-3xl border border-slate-200 bg-white p-5 shadow-sm shadow-slate-200/60 transition hover:-translate-y-0.5 hover:shadow-md',
-                                                viewMode === 'list' && 'md:grid md:grid-cols-[1.25fr_0.95fr] md:items-start',
-                                            )}
-                                        >
-                                            <div className="md:flex md:items-start md:gap-4">
-                                                <div className="hidden h-36 overflow-hidden rounded-md bg-slate-100 md:block md:w-48">
-                                                    <img
-                                                        src={item.image ?? '/images/placeholder-img/wat-da-dog-doin.jpg'}
-                                                        alt={item.name}
-                                                        className="h-full w-full object-cover object-center"
-                                                    />
-                                                </div>
-
-                                                <div className="flex-1 space-y-4">
-                                                    <div className="flex flex-wrap items-center gap-2">
-                                                        <span className="rounded-full bg-emerald-700 px-3 py-1 text-xs font-semibold tracking-[0.2em] text-white uppercase">
-                                                            {item.category}
-                                                        </span>
-                                                        {item.featured ? (
-                                                            <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
-                                                                Featured
-                                                            </span>
-                                                        ) : null}
-                                                    </div>
-
-                                                    <div>
-                                                        <h4 className="text-xl font-semibold text-slate-950">{item.name}</h4>
-                                                        <div className="mt-2 flex items-start gap-2 text-sm text-slate-600">
-                                                            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700" />
-                                                            <span>{item.address}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <p className="text-sm leading-7 text-slate-600">{item.summary}</p>
-                                                </div>
-                                            </div>
-
-                                            <div className={cn('mt-5 space-y-4 md:mt-0', viewMode === 'grid' && 'border-t border-slate-200 pt-4')}>
-                                                <div>
-                                                    <div className="text-xs font-semibold tracking-[0.25em] text-slate-500 uppercase">Location</div>
-                                                    <p className="mt-2 text-sm font-medium text-slate-800">{item.area}</p>
-                                                </div>
-
-                                                <div>
-                                                    <div className="text-xs font-semibold tracking-[0.25em] text-slate-500 uppercase">Highlights</div>
-                                                    <div className="mt-3 flex flex-wrap gap-2">
-                                                        {item.highlights.map((highlight) => (
-                                                            <span
-                                                                key={highlight}
-                                                                className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
-                                                            >
-                                                                {highlight}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        ) : (
-                            <div className="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm shadow-slate-200/60">
-                                <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">No matches</p>
-                                <h4 className="mt-3 text-2xl font-semibold text-slate-950">Try a broader search</h4>
-                                <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-                                    Clear one of the filters or search for a different category, area, or starting letter to continue browsing.
-                                </p>
-                            </div>
-                        )}
+                    <div className="relative mb-5">
+                        <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/25" />
+                        <input
+                            value={query}
+                            onChange={(event) => setQuery(event.target.value)}
+                            placeholder={type === 'restaurants' ? 'Search restaurants, cafés…' : 'Search hotels, resorts, inns…'}
+                            className="w-full rounded-2xl border border-white/7 bg-[#0e1c52] py-3.5 pl-11 pr-20 text-xs text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]/50"
+                        />
+                        <span className="absolute top-1/2 right-3 -translate-y-1/2 rounded-lg bg-[#1a2f88] px-3 py-1 text-[10px] text-white/40">{filteredItems.length} results</span>
                     </div>
-                </section>
+
+                    <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
+                        {categories.map((option) => (
+                            <button
+                                key={option}
+                                onClick={() => setCategory(option)}
+                                className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[10px] transition ${category === option ? 'border-[#d4a853] bg-[#d4a853] text-[#0b1640]' : 'border-white/8 text-white/45 hover:border-[#d4a853]/50 hover:text-[#d4a853]'}`}
+                            >
+                                {option}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className={viewMode === 'grid' ? 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-4'}>
+                        {filteredItems.map((item) => {
+                            const slug = item.name.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            return (
+                                <Link
+                                    key={item.name}
+                                    href={route('stay.dine.detail', { type, slug })}
+                                    className={`group overflow-hidden rounded-2xl border border-white/5 bg-[#0e1c52] text-left transition duration-300 hover:-translate-y-1 hover:border-[#d4a853]/30 ${viewMode === 'list' ? 'flex' : ''}`}
+                                >
+                                    <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>
+                                        <img src={item.image ?? imageSubHeader.src} alt={item.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0e1c52]/85 to-transparent" />
+                                        <span className="absolute top-3 left-2 rounded-full bg-[#d4a853] px-2 py-0.5 text-[10px] font-bold text-[#0b1640]">{item.category}</span>
+                                    </div>
+                                    <div className="min-w-0 flex-1 p-4">
+                                        <h2 className="font-display truncate text-sm font-semibold text-white transition group-hover:text-[#d4a853]">{item.name}</h2>
+                                        <p className="mt-1 text-[10px] text-white/35">⌖ {item.area}</p>
+                                        <p className="mt-2 line-clamp-2 text-[10px] leading-relaxed text-white/45">{item.summary}</p>
+                                        <div className="mt-3 text-[10px] text-[#d4a853]">★★★★★ <span className="ml-1 text-white/35">4.7 · 38 reviews</span></div>
+                                    </div>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </main>
             </div>
-        </PublicTopicPage>
+        </PublicLayout>
     );
 }

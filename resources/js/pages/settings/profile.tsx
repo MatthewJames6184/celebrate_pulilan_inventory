@@ -39,17 +39,19 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
 
             <SettingsLayout>
                 <div className="space-y-6">
-                    <HeadingSmall title="Profile information" description="Update your name and email address" />
+                    <div className="rounded-2xl border border-[#1a2f88] bg-[#0e1c52] p-6 text-white">
+                        <HeadingSmall title="Profile information" description="Update your name and email address" />
+                    </div>
 
-                    <form onSubmit={submit} className="space-y-6">
+                    <form onSubmit={submit} className="space-y-6 rounded-2xl border border-slate-200 bg-white p-6">
                         <div className="grid gap-2">
-                            <Label htmlFor="name" className="text-sm font-medium text-slate-700">
+                            <Label htmlFor="name" className="text-sm font-medium text-[#1a3b70]">
                                 Name
                             </Label>
 
                             <Input
                                 id="name"
-                                className="mt-1 block w-full rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                className="mt-1 block w-full rounded-xl border-slate-200 bg-[#eaf0f8] focus-visible:ring-[#4169e1]"
                                 value={data.name}
                                 onChange={(e) => setData('name', e.target.value)}
                                 required
@@ -61,14 +63,14 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         </div>
 
                         <div className="grid gap-2">
-                            <Label htmlFor="email" className="text-sm font-medium text-slate-700">
+                            <Label htmlFor="email" className="text-sm font-medium text-[#1a3b70]">
                                 Email address
                             </Label>
 
                             <Input
                                 id="email"
                                 type="email"
-                                className="mt-1 block w-full rounded-xl border-slate-200 bg-slate-50 focus-visible:ring-emerald-500"
+                                className="mt-1 block w-full rounded-xl border-slate-200 bg-[#eaf0f8] focus-visible:ring-[#4169e1]"
                                 value={data.email}
                                 onChange={(e) => setData('email', e.target.value)}
                                 required
@@ -102,7 +104,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                         )}
 
                         <div className="flex items-center gap-4">
-                            <Button disabled={processing} className="rounded-xl bg-emerald-600 text-white hover:bg-emerald-700">
+                            <Button disabled={processing} className="rounded-xl bg-[#4169e1] text-white hover:bg-[#3157c7]">
                                 Save
                             </Button>
 
@@ -113,7 +115,7 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                                 leave="transition ease-in-out"
                                 leaveTo="opacity-0"
                             >
-                                <p className="text-sm text-emerald-700">Saved</p>
+                                <p className="text-sm text-[#4169e1]">Saved</p>
                             </Transition>
                         </div>
                     </form>

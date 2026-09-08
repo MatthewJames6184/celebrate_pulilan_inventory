@@ -1,78 +1,33 @@
 import { Head, Link } from '@inertiajs/react';
 
 import PublicLayout from '@/layouts/public-layout';
-import { getNewsBySlug, getRelatedNews, type NewsItem } from '@/data/news';
+import { getNewsBySlug, getRelatedNews } from '@/data/news';
 
-type NewsShowProps = {
-    slug: string;
-    item?: NewsItem;
-};
-
-export default function NewsShow({ slug, item }: NewsShowProps) {
-    const news = item ?? getNewsBySlug(slug);
-    const relatedNews = getRelatedNews(news.slug, 3);
+export default function NewsShow({ slug }: { slug: string }) {
+    const article = getNewsBySlug(slug);
+    const related = getRelatedNews(article.slug, 3);
 
     return (
         <PublicLayout>
-            <Head title={news.title} />
-
-            <div className="min-h-screen bg-slate-50">
-                <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-                    <div className="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-500">
-                        <Link href={route('home')} className="font-medium text-slate-600 hover:text-emerald-700">Home</Link>
-                        <span>/</span>
-                        <Link href={route('news.archive')} className="font-medium text-slate-600 hover:text-emerald-700">News Archive</Link>
-                        <span>/</span>
-                        <span className="text-slate-700">{news.title}</span>
+            <Head title={article.title} />
+            <div className="min-h-screen bg-[#0b1640] text-white">
+                <section className="relative h-[55vh] min-h-[400px] overflow-hidden">
+                    <img src={article.image} alt={article.title} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#0b1640]/35 via-[#0b1640]/30 to-[#0b1640]" />
+                    <Link href={route('news.archive')} className="absolute top-24 left-6 rounded-full border border-white/10 bg-[#0b1640]/60 px-4 py-2 text-sm text-white/70 backdrop-blur hover:text-white lg:left-10">← All News</Link>
+                    <div className="absolute inset-x-0 bottom-0 mx-auto max-w-3xl px-6 pb-12">
+                        <div className="mb-4 flex items-center gap-3"><span className="rounded-full bg-[#d4a853] px-3 py-1 text-xs font-bold text-[#0b1640]">{article.category}</span><span className="text-xs text-white/40">{article.date}</span></div>
+                        <h1 className="font-display text-3xl leading-tight font-semibold lg:text-5xl">{article.title}</h1>
                     </div>
-
-                    <div className="grid gap-8 lg:grid-cols-[1.5fr_0.8fr]">
-                        <article className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
-                            <img src={news.image} alt={news.title} className="h-[320px] w-full object-cover sm:h-[420px]" />
-
-                            <div className="space-y-6 p-6 sm:p-8">
-                                <div className="flex flex-wrap items-center justify-between gap-3">
-                                    <span className="inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-emerald-700">
-                                        {news.category}
-                                    </span>
-                                    <span className="text-sm font-medium text-slate-500">{news.date}</span>
-                                </div>
-
-                                <h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-5xl">{news.title}</h1>
-
-                                <p className="text-lg leading-8 text-slate-700">{news.excerpt}</p>
-
-                                {news.content.map((paragraph) => (
-                                    <p key={paragraph} className="text-base leading-8 text-slate-700">
-                                        {paragraph}
-                                    </p>
-                                ))}
-                            </div>
-                        </article>
-
-                        <aside className="space-y-6">
-                            <div className="rounded-[24px] border border-slate-200 bg-white p-5 shadow-sm">
-                                <h2 className="text-xl font-black uppercase tracking-[0.18em] text-slate-900">Related News</h2>
-                                <div className="mt-5 space-y-4">
-                                    {relatedNews.map((item) => (
-                                        <Link key={item.slug} href={route('news.show', { slug: item.slug })} className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 transition hover:border-emerald-200 hover:bg-emerald-50">
-                                            <img src={item.image} alt={item.title} className="h-16 w-16 rounded-xl object-cover" />
-                                            <div className="min-w-0 flex-1">
-                                                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700">{item.category}</p>
-                                                <h3 className="mt-1 text-sm font-bold leading-snug text-slate-900">{item.title}</h3>
-                                                <p className="mt-1 text-xs text-slate-500">{item.date}</p>
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <Link href={route('news.archive')} className="block rounded-[24px] border border-slate-200 bg-emerald-900 px-6 py-5 text-center text-base font-bold text-white transition hover:border-emerald-300 hover:text-yellow-400">
-                                News Archive
-                            </Link>
-                        </aside>
-                    </div>
-                </div>
+                </section>
+                <article className="mx-auto max-w-3xl px-6 py-14">
+                    <div className="mb-10 flex items-center gap-3 border-b border-white/10 pb-8"><div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1a2f88] font-bold text-[#d4a853]">P</div><div><p className="text-sm text-white/70">Pulilan Tourism Office</p><p className="text-xs text-white/35">Municipal community correspondent</p></div></div>
+                    <p className="font-display mb-8 text-xl leading-relaxed text-white/75 italic">{article.excerpt}</p>
+                    <div className="space-y-5">{article.content.map((paragraph) => <p key={paragraph} className="text-base leading-[1.85] tracking-[0.01em] text-white/60">{paragraph}</p>)}</div>
+                    <blockquote className="my-12 border-l-4 border-[#d4a853] pl-6 font-display text-xl leading-relaxed text-white/80 italic">“Pulilan's heritage is not just preserved in buildings and traditions — it lives in the heart of every community celebration.”</blockquote>
+                    <div className="mt-10 rounded-2xl border border-white/5 bg-[#0e1c52] p-6"><p className="text-sm text-white/60">Enjoyed this story?</p><p className="mt-1 text-xs text-white/30">Share it with your community and friends.</p></div>
+                </article>
+                <section className="border-t border-white/5 bg-[#0e1c52]"><div className="mx-auto max-w-7xl px-6 py-14 lg:px-10"><div className="mb-8 flex items-center gap-2"><span className="h-px w-6 bg-[#d4a853]" /><span className="text-xs tracking-widest text-[#d4a853] uppercase">More Stories</span></div><div className="grid gap-6 md:grid-cols-3">{related.map((item) => <Link key={item.slug} href={route('news.show', { slug: item.slug })} className="group overflow-hidden rounded-2xl border border-white/5 bg-[#0b1640] hover:border-[#d4a853]/30"><img src={item.image} alt={item.title} className="h-44 w-full object-cover transition duration-500 group-hover:scale-105" /><div className="p-5"><p className="text-xs text-white/30">{item.date}</p><h2 className="font-display mt-2 text-sm font-semibold group-hover:text-[#d4a853]">{item.title}</h2><span className="mt-3 inline-block text-xs text-[#d4a853]">Read more →</span></div></Link>)}</div></div></section>
             </div>
         </PublicLayout>
     );

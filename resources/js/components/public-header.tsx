@@ -3,15 +3,16 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { cn } from '@/lib/utils';
 import { type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { ChevronDown, LogOut, Menu, User } from 'lucide-react';
+import { ChevronDown, LogOut, Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const navItems = [
     { title: 'Home', url: route('home') },
     { title: 'About', url: route('about') },
-    { title: 'Attractions', url: route('about.attraction') },
+    { title: 'What to See', url: route('about.attraction') },
     { title: 'Festivals', url: route('about.festivals') },
     { title: 'History', url: route('about.history') },
+    { title: 'News', url: route('news.archive') },
     { title: 'Contact', url: route('contact') },
 ];
 
@@ -29,6 +30,7 @@ export default function PublicHeader() {
     const { auth } = page.props;
     const currentPath = normalizePath(page.url);
     const [scrolled, setScrolled] = useState(false);
+    const [profileOpen, setProfileOpen] = useState(false);
 
     useEffect(() => {
         const updateHeader = () => {
@@ -65,7 +67,7 @@ export default function PublicHeader() {
                     </span>
                 </Link>
 
-                <nav className="hidden items-center gap-1 md:flex">
+                <nav className="hidden items-center gap-1 lg:flex">
                     {navItems.map((item) => (
                         <Link
                             key={item.title}
@@ -77,11 +79,16 @@ export default function PublicHeader() {
                                     : 'text-white hover:bg-white/5 hover:text-[#f5f0e8]',
                             )}
                         >
-                            {item.title === 'Attractions' ? 'What to See' : item.title}
+                            {item.title}
                         </Link>
                     ))}
                     <div className="group relative">
-                        <span className="flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-white">
+                        <span
+                            className={cn(
+                                'flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium',
+                                currentPath.startsWith('/stay-dine') ? 'bg-[#d4a853]/20 text-[#d4a853]' : 'text-white',
+                            )}
+                        >
                             Stay &amp; Dine <ChevronDown className="h-3 w-3" />
                         </span>
                         <div className="invisible absolute top-7 left-0 min-w-44 rounded-xl border border-white/10 bg-[#4169E1]/70 p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
@@ -103,9 +110,25 @@ export default function PublicHeader() {
 
                 <div className="hidden items-center gap-3 lg:flex">
                     {auth.user ? (
-                        <Link href={route('profile.edit')} className="flex items-center gap-2 text-xs text-white/80">
-                            <User className="h-3.5 w-3.5" /> {auth.user.name}
-                        </Link>
+                        <div className="relative">
+                            <button onClick={() => setProfileOpen((open) => !open)} className="flex items-center gap-2 rounded-full px-3 py-2 text-xs text-white/80 transition hover:bg-white/10 hover:text-white">
+                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2e54e8] text-sm font-bold text-white">{auth.user.name.charAt(0)}</span>
+                                <span>{auth.user.name.split(' ')[0]}</span>
+                                <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', profileOpen && 'rotate-180')} />
+                            </button>
+                            {profileOpen && (
+                                <div className="absolute top-12 right-0 w-52 overflow-hidden rounded-2xl border border-white/10 bg-[#04091f] shadow-2xl">
+                                    <div className="flex items-center gap-3 border-b border-white/5 p-4">
+                                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2e54e8] font-bold">{auth.user.name.charAt(0)}</span>
+                                        <div><p className="text-sm font-semibold text-white">{auth.user.name}</p><p className="text-xs text-white/35">Visitor Account</p></div>
+                                    </div>
+                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">⊞ &nbsp; Dashboard</Link>
+                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">🔖 &nbsp; My Saved Places</Link>
+                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">📅 &nbsp; My Itinerary</Link>
+                                    <Link href={route('logout')} method="post" as="button" className="w-full border-t border-white/5 px-4 py-3 text-left text-sm text-red-400 hover:bg-red-500/10">Sign out</Link>
+                                </div>
+                            )}
+                        </div>
                     ) : (
                         <Link
                             href={route('login')}
@@ -148,7 +171,7 @@ export default function PublicHeader() {
                                         currentPath === normalizePath(item.url) ? 'bg-[#d4a853]/15 text-[#d4a853]' : 'text-white/80',
                                     )}
                                 >
-                                    {item.title === 'Attractions' ? 'What to See' : item.title}
+                                    {item.title}
                                 </Link>
                             ))}
                             <Link
