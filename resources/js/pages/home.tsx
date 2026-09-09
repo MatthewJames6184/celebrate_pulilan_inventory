@@ -9,7 +9,7 @@ const heroSlides = [
         eyebrow: 'WELCOME TO PULILAN',
         title: 'Where Heritage\nMeets Horizons',
         description: 'Discover the Carabao Capital of the Philippines — a municipality rich in colonial history, vibrant festivals, and warm Filipino hospitality.',
-        image: 'https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=1600&h=900&fit=crop&auto=format',
+        image: '/images/hero-images/hero-3.jpg',
         href: route('about.attraction'),
         action: 'Explore Pulilan',
     },
@@ -17,7 +17,7 @@ const heroSlides = [
         eyebrow: 'PLAN YOUR VISIT',
         title: 'Your Next\nAdventure Awaits',
         description: 'From sacred churches to scenic riverbanks, Pulilan offers a journey through centuries of faith, culture, and natural beauty.',
-        image: 'https://images.unsplash.com/photo-1760549310131-b09d86c601e3?w=1600&h=900&fit=crop&auto=format',
+        image: '/images/image-4.jpg',
         href: route('contact'),
         action: 'Start Planning',
     },
@@ -41,7 +41,7 @@ const heroSlides = [
         eyebrow: 'OUR HERITAGE',
         title: 'Centuries of\nStories to Tell',
         description: "Walk through Pulilan's storied past — from Spanish-era churches and ancestral homes to the battles that shaped our nation.",
-        image: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=1600&h=900&fit=crop&auto=format',
+        image: '/images/hero-images/hero-1.jpg',
         href: route('about.history'),
         action: 'Our History',
     },
@@ -118,7 +118,7 @@ export default function Home() {
                     alt={slide.title}
                     className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-opacity duration-700"
                 />
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,59,160,0.95)_0%,rgba(37,59,160,0.5)_50%,rgba(37,59,160,0.1)_100%)]" />
+                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,59,160,0.95)_0%,rgba(37,59,160,0.2)_50%,rgba(37,59,160,0)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent" />
                 <div className="mx-auto flex min-h-[600px] max-w-7xl items-start px-6 pt-32 lg:px-10 lg:pt-[28vh]">
                     <div className="max-w-2xl">
@@ -226,9 +226,9 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#164b3b] py-16 text-[#f5f0e8] lg:py-24">
+            <section className="bg-[#123b8f] py-16 text-[#f5f0e8] lg:py-24">
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
-                    <img src="/images/carousel-images/Attraction.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
+                    <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
                     <div className="flex flex-col justify-center px-8 py-16 lg:px-16">
                         <p className="text-[10px] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
                         <h2 className="font-display mt-4 text-4xl text-white">
@@ -237,18 +237,14 @@ export default function Home() {
                             <span className="text-[#e9bc5b] italic">Festival</span>
                         </h2>
                         <p className="mt-5 max-w-sm text-xs leading-6 text-white/65">
-                            Witness the spectacular Carabao Festival — a UNESCO Intangible Cultural Heritage tradition where farmers parade their
-                            decorated water buffaloes to honor their patron saint.
+Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradition in Pulilan where farmers parade their beautifully decorated carabaos and honor San Isidro Labrador, the patron saint of farmers, in thanksgiving for a bountiful harvest.
                         </p>
                         <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[10px] text-white/60">
                             <span>
-                                <b className="block text-lg text-white">300+</b>Years
+                                <b className="block text-lg text-white">90+</b>Years of Tradition
                             </span>
                             <span>
-                                <b className="block text-lg text-white">18</b>Barangays
-                            </span>
-                            <span>
-                                <b className="block text-lg text-white">UNESCO</b>Heritage
+                                <b className="block text-lg text-white">19</b>Barangays
                             </span>
                         </div>
                         <Link

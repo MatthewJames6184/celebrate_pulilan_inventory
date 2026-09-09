@@ -170,7 +170,7 @@ export default function About() {
                         <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">19 Barangays of Pulilan</h2>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                             {barangays.map((barangay) => (
-                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 px-3 py-2.5 text-center">
+                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 b  px-3 py-2.5 text-center">
                                     <span className="text-xs text-[#f5f0e8]/80">{barangay}</span>
                                 </div>
                             ))}
