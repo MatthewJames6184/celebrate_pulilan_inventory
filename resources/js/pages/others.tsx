@@ -1,5 +1,5 @@
-import { Head, Link } from '@inertiajs/react';
 import PublicLayout from '@/layouts/public-layout';
+import { Head, Link } from '@inertiajs/react';
 
 const items = [
     { title: 'Downloads', href: route('others.downloads'), description: 'Find brochures, forms, and visitor guides for Pulilan.' },
@@ -7,7 +7,11 @@ const items = [
     { title: 'News', href: route('others.news'), description: 'Latest announcements and community bulletins.' },
     { title: 'Site Map', href: route('others.site-map'), description: 'A quick guide to the main pages and public services.' },
     { title: 'Announcements', href: route('others.announcements'), description: 'Official notices from municipal offices and tourism events.' },
-    { title: 'Calendar of Events', href: route('others.calendar-of-events'), description: 'See upcoming festivals, celebrations, and community programs.' },
+    {
+        title: 'Calendar of Events',
+        href: route('others.calendar-of-events'),
+        description: 'See upcoming festivals, celebrations, and community programs.',
+    },
     { title: 'Photo Gallery', href: route('others.photo-gallery'), description: 'Browse highlights from Pulilan’s festivals and heritage sites.' },
 ];
 
@@ -16,9 +20,12 @@ export default function Others() {
         <PublicLayout>
             <Head title="Others" />
 
-            <section className="space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
+            <section
+                className="text-scale space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10"
+                style={{ fontSize: '16px' }}
+            >
                 <div className="space-y-3">
-                    <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">Others</p>
+                    <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">Others</p>
                     <h1 className="text-4xl font-semibold text-slate-950">Resources, announcements, and event information.</h1>
                     <p className="max-w-3xl text-base leading-8 text-slate-600">
                         Access useful municipal resources, review upcoming events, and explore photo highlights from Pulilan’s community life.
@@ -32,7 +39,7 @@ export default function Others() {
                             <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
                             <Link
                                 href={item.href}
-                                className="mt-5 inline-flex items-center rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-white transition hover:bg-emerald-800"
+                                className="mt-5 inline-flex items-center rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white uppercase transition hover:bg-emerald-800"
                             >
                                 Learn more
                             </Link>

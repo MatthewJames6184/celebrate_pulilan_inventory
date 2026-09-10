@@ -32,13 +32,13 @@ export default function OthersFaq() {
         <PublicLayout>
             <Head title="Frequently Asked Questions" />
 
-            <section className="relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8">
+            <section className="text-scale relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8" style={{ fontSize: '16px' }}>
                 <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-950/60 via-emerald-900/45 to-slate-950/70" />
 
                 <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/60 bg-white/92 p-6 shadow-2xl shadow-emerald-950/20 backdrop-blur-sm md:p-10">
                     <header className="text-center">
-                        <p className="text-sm uppercase tracking-[0.35em] text-emerald-700">Others</p>
-                        <h1 className="mt-4 text-3xl font-semibold leading-tight text-slate-950 md:text-5xl">Answers to common concerns.</h1>
+                        <p className="text-sm tracking-[0.35em] text-emerald-700 uppercase">Others</p>
+                        <h1 className="mt-4 text-3xl leading-tight font-semibold text-slate-950 md:text-5xl">Answers to common concerns.</h1>
                         <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
                             Browse frequently asked questions about travel, public services, and municipal information in Pulilan.
                         </p>
@@ -53,7 +53,10 @@ export default function OthersFaq() {
 
                             <div className="mt-6 space-y-4">
                                 {faqItems.map((item) => (
-                                    <details key={item.question} className="group rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 open:border-emerald-200 open:bg-emerald-50/40">
+                                    <details
+                                        key={item.question}
+                                        className="group rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 open:border-emerald-200 open:bg-emerald-50/40"
+                                    >
                                         <summary className="cursor-pointer list-none pr-8 text-base font-semibold text-slate-900">
                                             <span>{item.question}</span>
                                         </summary>
@@ -65,7 +68,9 @@ export default function OthersFaq() {
 
                         <aside className="space-y-4 rounded-3xl bg-emerald-50/70 p-6 lg:border lg:border-emerald-200 lg:bg-emerald-50/50">
                             <h2 className="text-xl font-semibold text-slate-950">Still Need Help?</h2>
-                            <p className="text-sm leading-7 text-slate-600">If your concern is not listed here, contact our office directly and we will guide you to the right service channel.</p>
+                            <p className="text-sm leading-7 text-slate-600">
+                                If your concern is not listed here, contact our office directly and we will guide you to the right service channel.
+                            </p>
 
                             <div className="space-y-3 text-sm text-slate-700">
                                 <p className="flex items-center gap-2">
@@ -80,7 +85,7 @@ export default function OthersFaq() {
 
                             <Link
                                 href={route('contact')}
-                                className="inline-flex items-center rounded-full bg-amber-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-emerald-950 transition hover:bg-amber-300"
+                                className="inline-flex items-center rounded-full bg-amber-400 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-emerald-950 uppercase transition hover:bg-amber-300"
                             >
                                 Contact Us
                             </Link>

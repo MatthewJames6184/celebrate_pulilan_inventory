@@ -15,7 +15,7 @@ const schedule = [
 export default function Festivals() {
     return (
         <PublicLayout>
-            <div className="min-h-screen bg-[#123b8f]">
+            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
                 {/* Hero - full cinematic */}
                 <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
                     <img

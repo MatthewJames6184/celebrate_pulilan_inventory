@@ -118,7 +118,7 @@ export default function Attractions() {
 
     return (
         <PublicLayout>
-            <div className="min-h-screen bg-[#1d4ed8]">
+            <div className="text-scale min-h-screen bg-[#1d4ed8]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-72 overflow-hidden">
                     <img
@@ -187,12 +187,7 @@ export default function Attractions() {
                                         </h3>
                                     </div>
                                     <div className="mb-3 flex items-center gap-1.5">
-                                        <svg
-                                            className="h-3 w-3 shrink-0 text-[#f5f0e8]/30"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
+                                        <svg className="h-3 w-3 shrink-0 text-[#f5f0e8]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"

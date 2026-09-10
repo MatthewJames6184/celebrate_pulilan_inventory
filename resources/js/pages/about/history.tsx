@@ -76,7 +76,7 @@ const timeline = [
 export default function History() {
     return (
         <PublicLayout>
-            <div className="min-h-screen bg-[#123b8f]">
+            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-80 overflow-hidden">
                     <img

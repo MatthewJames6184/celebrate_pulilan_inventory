@@ -15,7 +15,7 @@ export default function Detail({ topic, slug }: DetailPageProps) {
     return (
         <PublicLayout>
             <Head title={card.title} />
-            <main className="min-h-screen bg-[#f3e6c9] text-[#102033]">
+            <main className="text-scale min-h-screen bg-[#f3e6c9] text-[#102033]" style={{ fontSize: '16px' }}>
                 <section className="relative h-72 overflow-hidden">
                     <img src={card.image} alt={card.title} className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-[#163b82]/60" />
@@ -48,7 +48,9 @@ export default function Detail({ topic, slug }: DetailPageProps) {
                                     key={item.slug}
                                     href={route('about.detail', { topic, slug: item.slug })}
                                     className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm transition ${
-                                        item.slug === card.slug ? 'bg-[#f5bd2f] font-semibold text-[#102033]' : 'bg-white/5 text-white/75 hover:bg-white/10'
+                                        item.slug === card.slug
+                                            ? 'bg-[#f5bd2f] font-semibold text-[#102033]'
+                                            : 'bg-white/5 text-white/75 hover:bg-white/10'
                                     }`}
                                 >
                                     {item.title}
@@ -56,7 +58,10 @@ export default function Detail({ topic, slug }: DetailPageProps) {
                                 </Link>
                             ))}
                         </div>
-                        <Link href={route('about.attraction')} className="mt-8 inline-flex items-center gap-2 text-sm text-[#f5bd2f] hover:text-white">
+                        <Link
+                            href={route('about.attraction')}
+                            className="mt-8 inline-flex items-center gap-2 text-sm text-[#f5bd2f] hover:text-white"
+                        >
                             <ArrowLeft className="h-4 w-4" /> Back to What to See
                         </Link>
                     </aside>

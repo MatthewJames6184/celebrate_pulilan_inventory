@@ -75,6 +75,71 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    @layer components {
+        .text-scale [class*='text-xs'],
+        .text-scale [class*='text-[10px]'],
+        .text-scale [class*='text-[11px]'] {
+            font-size: 0.625em !important;
+        }
+
+        .text-scale [class*='text-sm'],
+        .text-scale [class*='text-[14px]'] {
+            font-size: 0.875em !important;
+        }
+
+        .text-scale [class*='text-base'] {
+            font-size: 1em !important;
+        }
+
+        .text-scale [class*='text-lg'] {
+            font-size: 1.125em !important;
+        }
+
+        .text-scale [class*='text-xl'] {
+            font-size: 1.25em !important;
+        }
+
+        .text-scale [class*='text-2xl'] {
+            font-size: 1.5em !important;
+        }
+
+        .text-scale [class*='text-3xl'] {
+            font-size: 1.875em !important;
+        }
+
+        .text-scale [class*='text-4xl'] {
+            font-size: 2.25em !important;
+        }
+
+        .text-scale [class*='text-5xl'] {
+            font-size: 3em !important;
+        }
+
+        .text-scale [class*='text-6xl'] {
+            font-size: 3.75em !important;
+        }
+
+        .text-scale [class*='text-7xl'] {
+            font-size: 4.5em !important;
+        }
+
+        .text-scale [class*='text-[8px]'] {
+            font-size: 0.5em !important;
+        }
+
+        .text-scale [class*='text-[9px]'] {
+            font-size: 0.5625em !important;
+        }
+
+        .text-scale [class*='text-[10px]'] {
+            font-size: 0.625em !important;
+        }
+
+        .text-scale [class*='text-[12px]'] {
+            font-size: 0.75em !important;
+        }
+    }
 }
 
 :root {
@@ -154,7 +219,7 @@
     }
 
     body {
-        @apply bg-[#102a72] text-foreground;
+        @apply text-foreground bg-[#102a72];
     }
 
     html {

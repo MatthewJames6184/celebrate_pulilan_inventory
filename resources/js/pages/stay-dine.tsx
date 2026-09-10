@@ -1,5 +1,5 @@
-import { Head, Link } from '@inertiajs/react';
 import PublicLayout from '@/layouts/public-layout';
+import { Head, Link } from '@inertiajs/react';
 
 const cards = [
     {
@@ -10,7 +10,7 @@ const cards = [
     },
     {
         title: 'Restaurants',
-        items: ['Local favorites', 'Family dining', 'Coffee shops', 'Street food'] ,
+        items: ['Local favorites', 'Family dining', 'Coffee shops', 'Street food'],
         href: route('stay.dine.restaurants'),
         description: 'Explore food spots for everyday meals, local flavors, and quick bites around town.',
     },
@@ -21,12 +21,16 @@ export default function StayDine() {
         <PublicLayout>
             <Head title="Where to Stay and Dine" />
 
-            <section className="space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
+            <section
+                className="text-scale space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10"
+                style={{ fontSize: '20px' }}
+            >
                 <div className="space-y-3">
-                    <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">Where to Stay and Dine</p>
+                    <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">Where to Stay and Dine</p>
                     <h1 className="text-4xl font-semibold text-slate-950">Find the best hotels, resorts, and restaurants in Pulilan.</h1>
                     <p className="max-w-3xl text-base leading-8 text-slate-600">
-                        Choose accommodations and dining spots that suit your trip, whether it is festival season, a cultural tour, or a quiet weekend away.
+                        Choose accommodations and dining spots that suit your trip, whether it is festival season, a cultural tour, or a quiet weekend
+                        away.
                     </p>
                 </div>
 

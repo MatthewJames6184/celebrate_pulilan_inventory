@@ -121,25 +121,25 @@ export default function Home() {
                 <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,59,160,0.95)_0%,rgba(37,59,160,0.2)_50%,rgba(37,59,160,0)_100%)]" />
                 <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent" />
                 <div className="mx-auto flex min-h-[600px] max-w-7xl items-start px-6 pt-32 lg:px-10 lg:pt-[28vh]">
-                    <div className="max-w-2xl">
+                    <div className="max-w-2xl" style={{ fontSize: '16px' }}>
                         <div className="mb-6 flex items-center gap-2">
                             <div className="h-px w-8 bg-[#d4a853]" />
-                            <p className="text-sm font-medium tracking-widest text-[#d4a853] uppercase">{slide.eyebrow}</p>
+                            <p className="text-[0.875em] font-medium tracking-widest text-[#d4a853] uppercase">{slide.eyebrow}</p>
                         </div>
-                        <h1 className="font-display mb-6 max-w-2xl text-5xl leading-tight font-semibold whitespace-pre-line text-[#f5f0e8] lg:text-7xl">
+                        <h1 className="font-display mb-6 max-w-2xl text-[3em] leading-tight font-semibold whitespace-pre-line text-[#f5f0e8] lg:text-[4.5em]">
                             {slide.title}
                         </h1>
-                        <p className="mb-10 max-w-xl text-lg leading-relaxed text-[#f5f0e8]/65">{slide.description}</p>
+                        <p className="mb-10 max-w-xl text-[1.125em] leading-relaxed text-[#f5f0e8]/65">{slide.description}</p>
                         <div className="flex flex-wrap gap-4">
                             <Link
                                 href={slide.href}
-                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-8 py-3.5 text-sm font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
+                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-8 py-3.5 text-[0.875em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
                             >
                                 {slide.action} <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
                             <Link
                                 href={route('about')}
-                                className="inline-flex items-center rounded-full border border-white/20 px-8 py-3.5 font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
+                                className="inline-flex items-center rounded-full border border-white/20 px-8 py-3.5 text-[0.875em] font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
                             >
                                 Our Heritage
                             </Link>
@@ -178,24 +178,24 @@ export default function Home() {
             </section>
 
             <section className="border-y border-white/5 bg-[rgb(65,105,225)] px-6 py-7">
-                <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row">
+                <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row" style={{ fontSize: '16px' }}>
                     <label className="relative flex-1">
                         <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/35" />
                         <input
                             name="q"
                             placeholder="Search attractions, food, events..."
-                            className="h-[52px] w-full rounded-lg border border-white bg-[#214f9a] px-11 text-xs text-white outline-none placeholder:text-white/50 focus:border-[#dcae4e]"
+                            className="h-[52px] w-full rounded-lg border border-white bg-[#214f9a] px-11 text-[0.75em] text-white outline-none placeholder:text-white/50 focus:border-[#dcae4e]"
                         />
                     </label>
-                    <select name="type" className="h-[52px] rounded-lg border border-white bg-[#214f9a] px-4 text-xs text-white/60 outline-none">
+                    <select name="type" className="h-[52px] rounded-lg border border-white bg-[#214f9a] px-4 text-[0.75em] text-white/60 outline-none">
                         <option>All Categories</option>
                         <option>Attractions</option>
                         <option>Food</option>
                         <option>Events</option>
                     </select>
-                    <button className="h-[52px] rounded-lg bg-[#dcae4e] px-7 text-xs font-bold text-[#102033] hover:bg-[#edc568]">Search</button>
+                    <button className="h-[52px] rounded-lg bg-[#dcae4e] px-7 text-[0.75em] font-bold text-[#102033] hover:bg-[#edc568]">Search</button>
                 </form>
-                <div className="mx-auto mt-3 flex max-w-5xl flex-wrap gap-2 text-[10px] text-white/40">
+                <div className="mx-auto mt-3 flex max-w-5xl flex-wrap gap-2 text-[0.625em] text-white/40" style={{ fontSize: '16px' }}>
                     <span className="rounded-full border border-white/10 px-3 py-1">Carabao Festival</span>
                     <span className="rounded-full border border-white/10 px-3 py-1">San Isidro Parish</span>
                     <span className="rounded-full border border-white/10 px-3 py-1">Longos Church</span>
@@ -204,9 +204,9 @@ export default function Home() {
             </section>
 
             <section className="bg-[#f3e6c9] px-6 py-16 text-[#102033] lg:py-24">
-                <div className="mx-auto max-w-7xl">
-                    <p className="text-[10px] font-bold tracking-[0.25em] text-[#b7872f] uppercase">More about Pulilan</p>
-                    <h2 className="font-display mt-3 text-3xl font-semibold lg:text-4xl">See what makes Pulilan special</h2>
+                <div className="mx-auto max-w-7xl" style={{ fontSize: '16px' }}>
+                    <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#b7872f] uppercase">More about Pulilan</p>
+                    <h2 className="font-display mt-3 text-[1.875em] font-semibold lg:text-[2.25em]">See what makes Pulilan special</h2>
                     <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
                         {discoveryCards.map((card) => (
                             <Link
@@ -217,8 +217,8 @@ export default function Home() {
                                 <img src={card.image} alt={card.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#163b82] via-[#163b82]/25 to-transparent" />
                                 <div className="absolute inset-x-3 bottom-3">
-                                    <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[9px] font-bold text-[#102033]">{card.badge}</span>
-                                    <h3 className="font-display mt-2 text-sm font-semibold text-white">{card.title}</h3>
+                                    <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[0.5625em] font-bold text-[#102033]">{card.badge}</span>
+                                    <h3 className="font-display mt-2 text-[0.875em] font-semibold text-white">{card.title}</h3>
                                 </div>
                             </Link>
                         ))}
@@ -227,29 +227,33 @@ export default function Home() {
             </section>
 
             <section className="bg-[#123b8f] py-16 text-[#f5f0e8] lg:py-24">
+                
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
                     <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
-                    <div className="flex flex-col justify-center px-8 py-16 lg:px-16">
-                        <p className="text-[10px] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
-                        <h2 className="font-display mt-4 text-4xl text-white">
+                    <div
+                        className="flex flex-col justify-center px-8 pl-16 pr-0 lg:px-16"
+                        style={{ fontSize: '20px' }}
+                    >
+                        <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
+                        <h2 className="font-display mt-4 text-[2.25em] text-white">
                             The Carabao
                             <br />
                             <span className="text-[#e9bc5b] italic">Festival</span>
                         </h2>
-                        <p className="mt-5 max-w-sm text-xs leading-6 text-white/65">
+                        <p className="mt-5 max-w-sm text-[0.75em] leading-[1.5em] text-white/65">
 Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradition in Pulilan where farmers parade their beautifully decorated carabaos and honor San Isidro Labrador, the patron saint of farmers, in thanksgiving for a bountiful harvest.
                         </p>
-                        <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[10px] text-white/60">
+                        <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[0.625em] text-white/60">
                             <span>
-                                <b className="block text-lg text-white">90+</b>Years of Tradition
+                                <b className="block text-[1.125em] text-white">90+</b>Years of Tradition
                             </span>
                             <span>
-                                <b className="block text-lg text-white">19</b>Barangays
+                                <b className="block text-[1.125em] text-white">19</b>Barangays
                             </span>
                         </div>
                         <Link
                             href={route('about.festivals')}
-                            className="mt-7 w-fit rounded-full bg-[#dcae4e] px-5 py-3 text-[10px] font-bold text-[#102033]"
+                            className="mt-7 w-fit rounded-full bg-[#dcae4e] px-5 py-3 text-[0.625em] font-bold text-[#102033]"
                         >
                             Learn About the Festival →
                         </Link>
@@ -258,30 +262,30 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
             </section>
 
             <section className="bg-[#f3ede2] px-6 py-24 text-[#102033]">
-                <div className="mx-auto max-w-4xl text-center">
-                    <p className="text-[10px] font-bold tracking-[0.25em] text-[#b7872f]">— STAY &amp; DINE</p>
-                    <h2 className="font-display mt-3 text-4xl">
+                <div className="mx-auto max-w-4xl text-center" style={{ fontSize: '16px' }}>
+                    <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#b7872f]">— STAY &amp; DINE</p>
+                    <h2 className="font-display mt-3 text-[2.25em]">
                         Where to Stay,
                         <br />
                         What to Eat
                     </h2>
-                    <p className="mx-auto mt-3 max-w-md text-xs leading-5 text-slate-500">
+                    <p className="mx-auto mt-3 max-w-md text-[0.75em] leading-[1.25em] text-slate-500">
                         Plan a comfortable overnight stay or discover local dining experiences to make your visit unforgettable.
                     </p>
                     <div className="mt-10 grid gap-4 text-left md:grid-cols-2">
                         {stayCards.map((card) => (
                             <div key={card.title} className="overflow-hidden rounded-xl border border-[#d8d0c0] bg-white">
                                 <img src={card.image} alt={card.title} className="h-56 w-full object-cover" />
-                                <div className="p-5">
-                                    <h3 className="font-display text-lg">{card.title}</h3>
+                                <div className="p-5" style={{ fontSize: '16px' }}>
+                                    <h3 className="font-display text-[1.125em]">{card.title}</h3>
                                     {card.items.map((item) => (
-                                        <p key={item} className="mt-3 border-b border-slate-100 pb-2 text-[11px] text-slate-500">
+                                        <p key={item} className="mt-3 border-b border-slate-100 pb-2 text-[0.6875em] text-slate-500">
                                             • {item}
                                         </p>
                                     ))}
                                     <Link
                                         href={route(card.href)}
-                                        className="mt-5 block rounded-full border border-[#dcae4e] py-2 text-center text-[10px] font-semibold text-[#9c7324]"
+                                        className="mt-5 block rounded-full border border-[#dcae4e] py-2 text-center text-[0.625em] font-semibold text-[#9c7324]"
                                     >
                                         View All {card.title} →
                                     </Link>
@@ -295,17 +299,17 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
             <section className="bg-[#123b8f] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
-                        <div>
+                        <div style={{ fontSize: '16px' }}>
                             <div className="mb-4 flex items-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">19 Barangays</span>
+                                <span className="text-[0.75em] font-medium tracking-widest text-[#d4a853] uppercase">19 Barangays</span>
                             </div>
-                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-5xl">
+                            <h2 className="font-display mb-6 text-[2.25em] leading-tight font-semibold text-[#f5f0e8] lg:text-[3em]">
                                 Explore Every
                                 <br />
                                 <em className="text-[#d4a853]">Corner of Pulilan</em>
                             </h2>
-                            <p className="mb-8 max-w-xl text-base leading-relaxed text-[#f5f0e8]/75">
+                            <p className="mb-8 max-w-xl text-[1em] leading-relaxed text-[#f5f0e8]/75">
                                 Pulilan is composed of 19 barangays, each with its own character, community, and contribution to the municipality&apos;s
                                 rich cultural tapestry.
                             </p>
@@ -313,13 +317,13 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                 {barangays.map((barangay) => (
                                     <div key={barangay} className="group flex items-center gap-2 border-b border-white/5 py-1.5">
                                         <div className="h-1.5 w-1.5 rounded-full bg-[#d4a853]/40 transition-colors group-hover:bg-[#d4a853]" />
-                                        <span className="text-xs text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">{barangay}</span>
+                                        <span className="text-[0.75em] text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">{barangay}</span>
                                     </div>
                                 ))}
                             </div>
                             <Link
                                 href={route('about')}
-                                className="inline-flex rounded-full border border-[#d4a853]/40 px-7 py-3 text-sm font-medium text-[#d4a853] transition-all hover:bg-[#d4a853]/10"
+                                className="inline-flex rounded-full border border-[#d4a853]/40 px-7 py-3 text-[0.875em] font-medium text-[#d4a853] transition-all hover:bg-[#d4a853]/10"
                             >
                                 About Pulilan
                             </Link>
@@ -333,11 +337,11 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                                     <div className="flex h-16 w-16 items-center justify-center rounded-full ">
-                                        <span className="text-3xl text-[#d4a853]">⌖</span>
+                                        <span className="text-[1.875em] text-[#d4a853]">⌖</span>
                                     </div>
-                                    <p className="font-display text-sm text-[#f5f0e8]/60">Interactive Map</p>
-                                    <p className="text-xs text-[#f5f0e8]/30">Pulilan, Bulacan — 14.9°N 120.8°E</p>
-                                    <span className="mt-2 rounded-full border border-[#d4a853] bg-[#d4a853]/15 px-4 py-1.5 text-xs text-[#d4a853]">
+                                    <p className="font-display text-[0.875em] text-[#f5f0e8]/60">Interactive Map</p>
+                                    <p className="text-[0.75em] text-[#f5f0e8]/30">Pulilan, Bulacan — 14.9°N 120.8°E</p>
+                                    <span className="mt-2 rounded-full border border-[#d4a853] bg-[#d4a853]/15 px-4 py-1.5 text-[0.75em] text-[#d4a853]">
                                         Coming Soon
                                     </span>
                                 </div>
@@ -355,9 +359,9 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
             <section className="bg-[#173f82] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="flex items-end justify-between">
-                        <div>
-                            <p className="text-[10px] font-bold tracking-[0.25em] text-[#dcae4e]">— LATEST UPDATES</p>
-                            <h2 className="font-display mt-3 text-4xl text-white">
+                        <div style={{ fontSize: '16px' }}>
+                            <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— LATEST UPDATES</p>
+                            <h2 className="font-display mt-3 text-[2.25em] text-white">
                                 News &amp;
                                 <br />
                                 <span className="text-[#dcae4e] italic">Events</span>
@@ -365,7 +369,7 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                         </div>
                         <Link
                             href={route('news.archive')}
-                            className="hidden rounded-full border border-white/15 px-4 py-2 text-[10px] text-white/55 hover:border-[#dcae4e] hover:text-white sm:block"
+                            className="hidden rounded-full border border-white/15 px-4 py-2 text-[0.625em] text-white/55 hover:border-[#dcae4e] hover:text-white sm:block"
                         >
                             View All News
                         </Link>
@@ -378,13 +382,13 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                 className="group overflow-hidden rounded-2xl border border-[#d5e0f0] bg-[#eaf0f8] transition-all duration-300 hover:-translate-y-1 hover:border-[#c89b33]"
                             >
                                 <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
-                                <div className="bg-[#f8f9fa] p-5">
-                                    <p className="mb-2 font-mono text-xs text-[#1a3b70]/65">{item.date}</p>
-                                    <h3 className="mb-3 border-b border-[#1a3b70]/20 pb-2 font-display text-base leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
+                                <div className="bg-[#f8f9fa] p-5" style={{ fontSize: '16px' }}>
+                                    <p className="mb-2 font-mono text-[0.75em] text-[#1a3b70]/65">{item.date}</p>
+                                    <h3 className="mb-3 border-b border-[#1a3b70]/20 pb-2 font-display text-[1em] leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
                                         {item.title}
                                     </h3>
-                                    <p className="text-xs leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
-                                    <span className="mt-4 block text-xs font-medium text-[#c89b33]">Read more →</span>
+                                    <p className="text-[0.75em] leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
+                                    <span className="mt-4 block text-[0.75em] font-medium text-[#c89b33]">Read more →</span>
                                 </div>
                             </Link>
                         ))}
@@ -394,30 +398,30 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
 
             <section className="relative overflow-hidden bg-[#123b8f] px-6 py-24">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1E3A8A]" />
-                <div className="relative mx-auto max-w-4xl text-center">
+                <div className="relative mx-auto max-w-4xl text-center" style={{ fontSize: '16px' }}>
                     <div className="mb-4 flex items-center justify-center gap-2">
                         <div className="h-px w-8 bg-[#d4a853]" />
-                        <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Plan Your Visit</span>
+                        <span className="text-[0.75em] font-medium tracking-widest text-[#d4a853] uppercase">Plan Your Visit</span>
                         <div className="h-px w-8 bg-[#d4a853]" />
                     </div>
-                    <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-6xl">
+                    <h2 className="font-display mb-6 text-[2.25em] leading-tight font-semibold text-[#f5f0e8] lg:text-[3.75em]">
                         Ready to Experience
                         <br />
                         <em className="text-[#d4a853]">Pulilan?</em>
                     </h2>
-                    <p className="mx-auto mb-10 max-w-lg text-base leading-relaxed text-[#f5f0e8]/50">
+                    <p className="mx-auto mb-10 max-w-lg text-[1em] leading-relaxed text-[#f5f0e8]/50">
                         Whether you&apos;re a traveler, historian, entrepreneur, or local — Pulilan has something extraordinary waiting for you.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link
                             href={route('contact')}
-                            className="rounded-full bg-[#d4a853] px-9 py-3.5 font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/20 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
+                            className="rounded-full bg-[#d4a853] px-9 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/20 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
                         >
                             Plan Your Visit
                         </Link>
                         <Link
                             href={route('about.attraction')}
-                            className="rounded-full border border-white/20 px-9 py-3.5 font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
+                            className="rounded-full border border-white/20 px-9 py-3.5 text-[1em] font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
                         >
                             Explore What to See
                         </Link>

@@ -42,7 +42,7 @@ export default function About() {
         <PublicLayout>
             <Head title="About Pulilan" />
 
-            <div className="min-h-screen bg-[#123b8f]">
+            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
                 <section className="relative h-80 overflow-hidden">
                     <img
                         src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=1600&h=600&fit=crop&auto=format"
@@ -170,7 +170,10 @@ export default function About() {
                         <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">19 Barangays of Pulilan</h2>
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
                             {barangays.map((barangay) => (
-                                <div key={barangay} className="flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 b  px-3 py-2.5 text-center">
+                                <div
+                                    key={barangay}
+                                    className="b flex min-h-11 items-center justify-center rounded-xl border border-white/5 bg-[#123b8f]/60 px-3 py-2.5 text-center"
+                                >
                                     <span className="text-xs text-[#f5f0e8]/80">{barangay}</span>
                                 </div>
                             ))}

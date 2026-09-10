@@ -20,7 +20,7 @@ export default function Contact() {
     return (
         <PublicLayout>
             <Head title="Contact & Plan Your Visit" />
-            <div className="min-h-screen bg-[#123b8f]">
+            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 text-center">
                     <div className="mb-4 flex items-center justify-center gap-2">

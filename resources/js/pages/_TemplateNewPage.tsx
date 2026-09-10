@@ -16,8 +16,8 @@
  * - All colors should use emerald/slate palette
  */
 
-import { Head } from '@inertiajs/react';
 import PublicLayout from '@/layouts/public-layout';
+import { Head } from '@inertiajs/react';
 
 // [EDIT] Define your page content/sections here
 // Each item in the array becomes a card in the grid
@@ -51,19 +51,22 @@ export default function TemplatePage() {
             <Head title="[EDIT] Page Title" />
 
             {/* Main container - keep styling consistent across all pages */}
-            <section className="space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10">
+            <section
+                className="text-scale space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10"
+                style={{ fontSize: '16px' }}
+            >
                 {/* Header section */}
                 <div className="space-y-3">
                     {/* [EDIT] Category label - appears above main title */}
-                    <p className="text-sm uppercase tracking-[0.3em] text-emerald-700">[EDIT] Page Category</p>
+                    <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">[EDIT] Page Category</p>
 
                     {/* [EDIT] Main page heading */}
                     <h1 className="text-4xl font-semibold text-slate-950">[EDIT] Main Page Title</h1>
 
                     {/* [EDIT] Introductory paragraph - explains what's on the page */}
                     <p className="max-w-3xl text-base leading-8 text-slate-600">
-                        [EDIT] Write an engaging introduction that explains what visitors can find on this page. Keep it
-                        concise but informative to encourage exploration.
+                        [EDIT] Write an engaging introduction that explains what visitors can find on this page. Keep it concise but informative to
+                        encourage exploration.
                     </p>
                 </div>
 
