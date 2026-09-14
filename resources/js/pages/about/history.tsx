@@ -1,4 +1,6 @@
+import ScrollReveal from '@/components/scroll-reveal';
 import PublicLayout from '@/layouts/public-layout';
+import { useEffect, useRef, useState } from 'react';
 
 const timeline = [
     {
@@ -74,6 +76,32 @@ const timeline = [
 ];
 
 export default function History() {
+    const timelineRef = useRef<HTMLDivElement>(null);
+    const [timelineProgress, setTimelineProgress] = useState(0);
+
+    useEffect(() => {
+        const updateTimelineProgress = () => {
+            const element = timelineRef.current;
+
+            if (!element) {
+                return;
+            }
+
+            const bounds = element.getBoundingClientRect();
+            const viewportProgress = (window.innerHeight * 0.68 - bounds.top) / bounds.height;
+            setTimelineProgress(Math.min(1, Math.max(0, viewportProgress)));
+        };
+
+        updateTimelineProgress();
+        window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+        window.addEventListener('resize', updateTimelineProgress);
+
+        return () => {
+            window.removeEventListener('scroll', updateTimelineProgress);
+            window.removeEventListener('resize', updateTimelineProgress);
+        };
+    }, []);
+
     return (
         <PublicLayout>
             <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
@@ -117,13 +145,17 @@ export default function History() {
                         <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Historical Timeline</span>
                     </div>
 
-                    <div className="relative">
+                    <div ref={timelineRef} className="relative">
                         {/* Vertical line */}
-                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.16)-1px)] w-px bg-gradient-to-b from-[#d4a853]/60 via-[#d4a853]/20 to-transparent" />
+                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.16)-1px)] w-px bg-white/10" />
+                        <div
+                            className="absolute top-0 left-[calc(theme(spacing.16)-1px)] w-px origin-top bg-gradient-to-b from-[#d4a853] via-[#d4a853]/70 to-[#3d8b67]"
+                            style={{ height: '100%', transform: `scaleY(${timelineProgress})` }}
+                        />
 
                         <div className="space-y-10">
                             {timeline.map((item, i) => (
-                                <div key={i} className="group relative flex gap-8">
+                                <ScrollReveal key={i} delay={i * 80} className="group relative flex gap-8">
                                     {/* Year node */}
                                     <div className="w-16 shrink-0 text-right">
                                         <span className="font-mono text-xs text-[#f5f0e8]/30 transition-colors group-hover:text-[#d4a853]">
@@ -157,7 +189,7 @@ export default function History() {
                                         </h3>
                                         <p className="text-sm leading-relaxed text-[#f5f0e8]/50">{item.desc}</p>
                                     </div>
-                                </div>
+                                </ScrollReveal>
                             ))}
                         </div>
                     </div>
@@ -191,24 +223,23 @@ export default function History() {
                                     img: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=600&h=400&fit=crop&auto=format',
                                     desc: 'Bahay na bato scattered across the historic town center.',
                                 },
-                            ].map((s) => (
-                                <div
-                                    key={s.name}
-                                    className="group overflow-hidden rounded-2xl border border-white/5 bg-[#123b8f] transition-all hover:border-[#d4a853]/20"
-                                >
-                                    <div className="h-44 overflow-hidden">
-                                        <img
-                                            src={s.img}
-                                            alt={s.name}
-                                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
+                            ].map((s, i) => (
+                                <ScrollReveal key={s.name} delay={i * 100}>
+                                    <div className="group overflow-hidden rounded-2xl border border-white/5 bg-[#123b8f] transition-all hover:border-[#d4a853]/20">
+                                        <div className="h-44 overflow-hidden">
+                                            <img
+                                                src={s.img}
+                                                alt={s.name}
+                                                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        </div>
+                                        <div className="p-5">
+                                            <span className="font-mono text-xs text-[#d4a853]">{s.period}</span>
+                                            <h4 className="font-display mt-1 mb-2 font-semibold text-[#f5f0e8]">{s.name}</h4>
+                                            <p className="text-xs leading-relaxed text-[#f5f0e8]/40">{s.desc}</p>
+                                        </div>
                                     </div>
-                                    <div className="p-5">
-                                        <span className="font-mono text-xs text-[#d4a853]">{s.period}</span>
-                                        <h4 className="font-display mt-1 mb-2 font-semibold text-[#f5f0e8]">{s.name}</h4>
-                                        <p className="text-xs leading-relaxed text-[#f5f0e8]/40">{s.desc}</p>
-                                    </div>
-                                </div>
+                                </ScrollReveal>
                             ))}
                         </div>
                     </div>

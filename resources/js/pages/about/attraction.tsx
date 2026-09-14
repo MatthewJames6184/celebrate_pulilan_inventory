@@ -118,7 +118,7 @@ export default function Attractions() {
 
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#1d4ed8]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-72 overflow-hidden">
                     <img
@@ -126,7 +126,7 @@ export default function Attractions() {
                         alt="Pulilan attractions"
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/60 to-[#1d4ed8]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center pb-14 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
@@ -140,7 +140,7 @@ export default function Attractions() {
                 </div>
 
                 {/* Filters */}
-                <div className="sticky top-20 z-30 border-b border-white/10 bg-[#1d4ed8]/95 backdrop-blur-md">
+                <div className="sticky top-20 z-30 border-b border-white/10 bg-[#4169E1]/95 backdrop-blur-md">
                     <div className="mx-auto max-w-7xl px-6 py-4 lg:px-10">
                         <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
                             {categories.map((cat) => (
@@ -167,7 +167,7 @@ export default function Attractions() {
                         {filtered.map((item, i) => (
                             <article
                                 key={i}
-                                className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#1e3a8a] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/50"
+                                className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#f3ede2] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/50"
                             >
                                 <div className="relative h-52 overflow-hidden">
                                     <img
@@ -182,12 +182,12 @@ export default function Attractions() {
                                 </div>
                                 <div className="p-5">
                                     <div className="mb-2 flex items-start justify-between gap-2">
-                                        <h3 className="font-display text-base leading-snug font-semibold text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
+                                        <h3 className="font-display text-base leading-snug font-semibold text-[#000080] transition-colors group-hover:text-[#4169E1]">
                                             {item.name}
                                         </h3>
                                     </div>
                                     <div className="mb-3 flex items-center gap-1.5">
-                                        <svg className="h-3 w-3 shrink-0 text-[#f5f0e8]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-3 w-3 shrink-0 text-[#1e3a8a]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -195,16 +195,16 @@ export default function Attractions() {
                                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                                             />
                                         </svg>
-                                        <span className="text-xs text-[#f5f0e8]/35">{item.location}</span>
+                                        <span className="text-xs text-[#000080]/35">{item.location}</span>
                                     </div>
-                                    <p className="line-clamp-3 text-xs leading-relaxed text-[#f5f0e8]/50">{item.desc}</p>
+                                    <p className="line-clamp-3 text-xs leading-relaxed text-[#000080]/50">{item.desc}</p>
                                 </div>
                             </article>
                         ))}
                     </div>
 
                     {filtered.length === 0 && (
-                        <div className="font-display py-20 text-center text-xl text-[#f5f0e8]/30">No attractions found in this category.</div>
+                        <div className="font-display py-20 text-center text-xl text-[#000080]/30">No attractions found in this category.</div>
                     )}
                 </div>
             </div>

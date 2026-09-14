@@ -62,7 +62,7 @@ export default function About() {
                     </div>
                 </section>
 
-                <section className="border-y border-[#4169E1]/5 bg-[#4169E1]">
+                <section className="border-y border-[#4169E1]/5 border-bt-[#4169E1] bg-[#4169E1]">
                     <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px px-6 py-10 md:grid-cols-4">
                         {facts.map((fact) => (
                             <div key={fact.label} className="px-6 text-center">

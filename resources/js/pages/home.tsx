@@ -142,7 +142,7 @@ export default function Home() {
             <Head title="Discover Pulilan" />
 
             <section
-                className="relative isolate min-h-[600px] overflow-hidden bg-[#0b1f4d] lg:h-screen"
+                className="relative isolate min-h-[600px] overflow-hidden bg-[#0b1f4d] lg:h-[calc(100vh-0.75rem)]"
                 onTouchStart={(event) => {
                     touchStartX.current = event.changedTouches[0]?.clientX ?? null;
                 }}
@@ -167,7 +167,7 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(65,105,225,0.90)_0%,rgba(65,105,225,0.28)_50%,rgba(7,18,55,0.62)_100%)] lg:block" />
                 <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent lg:block" />
-                <div className="mx-auto flex max-w-7xl items-start px-6 py-10 lg:min-h-[600px] lg:px-10 lg:pt-[28vh]">
+                <div className="mx-auto flex max-w-7xl items-start px-6 py-10 lg:min-h-[600px] lg:px-[4.5rem] lg:pt-[28vh]">
                     <div className="max-w-2xl" style={{ fontSize: '16px' }}>
                         <div className="mb-5 flex items-center gap-2 lg:mb-6">
                             <div className="h-px w-8 bg-[#d4a853]" />
@@ -180,20 +180,20 @@ export default function Home() {
                         <div className="flex flex-wrap gap-4">
                             <Link
                                 href={slide.href}
-                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-8 py-3.5 text-[0.875em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
+                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-6 py-3 text-[0.875em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a]"
                             >
                                 {slide.action} <ArrowRight className="h-3.5 w-3.5" />
                             </Link>
                             <Link
                                 href={route('about')}
-                                className="inline-flex items-center rounded-full border border-white/40 px-8 py-3.5 text-[0.875em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10"
+                                className="inline-flex items-center rounded-full border border-white/40 px-6 py-3 text-[0.875em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10"
                             >
                                 Our Heritage
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="relative z-10 flex justify-center pb-8 lg:absolute lg:inset-x-0 lg:bottom-10 lg:pb-0">
+                <div className="relative z-10 flex justify-center pb-8 lg:absolute lg:inset-x-0 lg:bottom-8 lg:pb-0">
                     <div className="flex items-center gap-2">
                         {heroSlides.map((item, index) => (
                             <button

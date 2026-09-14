@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Grid2X2, List, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
+import ScrollReveal from '@/components/scroll-reveal';
 import PublicLayout from '@/layouts/public-layout';
 
 export type DirectoryItem = {
@@ -58,16 +59,24 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
 
                 <main className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-                        <div className="flex rounded-2xl border border-white/10 bg-[#1e40af] p-1.5">
+                        <div className="relative flex rounded-2xl border border-white/10 bg-[#1e40af] p-1.5">
+                            <span
+                                className={`absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] rounded-xl bg-[#d4a853] shadow-lg transition-transform duration-500 ease-out ${
+                                    type === 'restaurants' ? 'translate-x-full' : 'translate-x-0'
+                                }`}
+                                aria-hidden="true"
+                            />
                             <Link
                                 href={route('stay.dine.accommodations')}
-                                className={`rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition ${type === 'accommodations' ? 'bg-[#d4a853] text-[#0b1640] shadow-lg' : 'text-white/45 hover:text-white/75'}`}
+                                viewTransition
+                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'accommodations' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🏨 &nbsp; Accommodations
                             </Link>
                             <Link
                                 href={route('stay.dine.restaurants')}
-                                className={`rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition ${type === 'restaurants' ? 'bg-[#d4a853] text-[#0b1640] shadow-lg' : 'text-white/45 hover:text-white/75'}`}
+                                viewTransition
+                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'restaurants' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🍽 &nbsp; Restaurants &amp; Cafés
                             </Link>
@@ -115,41 +124,45 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                         ))}
                     </div>
 
-                    <div className={viewMode === 'grid' ? 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-4'}>
-                        {filteredItems.map((item) => {
+                    <div
+                        key={viewMode}
+                        className={`${viewMode === 'grid' ? 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-4'} animate-[fade-up_500ms_ease-out]`}
+                    >
+                        {filteredItems.map((item, index) => {
                             const slug = item.name
                                 .toLowerCase()
                                 .trim()
                                 .replace(/\s+/g, '-')
                                 .replace(/[^a-z0-9-]/g, '');
                             return (
-                                <Link
-                                    key={item.name}
-                                    href={route('stay.dine.detail', { type, slug })}
-                                    className={`group overflow-hidden rounded-2xl border border-[#cbd8e8] bg-[#EAF0F8] text-left transition duration-300 hover:-translate-y-1 hover:border-[#C89B33] hover:shadow-xl hover:shadow-[#1A3B70]/15 ${viewMode === 'list' ? 'flex' : ''}`}
-                                >
-                                    <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>
-                                        <img
-                                            src={item.image ?? imageSubHeader.src}
-                                            alt={item.name}
-                                            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#1e40af]/85 to-transparent" />
-                                        <span className="absolute top-3 left-2 rounded-full bg-[#d4a853] px-2 py-0.5 text-[0.625em] font-bold text-[#0b1640]">
-                                            {item.category}
-                                        </span>
-                                    </div>
-                                    <div className="min-w-0 flex-1 bg-[#F8F9FA] p-4">
-                                        <h2 className="font-display truncate text-[0.875em] font-semibold text-[#1A3B70] transition-colors group-hover:text-[#C89B33]">
-                                            {item.name}
-                                        </h2>
-                                        <p className="mt-1 text-[0.625em] text-[#1A3B70]/65">⌖ {item.area}</p>
-                                        <p className="mt-2 line-clamp-2 text-[0.625em] leading-relaxed text-[#1A3B70]/75">{item.summary}</p>
-                                        <div className="mt-3 text-[0.625em] text-[#C89B33]">
-                                            ★★★★★ <span className="ml-1 text-[#1A3B70]/60">4.7 · 38 reviews</span>
+                                <ScrollReveal key={item.name} delay={index * 70}>
+                                    <Link
+                                        href={route('stay.dine.detail', { type, slug })}
+                                        className={`group block h-full overflow-hidden rounded-2xl border border-[#cbd8e8] bg-[#EAF0F8] text-left transition duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-[#C89B33] hover:shadow-xl hover:shadow-[#1A3B70]/15 ${viewMode === 'list' ? 'flex' : ''}`}
+                                    >
+                                        <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>
+                                            <img
+                                                src={item.image ?? imageSubHeader.src}
+                                                alt={item.name}
+                                                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#1e40af]/85 to-transparent" />
+                                            <span className="absolute top-3 left-2 rounded-full bg-[#d4a853] px-2 py-0.5 text-[0.625em] font-bold text-[#0b1640]">
+                                                {item.category}
+                                            </span>
                                         </div>
-                                    </div>
-                                </Link>
+                                        <div className="min-w-0 flex-1 bg-[#F8F9FA] p-4">
+                                            <h2 className="font-display truncate text-[0.875em] font-semibold text-[#1A3B70] transition-colors group-hover:text-[#C89B33]">
+                                                {item.name}
+                                            </h2>
+                                            <p className="mt-1 text-[0.625em] text-[#1A3B70]/65">⌖ {item.area}</p>
+                                            <p className="mt-2 line-clamp-2 text-[0.625em] leading-relaxed text-[#1A3B70]/75">{item.summary}</p>
+                                            <div className="mt-3 text-[0.625em] text-[#C89B33]">
+                                                ★★★★★ <span className="ml-1 text-[#1A3B70]/60">4.7 · 38 reviews</span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </ScrollReveal>
                             );
                         })}
                     </div>
