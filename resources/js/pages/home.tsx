@@ -2,13 +2,22 @@ import { featuredNews, newsItems } from '@/data/news';
 import PublicLayout from '@/layouts/public-layout';
 import { Head, Link } from '@inertiajs/react';
 import { ArrowRight, ChevronLeft, ChevronRight, Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const heroSlides = [
     {
+        eyebrow: 'OUR HERITAGE',
+        title: 'Centuries of\nStories to Tell',
+        description:
+            "Walk through Pulilan's storied past, from Spanish-era churches to ancestral homes and the traditions that shaped our community.",
+        image: '/images/hero-images/hero-1.jpg',
+        href: route('about.history'),
+        action: 'Our History',
+    },
+    {
         eyebrow: 'WELCOME TO PULILAN',
         title: 'Where Heritage\nMeets Horizons',
-        description: 'Discover the Carabao Capital of the Philippines — a municipality rich in colonial history, vibrant festivals, and warm Filipino hospitality.',
+        description: 'Discover a welcoming municipality filled with living heritage, vibrant festivals, and warm Filipino hospitality.',
         image: '/images/hero-images/hero-3.jpg',
         href: route('about.attraction'),
         action: 'Explore Pulilan',
@@ -16,49 +25,68 @@ const heroSlides = [
     {
         eyebrow: 'PLAN YOUR VISIT',
         title: 'Your Next\nAdventure Awaits',
-        description: 'From sacred churches to scenic riverbanks, Pulilan offers a journey through centuries of faith, culture, and natural beauty.',
+        description: 'From sacred churches to scenic riverbanks, Pulilan offers a memorable journey through culture and nature.',
         image: '/images/image-4.jpg',
         href: route('contact'),
         action: 'Start Planning',
     },
     {
-        eyebrow: 'PULILAN FESTIVALS',
-        title: 'Celebrate With\nOur Community',
-        description: 'Experience the Carabao Festival — a UNESCO-recognized tradition where decorated water buffaloes kneel before San Isidro Labrador.',
-        image: 'https://images.unsplash.com/photo-1630192226649-1934968dca48?w=1600&h=900&fit=crop&auto=format',
-        href: route('about.festivals'),
-        action: 'See Festivals',
-    },
-    {
         eyebrow: 'LOCAL CUISINE',
         title: 'Taste the\nFlavors of Bulacan',
-        description: 'Savor authentic Bulakeño dishes — from crispy pata to classic kare-kare, prepared with generations of culinary tradition.',
+        description: 'Savor authentic Bulakeño dishes prepared with generations of local culinary tradition.',
         image: 'https://images.unsplash.com/photo-1537495988501-f9cd94a78f3e?w=1600&h=900&fit=crop&auto=format',
         href: `${route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' })}`,
         action: 'Discover Cuisine',
     },
-    {
-        eyebrow: 'OUR HERITAGE',
-        title: 'Centuries of\nStories to Tell',
-        description: "Walk through Pulilan's storied past — from Spanish-era churches and ancestral homes to the battles that shaped our nation.",
-        image: '/images/hero-images/hero-1.jpg',
-        href: route('about.history'),
-        action: 'Our History',
-    },
 ];
 
 const discoveryCards = [
-    { title: 'Religious', badge: 'Faith and tradition', image: '/images/carousel-images/Religious.jpg', href: `${route('about.attraction')}?category=religious` },
+    {
+        title: 'Religious',
+        badge: 'Faith and tradition',
+        image: '/images/carousel-images/Religious.jpg',
+        href: `${route('about.attraction')}?category=religious`,
+    },
     { title: 'Historical', badge: 'Stories from the past', image: '/images/carousel-images/Historical.jpg', href: route('about.history') },
-    { title: 'Heritage', badge: 'Walk through our story', image: '/images/carousel-images/Heritage.jpg', href: `${route('about.attraction')}?category=heritage` },
-    { title: 'Cuisine', badge: 'Taste local flavors', image: '/images/carousel-images/Cuisine.jpg', href: route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' }) },
-    { title: 'Shopping', badge: 'Find local favorites', image: '/images/carousel-images/Shopping.jpg', href: `${route('about.attraction')}?category=shopping` },
-    { title: 'Education', badge: 'Learning in Pulilan', image: '/images/carousel-images/Education.jpg', href: `${route('about.attraction')}?category=education` },
-    { title: 'Health', badge: 'Care for the community', image: '/images/carousel-images/Health.jpg', href: `${route('about.attraction')}?category=health` },
+    {
+        title: 'Heritage',
+        badge: 'Walk through our story',
+        image: '/images/carousel-images/Heritage.jpg',
+        href: `${route('about.attraction')}?category=heritage`,
+    },
+    {
+        title: 'Cuisine',
+        badge: 'Taste local flavors',
+        image: '/images/carousel-images/Cuisine.jpg',
+        href: route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' }),
+    },
+    {
+        title: 'Shopping',
+        badge: 'Find local favorites',
+        image: '/images/carousel-images/Shopping.jpg',
+        href: `${route('about.attraction')}?category=shopping`,
+    },
+    {
+        title: 'Education',
+        badge: 'Learning in Pulilan',
+        image: '/images/carousel-images/Education.jpg',
+        href: `${route('about.attraction')}?category=education`,
+    },
+    {
+        title: 'Health',
+        badge: 'Care for the community',
+        image: '/images/carousel-images/Health.jpg',
+        href: `${route('about.attraction')}?category=health`,
+    },
     { title: 'Attractions', badge: 'Places worth visiting', image: '/images/carousel-images/Attraction.jpg', href: route('about.attraction') },
     { title: 'Mission & vision', badge: 'Our direction', image: '/images/carousel-images/Mission-and-Vision.jpg', href: route('about') },
     { title: 'Resorts', badge: 'Stay and unwind', image: '/images/carousel-images/Resorts.jpg', href: route('stay.dine.accommodations') },
-    { title: 'Local products', badge: 'Made nearby', image: '/images/carousel-images/Local-Products.jpg', href: `${route('about.attraction')}?category=shopping` },
+    {
+        title: 'Local products',
+        badge: 'Made nearby',
+        image: '/images/carousel-images/Local-Products.jpg',
+        href: `${route('about.attraction')}?category=shopping`,
+    },
     { title: 'Festivals', badge: 'Feel the Pulilan spirit', image: '/images/carousel-images/Festival.jpg', href: route('about.festivals') },
 ];
 
@@ -101,6 +129,7 @@ const barangays = [
 
 export default function Home() {
     const [active, setActive] = useState(0);
+    const touchStartX = useRef<number | null>(null);
     const slide = heroSlides[active];
 
     useEffect(() => {
@@ -112,24 +141,42 @@ export default function Home() {
         <PublicLayout>
             <Head title="Discover Pulilan" />
 
-            <section className="relative isolate h-screen min-h-[600px] overflow-hidden bg-[#0b1f4d]">
+            <section
+                className="relative isolate min-h-[600px] overflow-hidden bg-[#0b1f4d] lg:h-screen"
+                onTouchStart={(event) => {
+                    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+                }}
+                onTouchEnd={(event) => {
+                    if (touchStartX.current === null) {
+                        return;
+                    }
+
+                    const distance = event.changedTouches[0].clientX - touchStartX.current;
+
+                    if (Math.abs(distance) > 50) {
+                        setActive((current) => (current + (distance < 0 ? 1 : -1) + heroSlides.length) % heroSlides.length);
+                    }
+
+                    touchStartX.current = null;
+                }}
+            >
                 <img
                     src={slide.image}
                     alt={slide.title}
-                    className="absolute inset-0 -z-20 h-full w-full object-cover object-center transition-opacity duration-700"
+                    className="relative block h-[38vh] min-h-[250px] w-full object-cover object-center transition-opacity duration-700 lg:absolute lg:inset-0 lg:-z-20 lg:h-full"
                 />
-                <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(37,59,160,0.95)_0%,rgba(37,59,160,0.2)_50%,rgba(37,59,160,0)_100%)]" />
-                <div className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent" />
-                <div className="mx-auto flex min-h-[600px] max-w-7xl items-start px-6 pt-32 lg:px-10 lg:pt-[28vh]">
+                <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(65,105,225,0.90)_0%,rgba(65,105,225,0.28)_50%,rgba(7,18,55,0.62)_100%)] lg:block" />
+                <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-48 bg-gradient-to-t from-[#0b1f4d] to-transparent lg:block" />
+                <div className="mx-auto flex max-w-7xl items-start px-6 py-10 lg:min-h-[600px] lg:px-10 lg:pt-[28vh]">
                     <div className="max-w-2xl" style={{ fontSize: '16px' }}>
-                        <div className="mb-6 flex items-center gap-2">
+                        <div className="mb-5 flex items-center gap-2 lg:mb-6">
                             <div className="h-px w-8 bg-[#d4a853]" />
                             <p className="text-[0.875em] font-medium tracking-widest text-[#d4a853] uppercase">{slide.eyebrow}</p>
                         </div>
-                        <h1 className="font-display mb-6 max-w-2xl text-[3em] leading-tight font-semibold whitespace-pre-line text-[#f5f0e8] lg:text-[4.5em]">
+                        <h1 className="font-display mb-5 max-w-2xl text-[3em] leading-[0.95] font-semibold whitespace-pre-line text-[#f5f0e8] lg:mb-6 lg:text-[4.5em]">
                             {slide.title}
                         </h1>
-                        <p className="mb-10 max-w-xl text-[1.125em] leading-relaxed text-[#f5f0e8]/65">{slide.description}</p>
+                        <p className="mb-8 max-w-xl text-[1.125em] leading-relaxed text-[#f5f0e8]/90 lg:mb-10">{slide.description}</p>
                         <div className="flex flex-wrap gap-4">
                             <Link
                                 href={slide.href}
@@ -139,14 +186,14 @@ export default function Home() {
                             </Link>
                             <Link
                                 href={route('about')}
-                                className="inline-flex items-center rounded-full border border-white/20 px-8 py-3.5 text-[0.875em] font-medium text-[#f5f0e8] transition-all hover:border-white/40 hover:bg-white/5"
+                                className="inline-flex items-center rounded-full border border-white/40 px-8 py-3.5 text-[0.875em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10"
                             >
                                 Our Heritage
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="absolute inset-x-0 bottom-10 z-10 flex justify-center">
+                <div className="relative z-10 flex justify-center pb-8 lg:absolute lg:inset-x-0 lg:bottom-10 lg:pb-0">
                     <div className="flex items-center gap-2">
                         {heroSlides.map((item, index) => (
                             <button
@@ -158,7 +205,7 @@ export default function Home() {
                             />
                         ))}
                     </div>
-                    <div className="absolute right-6 bottom-0 flex gap-2 lg:right-10">
+                    <div className="absolute right-6 bottom-8 flex gap-2 lg:right-10 lg:bottom-0">
                         <button
                             type="button"
                             onClick={() => setActive((active - 1 + heroSlides.length) % heroSlides.length)}
@@ -187,13 +234,18 @@ export default function Home() {
                             className="h-[52px] w-full rounded-lg border border-white bg-[#214f9a] px-11 text-[0.75em] text-white outline-none placeholder:text-white/50 focus:border-[#dcae4e]"
                         />
                     </label>
-                    <select name="type" className="h-[52px] rounded-lg border border-white bg-[#214f9a] px-4 text-[0.75em] text-white/60 outline-none">
+                    <select
+                        name="type"
+                        className="h-[52px] rounded-lg border border-white bg-[#214f9a] px-4 text-[0.75em] text-white/60 outline-none"
+                    >
                         <option>All Categories</option>
                         <option>Attractions</option>
                         <option>Food</option>
                         <option>Events</option>
                     </select>
-                    <button className="h-[52px] rounded-lg bg-[#dcae4e] px-7 text-[0.75em] font-bold text-[#102033] hover:bg-[#edc568]">Search</button>
+                    <button className="h-[52px] rounded-lg bg-[#dcae4e] px-7 text-[0.75em] font-bold text-[#102033] hover:bg-[#edc568]">
+                        Search
+                    </button>
                 </form>
                 <div className="mx-auto mt-3 flex max-w-5xl flex-wrap gap-2 text-[0.625em] text-white/40" style={{ fontSize: '16px' }}>
                     <span className="rounded-full border border-white/10 px-3 py-1">Carabao Festival</span>
@@ -214,10 +266,16 @@ export default function Home() {
                                 href={card.href}
                                 className="group relative h-52 overflow-hidden rounded-xl shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl"
                             >
-                                <img src={card.image} alt={card.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                                <img
+                                    src={card.image}
+                                    alt={card.title}
+                                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#163b82] via-[#163b82]/25 to-transparent" />
                                 <div className="absolute inset-x-3 bottom-3">
-                                    <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[0.5625em] font-bold text-[#102033]">{card.badge}</span>
+                                    <span className="inline-block rounded-full bg-[#f5bd2f] px-2 py-1 text-[0.5625em] font-bold text-[#102033]">
+                                        {card.badge}
+                                    </span>
                                     <h3 className="font-display mt-2 text-[0.875em] font-semibold text-white">{card.title}</h3>
                                 </div>
                             </Link>
@@ -226,14 +284,10 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="bg-[#123b8f] py-16 text-[#f5f0e8] lg:py-24">
-                
+            <section className="bg-[#4169E1] py-16 text-[#f5f0e8] lg:py-24">
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
                     <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
-                    <div
-                        className="flex flex-col justify-center px-8 pl-16 pr-0 lg:px-16"
-                        style={{ fontSize: '20px' }}
-                    >
+                    <div className="flex flex-col justify-center px-8 pr-0 pl-16 lg:px-16" style={{ fontSize: '20px' }}>
                         <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
                         <h2 className="font-display mt-4 text-[2.25em] text-white">
                             The Carabao
@@ -241,7 +295,9 @@ export default function Home() {
                             <span className="text-[#e9bc5b] italic">Festival</span>
                         </h2>
                         <p className="mt-5 max-w-sm text-[0.75em] leading-[1.5em] text-white/65">
-Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradition in Pulilan where farmers parade their beautifully decorated carabaos and honor San Isidro Labrador, the patron saint of farmers, in thanksgiving for a bountiful harvest.
+                            Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradition in Pulilan where farmers parade their
+                            beautifully decorated carabaos and honor San Isidro Labrador, the patron saint of farmers, in thanksgiving for a bountiful
+                            harvest.
                         </p>
                         <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[0.625em] text-white/60">
                             <span>
@@ -310,8 +366,8 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                 <em className="text-[#d4a853]">Corner of Pulilan</em>
                             </h2>
                             <p className="mb-8 max-w-xl text-[1em] leading-relaxed text-[#f5f0e8]/75">
-                                Pulilan is composed of 19 barangays, each with its own character, community, and contribution to the municipality&apos;s
-                                rich cultural tapestry.
+                                Pulilan is composed of 19 barangays, each with its own character, community, and contribution to the
+                                municipality&apos;s rich cultural tapestry.
                             </p>
                             <div className="mb-8 grid grid-cols-2 gap-x-6 gap-y-2">
                                 {barangays.map((barangay) => (
@@ -336,7 +392,7 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                     className="h-full w-full object-cover"
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                                    <div className="flex h-16 w-16 items-center justify-center rounded-full ">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full">
                                         <span className="text-[1.875em] text-[#d4a853]">⌖</span>
                                     </div>
                                     <p className="font-display text-[0.875em] text-[#f5f0e8]/60">Interactive Map</p>
@@ -356,12 +412,12 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                 </div>
             </section>
 
-            <section className="bg-[#173f82] px-6 py-24">
+            <section className="bg-[#f3ede2] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="flex items-end justify-between">
                         <div style={{ fontSize: '16px' }}>
                             <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— LATEST UPDATES</p>
-                            <h2 className="font-display mt-3 text-[2.25em] text-white">
+                            <h2 className="font-display mt-3 text-[2.25em] text-[#000080]">
                                 News &amp;
                                 <br />
                                 <span className="text-[#dcae4e] italic">Events</span>
@@ -384,7 +440,7 @@ Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradi
                                 <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
                                 <div className="bg-[#f8f9fa] p-5" style={{ fontSize: '16px' }}>
                                     <p className="mb-2 font-mono text-[0.75em] text-[#1a3b70]/65">{item.date}</p>
-                                    <h3 className="mb-3 border-b border-[#1a3b70]/20 pb-2 font-display text-[1em] leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
+                                    <h3 className="font-display mb-3 border-b border-[#1a3b70]/20 pb-2 text-[1em] leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
                                         {item.title}
                                     </h3>
                                     <p className="text-[0.75em] leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>

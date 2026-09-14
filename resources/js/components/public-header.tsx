@@ -56,14 +56,14 @@ export default function PublicHeader() {
         >
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
                 <Link href={route('home')} className="group flex items-center gap-3">
-                    <span className="font-display flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a853] to-[#c09040] text-sm leading-none font-bold text-[#0d1b2a] shadow-lg">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a853] to-[#c09040] text-sm leading-none font-bold text-[#0d1b2a] shadow-lg">
                         P
                     </span>
                     <span className="leading-none">
-                        <span className="font-display block text-lg font-semibold tracking-tight transition-colors duration-200 group-hover:text-[#d4a853]">
+                        <span className="block text-lg font-semibold tracking-tight transition-colors duration-200 group-hover:text-[#d4a853]">
                             Discover
                         </span>
-                        <span className="font-display mt-1 block text-sm tracking-widest text-[#d4a853] uppercase italic">Pulilan</span>
+                        <span className="mt-1 block text-sm tracking-widest text-[#d4a853] uppercase italic">Pulilan</span>
                     </span>
                 </Link>
 
@@ -76,7 +76,7 @@ export default function PublicHeader() {
                                 'rounded-full px-4 py-2 text-sm font-medium transition-all duration-200',
                                 currentPath === normalizePath(item.url)
                                     ? 'bg-[#d4a853]/20 text-[#d4a853]'
-                                    : 'text-white hover:bg-white/5 hover:text-[#f5f0e8]',
+                                    : 'text-white/90 hover:bg-white/5 hover:text-[#f5f0e8]',
                             )}
                         >
                             {item.title}
@@ -86,7 +86,7 @@ export default function PublicHeader() {
                         <span
                             className={cn(
                                 'flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium',
-                                currentPath.startsWith('/stay-dine') ? 'bg-[#d4a853]/20 text-[#d4a853]' : 'text-white',
+                                currentPath.startsWith('/stay-dine') ? 'bg-[#d4a853]/20 text-[#d4a853]' : 'text-white/90',
                             )}
                         >
                             Stay &amp; Dine <ChevronDown className="h-3 w-3" />
@@ -111,28 +111,60 @@ export default function PublicHeader() {
                 <div className="hidden items-center gap-3 lg:flex">
                     {auth.user ? (
                         <div className="relative">
-                            <button onClick={() => setProfileOpen((open) => !open)} className="flex items-center gap-2 rounded-full px-3 py-2 text-xs text-white/80 transition hover:bg-white/10 hover:text-white">
-                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2e54e8] text-sm font-bold text-white">{auth.user.name.charAt(0)}</span>
+                            <button
+                                onClick={() => setProfileOpen((open) => !open)}
+                                className="flex items-center gap-2 rounded-full px-3 py-2 text-xs text-white/80 transition hover:bg-white/10 hover:text-white"
+                            >
+                                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2e54e8] text-sm font-bold text-white">
+                                    {auth.user.name.charAt(0)}
+                                </span>
                                 <span>{auth.user.name.split(' ')[0]}</span>
                                 <ChevronDown className={cn('h-3.5 w-3.5 transition-transform', profileOpen && 'rotate-180')} />
                             </button>
                             {profileOpen && (
                                 <div className="absolute top-12 right-0 w-52 overflow-hidden rounded-2xl border border-white/10 bg-[#04091f] shadow-2xl">
                                     <div className="flex items-center gap-3 border-b border-white/5 p-4">
-                                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2e54e8] font-bold">{auth.user.name.charAt(0)}</span>
-                                        <div><p className="text-sm font-semibold text-white">{auth.user.name}</p><p className="text-xs text-white/35">Visitor Account</p></div>
+                                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2e54e8] font-bold">
+                                            {auth.user.name.charAt(0)}
+                                        </span>
+                                        <div>
+                                            <p className="text-sm font-semibold text-white">{auth.user.name}</p>
+                                            <p className="text-xs text-white/35">Visitor Account</p>
+                                        </div>
                                     </div>
-                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">⊞ &nbsp; Dashboard</Link>
-                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">🔖 &nbsp; My Saved Places</Link>
-                                    <Link href={route('dashboard')} className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white">📅 &nbsp; My Itinerary</Link>
-                                    <Link href={route('logout')} method="post" as="button" className="w-full border-t border-white/5 px-4 py-3 text-left text-sm text-red-400 hover:bg-red-500/10">Sign out</Link>
+                                    <Link
+                                        href={route('dashboard')}
+                                        className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white"
+                                    >
+                                        ⊞ &nbsp; Dashboard
+                                    </Link>
+                                    <Link
+                                        href={route('dashboard')}
+                                        className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white"
+                                    >
+                                        🔖 &nbsp; My Saved Places
+                                    </Link>
+                                    <Link
+                                        href={route('dashboard')}
+                                        className="block px-4 py-3 text-sm text-white/60 hover:bg-white/5 hover:text-white"
+                                    >
+                                        📅 &nbsp; My Itinerary
+                                    </Link>
+                                    <Link
+                                        href={route('logout')}
+                                        method="post"
+                                        as="button"
+                                        className="w-full border-t border-white/5 px-4 py-3 text-left text-sm text-red-400 hover:bg-red-500/10"
+                                    >
+                                        Sign out
+                                    </Link>
                                 </div>
                             )}
                         </div>
                     ) : (
                         <Link
                             href={route('login')}
-                            className="rounded-full px-4 py-2 text-sm font-medium text-[#f5f0e8]/70 transition-all duration-200 hover:bg-white/5 hover:text-[#f5f0e8]"
+                            className="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/5 hover:text-[#f5f0e8]"
                         >
                             Login
                         </Link>
@@ -159,7 +191,7 @@ export default function PublicHeader() {
                     </SheetTrigger>
                     <SheetContent side="right" className="border-white/10 bg-[#0b1f4d] text-white">
                         <SheetHeader>
-                            <SheetTitle className="font-display text-white">Discover Pulilan</SheetTitle>
+                            <SheetTitle className="text-white">Discover Pulilan</SheetTitle>
                         </SheetHeader>
                         <nav className="mt-8 flex flex-col gap-2">
                             {navItems.map((item) => (
@@ -168,7 +200,7 @@ export default function PublicHeader() {
                                     href={item.url}
                                     className={cn(
                                         'rounded-lg px-3 py-3 text-sm hover:bg-white/10 hover:text-[#e5b955]',
-                                        currentPath === normalizePath(item.url) ? 'bg-[#d4a853]/15 text-[#d4a853]' : 'text-white/80',
+                                        currentPath === normalizePath(item.url) ? 'bg-[#d4a853]/15 text-[#d4a853]' : 'text-white/90',
                                     )}
                                 >
                                     {item.title}
@@ -176,13 +208,13 @@ export default function PublicHeader() {
                             ))}
                             <Link
                                 href={route('stay.dine.accommodations')}
-                                className="rounded-lg px-3 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-[#e5b955]"
+                                className="rounded-lg px-3 py-3 text-sm text-white/90 hover:bg-white/10 hover:text-[#e5b955]"
                             >
                                 Stay &amp; Dine · Accommodations
                             </Link>
                             <Link
                                 href={route('stay.dine.restaurants')}
-                                className="rounded-lg px-3 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-[#e5b955]"
+                                className="rounded-lg px-3 py-3 text-sm text-white/90 hover:bg-white/10 hover:text-[#e5b955]"
                             >
                                 Stay &amp; Dine · Restaurants
                             </Link>

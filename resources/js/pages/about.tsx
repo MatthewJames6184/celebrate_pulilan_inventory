@@ -42,14 +42,14 @@ export default function About() {
         <PublicLayout>
             <Head title="About Pulilan" />
 
-            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#f3ede2]" style={{ fontSize: '16px' }}>
                 <section className="relative h-80 overflow-hidden">
                     <img
                         src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=1600&h=600&fit=crop&auto=format"
                         alt="Pulilan landscape"
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/70 via-[#123b8f]/50 to-[#123b8f]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/70 via-[#4169E1]/50 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
@@ -62,7 +62,7 @@ export default function About() {
                     </div>
                 </section>
 
-                <section className="border-y border-white/5 bg-[#173f82]">
+                <section className="border-y border-[#4169E1]/5 bg-[#4169E1]">
                     <div className="mx-auto grid max-w-5xl grid-cols-2 gap-px px-6 py-10 md:grid-cols-4">
                         {facts.map((fact) => (
                             <div key={fact.label} className="px-6 text-center">
@@ -81,12 +81,12 @@ export default function About() {
                                 <div className="h-px w-6 bg-[#d4a853]" />
                                 <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Overview</span>
                             </div>
-                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8]">
+                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#000080]">
                                 A Community Rooted
                                 <br />
                                 <em className="text-[#d4a853]">in Faith and Culture</em>
                             </h2>
-                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]">
+                            <div className="space-y-4 text-sm leading-relaxed text-[#000080]">
                                 <p>
                                     Pulilan is a first-class municipality in the province of Bulacan, Philippines. It is known as the{' '}
                                     <strong className="text-[#d4a853]">Carabao Capital of the Philippines</strong>, celebrated through its
@@ -145,7 +145,7 @@ export default function About() {
                             <div className="h-px w-6 bg-[#d4a853]" />
                             <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Leadership</span>
                         </div>
-                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">Municipal Officials</h2>
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#000080]">Municipal Officials</h2>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
                             {officials.map((official) => (
                                 <div
