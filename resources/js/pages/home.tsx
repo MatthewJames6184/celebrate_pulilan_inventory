@@ -225,7 +225,7 @@ export default function Home() {
                 </div>
             </div>
         </section>
-            {/* SEARCH SECTION         */}
+            {/* SEARCH SECTION */}
             <section className="border-bt bg-[rgb(65,105,225)] px-6 py-7">
                 <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row" style={{ fontSize: '16px' }}>
                     <label className="relative flex-1">
@@ -286,32 +286,32 @@ export default function Home() {
                 </div>
             </section>
             {/* FEATURED FESTIVAL SECTION */}
-            <section className="bg-[#4169E1] py-16 text-[#f5f0e8] lg:py-24">
+            <section className="bg-[#4169E1] py-12 text-[#f5f0e8] sm:py-16 lg:py-24">
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
-                    <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-full min-h-[400px] w-full object-cover" />
-                    <div className="flex flex-col justify-center px-8 pr-0 pl-16 lg:px-16" style={{ fontSize: '20px' }}>
-                        <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— EVERY MAY 15</p>
-                        <h2 className="font-display mt-4 text-[2.25em] text-white">
+                    <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-64 w-full object-cover sm:h-80 md:h-full md:min-h-[400px]" />
+                    <div className="flex flex-col justify-center px-6 py-10 sm:px-8 md:pr-0 md:pl-12 lg:px-16">
+                        <p className="text-xs font-bold tracking-[0.25em] text-[#dcae4e] sm:text-sm">— EVERY MAY 15</p>
+                        <h2 className="font-display mt-4 text-3xl text-white sm:text-4xl lg:text-[2.25em]">
                             The Carabao
                             <br />
                             <span className="text-[#e9bc5b] italic">Festival</span>
                         </h2>
-                        <p className="mt-5 max-w-sm text-[0.75em] leading-[1.5em] text-white/65">
+                        <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65 sm:text-base">
                             Witness the spectacular Kneeling Carabao Festival — a cherished cultural tradition in Pulilan where farmers parade their
                             beautifully decorated carabaos and honor San Isidro Labrador, the patron saint of farmers, in thanksgiving for a bountiful
                             harvest.
                         </p>
-                        <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-[0.625em] text-white/60">
+                        <div className="mt-6 grid max-w-sm grid-cols-3 gap-4 border-t border-white/15 pt-5 text-xs text-white/60 sm:text-sm">
                             <span>
-                                <b className="block text-[1.125em] text-white">90+</b>Years of Tradition
+                                <b className="block text-lg text-white sm:text-xl">90+</b>Years of Tradition
                             </span>
                             <span>
-                                <b className="block text-[1.125em] text-white">19</b>Barangays
+                                <b className="block text-lg text-white sm:text-xl">19</b>Barangays
                             </span>
                         </div>
                         <Link
                             href={route('about.festivals')}
-                            className="mt-7 w-fit rounded-full bg-[#dcae4e] px-5 py-3 text-[0.625em] font-bold text-[#102033]"
+                            className="mt-7 w-fit rounded-full bg-[#dcae4e] px-5 py-3 text-xs font-bold text-[#102033] sm:text-sm"
                         >
                             Learn About the Festival →
                         </Link>
@@ -357,7 +357,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
             {/* BARANGAYS SECTION */}            
             <section className="bg-[#123b8f] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
@@ -419,45 +418,50 @@ export default function Home() {
                 </div>
             </section>
             {/* NEWS SECTION */}
-            <section className="bg-[#f3ede2] px-6 py-24">
+            <section className="bg-[#f3ede2] px-6 py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl">
-                    <div className="flex items-end justify-between">
-                        <div style={{ fontSize: '16px' }}>
-                            <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#dcae4e]">— LATEST UPDATES</p>
-                            <h2 className="font-display mt-3 text-[2.25em] text-[#000080]">
-                                News &amp;
-                                <br />
-                                <span className="text-[#dcae4e] italic">Events</span>
-                            </h2>
-                        </div>
-                        <Link
-                            href={route('news.archive')}
-                            className="hidden rounded-full border border-white/15 px-4 py-2 text-[0.625em] text-white/55 hover:border-[#dcae4e] hover:text-white sm:block"
-                        >
-                            View All News
-                        </Link>
-                    </div>
-                    <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <div className="mx-auto max-w-7xl text-center">
+                <div className="mb-3 flex items-center justify-center gap-2">
+                    <div className="h-px w-6 bg-[#dcae4e]" />
+                    <p className="text-xs font-bold tracking-[0.25em] text-[#dcae4e] sm:text-sm">LATEST UPDATES</p>
+                    <div className="h-px w-6 bg-[#dcae4e]" />
+                </div>
+                <h2 className="font-display text-4xl text-[#000080] sm:text-5xl lg:text-6xl">
+                    News &amp;
+                    
+                    <span className="text-[#dcae4e] italic">Events</span>
+                </h2>
+
+            </div>
+                    <div className="mt-10 grid gap-6 md:grid-cols-3">
                         {[featuredNews, ...newsItems.slice(1, 3)].map((item) => (
                             <Link
                                 key={item.slug}
                                 href={route('news.show', { slug: item.slug })}
                                 className="group overflow-hidden rounded-2xl border border-[#d5e0f0] bg-[#eaf0f8] transition-all duration-300 hover:-translate-y-1 hover:border-[#c89b33]"
                             >
-                                <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
-                                <div className="bg-[#f8f9fa] p-5" style={{ fontSize: '16px' }}>
-                                    <p className="mb-2 font-mono text-[0.75em] text-[#1a3b70]/65">{item.date}</p>
-                                    <h3 className="font-display mb-3 border-b border-[#1a3b70]/20 pb-2 text-[1em] leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33]">
+                                <img src={item.image} alt={item.title} className="h-48 w-full object-cover sm:h-56" />
+                                <div className="bg-[#f8f9fa] p-5 sm:p-6">
+                                    <p className="mb-2 font-mono text-xs text-[#1a3b70]/65 sm:text-sm">{item.date}</p>
+                                    <h3 className="font-display mb-3 border-b border-[#1a3b70]/20 pb-2 text-base leading-snug font-semibold text-[#1a3b70] transition-colors group-hover:text-[#c89b33] sm:text-lg">
                                         {item.title}
                                     </h3>
-                                    <p className="text-[0.75em] leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
-                                    <span className="mt-4 block text-[0.75em] font-medium text-[#c89b33]">Read more →</span>
+                                    <p className="text-sm leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
+                                    <span className="mt-4 block text-sm font-medium text-[#c89b33]">Read more →</span>
                                 </div>
                             </Link>
                         ))}
                     </div>
-                </div>
-            </section>
+                    <div className="mt-6 flex justify-center">
+                        <Link
+                            href={route('news.archive')}
+                            className="w-fit rounded-full border border-[#000080]/15 px-5 py-2.5 text-sm text-[#000080]/55 hover:border-[#dcae4e] hover:text-[#000080] sm:text-base"
+                        >
+                            View All News
+                        </Link>
+                    </div>
+            </div>
+</section>
             {/* PLAN YOUR VISIT SECTION */}
             <section className="relative overflow-hidden bg-[#123b8f] px-6 py-24">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1E3A8A]" />
