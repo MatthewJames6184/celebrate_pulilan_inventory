@@ -75,8 +75,8 @@ export default function PublicHeader() {
                             className={cn(
                                 'rounded-full px-4 py-2 text-sm font-medium transition-all duration-200',
                                 currentPath === normalizePath(item.url)
-                                    ? 'bg-[#d4a853]/20 text-[#d4a853]'
-                                    : 'text-white/90 hover:bg-white/5 hover:text-[#f5f0e8]',
+                                    ? ' text-bold bg-[#d4a853] text-[#000080]'
+                                    : 'text-white hover:bg-white hover:text-[#000080] text-bold',
                             )}
                         >
                             {item.title}
@@ -164,7 +164,7 @@ export default function PublicHeader() {
                     ) : (
                         <Link
                             href={route('login')}
-                            className="rounded-full px-4 py-2 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/5 hover:text-[#f5f0e8]"
+                            className="rounded-full px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:bg-white hover:text-[#000080]"
                         >
                             Login
                         </Link>

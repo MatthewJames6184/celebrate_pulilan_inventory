@@ -273,6 +273,6 @@ html.is-navigating {
         border-radius: 2px;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.5);
+        background: #d4a853
     }
 }
