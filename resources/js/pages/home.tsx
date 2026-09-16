@@ -141,90 +141,95 @@ export default function Home() {
         <PublicLayout>
             <Head title="Discover Pulilan" />
 
-        {/* HERO SECTION */}
-        <section
-            className="relative isolate min-h-[600px] overflow-hidden bg-[#0b1f4d] lg:h-[calc(100vh-0.75rem)]"
-            onTouchStart={(event) => {
-                touchStartX.current = event.changedTouches[0]?.clientX ?? null;
-            }}
-            onTouchEnd={(event) => {
-                if (touchStartX.current === null) {
-                    return;
-                }
+            {/* HERO SECTION */}
+            <section
+                className="relative isolate min-h-[100svh] overflow-hidden bg-[#0b1f4d] lg:h-[calc(100vh-0.75rem)] lg:min-h-[600px]"
+                onTouchStart={(event) => {
+                    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+                }}
+                onTouchEnd={(event) => {
+                    if (touchStartX.current === null) {
+                        return;
+                    }
 
-                const distance = event.changedTouches[0].clientX - touchStartX.current;
+                    const distance = event.changedTouches[0].clientX - touchStartX.current;
 
-                if (Math.abs(distance) > 50) {
-                    setActive((current) => (current + (distance < 0 ? 1 : -1) + heroSlides.length) % heroSlides.length);
-                }
+                    if (Math.abs(distance) > 50) {
+                        setActive((current) => (current + (distance < 0 ? 1 : -1) + heroSlides.length) % heroSlides.length);
+                    }
 
-                touchStartX.current = null;
-            }}
-        >
-            <img
-                src={slide.image}
-                alt={slide.title}
-                className="relative block h-[38vh] min-h-[250px] w-full object-cover object-center transition-opacity duration-700 lg:absolute lg:inset-0 lg:-z-20 lg:h-full"
-            />
-            <div className="absolute inset-0 -z-10 bg-black/35" />
-            <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(65,105,225,0.28)_100%,rgba(65,105,225,0.1)_50%,rgba(7,18,55,0)_0%)] lg:block" />
-            <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-48 bg-gradient-to-t from-[#4169E1] to-transparent lg:block" />
-            <div className="mx-auto flex max-w-7xl items-center justify-center px-6 py-10 lg:min-h-[600px] lg:px-[4.5rem] lg:pt-[28vh]">
-            <div className="mx-auto max-w-4xl text-center" style={{ fontSize: '16px' }}>
-                <div className="mb-4 flex items-center justify-center gap-2 lg:mb-6">
-                    <div className="h-px w-6 bg-[#d4a853] sm:w-8" />
-                    <p className="text-[0.75em] font-medium tracking-widest text-[#d4a853] uppercase [text-shadow:_0_1px_6px_rgb(0_0_0_/_60%)] sm:text-[0.875em] lg:text-[1em]">{slide.eyebrow}</p>
+                    touchStartX.current = null;
+                }}
+            >
+                <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="absolute inset-0 -z-20 block h-full w-full object-cover object-center transition-opacity duration-700"
+                />
+                <div className="absolute inset-0 -z-10 bg-black/35" />
+                <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#4169E1] lg:hidden" />
+                <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(65,105,225,0.28)_100%,rgba(65,105,225,0.1)_50%,rgba(7,18,55,0)_0%)] lg:block" />
+                <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-48 bg-gradient-to-t from-[#4169E1] to-transparent lg:block" />
+                <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center justify-center px-6 pt-24 pb-36 lg:min-h-[600px] lg:px-[4.5rem] lg:pt-[28vh] lg:pb-10">
+                    <div className="mx-auto w-full max-w-4xl text-left lg:text-center" style={{ fontSize: '16px' }}>
+                        <div className="mb-4 flex items-center justify-start gap-2 lg:mb-6 lg:justify-center">
+                            <div className="h-px w-6 bg-[#d4a853] sm:w-8" />
+                            <p className="text-[0.75em] font-medium tracking-widest text-[#d4a853] uppercase [text-shadow:_0_1px_6px_rgb(0_0_0_/_60%)] sm:text-[0.875em] lg:text-[1em]">
+                                {slide.eyebrow}
+                            </p>
+                        </div>
+                        <h1 className="font-display mb-5 max-w-[20rem] text-[3em] leading-[1.02] font-semibold whitespace-pre-line text-[#f5f0e8] [text-shadow:_0_2px_14px_rgb(0_0_0_/_70%)] sm:max-w-4xl sm:text-[2.75em] sm:leading-[1] md:mb-6 md:text-[3.5em] lg:mb-8 lg:max-w-4xl lg:text-[5.5em] lg:leading-[0.95]">
+                            {slide.title}
+                        </h1>
+                        <p className="mb-8 max-w-[22rem] text-[1.125em] leading-relaxed text-[#f5f0e8]/90 [text-shadow:_0_1px_8px_rgb(0_0_0_/_60%)] sm:max-w-lg sm:text-[1.0625em] md:mb-8 md:max-w-xl lg:mx-auto lg:mb-10 lg:max-w-2xl lg:text-[1.375em]">
+                            {slide.description}
+                        </p>
+                        <div className="flex flex-col items-start justify-start gap-4 sm:gap-4 lg:flex-row lg:items-center lg:justify-center">
+                            <Link
+                                href={slide.href}
+                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-7 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:px-7 sm:py-3.5 sm:text-[1em]"
+                            >
+                                {slide.action} <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                            </Link>
+                            <Link
+                                href={route('about')}
+                                className="inline-flex items-center rounded-full border border-white/40 px-7 py-3.5 text-[1em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-[1em]"
+                            >
+                                Our Heritage
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-                <h1 className="font-display mb-4 max-w-4xl text-[2em] leading-[1.05] font-semibold whitespace-pre-line text-[#f5f0e8] [text-shadow:_0_2px_14px_rgb(0_0_0_/_70%)] sm:text-[2.75em] sm:leading-[1] md:mb-6 md:text-[3.5em] lg:mb-8 lg:text-[5.5em] lg:leading-[0.95]">
-                    {slide.title}
-                </h1>
-                <p className="mx-auto mb-6 max-w-xs text-[0.9375em] leading-relaxed text-[#f5f0e8]/90 [text-shadow:_0_1px_8px_rgb(0_0_0_/_60%)] sm:max-w-lg sm:text-[1.0625em] md:mb-8 md:max-w-xl lg:mb-10 lg:max-w-2xl lg:text-[1.375em]">{slide.description}</p>
-                <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                    <Link
-                        href={slide.href}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-5 py-2.5 text-[0.8125em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:px-7 sm:py-3.5 sm:text-[1em]"
-                    >
-                        {slide.action} <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                    </Link>
-                    <Link
-                        href={route('about')}
-                        className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-[0.8125em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-[1em]"
-                    >
-                        Our Heritage
-                    </Link>
-                </div>
-            </div>
-            </div>
-            <div className="relative z-10 flex justify-center pb-8 lg:absolute lg:inset-x-0 lg:bottom-8 lg:pb-0">
-                <div className="flex items-center gap-2">
-                    {heroSlides.map((item, index) => (
+                <div className="absolute inset-x-0 bottom-8 z-10 flex justify-center lg:bottom-8 lg:pb-0">
+                    <div className="flex items-center gap-2">
+                        {heroSlides.map((item, index) => (
+                            <button
+                                key={item.eyebrow}
+                                type="button"
+                                aria-label={`Show ${item.eyebrow}`}
+                                onClick={() => setActive(index)}
+                                className={`h-2 rounded-full transition-all duration-200 hover:bg-[#d4a853] active:bg-[#d4a853] ${active === index ? 'w-8 bg-[#d4a853]' : 'w-2 bg-white/30'}`}
+                            />
+                        ))}
+                    </div>
+                    <div className="absolute right-6 bottom-8 flex gap-2 lg:right-10 lg:bottom-0">
                         <button
-                            key={item.eyebrow}
                             type="button"
-                            aria-label={`Show ${item.eyebrow}`}
-                            onClick={() => setActive(index)}
-                            className={`h-2 rounded-full transition-all duration-200 hover:bg-[#d4a853] active:bg-[#d4a853] ${active === index ? 'w-8 bg-[#d4a853]' : 'w-2 bg-white/30'}`}
-                        />
-                    ))}
+                            onClick={() => setActive((active - 1 + heroSlides.length) % heroSlides.length)}
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
+                        >
+                            <ChevronLeft className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setActive((active + 1) % heroSlides.length)}
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
+                        >
+                            <ChevronRight className="h-3.5 w-3.5" />
+                        </button>
+                    </div>
                 </div>
-                <div className="absolute right-6 bottom-8 flex gap-2 lg:right-10 lg:bottom-0">
-                    <button
-                        type="button"
-                        onClick={() => setActive((active - 1 + heroSlides.length) % heroSlides.length)}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
-                    >
-                        <ChevronLeft className="h-3.5 w-3.5" />
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setActive((active + 1) % heroSlides.length)}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#d4a853] hover:bg-[#d4a853] hover:text-[#0d1b2a] active:border-[#d4a853] active:bg-[#d4a853] active:text-[#0d1b2a]"
-                    >
-                        <ChevronRight className="h-3.5 w-3.5" />
-                    </button>
-                </div>
-            </div>
-        </section>
+            </section>
             {/* SEARCH SECTION */}
             <section className="border-bt bg-[rgb(65,105,225)] px-6 py-7">
                 <form action={route('about')} method="get" className="mx-auto flex max-w-5xl flex-col gap-2 md:flex-row" style={{ fontSize: '16px' }}>
@@ -288,7 +293,11 @@ export default function Home() {
             {/* FEATURED FESTIVAL SECTION */}
             <section className="bg-[#4169E1] py-12 text-[#f5f0e8] sm:py-16 lg:py-24">
                 <div className="mx-auto grid max-w-7xl md:grid-cols-2">
-                    <img src="/images/carabao-kneel-2.jpg" alt="Carabao Festival" className="h-64 w-full object-cover sm:h-80 md:h-full md:min-h-[400px]" />
+                    <img
+                        src="/images/carabao-kneel-2.jpg"
+                        alt="Carabao Festival"
+                        className="h-64 w-full object-cover sm:h-80 md:h-full md:min-h-[400px]"
+                    />
                     <div className="flex flex-col justify-center px-6 py-10 sm:px-8 md:pr-0 md:pl-12 lg:px-16">
                         <p className="text-xs font-bold tracking-[0.25em] text-[#dcae4e] sm:text-sm">— EVERY MAY 15</p>
                         <h2 className="font-display mt-4 text-3xl text-white sm:text-4xl lg:text-[2.25em]">
@@ -357,7 +366,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            {/* BARANGAYS SECTION */}            
+            {/* BARANGAYS SECTION */}
             <section className="bg-[#123b8f] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
@@ -420,19 +429,17 @@ export default function Home() {
             {/* NEWS SECTION */}
             <section className="bg-[#f3ede2] px-6 py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl">
-            <div className="mx-auto max-w-7xl text-center">
-                <div className="mb-3 flex items-center justify-center gap-2">
-                    <div className="h-px w-6 bg-[#dcae4e]" />
-                    <p className="text-xs font-bold tracking-[0.25em] text-[#dcae4e] sm:text-sm">LATEST UPDATES</p>
-                    <div className="h-px w-6 bg-[#dcae4e]" />
-                </div>
-                <h2 className="font-display text-4xl text-[#000080] sm:text-5xl lg:text-6xl">
-                    News &amp;
-                    
-                    <span className="text-[#dcae4e] italic">Events</span>
-                </h2>
-
-            </div>
+                    <div className="mx-auto max-w-7xl text-center">
+                        <div className="mb-3 flex items-center justify-center gap-2">
+                            <div className="h-px w-6 bg-[#dcae4e]" />
+                            <p className="text-xs font-bold tracking-[0.25em] text-[#dcae4e] sm:text-sm">LATEST UPDATES</p>
+                            <div className="h-px w-6 bg-[#dcae4e]" />
+                        </div>
+                        <h2 className="font-display text-4xl text-[#000080] sm:text-5xl lg:text-6xl">
+                            News &amp;
+                            <span className="text-[#dcae4e] italic">Events</span>
+                        </h2>
+                    </div>
                     <div className="mt-10 grid gap-6 md:grid-cols-3">
                         {[featuredNews, ...newsItems.slice(1, 3)].map((item) => (
                             <Link
@@ -460,8 +467,8 @@ export default function Home() {
                             View All News
                         </Link>
                     </div>
-            </div>
-</section>
+                </div>
+            </section>
             {/* PLAN YOUR VISIT SECTION */}
             <section className="relative overflow-hidden bg-[#123b8f] px-6 py-24">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#4169E1] to-[#1E3A8A]" />
