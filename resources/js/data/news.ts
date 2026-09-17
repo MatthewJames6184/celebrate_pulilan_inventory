@@ -15,10 +15,10 @@ export const newsItems: NewsItem[] = [
         date: 'May 12, 2025',
         image: 'https://images.unsplash.com/photo-1630192226649-1934968dca48?w=900&h=500&fit=crop&auto=format',
         category: 'Festival',
-        excerpt: "This year's Carabao Festival surpassed all expectations with over 120,000 attendees and a grand procession through all 18 barangays.",
+        excerpt: "Pulilan’s annual Carabao Festival brought communities together in a celebration of faith, agriculture, and local tradition.",
         content: [
-            "The 2025 Carabao Festival of Pulilan was nothing short of spectacular. Held every May 15 in honor of San Isidro Labrador, this year's celebration drew record crowds from across the Philippines and abroad.",
-            'Over 400 beautifully decorated carabaos from all 18 barangays of Pulilan joined the grand procession, each adorned with colorful flowers, garlands, and traditional decorations.',
+            "The 2025 Carabao Festival of Pulilan honored San Isidro Labrador through its familiar parade and kneeling-carabao tradition.",
+            'Decorated carabaos and community groups joined the celebration. Exact attendance and participation figures should be confirmed through the municipality’s official event report.',
             'The municipal government has announced plans to further develop infrastructure around the festival route, ensuring a safer and more comfortable experience for visitors in future years.',
         ],
     },
@@ -64,8 +64,8 @@ export const newsItems: NewsItem[] = [
         date: 'August 20, 2024',
         image: 'https://images.unsplash.com/photo-1603398938378-e54eab446dde?w=900&h=500&fit=crop&auto=format',
         category: 'Health',
-        excerpt: 'The municipal health program now covers all 18 barangays with free medical consultations, vaccination drives, and wellness checkups.',
-        content: ['Pulilan’s Community Health and Wellness Program has expanded to all 18 barangays, offering free quarterly consultations, vaccination drives, dental services, and mental health support.', 'The program is supported by the Municipal Health Office and regional hospital partners.', 'The next round of barangay health missions is scheduled for October 2024.'],
+        excerpt: 'Pulilan’s municipal health services support residents through consultations, public-health programs, and community care.',
+        content: ['Pulilan’s health services are delivered through the Municipal Health Office and community programs.', 'Residents should consult official municipal announcements for current schedules and available services.', 'Program coverage and schedules may change as local needs and government programs develop.'],
     },
 ];
 

@@ -142,7 +142,7 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                                     >
                                         <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>
                                             <img
-                                                src={item.image ?? imageSubHeader.src}
+                                                src={item.image ?? '/images/placeholder-img/wat-da-dog-doin.jpg'}
                                                 alt={item.name}
                                                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                             />
@@ -157,9 +157,7 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                                             </h2>
                                             <p className="mt-1 text-[0.625em] text-[#1A3B70]/65">⌖ {item.area}</p>
                                             <p className="mt-2 line-clamp-2 text-[0.625em] leading-relaxed text-[#1A3B70]/75">{item.summary}</p>
-                                            <div className="mt-3 text-[0.625em] text-[#C89B33]">
-                                                ★★★★★ <span className="ml-1 text-[#1A3B70]/60">4.7 · 38 reviews</span>
-                                            </div>
+                                            <div className="mt-3 text-[0.625em] text-[#1A3B70]/55">Listed in the municipal directory</div>
                                         </div>
                                     </Link>
                                 </ScrollReveal>

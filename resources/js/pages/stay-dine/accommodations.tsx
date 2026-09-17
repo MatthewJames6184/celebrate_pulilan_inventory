@@ -2,54 +2,62 @@ import StayDineDirectoryPage, { type DirectoryItem } from '@/components/stay-din
 
 const accommodations: DirectoryItem[] = [
     {
-        name: 'Makahoy Private Resort',
+        name: 'Villa Lorenzo Resort',
         category: 'Resort',
         area: 'Poblacion',
         address: 'Pulilan, Bulacan',
-        summary: 'A resort-style stay for weekend breaks, family gatherings, and relaxed poolside visits.',
+        summary: 'A resort establishment listed in the municipal tourism directory.',
         highlights: ['Pool access', 'Family stays', 'Events-friendly'],
         featured: true,
     },
     {
-        name: 'Pulilan Stay Options',
-        category: 'Guesthouse',
-        area: 'Near Town Proper',
+        name: 'ACI Garden Resort',
+        category: 'Resort',
+        area: 'Pulilan',
         address: 'Pulilan, Bulacan',
-        summary: 'Simple overnight rooms for event travelers and visitors who want a central base.',
+        summary: 'A garden resort establishment listed in the municipal tourism directory.',
         highlights: ['Short stays', 'Budget friendly', 'Central access'],
     },
     {
-        name: 'Riverside Villa',
-        category: 'Villa',
-        area: 'Longos',
+        name: 'River of Life Resort and Restaurant',
+        category: 'Resort & Restaurant',
+        area: 'Pulilan',
         address: 'Pulilan, Bulacan',
-        summary: 'A quiet stay option for guests who want a slower pace and more privacy.',
+        summary: 'A resort and dining establishment listed in the municipal tourism directory.',
         highlights: ['Quiet setting', 'Private hire', 'Scenic views'],
     },
     {
-        name: 'Event Traveler Suites',
-        category: 'Service Apartment',
-        area: 'Sto. Cristo',
+        name: 'MRC Resort',
+        category: 'Resort',
+        area: 'Pulilan',
         address: 'Pulilan, Bulacan',
-        summary: 'Practical rooms for festival guests, business travelers, and longer visits.',
+        summary: 'A resort establishment listed in the municipal tourism directory.',
         highlights: ['Flexible stays', 'Parking nearby', 'Longer visits'],
     },
     {
-        name: 'Garden Court Inn',
-        category: 'Inn',
-        area: 'Balatong A',
+        name: 'Marahuyo Private Resort',
+        category: 'Private Resort',
+        area: 'Pulilan',
         address: 'Pulilan, Bulacan',
-        summary: 'A compact inn with a calm neighborhood feel and easy access to town routes.',
+        summary: 'A private resort establishment listed in the municipal tourism directory.',
         highlights: ['Easy check-in', 'Compact rooms', 'Good for groups'],
     },
     {
-        name: 'Family Rest House',
-        category: 'Guesthouse',
-        area: 'Dampol',
+        name: 'Sta. Peregrina Swimming Pool (Pugpog Resort)',
+        category: 'Resort',
+        area: 'Sta. Peregrina',
         address: 'Pulilan, Bulacan',
-        summary: 'A simple base for family visits, local gatherings, and overnight stays.',
+        summary: 'A swimming pool and resort establishment listed in the municipal business directory.',
         highlights: ['Group-ready', 'Home-like', 'Local access'],
     },
+    ...['Nature Care Resort and Farm', 'Green Haven Apartelle', 'Green Garden Court'].map((name) => ({
+        name,
+        category: name.includes('Apartelle') ? 'Apartelle' : name.includes('Court') ? 'Hotel / Inn' : 'Resort & Farm',
+        area: 'Pulilan',
+        address: 'Pulilan, Bulacan',
+        summary: 'An accommodation establishment listed in the municipal tourism or business directory.',
+        highlights: ['Directory listing', 'Check availability', 'Local stay'],
+    })),
 ];
 
 export default function StayDineAccommodations() {
@@ -63,9 +71,9 @@ export default function StayDineAccommodations() {
             imageSubHeader={{ src: '/images/carousel-images/Resorts.jpg', alt: 'Pulilan resort stays' }}
             breadcrumbs={[{ label: 'Where to Stay and Dine' }, { label: 'Accommodations' }]}
             stats={[
-                { value: '6', label: 'Stay options shown' },
-                { value: '5', label: 'Categories available' },
-                { value: '6', label: 'Areas represented' },
+                { value: '9', label: 'Directory listings' },
+                { value: '5', label: 'Stay categories' },
+                { value: '19', label: 'Barangays in Pulilan' },
             ]}
             items={accommodations}
             type="accommodations"

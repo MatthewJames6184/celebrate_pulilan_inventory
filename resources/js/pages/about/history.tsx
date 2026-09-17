@@ -4,74 +4,81 @@ import { useEffect, useRef, useState } from 'react';
 
 const timeline = [
     {
-        year: '1572',
-        era: 'Spanish Colonial',
-        event: 'Founding by Augustinians',
-        desc: 'Augustinian missionaries establish a parish in Pulilan, converting the indigenous Kapampangan and Tagalog communities to Catholicism. The settlement grows around the church.',
+        year: 'Before 1600s',
+        era: 'Early settlement',
+        event: 'Communities grow around rivers',
+        desc: 'The exact date of the first settlement is unknown. Municipal history suggests communities developed around rivers and fertile agricultural land by the early 17th century.',
         color: '#d4a853',
     },
     {
-        year: '1600s',
-        era: 'Early Colonial',
-        event: 'Construction of the Parish Church',
-        desc: 'The stone church of San Isidro Labrador is built, becoming the spiritual and civic center of the growing municipality. The Carabao Festival tradition begins.',
+        year: '1575',
+        era: 'Regional context',
+        event: 'Calumpit is established',
+        desc: 'Calumpit was already recognized as a neighboring town in 1575. This provides regional context, but does not establish Pulilan as a municipality at that time.',
         color: '#d4a853',
     },
     {
-        year: '1762',
-        era: 'British Occupation',
-        event: 'Resistance Against British Forces',
-        desc: "During the British occupation of Manila, Pulilan's residents played a role in local resistance efforts, defending their community and sacred places from foreign occupation.",
+        year: '1700s',
+        era: 'Spanish period',
+        event: 'The settlement becomes organized',
+        desc: 'The area became increasingly organized under Spanish colonial administration and Augustinian missionary influence. It became associated with San Isidro Labrador, patron saint of farmers.',
         color: '#3d8b67',
     },
     {
-        year: '1850s',
-        era: '19th Century',
-        event: 'Economic Prosperity',
-        desc: "Pulilan flourishes as an agricultural center. Wealthy ilustrado families build the ancestral stone houses (bahay na bato) that still stand today, reflecting the town's prosperity.",
+        year: 'Jan. 20, 1796',
+        era: 'Municipal foundation',
+        event: 'Pulilan is formally established',
+        desc: 'Augustinian friar Fray Vicente Villamanzo declared the settlement a town and assigned San Isidro Labrador as its patron saint. The name Pulilan eventually prevailed.',
         color: '#d4a853',
     },
     {
-        year: '1896',
-        era: 'Philippine Revolution',
-        event: 'The Katipunan Reaches Pulilan',
-        desc: 'The revolutionary spirit sweeps through Bulacan. Pulileños join the Katipunan in the struggle against Spanish colonial rule, contributing to the Philippine Revolution.',
+        year: '1800s',
+        era: 'Agricultural town',
+        event: 'Pulilan develops under Spanish rule',
+        desc: 'Pulilan developed as an agricultural community whose identity became closely connected with farming, Catholicism, San Isidro Labrador, and its river-based environment.',
         color: '#3d8b67',
     },
     {
         year: '1898',
-        era: 'American Period',
-        event: 'Transition to American Rule',
-        desc: 'Following the Spanish-American War, Pulilan transitions to American administration. Public schools are established, bringing widespread literacy to the municipality.',
+        era: 'Political transition',
+        event: 'End of Spanish colonial rule',
+        desc: 'The Philippine Revolution and the First Philippine Republic brought major political changes throughout Bulacan. Pulileños participated and made sacrifices during the revolutionary and subsequent periods.',
         color: '#d4a853',
+    },
+    {
+        year: '1909',
+        era: 'American period',
+        event: 'Pulilan separates from Quingua',
+        desc: 'After a period when the settlement was attached to Quingua (now Plaridel), local leaders petitioned for separation. The request was granted and Pulilan again functioned as its own town.',
+        color: '#3d8b67',
     },
     {
         year: '1941–45',
-        era: 'World War II',
-        event: 'Occupation and Liberation',
-        desc: 'Japanese forces occupy Pulilan during World War II. Guerrilla resistance operates in the area. The town suffers damage but is liberated in 1945 as Allied forces advance northward.',
-        color: '#3d8b67',
-    },
-    {
-        year: '1972',
-        era: 'Modern Era',
-        event: '400th Anniversary Celebrations',
-        desc: 'Pulilan marks its 400th founding anniversary with major celebrations, historic preservation efforts, and renewed pride in its colonial heritage and cultural traditions.',
+        era: 'Japanese occupation',
+        event: 'Pulileños endure wartime hardship',
+        desc: 'Residents experienced the Japanese occupation and the hardships of World War II. Municipal history remembers the sacrifices of Pulileños across the Spanish, American, and Japanese periods.',
         color: '#d4a853',
     },
     {
-        year: '2000s',
+        year: '1946',
+        era: 'Postwar Philippines',
+        event: 'Reconstruction and development',
+        desc: 'Following Philippine independence, Pulilan began postwar reconstruction and continued developing as a municipality.',
+        color: '#3d8b67',
+    },
+    {
+        year: '2007',
         era: 'Contemporary',
-        event: 'Carabao Festival — UNESCO Recognition',
-        desc: 'The Carabao Festival of Pulilan is included in the UNESCO Intangible Cultural Heritage of Humanity list, recognizing its global cultural significance.',
+        event: 'First-class municipality',
+        desc: 'A municipal government document records Pulilan’s classification as a first-class municipality in 2007.',
         color: '#d4a853',
     },
     {
-        year: 'Present',
-        era: '21st Century',
-        event: 'Heritage Preservation & Growth',
-        desc: 'Today Pulilan balances modern development with heritage preservation, growing as a first-class municipality while honoring its identity as the Carabao Capital of the Philippines.',
-        color: '#3d8b67',
+        year: '2026',
+        era: 'Present',
+        event: '230th founding anniversary',
+        desc: 'Pulilan commemorated its 230th founding anniversary in January 2026, based on the January 20, 1796 foundation date.',
+        color: '#d4a853',
     },
 ];
 
@@ -108,7 +115,7 @@ export default function History() {
                 {/* Hero */}
                 <div className="relative h-80 overflow-hidden">
                     <img
-                        src="https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=1600&h=600&fit=crop&auto=format"
+                    src="/images/carousel-images/Historical.jpg"
                         alt="Pulilan heritage"
                         className="h-full w-full object-cover"
                     />
@@ -117,7 +124,7 @@ export default function History() {
                         <div>
                             <div className="mb-3 flex items-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Since 1572</span>
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Since January 20, 1796</span>
                             </div>
                             <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">
                                 History of
@@ -132,8 +139,8 @@ export default function History() {
                 <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10">
                     <div className="rounded-3xl border border-white/5 bg-[#173f82] p-10">
                         <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
-                            "From a humble Augustinian mission in 1572 to the Carabao Capital of the Philippines — Pulilan's history is a story of
-                            faith, resilience, and enduring cultural pride."
+                            "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement date
+                            is unknown; January 20, 1796 is the municipality’s recorded foundation date."
                         </p>
                     </div>
                 </div>
@@ -206,22 +213,22 @@ export default function History() {
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                             {[
                                 {
-                                    name: 'San Isidro Parish Church',
-                                    period: '17th Century',
-                                    img: 'https://images.unsplash.com/photo-1760549310131-b09d86c601e3?w=600&h=400&fit=crop&auto=format',
-                                    desc: 'Baroque stone church, the oldest structure in Pulilan.',
+                                    name: 'Museo de San Isidro',
+                                    period: 'Heritage museum',
+                                    img: '/images/carousel-images/Heritage.jpg',
+                                    desc: 'A heritage destination included in Pulilan’s official tourism listings.',
                                 },
                                 {
-                                    name: 'Longos Church',
-                                    period: '18th Century',
-                                    img: 'https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=600&h=400&fit=crop&auto=format',
-                                    desc: 'Colonial church with original stone belltower intact.',
+                                    name: 'Historic houses',
+                                    period: 'Heritage attraction',
+                                    img: '/images/image-3.jpg',
+                                    desc: 'Historic homes such as Casa Filomena and Adriano Salvador House reflect Pulilan’s built heritage.',
                                 },
                                 {
-                                    name: 'Ancestral Houses',
-                                    period: '19th Century',
-                                    img: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=600&h=400&fit=crop&auto=format',
-                                    desc: 'Bahay na bato scattered across the historic town center.',
+                                    name: 'Kneeling Carabao Monument',
+                                    period: 'Public heritage',
+                                    img: '/images/carousel-images/Festival.jpg',
+                                    desc: 'A public monument celebrating Pulilan’s best-known cultural tradition.',
                                 },
                             ].map((s, i) => (
                                 <ScrollReveal key={s.name} delay={i * 100}>

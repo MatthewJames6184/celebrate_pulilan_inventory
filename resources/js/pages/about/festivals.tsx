@@ -19,7 +19,7 @@ export default function Festivals() {
                 {/* Hero - full cinematic */}
                 <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
                     <img
-                        src="https://images.unsplash.com/photo-1630192226649-1934968dca48?w=1600&h=900&fit=crop&auto=format"
+                        src="/images/background-img/home-Pulilan-Carabao-Festival-Float.jpg"
                         alt="Carabao Festival in Pulilan"
                         className="h-full w-full object-cover"
                     />
@@ -62,28 +62,20 @@ export default function Festivals() {
                                     honors <strong className="text-[#f5f0e8]/80">San Isidro Labrador</strong>, the patron saint of farmers.
                                 </p>
                                 <p>
-                                    Hundreds of carabaos (water buffaloes) from all 18 barangays are adorned with colorful flowers, garlands, ribbons,
-                                    and traditional decorations. Their owners parade them through the streets to the Parish Church of San Isidro
-                                    Labrador.
+                                    Decorated carabaos are paraded through the streets and brought before San Isidro Labrador Parish. The kneeling
+                                    of the animals is a thanksgiving and tribute to the patron saint of farmers.
                                 </p>
                                 <p>
-                                    The most remarkable moment comes when the carabaos approach the church steps — in a tradition passed down for over
-                                    three centuries, the animals <strong className="text-[#f5f0e8]/80">kneel before the image of San Isidro</strong>,
-                                    a gesture of gratitude for the year's harvest and a blessing for the year ahead.
-                                </p>
-                                <p>
-                                    This tradition was recognized by UNESCO as an{' '}
-                                    <strong className="text-[#d4a853]">Intangible Cultural Heritage</strong>, cementing its importance not just to
-                                    Pulilan, but to Filipino cultural identity worldwide.
+                                    Provincial tourism information places the celebration around May 14–15. Dates and activities may vary each year,
+                                    so visitors should check the municipality’s current announcements before planning a trip.
                                 </p>
                             </div>
 
                             <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                                 {[
                                     ['May 15', 'Festival Date'],
-                                    ['300+', 'Years of History'],
-                                    ['UNESCO', 'Heritage Status'],
-                                    ['18', 'Barangays Join'],
+                                    ['1796', 'Town foundation'],
+                                    ['19', 'Barangays'],
                                 ].map(([val, label]) => (
                                     <div key={label} className="rounded-xl border border-white/5 bg-[#173f82] p-4 text-center">
                                         <div className="font-display text-xl font-semibold text-[#d4a853]">{val}</div>
@@ -107,7 +99,7 @@ export default function Festivals() {
                         <div className="space-y-4 lg:col-span-2">
                             <div className="h-56 overflow-hidden rounded-2xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1581513118044-696c147c1a66?w=600&h=400&fit=crop&auto=format"
+                                    src="/images/carabao-festival-kneeling.jpg"
                                     alt="Festival parade"
                                     className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                                 />
@@ -115,8 +107,8 @@ export default function Festivals() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="h-36 overflow-hidden rounded-xl">
                                     <img
-                                        src="https://images.unsplash.com/photo-1617026474324-cd50000d4fc1?w=400&h=300&fit=crop&auto=format"
-                                        alt="Decorated carabao"
+                                        src="/images/carabao-kneel-2.jpg"
+                                        alt="Farmer riding a carabao during the Pulilan festival"
                                         className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                                     />
                                 </div>

@@ -20,42 +20,42 @@ const categories: { id: Category; label: string; emoji: string }[] = [
 const attractions = [
     {
         category: 'religious' as Category,
-        name: 'San Isidro Labrador Parish Church',
+        name: 'San Isidro Labrador Parish',
         location: 'Poblacion, Pulilan',
-        desc: 'A 17th-century Augustinian baroque church, the spiritual heart of Pulilan and venue of the annual Carabao Festival. Its stone facade and ornate interiors reflect centuries of Filipino Catholic devotion.',
-        img: 'https://images.unsplash.com/photo-1760549310131-b09d86c601e3?w=600&h=400&fit=crop&auto=format',
-        highlight: 'UNESCO Recognized',
+        desc: 'Pulilan’s principal parish and the church associated with the Kneeling Carabao Festival and devotion to San Isidro Labrador.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Faith & tradition',
     },
     {
         category: 'religious' as Category,
-        name: 'Longos Church (San Pedro Calungsod)',
-        location: 'Longos, Pulilan',
-        desc: 'One of the oldest churches in Bulacan, featuring a beautiful colonial facade and a tranquil courtyard that transports visitors to colonial-era Philippines.',
-        img: 'https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=600&h=400&fit=crop&auto=format',
-        highlight: '17th Century',
+        name: 'Ascension Parish',
+        location: 'Pulilan, Bulacan',
+        desc: 'One of the religious sites currently listed by the official Pulilan tourism program.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Religious site',
     },
     {
         category: 'heritage' as Category,
         name: 'Pulilan Heritage Houses',
         location: 'Various Barangays',
-        desc: 'Scattered throughout Pulilan are well-preserved ancestral bahay na bato (stone houses) from the Spanish colonial period, offering a window into 19th-century Filipino life.',
-        img: 'https://images.unsplash.com/photo-1771868454902-4fe2477fa64c?w=600&h=400&fit=crop&auto=format',
-        highlight: 'Colonial Era',
+        desc: 'Pulilan’s heritage listings include historic houses such as Adriano Salvador House, Casa Filomena, Casa Balbina, and Casa Francisco.',
+        img: '/images/carousel-images/Heritage.jpg',
+        highlight: 'Historic houses',
     },
     {
         category: 'heritage' as Category,
         name: 'Municipal Hall & Plaza',
         location: 'Poblacion, Pulilan',
-        desc: 'The civic center of Pulilan, featuring a classic Filipino municipal hall and the historic plaza where community life has gathered for generations.',
-        img: 'https://images.unsplash.com/photo-1646138092104-4d2a9e399a5e?w=600&h=400&fit=crop&auto=format',
-        highlight: 'Civic Center',
+        desc: 'The Gabaldon Building, Museo de Pulilan, Trial Court, and Old Town Hall are among the town’s historic and cultural structures.',
+        img: '/images/carousel-images/Historical.jpg',
+        highlight: 'Cultural structures',
     },
     {
         category: 'nature' as Category,
-        name: 'Pampanga River Banks',
-        location: 'Western Pulilan',
-        desc: 'The Pampanga River forms a natural boundary offering scenic walks, local fishing communities, and peaceful views of the Central Luzon plains.',
-        img: 'https://images.unsplash.com/photo-1682724425247-f34019858601?w=600&h=400&fit=crop&auto=format',
+        name: 'Pulilan riverside areas',
+        location: 'Pulilan, Bulacan',
+        desc: 'Riverside areas and agricultural landscapes are part of Pulilan’s nature and outdoor tourism story.',
+        img: '/images/carousel-images/Attraction.jpg',
         highlight: 'Natural Landmark',
     },
     {
@@ -63,7 +63,7 @@ const attractions = [
         name: 'Pulilan Farmlands',
         location: 'Multiple Barangays',
         desc: 'The verdant rice paddies and farmlands of Pulilan paint a quintessentially Filipino rural landscape, especially beautiful during planting and harvest seasons.',
-        img: 'https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=600&h=400&fit=crop&auto=format',
+        img: '/images/carousel-images/Local-Products.jpg',
         highlight: 'Agricultural Heritage',
     },
     {
@@ -71,7 +71,7 @@ const attractions = [
         name: 'Bulakeño Cuisine Experience',
         location: 'Poblacion & Longos',
         desc: 'Sample authentic Bulacan dishes — kare-kare, crispy pata, dinuguan, and the famous Bulacan pastillas de leche alongside local delicacies unique to Pulilan.',
-        img: 'https://images.unsplash.com/photo-1537495988501-f9cd94a78f3e?w=600&h=400&fit=crop&auto=format',
+        img: '/images/carousel-images/Cuisine.jpg',
         highlight: 'Local Flavors',
     },
     {
@@ -79,7 +79,7 @@ const attractions = [
         name: 'Riverside Seafood & Grill',
         location: 'Near Pampanga River',
         desc: 'Fresh river fish, grilled tilapia, and classic Filipino river cuisine served in an open-air setting overlooking the Pampanga watershed.',
-        img: 'https://images.unsplash.com/photo-1578366687181-5f90a617ca7a?w=600&h=400&fit=crop&auto=format',
+        img: '/images/carousel-images/Cuisine.jpg',
         highlight: 'Fresh Catch Daily',
     },
     {
@@ -87,7 +87,7 @@ const attractions = [
         name: 'Pulilan Public Market',
         location: 'Poblacion, Pulilan',
         desc: "The vibrant public market offers everything from fresh farm produce to local handicrafts, native sweets, and regional products made by Pulilan's artisans.",
-        img: 'https://images.unsplash.com/photo-1489710020360-66e504159b43?w=600&h=400&fit=crop&auto=format',
+        img: '/images/carousel-images/Shopping.jpg',
         highlight: 'Daily Market',
     },
     {
@@ -122,7 +122,7 @@ export default function Attractions() {
                 {/* Hero */}
                 <div className="relative h-72 overflow-hidden">
                     <img
-                        src="https://images.unsplash.com/photo-1708464437185-3a2f6765bf92?w=1600&h=500&fit=crop&auto=format"
+                        src="/images/carousel-images/Attraction.jpg"
                         alt="Pulilan attractions"
                         className="h-full w-full object-cover"
                     />

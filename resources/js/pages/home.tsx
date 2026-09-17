@@ -34,7 +34,7 @@ const heroSlides = [
         eyebrow: 'LOCAL CUISINE',
         title: 'Taste the\nFlavors of Bulacan',
         description: 'Savor authentic Bulakeño dishes prepared with generations of local culinary tradition.',
-        image: 'https://images.unsplash.com/photo-1537495988501-f9cd94a78f3e?w=1600&h=900&fit=crop&auto=format',
+        image: '/images/carousel-images/Cuisine.jpg',
         href: `${route('about.detail', { topic: 'cuisine', slug: 'sumang-bulagta' })}`,
         action: 'Discover Cuisine',
     },
@@ -95,13 +95,13 @@ const stayCards = [
         title: 'Accommodations',
         image: '/images/carousel-images/Resorts.jpg',
         href: 'stay.dine.accommodations',
-        items: ['Pulilan Garden Resort', 'Heritage Inn Pulilan', 'Balatong Countryside Lodge'],
+        items: ['Villa Lorenzo Resort', 'ACI Garden Resort', 'Marahuyo Private Resort'],
     },
     {
         title: 'Local Cuisine',
         image: '/images/carousel-images/Cuisine.jpg',
         href: 'stay.dine.restaurants',
-        items: ["Aling Nena's Carinderia", 'Dulabayan Kitchen', 'Riverside Grill'],
+        items: ['Sujeo Restaurant', 'Dejabrew Cafe', 'River of Life Resort and Restaurant'],
     },
 ];
 
@@ -402,7 +402,7 @@ export default function Home() {
                         <div className="relative">
                             <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/5 bg-[#173f82]">
                                 <img
-                                    src="https://images.unsplash.com/photo-1682724425247-f34019858601?w=600&h=600&fit=crop&auto=format"
+                                    src="/images/carousel-images/Attraction.jpg"
                                     alt="Pulilan Bulacan landscape"
                                     className="h-full w-full object-cover"
                                 />

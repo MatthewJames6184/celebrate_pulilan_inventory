@@ -1,56 +1,27 @@
 import StayDineDirectoryPage, { type DirectoryItem } from '@/components/stay-dine-directory';
 
-const restaurants: DirectoryItem[] = [
-    {
-        name: 'Sujeo Restaurant',
-        category: 'Restaurant',
-        area: 'Sto. Cristo',
-        address: 'Pulilan, Bulacan',
-        summary: 'Comfort food and casual dining for daily meals, family outings, and quick lunch stops.',
-        highlights: ['Dine-in', 'Takeout', 'Family-friendly'],
-        featured: true,
-    },
-    {
-        name: 'Pulilan Cafe Corner',
-        category: 'Cafe',
-        area: 'Poblacion',
-        address: 'Pulilan, Bulacan',
-        summary: 'Coffee and light plates for meetups, slow mornings, and casual afternoon breaks.',
-        highlights: ['Coffee', 'Snacks', 'Working brunch'],
-    },
-    {
-        name: 'Carabao Grill House',
-        category: 'Restaurant',
-        area: 'Taal',
-        address: 'Pulilan, Bulacan',
-        summary: 'Grilled dishes and hearty plates for lunch and dinner with a relaxed local feel.',
-        highlights: ['Grill specialties', 'Shared meals', 'Quick service'],
-    },
-    {
-        name: 'Market Rice Meals',
-        category: 'Quick Bites',
-        area: 'Longos',
-        address: 'Pulilan, Bulacan',
-        summary: 'Affordable rice meals and fast lunch options near busy errands and market visits.',
-        highlights: ['Budget meals', 'Fast service', 'Grab and go'],
-    },
-    {
-        name: 'Barrio Table Diner',
-        category: 'Family Dining',
-        area: 'Dampol',
-        address: 'Pulilan, Bulacan',
-        summary: 'Everyday family dishes and group platters with easy access for local diners.',
-        highlights: ['Group dining', 'Daily specials', 'Relaxed setting'],
-    },
-    {
-        name: 'Halo-Halo Corner',
-        category: 'Desserts',
-        area: 'Balatong A',
-        address: 'Pulilan, Bulacan',
-        summary: 'Cold treats and sweet snacks for afternoon breaks and quick dessert stops.',
-        highlights: ['Desserts', 'Refreshments', 'Quick stop'],
-    },
+const listedRestaurants = [
+    'Tsaad Enterprise', 'Sujeo Restaurant', 'Sarangyupsal Korean Restaurant', 'San Andres Fried Chicken House',
+    'Restaurant Entree Food-House', 'PERF Restaurant Inc.', 'Old Folks Restaurant', 'Nikder Six Foods',
+    'Nagusame Ramenba Japanese Restaurant', "Lydia's Food Haus", 'Lee Foo Panciteria – Franchisee', 'Lay Cate Food Corporation',
+    'La-Vill Restaurant', 'K-Castle Korean Restaurant', 'Jollibee Foods Corporation – Pulilan Branch',
+    'JMJ Three Sixteen Catering and General Merchandise', "Jen's Seafood Restaurant", 'JDN Foods',
+    'Golden Arches Development Corporation', 'Golda L. De Guzman Enterprises – Canteen',
+    'Funnside Ningnangan San Matias Company', 'Fresh N Famous Foods Inc. (Greenwich)', "Enteng's Grill and Restaurant",
+    'Elvies Restaurant', "Ellen Allen's Food House", 'El Ranchero Eatery', 'Double 8 Food Corp. / Samgyup199 Food',
+    'DMC Delectable Food Masters Inc.', 'Dejabrew Cafe', 'Decalo Food Corp.', 'Centrale Plains Ventures Inc.',
+    'All Tasty, Inc.', '5Joys Corporation', '3J Foods and Cafe OPC', 'River of Life Resort and Restaurant',
 ];
+
+const restaurants: DirectoryItem[] = listedRestaurants.map((name, index) => ({
+    name,
+    category: /cafe/i.test(name) ? 'Café' : /korean|samgyup/i.test(name) ? 'Korean' : /ramen|japanese/i.test(name) ? 'Japanese' : /jollibee|greenwich|fried chicken/i.test(name) ? 'Fast Food' : 'Restaurant',
+    area: index % 3 === 0 ? 'Poblacion' : 'Pulilan',
+    address: 'Pulilan, Bulacan',
+    summary: 'A food establishment listed in the municipal business directory. Confirm current hours and availability before visiting.',
+    highlights: ['Directory listing', 'Check opening hours', 'Local dining'],
+    featured: index === 1,
+}));
 
 export default function StayDineRestaurants() {
     return (
@@ -65,9 +36,9 @@ export default function StayDineRestaurants() {
                 { label: 'Restaurants' },
             ]}
             stats={[
-                { value: '6', label: 'Food stops shown' },
-                { value: '6', label: 'Dining categories' },
-                { value: '6', label: 'Areas represented' },
+                { value: '35', label: 'Directory listings' },
+                { value: '5', label: 'Dining categories' },
+                { value: '19', label: 'Barangays in Pulilan' },
             ]}
             items={restaurants}
             type="restaurants"

@@ -43,14 +43,14 @@ export default function PortalAuthShell({ children, mode }: PortalAuthShellProps
                         </h2>
                         <p className="mt-7 text-sm leading-6 text-white/65">
                             Join our community portal to plan visits, discover heritage sites, stay updated on festivals, and connect with local
-                            businesses across all 18 barangays of Pulilan.
+                            businesses across all 19 barangays of Pulilan.
                         </p>
                         <div className="mt-8 grid gap-4 text-sm text-white/65">
                             <p className="flex items-center gap-4">
                                 <span className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/10">
                                     <Map className="h-4 w-4" />
                                 </span>
-                                Explore 18 barangays and local landmarks
+                                Explore 19 barangays and local landmarks
                             </p>
                             <p className="flex items-center gap-4">
                                 <span className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/10">

@@ -1,18 +1,11 @@
 import PublicLayout from '@/layouts/public-layout';
 import { Head, Link } from '@inertiajs/react';
 
-const officials = [
-    { name: 'Hon. John Dela Cruz', role: 'Mayor' },
-    { name: 'Hon. Maria Santos', role: 'Vice Mayor' },
-    { name: 'Engr. Roberto Reyes', role: 'Municipal Administrator' },
-    { name: 'Dr. Luz Macaraeg', role: 'Municipal Health Officer' },
-];
-
 const facts = [
-    { label: 'Land Area', value: '75.46', unit: 'km²' },
-    { label: 'Population', value: '101,756', unit: '2020 Census' },
-    { label: 'Barangays', value: '18', unit: 'communities' },
-    { label: 'Founded', value: '1572', unit: 'by Augustinians' },
+    { label: 'Land Area', value: '40.73', unit: 'km² / 4,073 hectares' },
+    { label: 'Population', value: '111,384', unit: '2024 POPCEN · July 1, 2024' },
+    { label: 'Barangays', value: '19', unit: 'communities' },
+    { label: 'Founded', value: '1796', unit: 'January 20 · Fray Vicente Villamanzo' },
 ];
 
 const barangays = [
@@ -44,11 +37,14 @@ export default function About() {
 
             <div className="text-scale min-h-screen bg-[#f3ede2]" style={{ fontSize: '16px' }}>
                 <section className="relative h-80 overflow-hidden">
+                   
                     <img
-                        src="https://images.unsplash.com/photo-1601000234047-d9308ea1ed51?w=1600&h=600&fit=crop&auto=format"
-                        alt="Pulilan landscape"
-                        className="h-full w-full object-cover"
+                    src="/images/municipal_officials.jpg"
+                    alt="Pulilan landscape"
+                    className="h-full w-full object-cover"
                     />
+                    
+
                     <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/70 via-[#4169E1]/50 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
@@ -75,6 +71,7 @@ export default function About() {
                 </section>
 
                 <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+                    {/* OVERVIEW */}
                     <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-2">
                         <div>
                             <div className="mb-4 flex items-center gap-2">
@@ -88,18 +85,19 @@ export default function About() {
                             </h2>
                             <div className="space-y-4 text-sm leading-relaxed text-[#000080]">
                                 <p>
-                                    Pulilan is a first-class municipality in the province of Bulacan, Philippines. It is known as the{' '}
-                                    <strong className="text-[#d4a853]">Carabao Capital of the Philippines</strong>, celebrated through its
-                                    centuries-old Carabao Festival held every May 15 in honor of San Isidro Labrador.
+                                    Pulilan is a first-class municipality in Bulacan, Central Luzon. It covers approximately 40.73 square
+                                    kilometers and is divided into 19 barangays. The town is known for its Kneeling Carabao Festival, held in
+                                    connection with the feast of San Isidro Labrador.
                                 </p>
                                 <p>
-                                    Located in the fertile plains of Central Luzon, Pulilan is bounded by Calumpit and Bulacan to the west, Plaridel
-                                    and Norzagaray to the east, and Santa Maria to the south. Its rich agricultural heritage and proximity to Manila
-                                    make it a vibrant hub of commerce and culture.
+                                    Pulilan is bounded by Apalit, Pampanga to the north, Baliwag to the east, Plaridel to the south, and Calumpit
+                                    to the west. Its generally flat terrain and fertile soil have supported agricultural communities and continue
+                                    to shape local life.
                                 </p>
                                 <p>
-                                    The municipality is home to some of Bulacan&apos;s most significant colonial churches, ancestral houses, and
-                                    heritage sites — preserving centuries of Spanish colonial history alongside living Filipino traditions.
+                                    Its identity brings together agriculture, Catholic traditions, local heritage, and the carabao. Historic houses,
+                                    Museo de San Isidro, religious sites, riverside areas, resorts, restaurants, and community festivals give visitors
+                                    many ways to experience Pulilan.
                                 </p>
                             </div>
                             <Link
@@ -119,9 +117,11 @@ export default function About() {
                                     <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Mission</h3>
                                 </div>
                                 <p className="text-sm leading-relaxed text-[#f5f0e8]">
-                                    We are committed to delivering efficient, responsive, and transparent local governance that upholds the dignity
-                                    and welfare of every Pulileño. We strive to foster sustainable development, preserve our cultural heritage, and
-                                    build a progressive community grounded in integrity and service.
+                                    Promote science and technology innovations; promote solid waste management programs; educate, conserve, and
+                                    promote cultural heritage; encourage investments and create job opportunities; provide health and allied-social
+                                    services; empower Pulileños to become self-reliant in managing hazards; comply with existing laws and
+                                    ordinances; provide basic utilities and facilities; promote organic and natural farming technologies; and
+                                    promote gender-responsive governance.
                                 </p>
                             </div>
                             <div className="rounded-2xl border border-white/5 bg-[#173f82] p-7">
@@ -132,33 +132,23 @@ export default function About() {
                                     <h3 className="font-display text-lg font-semibold text-[#f5f0e8]">Vision</h3>
                                 </div>
                                 <p className="text-sm leading-relaxed text-[#f5f0e8]">
-                                    Pulilan — a prosperous, culturally vibrant, and environmentally sustainable municipality where every citizen
-                                    enjoys a high quality of life, equitable access to services, and pride in their heritage as the Carabao Capital of
-                                    the Philippines.
+                                    “Pulilan, nangungunang bayan na may pamayanang maka-Diyos, maka-bayan, maka-tao, at maka-kalikasan, na handang
+                                    tumugon sa hamon ng makabagong panahon.”
                                 </p>
                             </div>
                         </div>
                     </div>
-
+                    {/* MUNICIPAL OFFICIALS */}
                     <section className="mt-20">
                         <div className="mb-10 flex items-center gap-2">
                             <div className="h-px w-6 bg-[#d4a853]" />
                             <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Leadership</span>
                         </div>
-                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#000080]">Municipal Officials</h2>
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-                            {officials.map((official) => (
-                                <div
-                                    key={official.name}
-                                    className="rounded-2xl border border-white/5 bg-[#173f82] p-6 transition-all hover:border-[#d4a853]/20"
-                                >
-                                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-[#2859a5] to-[#173f82]">
-                                        <span className="text-xl">👤</span>
-                                    </div>
-                                    <h4 className="font-display text-sm font-semibold text-[#f5f0e8]">{official.name}</h4>
-                                    <p className="mt-1 text-xs text-[#d4a853]">{official.role}</p>
-                                </div>
-                            ))}
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#000080]">Municipal Leadership</h2>
+                        <img src="/images/municipal_officials.jpg" alt="Pulilan municipal officials" className="mb-8 h-48 w-full rounded-xl border object-cover" />
+                        <div className="rounded-2xl border border-white/5 bg-[#173f82] p-6 text-sm leading-relaxed text-[#f5f0e8]/70">
+                            Meet the people serving Pulileños through the municipality’s official government channels. This tourism guide does not
+                            publish names or roles without a current official roster.
                         </div>
                     </section>
 
