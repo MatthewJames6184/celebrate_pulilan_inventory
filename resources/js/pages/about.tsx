@@ -8,6 +8,13 @@ const facts = [
     { label: 'Founded', value: '1796', unit: 'January 20 · Fray Vicente Villamanzo' },
 ];
 
+const officials = [
+    { name: 'Hon. John Dela Cruz', role: 'Mayor' },
+    { name: 'Hon. Maria Santos', role: 'Vice Mayor' },
+    { name: 'Engr. Roberto Reyes', role: 'Municipal Administrator' },
+    { name: 'Dr. Luz Macaraeg', role: 'Municipal Health Officer' },
+];
+
 const barangays = [
     'Balatong A',
     'Balatong B',
@@ -41,7 +48,7 @@ export default function About() {
                     <img
                     src="/images/municipal_officials.jpg"
                     alt="Pulilan landscape"
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-[50%_30%] transition-all duration-300 hover:scale-105"
                     />
                     
 
@@ -140,18 +147,27 @@ export default function About() {
                     </div>
                     {/* MUNICIPAL OFFICIALS */}
                     <section className="mt-20">
-                        <div className="mb-10 flex items-center gap-2">
+                        <div className="mb-7     flex items-center gap-2">
                             <div className="h-px w-6 bg-[#d4a853]" />
                             <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Leadership</span>
                         </div>
-                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#000080]">Municipal Leadership</h2>
-                        <img src="/images/municipal_officials.jpg" alt="Pulilan municipal officials" className="mb-8 h-48 w-full rounded-xl border object-cover" />
-                        <div className="rounded-2xl border border-white/5 bg-[#173f82] p-6 text-sm leading-relaxed text-[#f5f0e8]/70">
-                            Meet the people serving Pulileños through the municipality’s official government channels. This tourism guide does not
-                            publish names or roles without a current official roster.
+                        <h2 className="font-display text-3xl font-semibold text-[#000080]">Municipal Officials
+                        <br/>
+                        <em className="font-dsiplay text-[#d4a853]">Meet the People Behind Pulilan</em>
+                        </h2>
+                        <img src="/images/municipal-officials3.png" alt="Pulilan municipal officials" className="mt-8 mb-8 h-full lg:h-100 w-full rounded-xl border object-cover transition-all duration-300 hover:scale-105" />
+                        <p className="text-sm leading-relaxed text-[#000080]">
+                            Get to know the elected officials who lead and serve the Municipality of Pulilan. Working together with the local government, they help guide the municipality’s programs, services, and development for the community.
+                        </p>
+                        <div className="flex flex-col items-start justify-start gap-4 sm:gap-4 lg:flex-row lg:items-center lg:justify-center">
+                            <Link href="https://pulilan.gov.ph/government/elected-officials/"
+                                className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-7 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:px-7 sm:py-3.5 sm:text-[1em]"
+                            > View All Officials
+                                
+                            </Link>
                         </div>
                     </section>
-
+                    {/* BARANGAYS */}
                     <section className="mt-20 rounded-3xl border border-white/5 bg-[#173f82] p-6 sm:p-10">
                         <div className="mb-2 flex items-center gap-2">
                             <div className="h-px w-6 bg-[#d4a853]" />

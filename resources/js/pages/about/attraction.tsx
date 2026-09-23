@@ -3,18 +3,14 @@ import PublicLayout from '@/layouts/public-layout';
 import { usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
-type Category = 'all' | 'religious' | 'heritage' | 'festivals' | 'nature' | 'cuisine' | 'shopping' | 'health' | 'education';
+type Category = 'all' | 'religious' | 'heritage' | 'festivals' | 'local-products';
 
 const categories: { id: Category; label: string; emoji: string }[] = [
     { id: 'all', label: 'All', emoji: '✦' },
     { id: 'religious', label: 'Religious Sites', emoji: '⛪' },
     { id: 'heritage', label: 'Heritage', emoji: '🏛' },
     { id: 'festivals', label: 'Festivals', emoji: '🎉' },
-    { id: 'nature', label: 'Nature', emoji: '🌿' },
-    { id: 'cuisine', label: 'Cuisine', emoji: '🍽' },
-    { id: 'shopping', label: 'Shopping', emoji: '🛍' },
-    { id: 'health', label: 'Health Services', emoji: '🏥' },
-    { id: 'education', label: 'Education', emoji: '🎓' },
+    { id: 'local-products', label: 'Local Products', emoji: '🛍' },
 ];
 
 const attractions = [
@@ -28,84 +24,106 @@ const attractions = [
     },
     {
         category: 'religious' as Category,
-        name: 'Ascension Parish',
+        name: 'Mahal na Birhen ng Biglang Awa',
         location: 'Pulilan, Bulacan',
-        desc: 'One of the religious sites currently listed by the official Pulilan tourism program.',
+        desc: 'A venerated icon described by the municipality as dating back to the Spanish period and about 300 years old.',
         img: '/images/carousel-images/Religious.jpg',
         highlight: 'Religious site',
     },
     {
-        category: 'heritage' as Category,
-        name: 'Pulilan Heritage Houses',
-        location: 'Various Barangays',
-        desc: 'Pulilan’s heritage listings include historic houses such as Adriano Salvador House, Casa Filomena, Casa Balbina, and Casa Francisco.',
-        img: '/images/carousel-images/Heritage.jpg',
-        highlight: 'Historic houses',
-    },
-    {
-        category: 'heritage' as Category,
-        name: 'Municipal Hall & Plaza',
-        location: 'Poblacion, Pulilan',
-        desc: 'The Gabaldon Building, Museo de Pulilan, Trial Court, and Old Town Hall are among the town’s historic and cultural structures.',
-        img: '/images/carousel-images/Historical.jpg',
-        highlight: 'Cultural structures',
-    },
-    {
-        category: 'nature' as Category,
-        name: 'Pulilan riverside areas',
+        category: 'religious' as Category,
+        name: 'Mahal na Senyor Jesus Nazareno',
         location: 'Pulilan, Bulacan',
-        desc: 'Riverside areas and agricultural landscapes are part of Pulilan’s nature and outdoor tourism story.',
-        img: '/images/carousel-images/Attraction.jpg',
-        highlight: 'Natural Landmark',
+        desc: 'One of the six religious sites currently listed by the official Pulilan tourism program.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Religious site',
     },
     {
-        category: 'nature' as Category,
-        name: 'Pulilan Farmlands',
-        location: 'Multiple Barangays',
-        desc: 'The verdant rice paddies and farmlands of Pulilan paint a quintessentially Filipino rural landscape, especially beautiful during planting and harvest seasons.',
-        img: '/images/carousel-images/Local-Products.jpg',
-        highlight: 'Agricultural Heritage',
+        category: 'religious' as Category,
+        name: 'Our Lady of the Miraculous Medal Parish',
+        location: 'Pulilan, Bulacan',
+        desc: 'One of Pulilan’s officially listed parish communities and places of worship.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Religious site',
     },
     {
-        category: 'cuisine' as Category,
-        name: 'Bulakeño Cuisine Experience',
-        location: 'Poblacion & Longos',
-        desc: 'Sample authentic Bulacan dishes — kare-kare, crispy pata, dinuguan, and the famous Bulacan pastillas de leche alongside local delicacies unique to Pulilan.',
+        category: 'religious' as Category,
+        name: 'Ascension Parish',
+        location: 'Pulilan, Bulacan',
+        desc: 'One of the six religious sites currently listed by the official Pulilan tourism program.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Religious site',
+    },
+    {
+        category: 'religious' as Category,
+        name: 'St. Peter Chapel, Tibag, Pulilan',
+        location: 'Tibag, Pulilan',
+        desc: 'A chapel in Tibag included in the municipality’s current list of religious sites.',
+        img: '/images/carousel-images/Religious.jpg',
+        highlight: 'Religious site',
+    },
+    ...[
+        ['Adriano Salvador House', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Casa Filomena', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Dr. Pacifico Cruz House', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Gabaldon Building / Museo de Pulilan / Trial Court', 'A heritage civic building and museum site in Pulilan.'],
+        ['Kneeling Carabao Monument', 'A landmark honoring Pulilan’s iconic kneeling carabao tradition.'],
+        ['Kristong Hari Monument', 'A monument included in Pulilan’s official heritage listings.'],
+        ['Marcelo H. del Pilar Monument', 'A monument included in Pulilan’s official heritage listings.'],
+        ['Museo de San Isidro', 'A museum site included in Pulilan’s official heritage listings.'],
+        ['Bahay na Puti', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Casa Balbina', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Casa Fransisco – The Laxamana House', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Casanova-Aguirre House', 'Historic house in Pulilan’s official heritage listings.'],
+        ['Old Town Hall', 'A historic civic structure in Pulilan’s heritage listings.'],
+        ['Posong Malaki', 'A heritage site included in Pulilan’s official listings.'],
+        ['Pulilan Cemetery', 'A heritage site included in Pulilan’s official listings.'],
+        ['Pulilan: The Blessed Land', 'A heritage entry included in Pulilan’s official listings.'],
+        ['Rizal Monument', 'A monument included in Pulilan’s official heritage listings.'],
+        ['Rizal Park', 'A public heritage landmark included in Pulilan’s official listings.'],
+    ].map(([name, desc]) => ({
+        category: 'heritage' as Category,
+        name,
+        location: 'Pulilan, Bulacan',
+        desc,
+        img: '/images/carousel-images/Heritage.jpg',
+        highlight: 'Heritage site',
+    })),
+    ...[
+        ['Kneeling Carabao Festival', 'Pulilan’s recognizable tradition associated with San Isidro Labrador and the famous kneeling carabaos.'],
+        ['Gintong Palay Harvest Festival', 'A celebration connected with Pulilan’s agricultural and rice-growing heritage.'],
+        ['Pista sa Ilog / Libad sa Tibag', 'A local river-related celebration associated with Tibag.'],
+        ['Salakot Festival', 'A cultural celebration associated with the traditional salakot and Pulilan’s agricultural heritage.'],
+        ['Mandalá Art Festival', 'A cultural and art event worth documenting alongside Pulilan’s official festival listings.'],
+    ].map(([name, desc]) => ({
+        category: 'festivals' as Category,
+        name,
+        location: 'Pulilan, Bulacan',
+        desc,
+        img: '/images/carousel-images/Festival.jpg',
+        highlight: 'Festival & culture',
+    })),
+    ...[
+        ['Chamet’s Inipit de Pulilan', 'A Pulilan local product listed by the municipality.'],
+        ['Puto Pao de Pulilan', 'A rice delicacy specifically listed by the Pulilan Tourism Office as a local product.'],
+        ['Salted Duck Eggs / Itlog na Maalat', 'A popular local product specifically noted by the municipal tourism site.'],
+        ['TJN Pasalubong', 'A local pasalubong product listed by the municipality.'],
+        ['Organic Farm Produce', 'Fresh produce from Pulilan’s local farms.'],
+        ['Fisherfarms / Bangus Products', 'Bangus products highlighted by the municipal government as a Pulilan product.'],
+        ['Jedidiah Turmeric Products', 'Turmeric-based products listed on the municipality’s newer local products page.'],
+        ['Turmeric', 'A local product listed by the official Pulilan Tourism site.'],
+        ['Mulberry Heals – Mulberry Leaf Tea', 'An emerging Pulilan product available in classic and dark-roast leaf tea varieties.'],
+        ['Mulberry Jam', 'A mulberry product associated with the locally developed Mulberry Heals range.'],
+        ['Sardines', 'A local product listed by the official Pulilan Tourism site.'],
+        ['Elvie’s Authentic Halo-Halo', 'A local product and store listed by the municipality.'],
+    ].map(([name, desc]) => ({
+        category: 'local-products' as Category,
+        name,
+        location: 'Pulilan, Bulacan',
+        desc,
         img: '/images/carousel-images/Cuisine.jpg',
-        highlight: 'Local Flavors',
-    },
-    {
-        category: 'cuisine' as Category,
-        name: 'Riverside Seafood & Grill',
-        location: 'Near Pampanga River',
-        desc: 'Fresh river fish, grilled tilapia, and classic Filipino river cuisine served in an open-air setting overlooking the Pampanga watershed.',
-        img: '/images/carousel-images/Cuisine.jpg',
-        highlight: 'Fresh Catch Daily',
-    },
-    {
-        category: 'shopping' as Category,
-        name: 'Pulilan Public Market',
-        location: 'Poblacion, Pulilan',
-        desc: "The vibrant public market offers everything from fresh farm produce to local handicrafts, native sweets, and regional products made by Pulilan's artisans.",
-        img: '/images/carousel-images/Shopping.jpg',
-        highlight: 'Daily Market',
-    },
-    {
-        category: 'education' as Category,
-        name: 'Pulilan Central School',
-        location: 'Poblacion, Pulilan',
-        desc: 'A community school serving generations of Pulilan learners and families.',
-        img: '/images/carousel-images/Education.jpg',
-        highlight: 'Learning in Pulilan',
-    },
-    {
-        category: 'health' as Category,
-        name: 'Pulilan Municipal Health Office',
-        location: 'Poblacion, Pulilan',
-        desc: 'A central community health facility supporting residents and visitors.',
-        img: '/images/carousel-images/Health.jpg',
-        highlight: 'Community Care',
-    },
+        highlight: 'Local product',
+    })),
 ];
 
 export default function Attractions() {
@@ -121,11 +139,7 @@ export default function Attractions() {
             <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-72 overflow-hidden">
-                    <img
-                        src="/images/carousel-images/Attraction.jpg"
-                        alt="Pulilan attractions"
-                        className="h-full w-full object-cover"
-                    />
+                    <img src="/images/carousel-images/Attraction.jpg" alt="Pulilan attractions" className="h-full w-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center pb-14 text-center">
                         <div>
