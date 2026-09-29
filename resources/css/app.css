@@ -246,7 +246,7 @@ html.is-navigating {
     }
 
     body {
-        @apply text-foreground bg-[#102a72];
+        @apply text-foreground bg-[#fffdf8];
     }
 
     html {
@@ -273,6 +273,6 @@ html.is-navigating {
         border-radius: 2px;
     }
     ::-webkit-scrollbar-thumb:hover {
-        background: #d4a853
+        background: #d4a853;
     }
 }

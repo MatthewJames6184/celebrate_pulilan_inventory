@@ -32,13 +32,13 @@ export default function OthersFaq() {
         <PublicLayout>
             <Head title="Frequently Asked Questions" />
 
-            <section className="text-scale relative overflow-hidden px-4 py-14 sm:px-6 lg:px-8" style={{ fontSize: '16px' }}>
-                <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-950/60 via-emerald-900/45 to-slate-950/70" />
-
-                <div className="mx-auto max-w-6xl rounded-[2rem] border border-white/60 bg-white/92 p-6 shadow-2xl shadow-emerald-950/20 backdrop-blur-sm md:p-10">
+            <section className="text-scale relative overflow-hidden bg-[#f7f3eb] px-4 pt-28 pb-14 sm:px-6 lg:px-8" style={{ fontSize: '16px' }}>
+                <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#123b8f]/10 bg-[#fffdf8] p-6 shadow-xl shadow-[#123b8f]/5 md:p-10">
                     <header className="text-center">
-                        <p className="text-sm tracking-[0.35em] text-emerald-700 uppercase">Others</p>
-                        <h1 className="mt-4 text-3xl leading-tight font-semibold text-slate-950 md:text-5xl">Answers to common concerns.</h1>
+                        <p className="text-sm font-semibold tracking-[0.35em] text-[#a27620] uppercase">Visitor Help</p>
+                        <h1 className="font-display mt-4 text-3xl leading-tight font-semibold text-[#123b8f] md:text-5xl">
+                            Answers to common concerns.
+                        </h1>
                         <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-600 md:text-lg">
                             Browse frequently asked questions about travel, public services, and municipal information in Pulilan.
                         </p>
@@ -46,8 +46,8 @@ export default function OthersFaq() {
 
                     <div className="mt-10 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
                         <section>
-                            <h2 className="flex items-center gap-2 text-2xl font-semibold text-slate-950">
-                                <CircleHelp className="h-5 w-5 text-emerald-700" aria-hidden="true" />
+                            <h2 className="font-display flex items-center gap-2 text-2xl font-semibold text-[#123b8f]">
+                                <CircleHelp className="h-5 w-5 text-[#a27620]" aria-hidden="true" />
                                 Frequently Asked Questions
                             </h2>
 
@@ -55,7 +55,7 @@ export default function OthersFaq() {
                                 {faqItems.map((item) => (
                                     <details
                                         key={item.question}
-                                        className="group rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 open:border-emerald-200 open:bg-emerald-50/40"
+                                        className="group rounded-2xl border border-[#123b8f]/10 bg-white px-5 py-4 open:border-[#123b8f]/30 open:bg-[#f7f3eb]"
                                     >
                                         <summary className="cursor-pointer list-none pr-8 text-base font-semibold text-slate-900">
                                             <span>{item.question}</span>
@@ -66,26 +66,26 @@ export default function OthersFaq() {
                             </div>
                         </section>
 
-                        <aside className="space-y-4 rounded-3xl bg-emerald-50/70 p-6 lg:border lg:border-emerald-200 lg:bg-emerald-50/50">
-                            <h2 className="text-xl font-semibold text-slate-950">Still Need Help?</h2>
+                        <aside className="space-y-4 rounded-3xl border border-[#123b8f]/10 bg-[#f7f3eb] p-6">
+                            <h2 className="font-display text-xl font-semibold text-[#123b8f]">Still Need Help?</h2>
                             <p className="text-sm leading-7 text-slate-600">
                                 If your concern is not listed here, contact our office directly and we will guide you to the right service channel.
                             </p>
 
                             <div className="space-y-3 text-sm text-slate-700">
                                 <p className="flex items-center gap-2">
-                                    <Phone className="h-4 w-4 text-emerald-700" aria-hidden="true" />
+                                    <Phone className="h-4 w-4 text-[#a27620]" aria-hidden="true" />
                                     (044) 123 4567
                                 </p>
                                 <p className="flex items-center gap-2">
-                                    <Mail className="h-4 w-4 text-emerald-700" aria-hidden="true" />
+                                    <Mail className="h-4 w-4 text-[#a27620]" aria-hidden="true" />
                                     info@pulilan.gov.ph
                                 </p>
                             </div>
 
                             <Link
                                 href={route('contact')}
-                                className="inline-flex items-center rounded-full bg-amber-400 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-emerald-950 uppercase transition hover:bg-amber-300"
+                                className="inline-flex items-center rounded-full bg-[#123b8f] px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white uppercase transition hover:bg-[#1d4ed8]"
                             >
                                 Contact Us
                             </Link>

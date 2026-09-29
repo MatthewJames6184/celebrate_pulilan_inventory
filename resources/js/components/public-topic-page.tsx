@@ -29,20 +29,20 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
                         alt={imageSubHeader?.alt ?? title}
                         className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-[#0b1f4d]/75" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f4d]/75 via-[#0b1f4d]/55 to-[#0b1f4d]/25" />
                     <div className="absolute inset-0 flex items-end justify-center pb-8 text-center">
                         <div className="mx-auto w-full max-w-[1240px] px-6 sm:px-8">
-                            {eyebrow && <p className="mb-2 text-[10px] font-medium tracking-[0.3em] text-[#d4a853] uppercase">{eyebrow}</p>}
+                            {eyebrow && <p className="mb-2 text-[10px] font-semibold tracking-[0.3em] text-[#f1c75b] uppercase">{eyebrow}</p>}
                             <h1 className="font-display text-3xl font-semibold text-white md:text-5xl">{title}</h1>
                             {intro && <p className="mt-1 text-xs text-white/55">{intro}</p>}
                         </div>
                     </div>
                 </section>
-                <main className="min-h-screen bg-[#0b1640] py-8 md:py-10">
+                <main className="min-h-screen bg-[#fffdf8] py-8 text-[#1f2937] md:py-10">
                     <div className="mx-auto max-w-[1240px] px-6 sm:px-8">
                         {breadcrumbs && (
                             <nav aria-label="Breadcrumb" className="mb-8">
-                                <ol className="flex flex-wrap items-center gap-1.5 text-xs text-white/45">
+                                <ol className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
                                     {breadcrumbs.map((crumb, index) => (
                                         <li key={crumb.label} className="flex items-center gap-1.5">
                                             {crumb.href && index < breadcrumbs.length - 1 ? (
@@ -50,7 +50,7 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
                                             ) : (
                                                 <span>{crumb.label}</span>
                                             )}
-                                            {index < breadcrumbs.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-white/25" />}
+                                            {index < breadcrumbs.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-slate-400" />}
                                         </li>
                                     ))}
                                 </ol>
@@ -58,13 +58,13 @@ export default function PublicTopicPage({ headTitle, title, imageSubHeader, eyeb
                         )}
                         {sections && (
                             <section className="rounded-2xl bg-white p-6">
-                                {eyebrow && <p className="text-xs tracking-[0.3em] text-emerald-700 uppercase">{eyebrow}</p>}
-                                <h2 className="mt-3 text-3xl font-semibold text-slate-950">{title}</h2>
+                                {eyebrow && <p className="text-xs tracking-[0.3em] text-[#a27620] uppercase">{eyebrow}</p>}
+                                <h2 className="font-display mt-3 text-3xl font-semibold text-[#123b8f]">{title}</h2>
                                 {intro && <p className="mt-4 text-slate-600">{intro}</p>}
                                 <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                                     {sections.map((section) => (
-                                        <article key={section.title} className="rounded-xl bg-slate-50 p-5">
-                                            <h3 className="font-semibold text-slate-950">{section.title}</h3>
+                                        <article key={section.title} className="rounded-xl border border-[#123b8f]/10 bg-[#f7f3eb] p-5">
+                                            <h3 className="font-semibold text-[#123b8f]">{section.title}</h3>
                                             {section.description && <p className="mt-2 text-sm text-slate-600">{section.description}</p>}
                                             {section.items && (
                                                 <ul className="mt-3 space-y-2 text-sm text-slate-600">

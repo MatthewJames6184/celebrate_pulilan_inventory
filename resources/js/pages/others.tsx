@@ -21,12 +21,12 @@ export default function Others() {
             <Head title="Others" />
 
             <section
-                className="text-scale space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10"
+                className="text-scale mx-auto mt-24 mb-16 max-w-7xl space-y-6 rounded-3xl border border-[#123b8f]/10 bg-[#fffdf8] p-8 shadow-sm shadow-[#123b8f]/5 md:p-10"
                 style={{ fontSize: '16px' }}
             >
                 <div className="space-y-3">
-                    <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">Others</p>
-                    <h1 className="text-4xl font-semibold text-slate-950">Resources, announcements, and event information.</h1>
+                    <p className="text-sm font-semibold tracking-[0.3em] text-[#a27620] uppercase">More to Explore</p>
+                    <h1 className="font-display text-4xl font-semibold text-[#123b8f]">Resources, announcements, and event information.</h1>
                     <p className="max-w-3xl text-base leading-8 text-slate-600">
                         Access useful municipal resources, review upcoming events, and explore photo highlights from Pulilan’s community life.
                     </p>
@@ -34,12 +34,15 @@ export default function Others() {
 
                 <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((item) => (
-                        <article key={item.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-                            <h2 className="text-xl font-semibold text-slate-950">{item.title}</h2>
+                        <article
+                            key={item.title}
+                            className="rounded-3xl border border-[#123b8f]/10 bg-[#f7f3eb] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                        >
+                            <h2 className="font-display text-xl font-semibold text-[#123b8f]">{item.title}</h2>
                             <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
                             <Link
                                 href={item.href}
-                                className="mt-5 inline-flex items-center rounded-full bg-emerald-700 px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white uppercase transition hover:bg-emerald-800"
+                                className="mt-5 inline-flex items-center rounded-full bg-[#123b8f] px-4 py-2 text-xs font-semibold tracking-[0.15em] text-white uppercase transition hover:bg-[#1d4ed8]"
                             >
                                 Learn more
                             </Link>
