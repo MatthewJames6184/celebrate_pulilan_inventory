@@ -402,9 +402,9 @@ export default function Home() {
                         <div className="relative">
                             <div className="relative aspect-square overflow-hidden rounded-3xl border border-white/5 bg-[#173f82]">
                                 <img
-                                    src="/images/carousel-images/Attraction.jpg"
+                                    src="/images/other-images/pulilan-google-map.gif"
                                     alt="Pulilan Bulacan landscape"
-                                    className="h-full w-full object-cover"
+                                    className="h-full w-full object-cover opacity-50 transition-opacity duration-500 group-hover:opacity-100"
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                                     <div className="flex h-16 w-16 items-center justify-center rounded-full">

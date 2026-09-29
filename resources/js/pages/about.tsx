@@ -43,16 +43,16 @@ export default function About() {
             <Head title="About Pulilan" />
 
             <div className="text-scale min-h-screen bg-[#f3ede2]" style={{ fontSize: '16px' }}>
-                <section className="relative h-80 overflow-hidden">
+                <section className="relative h-80 overflow-hidden sm:h-96 lg:h-[24rem]">
                    
                     <img
-                    src="/images/municipal_officials.jpg"
+                    src="/images/municipal_building.jpg"
                     alt="Pulilan landscape"
-                    className="h-full w-full object-cover object-[50%_30%] transition-all duration-300 hover:scale-105"
+                    className="h-full w-full object-cover object-[100%_55%] transition-all duration-300 hover:scale-105"
                     />
                     
 
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/70 via-[#4169E1]/50 to-[#4169E1]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 via-[#4169E1]/50 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
@@ -160,11 +160,10 @@ export default function About() {
                             Get to know the elected officials who lead and serve the Municipality of Pulilan. Working together with the local government, they help guide the municipality’s programs, services, and development for the community.
                         </p>
                         <div className="flex flex-col items-start justify-start gap-4 sm:gap-4 lg:flex-row lg:items-center lg:justify-center">
-                            <Link href="https://pulilan.gov.ph/government/elected-officials/"
+                            <button 
                                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-7 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:px-7 sm:py-3.5 sm:text-[1em]"
-                            > View All Officials
-                                
-                            </Link>
+                            > <a href="https://pulilan.gov.ph/government/elected-officials/"  target="_blank">View All Officials</a>
+                            </button>
                         </div>
                     </section>
                     {/* BARANGAYS */}
