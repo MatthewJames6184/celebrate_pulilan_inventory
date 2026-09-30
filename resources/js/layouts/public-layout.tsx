@@ -10,7 +10,7 @@ interface PublicLayoutProps {
 
 export default function PublicLayout({ children }: PublicLayoutProps) {
     return (
-        <div className="min-h-screen overflow-x-clip bg-[#fffdf8] text-[#1f2937]">
+        <div className="min-h-screen bg-[#fffdf8] text-[#1f2937]">
             <PublicHeader />
             <main className="mx-auto w-full">{children}</main>
             <PublicFooter />

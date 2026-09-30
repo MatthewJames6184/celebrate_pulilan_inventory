@@ -22,12 +22,12 @@ export default function StayDine() {
             <Head title="Where to Stay and Dine" />
 
             <section
-                className="text-scale mx-auto mt-24 mb-16 max-w-7xl space-y-6 rounded-3xl border border-[#123b8f]/10 bg-[#fffdf8] p-8 shadow-sm shadow-[#123b8f]/5 md:p-10"
+                className="text-scale space-y-6 rounded-3xl border border-emerald-200 bg-white p-8 shadow-sm shadow-slate-200/80 md:p-10"
                 style={{ fontSize: '20px' }}
             >
                 <div className="space-y-3">
-                    <p className="text-sm font-semibold tracking-[0.3em] text-[#a27620] uppercase">Where to Stay and Dine</p>
-                    <h1 className="font-display text-4xl font-semibold text-[#123b8f]">Find the best hotels, resorts, and restaurants in Pulilan.</h1>
+                    <p className="text-sm tracking-[0.3em] text-emerald-700 uppercase">Where to Stay and Dine</p>
+                    <h1 className="text-4xl font-semibold text-slate-950">Find the best hotels, resorts, and restaurants in Pulilan.</h1>
                     <p className="max-w-3xl text-base leading-8 text-slate-600">
                         Choose accommodations and dining spots that suit your trip, whether it is festival season, a cultural tour, or a quiet weekend
                         away.
@@ -36,8 +36,8 @@ export default function StayDine() {
 
                 <div className="grid gap-5 lg:grid-cols-2">
                     {cards.map((card) => (
-                        <article key={card.title} className="rounded-3xl border border-[#123b8f]/10 bg-[#f7f3eb] p-6 shadow-sm">
-                            <h2 className="font-display text-2xl font-semibold text-[#123b8f]">{card.title}</h2>
+                        <article key={card.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                            <h2 className="text-2xl font-semibold text-slate-950">{card.title}</h2>
                             <p className="mt-3 text-sm leading-7 text-slate-600">{card.description}</p>
                             <ul className="mt-4 space-y-3 text-slate-700">
                                 {card.items.map((item) => (
@@ -48,7 +48,7 @@ export default function StayDine() {
                             </ul>
                             <Link
                                 href={card.href}
-                                className="mt-5 inline-flex items-center rounded-full bg-[#123b8f] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#1d4ed8]"
+                                className="mt-5 inline-flex items-center rounded-full bg-emerald-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-800"
                             >
                                 Learn more
                             </Link>

@@ -136,25 +136,25 @@ export default function Attractions() {
 
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#fffdf8] text-[#1f2937]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-72 overflow-hidden">
                     <img src="/images/carousel-images/Attraction.jpg" alt="Pulilan attractions" className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f4d]/70 via-[#0b1f4d]/35 to-transparent" />
-                    <div className="absolute inset-0 flex items-end justify-start px-6 pb-14 text-left sm:px-10 lg:px-16">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 to-[#4169E1]" />
+                    <div className="absolute inset-0 flex items-end justify-center pb-14 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
-                                <div className="h-px w-6 bg-[#f1c75b]" />
-                                <span className="text-xs font-semibold tracking-widest text-[#f1c75b] uppercase">Things to See & Do</span>
-                                <div className="h-px w-6 bg-[#f1c75b]" />
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Things to See & Do</span>
+                                <div className="h-px w-6 bg-[#d4a853]" />
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-white lg:text-6xl">Attractions</h1>
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">Attractions</h1>
                         </div>
                     </div>
                 </div>
 
                 {/* Filters */}
-                <div className="sticky top-[76px] z-30 border-b border-[#123b8f]/10 bg-[#fffdf8]/95 shadow-sm backdrop-blur-md">
+                <div className="sticky top-20 z-30 border-b border-white/10 bg-[#4169E1]/95 backdrop-blur-md">
                     <div className="mx-auto max-w-7xl px-6 py-4 lg:px-10">
                         <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
                             {categories.map((cat) => (
@@ -163,8 +163,8 @@ export default function Attractions() {
                                     onClick={() => setActive(cat.id)}
                                     className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                         active === cat.id
-                                            ? 'bg-[#123b8f] text-white'
-                                            : 'border border-[#123b8f]/15 bg-white text-slate-600 hover:border-[#123b8f]/40 hover:text-[#123b8f]'
+                                            ? 'bg-[#d4a853] text-[#0d1b2a]'
+                                            : 'bg-white/5 text-[#f5f0e8]/60 hover:bg-white/10 hover:text-[#f5f0e8]'
                                     }`}
                                 >
                                     <span>{cat.emoji}</span>
@@ -181,7 +181,7 @@ export default function Attractions() {
                         {filtered.map((item, i) => (
                             <article
                                 key={i}
-                                className="group cursor-pointer overflow-hidden rounded-2xl border border-[#e8e1d5] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c89b33]/60 hover:shadow-lg"
+                                className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#f3ede2] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/50"
                             >
                                 <div className="relative h-52 overflow-hidden">
                                     <img
@@ -189,19 +189,19 @@ export default function Attractions() {
                                         alt={item.name}
                                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#102a55]/85 to-transparent" />
-                                    <span className="absolute top-3 left-3 rounded-full bg-[#f1c75b] px-2.5 py-1 text-xs font-semibold text-[#17233d]">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 to-transparent" />
+                                    <span className="absolute top-3 left-3 rounded-full border border-[#d4a853]/50 bg-[#172554]/85 px-2.5 py-1 text-xs font-semibold text-[#f8d477] backdrop-blur-sm">
                                         {item.highlight}
                                     </span>
                                 </div>
                                 <div className="p-5">
                                     <div className="mb-2 flex items-start justify-between gap-2">
-                                        <h3 className="font-display text-base leading-snug font-semibold text-[#123b8f] transition-colors group-hover:text-[#a27620]">
+                                        <h3 className="font-display text-base leading-snug font-semibold text-[#000080] transition-colors group-hover:text-[#4169E1]">
                                             {item.name}
                                         </h3>
                                     </div>
                                     <div className="mb-3 flex items-center gap-1.5">
-                                        <svg className="h-3 w-3 shrink-0 text-[#123b8f]/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-3 w-3 shrink-0 text-[#1e3a8a]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
@@ -209,16 +209,16 @@ export default function Attractions() {
                                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                                             />
                                         </svg>
-                                        <span className="text-xs text-slate-500">{item.location}</span>
+                                        <span className="text-xs text-[#000080]/35">{item.location}</span>
                                     </div>
-                                    <p className="line-clamp-3 text-xs leading-relaxed text-slate-600">{item.desc}</p>
+                                    <p className="line-clamp-3 text-xs leading-relaxed text-[#000080]/50">{item.desc}</p>
                                 </div>
                             </article>
                         ))}
                     </div>
 
                     {filtered.length === 0 && (
-                        <div className="font-display py-20 text-center text-xl text-slate-500">No attractions found in this category.</div>
+                        <div className="font-display py-20 text-center text-xl text-[#000080]/30">No attractions found in this category.</div>
                     )}
                 </div>
             </div>

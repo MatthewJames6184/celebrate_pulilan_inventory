@@ -50,17 +50,21 @@ export default function PublicHeader() {
     return (
         <header
             className={cn(
-                'fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#123b8f] text-white transition-all duration-300',
-                scrolled && 'shadow-[0_8px_28px_rgba(12,35,78,0.25)]',
+                'fixed inset-x-0 top-0 z-50 text-white transition-all duration-500',
+                scrolled ? 'bg-[#4169E1]/95 shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
             )}
         >
-            <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-6 lg:px-10">
-                <Link href={route('home')} className="group flex items-center gap-3" aria-label="Discover Pulilan home">
-                    <img
-                        src="/images/logo-images/logo-tourism-pulilan.png"
-                        alt="Celebrate Pulilan"
-                        className="h-11 w-[172px] rounded-md bg-white object-contain p-1"
-                    />
+            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+                <Link href={route('home')} className="group flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a853] to-[#c09040] text-sm leading-none font-bold text-[#0d1b2a] shadow-lg">
+                        P
+                    </span>
+                    <span className="leading-none">
+                        <span className="block text-lg font-semibold tracking-tight transition-colors duration-200 group-hover:text-[#d4a853]">
+                            Discover
+                        </span>
+                        <span className="mt-1 block text-sm tracking-widest text-[#d4a853] uppercase italic">Pulilan</span>
+                    </span>
                 </Link>
 
                 <nav className="hidden items-center gap-1 lg:flex">
@@ -71,8 +75,8 @@ export default function PublicHeader() {
                             className={cn(
                                 'rounded-full px-4 py-2 text-sm font-medium transition-all duration-200',
                                 currentPath === normalizePath(item.url)
-                                    ? 'bg-white text-[#123b8f]'
-                                    : 'text-white/90 hover:bg-white/12 hover:text-white',
+                                    ? ' text-bold bg-[#d4a853] text-[#000080]'
+                                    : 'text-white hover:bg-white hover:text-[#000080] text-bold',
                             )}
                         >
                             {item.title}
@@ -82,12 +86,12 @@ export default function PublicHeader() {
                         <span
                             className={cn(
                                 'flex cursor-default items-center gap-1 rounded-full px-4 py-2 text-sm font-medium',
-                                currentPath.startsWith('/stay-dine') ? 'bg-white/15 text-[#f1c75b]' : 'text-white/90',
+                                currentPath.startsWith('/stay-dine') ? 'bg-[#d4a853]/20 text-[#d4a853]' : 'text-white/90',
                             )}
                         >
                             Stay &amp; Dine <ChevronDown className="h-3 w-3" />
                         </span>
-                        <div className="invisible absolute top-7 left-0 min-w-44 rounded-xl border border-white/10 bg-[#0c2b68] p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
+                        <div className="invisible absolute top-7 left-0 min-w-44 rounded-xl border border-white/10 bg-[#4169E1]/70 p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100">
                             <Link
                                 href={route('stay.dine.accommodations')}
                                 className="block rounded-lg px-3 py-2 text-xs text-white hover:bg-white/10 hover:text-white"
@@ -172,7 +176,7 @@ export default function PublicHeader() {
                     ) : (
                         <Link
                             href={route('register')}
-                            className="ml-2 rounded-full bg-[#e8b84b] px-5 py-2 text-sm font-semibold text-[#17233d] transition-colors duration-200 hover:bg-[#f2c85e]"
+                            className="ml-2 rounded-full bg-[#d4a853] px-5 py-2 text-sm font-semibold text-[#0d1b2a] shadow-lg shadow-[#d4a853]/20 transition-colors duration-200 hover:bg-[#e8b96a]"
                         >
                             + Add Business
                         </Link>
@@ -181,11 +185,11 @@ export default function PublicHeader() {
 
                 <Sheet>
                     <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon" className="border border-white/25 bg-white/10 text-white hover:bg-white/20 lg:hidden">
+                        <Button variant="ghost" size="icon" className="border border-white/15 bg-white/5 text-white hover:bg-white/10 lg:hidden">
                             <Menu className="h-5 w-5" />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="right" className="border-white/10 bg-[#0c2b68] text-white">
+                    <SheetContent side="right" className="border-white/10 bg-[#0b1f4d] text-white">
                         <SheetHeader>
                             <SheetTitle className="text-white">Discover Pulilan</SheetTitle>
                         </SheetHeader>

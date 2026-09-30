@@ -44,52 +44,54 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
     return (
         <PublicLayout>
             <Head title={headTitle} />
-            <div className="min-h-screen w-full min-w-0 bg-[#fffdf8] text-[#1f2937]" style={{ fontSize: '20px' }}>
+            <div className="min-h-screen bg-[#1d4ed8] text-white" style={{ fontSize: '20px' }}>
                 <section className="relative h-72 overflow-hidden">
                     <img src={imageSubHeader.src} alt={imageSubHeader.alt} className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f4d]/75 via-[#0b1f4d]/50 to-[#0b1f4d]/15" />
-                    <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-7xl items-end justify-start px-6 pb-11 text-left lg:px-10">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a8a]/60 via-[#1e3a8a]/55 to-[#1d4ed8]" />
+                    <div className="absolute inset-0 flex items-end justify-center pb-11 text-center">
                         <div>
-                            <p className="mb-2 text-[0.625em] font-semibold tracking-[0.3em] text-[#f1c75b] uppercase">Pulilan, Bulacan</p>
-                            <h1 className="font-display text-[3em] font-semibold text-white lg:text-[3.75em]">Stay &amp; Dine</h1>
-                            <p className="mt-1 text-[0.75em] text-white/80">Accommodations, resorts, restaurants &amp; cafés</p>
+                            <p className="mb-2 text-[0.625em] font-medium tracking-[0.3em] text-[#d4a853] uppercase">Pulilan, Bulacan</p>
+                            <h1 className="font-display text-[3em] font-semibold text-[#f5f0e8] lg:text-[3.75em]">Stay &amp; Dine</h1>
+                            <p className="mt-1 text-[0.75em] text-white/50">Accommodations, resorts, restaurants &amp; cafés</p>
                         </div>
                     </div>
                 </section>
 
-                <main className="mx-auto w-full max-w-7xl min-w-0 px-6 py-8 lg:px-10">
+                <main className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-                        <div className="relative flex rounded-2xl border border-[#123b8f]/10 bg-[#f1eee7] p-1.5">
+                        <div className="relative flex rounded-2xl border border-white/10 bg-[#1e40af] p-1.5">
                             <span
-                                className={`absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] rounded-xl bg-[#123b8f] shadow-lg transition-transform duration-500 ease-out ${
+                                className={`absolute top-1.5 bottom-1.5 w-[calc(50%-0.375rem)] rounded-xl bg-[#d4a853] shadow-lg transition-transform duration-500 ease-out ${
                                     type === 'restaurants' ? 'translate-x-full' : 'translate-x-0'
                                 }`}
                                 aria-hidden="true"
                             />
                             <Link
                                 href={route('stay.dine.accommodations')}
-                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'accommodations' ? 'text-white' : 'text-slate-600 hover:text-[#123b8f]'}`}
+                                viewTransition
+                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'accommodations' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🏨 &nbsp; Accommodations
                             </Link>
                             <Link
                                 href={route('stay.dine.restaurants')}
-                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'restaurants' ? 'text-white' : 'text-slate-600 hover:text-[#123b8f]'}`}
+                                viewTransition
+                                className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'restaurants' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🍽 &nbsp; Restaurants &amp; Cafés
                             </Link>
                         </div>
-                        <div className="flex rounded-xl border border-[#123b8f]/10 bg-[#f1eee7] p-1">
+                        <div className="flex rounded-xl border border-white/10 bg-[#1e40af] p-1">
                             <button
                                 onClick={() => setViewMode('grid')}
-                                className={`rounded-lg p-2 ${viewMode === 'grid' ? 'bg-[#123b8f] text-white' : 'text-slate-500 hover:text-[#123b8f]'}`}
+                                className={`rounded-lg p-2 ${viewMode === 'grid' ? 'bg-[#1a2f88] text-white' : 'text-white/30'}`}
                                 aria-label="Grid view"
                             >
                                 <Grid2X2 className="h-4 w-4" />
                             </button>
                             <button
                                 onClick={() => setViewMode('list')}
-                                className={`rounded-lg p-2 ${viewMode === 'list' ? 'bg-[#123b8f] text-white' : 'text-slate-500 hover:text-[#123b8f]'}`}
+                                className={`rounded-lg p-2 ${viewMode === 'list' ? 'bg-[#1a2f88] text-white' : 'text-white/30'}`}
                                 aria-label="List view"
                             >
                                 <List className="h-4 w-4" />
@@ -98,14 +100,14 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                     </div>
 
                     <div className="relative mb-5">
-                        <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                        <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-white/25" />
                         <input
                             value={query}
                             onChange={(event) => setQuery(event.target.value)}
                             placeholder={type === 'restaurants' ? 'Search restaurants, cafés…' : 'Search hotels, resorts, inns…'}
-                            className="w-full rounded-2xl border border-[#123b8f]/15 bg-white py-3.5 pr-20 pl-11 text-[0.75em] text-slate-800 outline-none placeholder:text-slate-400 focus:border-[#123b8f]/50"
+                            className="w-full rounded-2xl border border-white/10 bg-[#1e40af] py-3.5 pr-20 pl-11 text-[0.75em] text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]/50"
                         />
-                        <span className="absolute top-1/2 right-3 -translate-y-1/2 rounded-lg bg-[#f1eee7] px-3 py-1 text-[0.625em] text-slate-600">
+                        <span className="absolute top-1/2 right-3 -translate-y-1/2 rounded-lg bg-[#1a2f88] px-3 py-1 text-[0.625em] text-white/40">
                             {filteredItems.length} results
                         </span>
                     </div>
@@ -115,7 +117,7 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                             <button
                                 key={option}
                                 onClick={() => setCategory(option)}
-                                className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[0.625em] transition ${category === option ? 'border-[#123b8f] bg-[#123b8f] text-white' : 'border-[#123b8f]/15 bg-white text-slate-600 hover:border-[#123b8f]/50 hover:text-[#123b8f]'}`}
+                                className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[0.625em] transition ${category === option ? 'border-[#d4a853] bg-[#d4a853] text-[#0b1640]' : 'border-white/8 text-white/45 hover:border-[#d4a853]/50 hover:text-[#d4a853]'}`}
                             >
                                 {option}
                             </button>
@@ -136,7 +138,7 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                                 <ScrollReveal key={item.name} delay={index * 70}>
                                     <Link
                                         href={route('stay.dine.detail', { type, slug })}
-                                        className={`group block h-full overflow-hidden rounded-2xl border border-[#e8e1d5] bg-white text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c89b33] hover:shadow-xl ${viewMode === 'list' ? 'flex' : ''}`}
+                                        className={`group block h-full overflow-hidden rounded-2xl border border-[#cbd8e8] bg-[#EAF0F8] text-left transition duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-[#C89B33] hover:shadow-xl hover:shadow-[#1A3B70]/15 ${viewMode === 'list' ? 'flex' : ''}`}
                                     >
                                         <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>
                                             <img
@@ -149,7 +151,7 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                                                 {item.category}
                                             </span>
                                         </div>
-                                        <div className="min-w-0 flex-1 bg-white p-4">
+                                        <div className="min-w-0 flex-1 bg-[#F8F9FA] p-4">
                                             <h2 className="font-display truncate text-[0.875em] font-semibold text-[#1A3B70] transition-colors group-hover:text-[#C89B33]">
                                                 {item.name}
                                             </h2>

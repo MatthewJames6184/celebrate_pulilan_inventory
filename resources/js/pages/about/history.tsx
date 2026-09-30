@@ -22,7 +22,7 @@ const timeline = [
         era: 'Spanish period',
         event: 'The settlement becomes organized',
         desc: 'The area became increasingly organized under Spanish colonial administration and Augustinian missionary influence. It became associated with San Isidro Labrador, patron saint of farmers.',
-        color: '#123b8f',
+        color: '#3d8b67',
     },
     {
         year: 'Jan. 20, 1796',
@@ -36,7 +36,7 @@ const timeline = [
         era: 'Agricultural town',
         event: 'Pulilan develops under Spanish rule',
         desc: 'Pulilan developed as an agricultural community whose identity became closely connected with farming, Catholicism, San Isidro Labrador, and its river-based environment.',
-        color: '#123b8f',
+        color: '#3d8b67',
     },
     {
         year: '1898',
@@ -50,7 +50,7 @@ const timeline = [
         era: 'American period',
         event: 'Pulilan separates from Quingua',
         desc: 'After a period when the settlement was attached to Quingua (now Plaridel), local leaders petitioned for separation. The request was granted and Pulilan again functioned as its own town.',
-        color: '#123b8f',
+        color: '#3d8b67',
     },
     {
         year: '1941–45',
@@ -64,7 +64,7 @@ const timeline = [
         era: 'Postwar Philippines',
         event: 'Reconstruction and development',
         desc: 'Following Philippine independence, Pulilan began postwar reconstruction and continued developing as a municipality.',
-        color: '#123b8f',
+        color: '#3d8b67',
     },
     {
         year: '2007',
@@ -111,21 +111,25 @@ export default function History() {
 
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#fffdf8] text-[#1f2937]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="relative h-80 overflow-hidden">
-                    <img src="/images/carousel-images/Historical.jpg" alt="Pulilan heritage" className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0b1f4d]/75 via-[#0b1f4d]/45 to-transparent" />
+                    <img
+                    src="/images/carousel-images/Historical.jpg"
+                        alt="Pulilan heritage"
+                        className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/50 via-[#123b8f]/60 to-[#123b8f]" />
                     <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-16 lg:px-10">
                         <div>
                             <div className="mb-3 flex items-center gap-2">
-                                <div className="h-px w-6 bg-[#f1c75b]" />
-                                <span className="text-xs font-semibold tracking-widest text-[#f1c75b] uppercase">Since January 20, 1796</span>
+                                <div className="h-px w-6 bg-[#d4a853]" />
+                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Since January 20, 1796</span>
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-white lg:text-6xl">
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">
                                 History of
                                 <br />
-                                <em className="text-[#f1c75b]">Pulilan</em>
+                                <em className="text-[#d4a853]">Pulilan</em>
                             </h1>
                         </div>
                     </div>
@@ -133,10 +137,10 @@ export default function History() {
 
                 {/* Intro */}
                 <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10">
-                    <div className="rounded-3xl border border-[#123b8f]/10 bg-[#f7f3eb] p-8 shadow-sm sm:p-10">
-                        <p className="font-display text-center text-lg leading-relaxed text-[#123b8f] italic">
-                            "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement
-                            date is unknown; January 20, 1796 is the municipality’s recorded foundation date."
+                    <div className="rounded-3xl border border-white/5 bg-[#173f82] p-10">
+                        <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
+                            "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement date
+                            is unknown; January 20, 1796 is the municipality’s recorded foundation date."
                         </p>
                     </div>
                 </div>
@@ -144,15 +148,15 @@ export default function History() {
                 {/* Timeline */}
                 <div className="mx-auto max-w-4xl px-6 pb-24 lg:px-10">
                     <div className="mb-12 flex items-center gap-2">
-                        <div className="h-px w-6 bg-[#a27620]" />
-                        <span className="text-xs font-semibold tracking-widest text-[#a27620] uppercase">Historical Timeline</span>
+                        <div className="h-px w-6 bg-[#d4a853]" />
+                        <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Historical Timeline</span>
                     </div>
 
                     <div ref={timelineRef} className="relative">
                         {/* Vertical line */}
-                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.16)-1px)] w-px bg-[#123b8f]/15" />
+                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.16)-1px)] w-px bg-white/10" />
                         <div
-                            className="absolute top-0 left-[calc(theme(spacing.16)-1px)] w-px origin-top bg-gradient-to-b from-[#e1b64f] via-[#123b8f]/70 to-[#123b8f]"
+                            className="absolute top-0 left-[calc(theme(spacing.16)-1px)] w-px origin-top bg-gradient-to-b from-[#d4a853] via-[#d4a853]/70 to-[#3d8b67]"
                             style={{ height: '100%', transform: `scaleY(${timelineProgress})` }}
                         />
 
@@ -161,7 +165,7 @@ export default function History() {
                                 <ScrollReveal key={i} delay={i * 80} className="group relative flex gap-8">
                                     {/* Year node */}
                                     <div className="w-16 shrink-0 text-right">
-                                        <span className="font-mono text-xs text-slate-500 transition-colors group-hover:text-[#a27620]">
+                                        <span className="font-mono text-xs text-[#f5f0e8]/30 transition-colors group-hover:text-[#d4a853]">
                                             {item.year}
                                         </span>
                                     </div>
@@ -187,10 +191,10 @@ export default function History() {
                                                 {item.era}
                                             </span>
                                         </div>
-                                        <h3 className="font-display mb-2 text-lg font-semibold text-[#123b8f] transition-colors group-hover:text-[#a27620]">
+                                        <h3 className="font-display mb-2 text-lg font-semibold text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
                                             {item.event}
                                         </h3>
-                                        <p className="text-sm leading-relaxed text-slate-600">{item.desc}</p>
+                                        <p className="text-sm leading-relaxed text-[#f5f0e8]/50">{item.desc}</p>
                                     </div>
                                 </ScrollReveal>
                             ))}
@@ -199,13 +203,13 @@ export default function History() {
                 </div>
 
                 {/* Heritage Structures */}
-                <div className="border-t border-[#123b8f]/10 bg-[#f7f3eb]">
+                <div className="border-t border-white/5 bg-[#173f82]">
                     <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
                         <div className="mb-10 flex items-center gap-2">
-                            <div className="h-px w-6 bg-[#a27620]" />
-                            <span className="text-xs font-semibold tracking-widest text-[#a27620] uppercase">Preserved Heritage</span>
+                            <div className="h-px w-6 bg-[#d4a853]" />
+                            <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Preserved Heritage</span>
                         </div>
-                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#123b8f]">Historic Structures</h2>
+                        <h2 className="font-display mb-8 text-3xl font-semibold text-[#f5f0e8]">Historic Structures</h2>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                             {[
                                 {
@@ -228,7 +232,7 @@ export default function History() {
                                 },
                             ].map((s, i) => (
                                 <ScrollReveal key={s.name} delay={i * 100}>
-                                    <div className="group overflow-hidden rounded-2xl border border-[#123b8f]/10 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+                                    <div className="group overflow-hidden rounded-2xl border border-white/5 bg-[#123b8f] transition-all hover:border-[#d4a853]/20">
                                         <div className="h-44 overflow-hidden">
                                             <img
                                                 src={s.img}
@@ -237,9 +241,9 @@ export default function History() {
                                             />
                                         </div>
                                         <div className="p-5">
-                                            <span className="font-mono text-xs text-[#a27620]">{s.period}</span>
-                                            <h4 className="font-display mt-1 mb-2 font-semibold text-[#123b8f]">{s.name}</h4>
-                                            <p className="text-xs leading-relaxed text-slate-600">{s.desc}</p>
+                                            <span className="font-mono text-xs text-[#d4a853]">{s.period}</span>
+                                            <h4 className="font-display mt-1 mb-2 font-semibold text-[#f5f0e8]">{s.name}</h4>
+                                            <p className="text-xs leading-relaxed text-[#f5f0e8]/40">{s.desc}</p>
                                         </div>
                                     </div>
                                 </ScrollReveal>
