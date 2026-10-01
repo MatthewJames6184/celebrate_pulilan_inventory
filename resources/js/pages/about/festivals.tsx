@@ -19,9 +19,9 @@ export default function Festivals() {
                 {/* Hero - full cinematic */}
                 <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
                     <img
-                        src="/images/background-img/home-Pulilan-Carabao-Festival-Float.jpg"
+                        src="/images/other-images/Pulilan-Carabao-Festival-Float.jpg"
                         alt="Carabao Festival in Pulilan"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover object-[100%_80%] transition-all duration-300 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/30 via-[#123b8f]/40 to-[#123b8f]" />
                     <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-20 lg:px-10">

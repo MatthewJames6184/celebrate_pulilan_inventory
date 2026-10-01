@@ -136,35 +136,35 @@ export default function Attractions() {
 
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
+            <div className=" min-h-screen bg-gradient-to-b from-[#fbf9f5] via-[#f6f3ec] to-[#ebe6da]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
-                <div className="relative h-72 overflow-hidden">
-                    <img src="/images/carousel-images/Attraction.jpg" alt="Pulilan attractions" className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 to-[#4169E1]" />
-                    <div className="absolute inset-0 flex items-end justify-center pb-14 text-center">
+                <div className="relative h-80 overflow-hidden sm:h-96 lg:h-[24rem]">
+                    <img src="/images/image-1.jpg" alt="Pulilan attractions" className="h-full w-full object-cover object-[100%_60%] transition-all duration-300 hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f5]/55 via-[#fbf9f5]/20 to-[#fbf9f5]" />
+                    <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Things to See & Do</span>
+                                <span className="text-xs font-bold tracking-widest text-[#d4a853] uppercase drop-shadow-md">Things to See & Do</span>
                                 <div className="h-px w-6 bg-[#d4a853]" />
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">Attractions</h1>
+                            <h1 className="font-display text-5xl font-semibold text-[#1e2a4a] lg:text-6xl">Attractions</h1>
                         </div>
                     </div>
                 </div>
 
                 {/* Filters */}
-                <div className="sticky top-20 z-30 border-b border-white/10 bg-[#4169E1]/95 backdrop-blur-md">
+                <div className="sticky top-20 z-30 border-b border-[#e3dccb] bg-[#fbf9f5]/90 backdrop-blur-md">
                     <div className="mx-auto max-w-7xl px-6 py-4 lg:px-10">
                         <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
                                     onClick={() => setActive(cat.id)}
-                                    className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                                    className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
                                         active === cat.id
-                                            ? 'bg-[#d4a853] text-[#0d1b2a]'
-                                            : 'bg-white/5 text-[#f5f0e8]/60 hover:bg-white/10 hover:text-[#f5f0e8]'
+                                            ? 'border-[#d4a853] bg-[#d4a853] text-[#0d1b2a] shadow-sm'
+                                            : 'border-[#e3dccb] bg-white/70 text-[#1e2a4a]/70 hover:border-[#d4a853]/60 hover:bg-white hover:text-[#1e2a4a]'
                                     }`}
                                 >
                                     <span>{cat.emoji}</span>

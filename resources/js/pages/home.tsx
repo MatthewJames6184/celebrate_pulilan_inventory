@@ -6,6 +6,15 @@ import { useEffect, useRef, useState } from 'react';
 
 const heroSlides = [
     {
+        eyebrow: 'WELCOME TO PULILAN',
+        title: 'Discover the\nHeart of Bulacan',
+        description: 'Experience the rich culture, vibrant festivals, and warm hospitality of Pulilan, a town where tradition meets modernity.',
+        image: '/images/other-images/i-love-pulilan.jpg',
+        href: '#what-to-see',
+        action: 'Explore Now',
+        
+    },
+    {
         eyebrow: 'OUR HERITAGE',
         title: 'Centuries of\nStories to Tell',
         description:
@@ -164,7 +173,7 @@ export default function Home() {
                 <img
                     src={slide.image}
                     alt={slide.title}
-                    className="absolute inset-0 -z-20 block h-full w-full object-cover object-center transition-opacity duration-700"
+                    className="absolute inset-0 -z-20 block h-full w-full object-cover object-[100%_60%] transition-all duration-300 hover:scale-105"
                 />
                 <div className="absolute inset-0 -z-10 bg-black/35" />
                 <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#4169E1] lg:hidden" />
@@ -262,7 +271,7 @@ export default function Home() {
                 </div>
             </section>
             {/* WHAT TO SEE SECTION */}
-            <section className="bg-[#f3e6c9] px-6 py-16 text-[#102033] lg:py-24">
+            <section id="what-to-see"className="bg-[#f3e6c9] px-6 py-16 text-[#102033] lg:py-24">
                 <div className="mx-auto max-w-7xl" style={{ fontSize: '16px' }}>
                     <p className="text-[0.625em] font-bold tracking-[0.25em] text-[#b7872f] uppercase">More about Pulilan</p>
                     <h2 className="font-display mt-3 text-[1.875em] font-semibold lg:text-[2.25em]">See what makes Pulilan special</h2>

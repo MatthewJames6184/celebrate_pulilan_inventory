@@ -52,7 +52,7 @@ export default function About() {
                     />
                     
 
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 via-[#4169E1]/50 to-[#4169E1]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/60 via-[#4169E1]/5 to-[#4169E1]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
