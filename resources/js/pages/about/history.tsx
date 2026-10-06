@@ -111,33 +111,36 @@ export default function History() {
 
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
+            <div
+                className="text-scale min-h-screen bg-gradient-to-b from-[#E0C9A6] via-[#E0C9A6] to-[#E0C9A6]"
+                style={{ fontSize: 'clamp(12px, 1.25vw + 10px, 16px)' }}
+            >
                 {/* Hero */}
-                <div className="relative h-80 overflow-hidden">
+                <div className="relative h-80 overflow-hidden sm:h-96 lg:h-[27rem]">
                     <img
                     src="/images/carousel-images/Historical.jpg"
                         alt="Pulilan heritage"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover object-[100%_20%] transition-all duration-300 hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/50 via-[#123b8f]/60 to-[#123b8f]" />
-                    <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-16 lg:px-10">
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#E0C9A6]/55 via-[#E0C9A6]/20 to-[#E0C9A6]" />
+                    <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
-                            <div className="mb-3 flex items-center gap-2">
+                            <div className="mb-3 flex items-center justify-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Since January 20, 1796</span>
+                                <span className="text-xs font-bold tracking-widest text-[#d4a853] [text-shadow:2px_2px_4px_rgba(0,0,0,0.6)] uppercase drop-shadow-md">Since January 20, 1796</span>
+                                <div className="h-px w-6 bg-[#d4a853]" />
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] lg:text-6xl">
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] [text-shadow:2px_2px_4px_rgba(0,0,0,0.6)] lg:text-6xl">
                                 History of
-                                <br />
-                                <em className="text-[#d4a853]">Pulilan</em>
+                                <em className="text-[#d4a853]"> Pulilan</em>
                             </h1>
                         </div>
                     </div>
                 </div>
 
                 {/* Intro */}
-                <div className="mx-auto max-w-4xl px-6 py-16 lg:px-10">
-                    <div className="rounded-3xl border border-white/5 bg-[#173f82] p-10">
+                <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
+                    <div className="rounded-3xl border border-white/5 bg-[#173f82] p-5 sm:p-10">
                         <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
                             "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement date
                             is unknown; January 20, 1796 is the municipality’s recorded foundation date."
@@ -146,26 +149,26 @@ export default function History() {
                 </div>
 
                 {/* Timeline */}
-                <div className="mx-auto max-w-4xl px-6 pb-24 lg:px-10">
+                <div className="mx-auto max-w-4xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-10" style={{ fontSize: '20px' }}>
                     <div className="mb-12 flex items-center gap-2">
                         <div className="h-px w-6 bg-[#d4a853]" />
-                        <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Historical Timeline</span>
+                        <span className="text-sm font-medium tracking-widest text-[#d4a853] uppercase ">Historical Timeline</span>
                     </div>
 
                     <div ref={timelineRef} className="relative">
                         {/* Vertical line */}
-                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.16)-1px)] w-px bg-white/10" />
+                        <div className="absolute top-0 bottom-0 left-[calc(theme(spacing.20)-1px)] w-px bg-white" />
                         <div
-                            className="absolute top-0 left-[calc(theme(spacing.16)-1px)] w-px origin-top bg-gradient-to-b from-[#d4a853] via-[#d4a853]/70 to-[#3d8b67]"
+                            className="absolute top-0 left-[calc(theme(spacing.20)-1px)] w-px origin-top bg-gradient-to-b from-[#4169E1] via-[#4169E1]/70 to-[#123b8f]"
                             style={{ height: '100%', transform: `scaleY(${timelineProgress})` }}
                         />
 
                         <div className="space-y-10">
                             {timeline.map((item, i) => (
-                                <ScrollReveal key={i} delay={i * 80} className="group relative flex gap-8">
+                                <ScrollReveal key={i} delay={i * 80} className="group relative flex min-w-0 gap-3 sm:gap-8">
                                     {/* Year node */}
-                                    <div className="w-16 shrink-0 text-right">
-                                        <span className="font-mono text-xs text-[#f5f0e8]/30 transition-colors group-hover:text-[#d4a853]">
+                                    <div className="w-14 shrink-0 text-right sm:w-16">
+                                        <span className="font-mono text-xs text-[#000080] transition-colors group-hover:text-[#d4a853]">
                                             {item.year}
                                         </span>
                                     </div>
@@ -182,8 +185,8 @@ export default function History() {
                                     </div>
 
                                     {/* Content */}
-                                    <div className="pb-2 transition-transform group-hover:-translate-y-0.5">
-                                        <div className="mb-1 flex items-center gap-2">
+                                    <div className="min-w-0 pb-2 transition-transform group-hover:-translate-y-0.5">
+                                        <div className="mb-1 flex flex-wrap items-center gap-2">
                                             <span
                                                 className="rounded-full px-2 py-0.5 text-xs font-medium"
                                                 style={{ backgroundColor: item.color + '15', color: item.color }}
@@ -191,10 +194,10 @@ export default function History() {
                                                 {item.era}
                                             </span>
                                         </div>
-                                        <h3 className="font-display mb-2 text-lg font-semibold text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
+                                        <h3 className="font-display mb-2 text-lg font-semibold text-[#123b8f]/80 transition-colors group-hover:text-[#d4a853] ">
                                             {item.event}
                                         </h3>
-                                        <p className="text-sm leading-relaxed text-[#f5f0e8]/50">{item.desc}</p>
+                                        <p className="text-sm leading-relaxed text-[#f5f0e8]/90">{item.desc}</p>
                                     </div>
                                 </ScrollReveal>
                             ))}

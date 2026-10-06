@@ -46,7 +46,7 @@ export default function About() {
                 <section className="relative h-80 overflow-hidden sm:h-96 lg:h-[24rem]">
                    
                     <img
-                    src="/images/municipal_building.jpg"
+                    src="/images/municipal-images/municipal_building.jpg"
                     alt="Pulilan landscape"
                     className="h-full w-full object-cover object-[100%_55%] transition-all duration-300 hover:scale-105"
                     />
@@ -155,7 +155,7 @@ export default function About() {
                         <br/>
                         <em className="font-dsiplay text-[#d4a853]">Meet the People Behind Pulilan</em>
                         </h2>
-                        <img src="/images/municipal-officials3.png" alt="Pulilan municipal officials" className="mt-8 mb-8 h-full lg:h-100 w-full rounded-xl border object-cover transition-all duration-300 hover:scale-105" />
+                        <img src="/images/municipal-images/municipal-officials3.png" alt="Pulilan municipal officials" className="mt-8 mb-8 h-full lg:h-100 w-full rounded-xl border object-cover transition-all duration-300 hover:scale-105" />
                         <p className="text-sm leading-relaxed text-[#000080]">
                             Get to know the elected officials who lead and serve the Municipality of Pulilan. Working together with the local government, they help guide the municipality’s programs, services, and development for the community.
                         </p>

@@ -9,7 +9,7 @@ const heroSlides = [
         eyebrow: 'WELCOME TO PULILAN',
         title: 'Discover the\nHeart of Bulacan',
         description: 'Experience the rich culture, vibrant festivals, and warm hospitality of Pulilan, a town where tradition meets modernity.',
-        image: '/images/other-images/i-love-pulilan.jpg',
+        image: '/images/image-2.jpg',
         href: '#what-to-see',
         action: 'Explore Now',
         
@@ -152,7 +152,7 @@ export default function Home() {
 
             {/* HERO SECTION */}
             <section
-                className="relative isolate min-h-[100svh] overflow-hidden bg-[#0b1f4d] lg:h-[calc(100vh-0.75rem)] lg:min-h-[600px]"
+                className="relative isolate min-h-[max(100svh,44rem)] w-full overflow-hidden bg-[#0b1f4d] lg:h-[calc(100vh-0.75rem)] lg:min-h-[600px]"
                 onTouchStart={(event) => {
                     touchStartX.current = event.changedTouches[0]?.clientX ?? null;
                 }}
@@ -179,7 +179,7 @@ export default function Home() {
                 <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-[#4169E1] lg:hidden" />
                 <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgba(65,105,225,0.28)_100%,rgba(65,105,225,0.1)_50%,rgba(7,18,55,0)_0%)] lg:block" />
                 <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-48 bg-gradient-to-t from-[#4169E1] to-transparent lg:block" />
-                <div className="mx-auto flex min-h-[100svh] max-w-7xl items-center justify-center px-6 pt-24 pb-36 lg:min-h-[600px] lg:px-[4.5rem] lg:pt-[28vh] lg:pb-10">
+                <div className="mx-auto flex min-h-[max(100svh,44rem)] max-w-7xl items-center justify-center px-5 pt-24 pb-36 sm:px-6 lg:min-h-[600px] lg:px-[4.5rem] lg:pt-[28vh] lg:pb-10">
                     <div className="mx-auto w-full max-w-4xl text-left lg:text-center" style={{ fontSize: '16px' }}>
                         <div className="mb-4 flex items-center justify-start gap-2 lg:mb-6 lg:justify-center">
                             <div className="h-px w-6 bg-[#d4a853] sm:w-8" />
@@ -187,22 +187,22 @@ export default function Home() {
                                 {slide.eyebrow}
                             </p>
                         </div>
-                        <h1 className="font-display mb-5 max-w-[20rem] text-[3em] leading-[1.02] font-semibold whitespace-pre-line text-[#f5f0e8] [text-shadow:_0_2px_14px_rgb(0_0_0_/_70%)] sm:max-w-4xl sm:text-[2.75em] sm:leading-[1] md:mb-6 md:text-[3.5em] lg:mb-8 lg:max-w-4xl lg:text-[5.5em] lg:leading-[0.95]">
+                        <h1 className="font-display mb-5 max-w-full text-[clamp(2.5rem,10vw,3.5rem)] leading-[1.02] font-semibold whitespace-pre-line text-[#f5f0e8] [text-shadow:_0_2px_14px_rgb(0_0_0_/_70%)] sm:max-w-4xl sm:text-[2.75em] sm:leading-[1] md:mb-6 md:text-[3.5em] lg:mb-8 lg:max-w-4xl lg:text-[5.5em] lg:leading-[0.95]">
                             {slide.title}
                         </h1>
-                        <p className="mb-8 max-w-[22rem] text-[1.125em] leading-relaxed text-[#f5f0e8]/90 [text-shadow:_0_1px_8px_rgb(0_0_0_/_60%)] sm:max-w-lg sm:text-[1.0625em] md:mb-8 md:max-w-xl lg:mx-auto lg:mb-10 lg:max-w-2xl lg:text-[1.375em]">
+                        <p className="mb-7 max-w-full text-base leading-relaxed text-[#f5f0e8]/90 [text-shadow:_0_1px_8px_rgb(0_0_0_/_60%)] sm:mb-8 sm:max-w-lg sm:text-[1.0625em] md:mb-8 md:max-w-xl lg:mx-auto lg:mb-10 lg:max-w-2xl lg:text-[1.375em]">
                             {slide.description}
                         </p>
-                        <div className="flex flex-col items-start justify-start gap-4 sm:gap-4 lg:flex-row lg:items-center lg:justify-center">
+                        <div className="flex flex-col items-start justify-start gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-center">
                             <Link
                                 href={slide.href}
-                                className="inline-flex items-center gap-2 rounded-full bg-[#d4a853] px-7 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:px-7 sm:py-3.5 sm:text-[1em]"
+                                className="inline-flex w-full max-w-[18rem] items-center justify-center gap-2 rounded-full bg-[#d4a853] px-5 py-3.5 text-[1em] font-semibold text-[#0d1b2a] shadow-xl shadow-[#d4a853]/25 transition-all hover:-translate-y-0.5 hover:bg-[#e8b96a] sm:w-auto sm:px-7 sm:py-3.5 sm:text-[1em]"
                             >
                                 {slide.action} <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                             </Link>
                             <Link
                                 href={route('about')}
-                                className="inline-flex items-center rounded-full border border-white/40 px-7 py-3.5 text-[1em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-[1em]"
+                                className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-full border border-white/40 px-5 py-3.5 text-[1em] font-medium text-[#f5f0e8] transition-all hover:border-white/60 hover:bg-white/10 sm:w-auto sm:px-7 sm:py-3.5 sm:text-[1em]"
                             >
                                 Our Heritage
                             </Link>
@@ -376,7 +376,7 @@ export default function Home() {
                 </div>
             </section>
             {/* BARANGAYS SECTION */}
-            <section className="bg-[#123b8f] px-6 py-24">
+            <section className="bg-[#f3ede2] px-6 py-24">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
                         <div style={{ fontSize: '16px' }}>
@@ -384,12 +384,12 @@ export default function Home() {
                                 <div className="h-px w-6 bg-[#d4a853]" />
                                 <span className="text-[0.75em] font-medium tracking-widest text-[#d4a853] uppercase">19 Barangays</span>
                             </div>
-                            <h2 className="font-display mb-6 text-[2.25em] leading-tight font-semibold text-[#f5f0e8] lg:text-[3em]">
+                            <h2 className="font-display mb-6 text-[2.25em] leading-tight font-semibold text-[#123b8f] lg:text-[3em]">
                                 Explore Every
                                 <br />
                                 <em className="text-[#d4a853]">Corner of Pulilan</em>
                             </h2>
-                            <p className="mb-8 max-w-xl text-[1em] leading-relaxed text-[#f5f0e8]/75">
+                            <p className="mb-8 max-w-xl text-[1em] leading-relaxed text-[#123b8f]">
                                 Pulilan is composed of 19 barangays, each with its own character, community, and contribution to the
                                 municipality&apos;s rich cultural tapestry.
                             </p>
@@ -397,7 +397,7 @@ export default function Home() {
                                 {barangays.map((barangay) => (
                                     <div key={barangay} className="group flex items-center gap-2 border-b border-white/5 py-1.5">
                                         <div className="h-1.5 w-1.5 rounded-full bg-[#d4a853]/40 transition-colors group-hover:bg-[#d4a853]" />
-                                        <span className="text-[0.75em] text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">{barangay}</span>
+                                        <span className="text-[0.75em] text-[#000080] transition-colors group-hover:text-[#d4a853]">{barangay}</span>
                                     </div>
                                 ))}
                             </div>
@@ -451,9 +451,11 @@ export default function Home() {
                     </div>
                     <div className="mt-10 grid gap-6 md:grid-cols-3">
                         {[featuredNews, ...newsItems.slice(1, 3)].map((item) => (
-                            <Link
+                            <a
                                 key={item.slug}
-                                href={route('news.show', { slug: item.slug })}
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer"
                                 className="group overflow-hidden rounded-2xl border border-[#d5e0f0] bg-[#eaf0f8] transition-all duration-300 hover:-translate-y-1 hover:border-[#c89b33]"
                             >
                                 <img src={item.image} alt={item.title} className="h-48 w-full object-cover sm:h-56" />
@@ -465,16 +467,18 @@ export default function Home() {
                                     <p className="text-sm leading-relaxed text-[#1a3b70]/70">{item.excerpt}</p>
                                     <span className="mt-4 block text-sm font-medium text-[#c89b33]">Read more →</span>
                                 </div>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                     <div className="mt-6 flex justify-center">
-                        <Link
-                            href={route('news.archive')}
+                        <a
+                            href="https://pulilan.gov.ph"
+                            target="_blank"
+                            rel="noreferrer"
                             className="w-fit rounded-full border border-[#000080]/15 px-5 py-2.5 text-sm text-[#000080]/55 hover:border-[#dcae4e] hover:text-[#000080] sm:text-base"
                         >
                             View All News
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </section>

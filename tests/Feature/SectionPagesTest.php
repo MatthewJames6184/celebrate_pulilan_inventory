@@ -13,14 +13,12 @@ test('stay dine subpages are registered', function (string $routeName, string $c
     ['stay.dine.restaurants', 'stayDineRestaurants', 'stay-dine/restaurants'],
 ]);
 
-test('news archive and detail routes are registered', function () {
-    expect(Route::has('news.archive'))->toBeTrue();
-    expect(Route::has('news.show'))->toBeTrue();
-    expect(route('news.archive', [], false))->toBe('/news');
-    expect(method_exists(PageController::class, 'newsArchive'))->toBeTrue();
-    expect(method_exists(PageController::class, 'newsShow'))->toBeTrue();
-    expect(file_exists(resource_path('js/pages/news/archive.tsx')))->toBeTrue();
-    expect(file_exists(resource_path('js/pages/news/show.tsx')))->toBeTrue();
+test('news routes are removed', function () {
+    expect(Route::has('news.archive'))->toBeFalse();
+    expect(Route::has('news.show'))->toBeFalse();
+    expect(Route::has('others.news'))->toBeFalse();
+    expect(method_exists(PageController::class, 'newsArchive'))->toBeFalse();
+    expect(method_exists(PageController::class, 'newsShow'))->toBeFalse();
 });
 
 test('others subpages are registered', function (string $routeName, string $controllerMethod, string $componentPath) {
@@ -31,7 +29,6 @@ test('others subpages are registered', function (string $routeName, string $cont
 })->with([
     ['others.downloads', 'othersDownloads', 'others/downloads'],
     ['others.faq', 'othersFaq', 'others/faq'],
-    ['others.news', 'othersNews', 'others/news'],
     ['others.site-map', 'othersSiteMap', 'others/site-map'],
     ['others.announcements', 'othersAnnouncements', 'others/announcements'],
     ['others.calendar-of-events', 'othersCalendarOfEvents', 'others/calendar-of-events'],

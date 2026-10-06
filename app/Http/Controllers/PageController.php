@@ -85,23 +85,6 @@ class PageController extends Controller
         return Inertia::render('others/faq');
     }
 
-    public function othersNews(): Response
-    {
-        return Inertia::render('news/archive');
-    }
-
-    public function newsArchive(): Response
-    {
-        return Inertia::render('news/archive');
-    }
-
-    public function newsShow(string $slug): Response
-    {
-        return Inertia::render('news/show', [
-            'slug' => $slug,
-        ]);
-    }
-
     public function othersSiteMap(): Response
     {
         return Inertia::render('others/site-map');

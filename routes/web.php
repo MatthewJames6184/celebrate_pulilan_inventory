@@ -20,14 +20,11 @@ Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class
     Route::get('/{type}/{slug}', 'stayDineDetail')->name('detail');
 });
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::get('/news', [PageController::class, 'newsArchive'])->name('news.archive');
-Route::get('/news/{slug}', [PageController::class, 'newsShow'])->name('news.show');
 
 Route::get('/others', [PageController::class, 'others'])->name('others');
 Route::prefix('others')->name('others.')->controller(PageController::class)->group(function () {
     Route::get('/downloads', 'othersDownloads')->name('downloads');
     Route::get('/faq', 'othersFaq')->name('faq');
-    Route::get('/news', 'othersNews')->name('news');
     Route::get('/site-map', 'othersSiteMap')->name('site-map');
     Route::get('/announcements', 'othersAnnouncements')->name('announcements');
     Route::get('/calendar-of-events', 'othersCalendarOfEvents')->name('calendar-of-events');

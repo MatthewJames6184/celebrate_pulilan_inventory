@@ -15,26 +15,26 @@ const schedule = [
 export default function Festivals() {
     return (
         <PublicLayout>
-            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
                 {/* Hero - full cinematic */}
-                <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
+                <div className="relative h-[72svh] min-h-[34rem] overflow-hidden lg:h-[70vh] lg:min-h-[500px]">
                     <img
-                        src="/images/other-images/Pulilan-Carabao-Festival-Float.jpg"
+                        src="/images/historical-images/Pulilan-Carabao-Festival-Float.jpg"
                         alt="Carabao Festival in Pulilan"
                         className="h-full w-full object-cover object-[100%_80%] transition-all duration-300 hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#123b8f]/30 via-[#123b8f]/40 to-[#123b8f]" />
-                    <div className="absolute inset-0 mx-auto flex max-w-7xl items-end px-6 pb-20 lg:px-10">
-                        <div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#4169E1]/30 via-[#4169E1]/40 to-[#4169E1]" />
+                    <div className="absolute inset-0 mx-auto flex w-full max-w-7xl items-end px-5 pt-24 pb-16 sm:px-6 sm:pb-20 lg:px-10">
+                        <div className="w-full min-w-0">
                             <div className="mb-4 flex items-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
                                 <span className="text-xs font-medium tracking-widest text-[#d4a853] uppercase">Cultural Heritage</span>
                             </div>
-                            <h1 className="font-display mb-4 text-5xl leading-tight font-semibold text-[#f5f0e8] lg:text-7xl">
+                            <h1 className="font-display mb-4 max-w-full text-[clamp(2.5rem,9vw,4rem)] leading-tight font-semibold text-[#f5f0e8] lg:text-6xl">
                                 Festivals &<br />
                                 <em className="text-[#d4a853]">Celebrations</em>
                             </h1>
-                            <p className="max-w-lg text-base leading-relaxed text-[#f5f0e8]/60">
+                            <p className="max-w-lg text-sm leading-relaxed text-[#f5f0e8] sm:text-base">
                                 A calendar rich with faith, tradition, and community — from the world-famous Carabao Festival to intimate barangay
                                 feasts.
                             </p>
@@ -43,23 +43,23 @@ export default function Festivals() {
                 </div>
 
                 {/* Main Carabao Festival */}
-                <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-                    <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-5">
-                        <div className="lg:col-span-3">
+                <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
+                    <div className="grid min-w-0 grid-cols-1 items-start gap-8 sm:gap-12 lg:grid-cols-5">
+                        <div className="min-w-0 lg:col-span-3">
                             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#d4a853]/30 bg-[#d4a853]/15 px-3 py-1.5">
                                 <div className="h-2 w-2 animate-pulse rounded-full bg-[#d4a853]" />
                                 <span className="text-xs font-semibold tracking-widest text-[#d4a853] uppercase">Signature Festival</span>
                             </div>
-                            <h2 className="font-display mb-6 text-4xl leading-tight font-semibold text-[#f5f0e8] lg:text-5xl">
+                            <h2 className="font-display mb-6 break-words text-3xl leading-tight font-semibold text-[#f5f0e8] sm:text-4xl lg:text-5xl">
                                 The Carabao Festival
                                 <br />
-                                <span className="text-2xl font-normal text-[#f5f0e8]/40 italic">"Pagdiriwang ng Kabayo"</span>
+                                <span className="font-normal text-[#d4a853] italic">"Pagdiriwang ng Kabayo"</span>
                             </h2>
-                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]/60">
+                            <div className="space-y-4 text-sm leading-relaxed text-[#f5f0e8]">
                                 <p>
                                     Every <strong className="text-[#d4a853]">May 15</strong>, the municipality of Pulilan comes alive for the Carabao
                                     Festival — one of the most spectacular and culturally significant celebrations in the Philippines. The festival
-                                    honors <strong className="text-[#f5f0e8]/80">San Isidro Labrador</strong>, the patron saint of farmers.
+                                    honors <strong className="text-[#f3ede2]">San Isidro Labrador</strong>, the patron saint of farmers.
                                 </p>
                                 <p>
                                     Decorated carabaos are paraded through the streets and brought before San Isidro Labrador Parish. The kneeling
@@ -96,7 +96,7 @@ export default function Festivals() {
                         </div>
 
                         {/* Side images */}
-                        <div className="space-y-4 lg:col-span-2">
+                        <div className="min-w-0 space-y-4 lg:col-span-2">
                             <div className="h-56 overflow-hidden rounded-2xl">
                                 <img
                                     src="/images/carabao-festival-kneeling.jpg"
@@ -112,11 +112,12 @@ export default function Festivals() {
                                         className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                                     />
                                 </div>
-                                <div className="flex h-36 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-[#173f82]">
-                                    <div className="px-4 text-center">
-                                        <p className="font-display text-3xl font-semibold text-[#d4a853]">100K+</p>
-                                        <p className="mt-1 text-xs text-[#f5f0e8]/40">Annual attendees</p>
-                                    </div>
+                                <div className="h-36 overflow-hidden rounded-xl">
+                                    <img
+                                        src="/images/historical-images/Pulilan-Carabao-Festival-Float.jpg"
+                                        alt="Farmer riding a carabao during the Pulilan festival"
+                                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -134,25 +135,25 @@ export default function Festivals() {
                             {schedule.map((item, i) => (
                                 <div
                                     key={i}
-                                    className={`flex items-center gap-4 rounded-xl border p-4 transition-all ${
+                                    className={`flex min-w-0 items-center gap-3 rounded-xl border p-3 transition-all sm:gap-4 sm:p-4 ${
                                         item.highlight ? 'border-[#d4a853]/40 bg-[#d4a853]/10' : 'border-white/5 bg-[#173f82] hover:border-white/10'
                                     }`}
                                 >
                                     <div
-                                        className={`min-w-[64px] rounded-lg px-2 py-2 text-center ${
+                                        className={`min-w-[64px] shrink-0 rounded-lg px-2 py-2 text-center ${
                                             item.highlight ? 'bg-[#d4a853] text-[#0d1b2a]' : 'bg-[#123b8f] text-[#f5f0e8]/50'
                                         }`}
                                     >
                                         <span className="font-mono text-xs font-bold">{item.month}</span>
                                     </div>
-                                    <div className="flex-1">
+                                    <div className="min-w-0 flex-1">
                                         <p className={`text-sm font-medium ${item.highlight ? 'text-[#d4a853]' : 'text-[#f5f0e8]/80'}`}>
                                             {item.event}
                                         </p>
                                         <p className="mt-0.5 text-xs text-[#f5f0e8]/30">{item.barangay}</p>
                                     </div>
                                     {item.highlight && (
-                                        <span className="rounded-full bg-[#d4a853] px-2 py-0.5 text-xs font-bold text-[#0d1b2a]">Main</span>
+                                        <span className="shrink-0 rounded-full bg-[#d4a853] px-2 py-0.5 text-xs font-bold text-[#0d1b2a]">Main</span>
                                     )}
                                 </div>
                             ))}

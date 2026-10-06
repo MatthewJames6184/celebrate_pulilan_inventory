@@ -4,7 +4,6 @@ import { Head, Link } from '@inertiajs/react';
 const items = [
     { title: 'Downloads', href: route('others.downloads'), description: 'Find brochures, forms, and visitor guides for Pulilan.' },
     { title: 'FAQ', href: route('others.faq'), description: 'Answers to common questions about travel, permits, and services.' },
-    { title: 'News', href: route('others.news'), description: 'Latest announcements and community bulletins.' },
     { title: 'Site Map', href: route('others.site-map'), description: 'A quick guide to the main pages and public services.' },
     { title: 'Announcements', href: route('others.announcements'), description: 'Official notices from municipal offices and tourism events.' },
     {

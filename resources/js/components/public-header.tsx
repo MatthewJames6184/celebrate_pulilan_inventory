@@ -12,7 +12,6 @@ const navItems = [
     { title: 'What to See', url: route('about.attraction') },
     { title: 'Festivals', url: route('about.festivals') },
     { title: 'History', url: route('about.history') },
-    { title: 'News', url: route('news.archive') },
     { title: 'Contact', url: route('contact') },
 ];
 
@@ -54,8 +53,8 @@ export default function PublicHeader() {
                 scrolled ? 'bg-[#4169E1]/95 shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
             )}
         >
-            <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-                <Link href={route('home')} className="group flex items-center gap-3">
+            <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-10">
+                <Link href={route('home')} className="group flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#d4a853] to-[#c09040] text-sm leading-none font-bold text-[#0d1b2a] shadow-lg">
                         P
                     </span>
@@ -189,7 +188,10 @@ export default function PublicHeader() {
                             <Menu className="h-5 w-5" />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent side="right" className="border-white/10 bg-[#0b1f4d] text-white">
+                    <SheetContent
+                        side="right"
+                        className="w-[min(20rem,calc(100vw-1rem))] max-w-[calc(100vw-1rem)] border-white/10 bg-[#0b1f4d] text-white"
+                    >
                         <SheetHeader>
                             <SheetTitle className="text-white">Discover Pulilan</SheetTitle>
                         </SheetHeader>
