@@ -50,7 +50,7 @@ export default function PublicHeader() {
         <header
             className={cn(
                 'fixed inset-x-0 top-0 z-50 text-white transition-all duration-500',
-                scrolled ? 'bg-[#4169E1]/95 shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
+                scrolled ? 'bg-[linear-gradient(0deg,#004ab0,#0049b1)] shadow-[0_2px_40px_rgba(0,0,0,0.4)] backdrop-blur-md' : 'bg-transparent',
             )}
         >
             <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-10">

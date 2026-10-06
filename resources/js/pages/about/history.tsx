@@ -140,7 +140,7 @@ export default function History() {
 
                 {/* Intro */}
                 <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
-                    <div className="rounded-3xl border border-white/5 bg-[#173f82] p-5 sm:p-10">
+                    <div className="rounded-3xl border border-white/5 bg-[#173f82]/95 p-5 sm:p-10">
                         <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
                             "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement date
                             is unknown; January 20, 1796 is the municipality’s recorded foundation date."
@@ -197,7 +197,7 @@ export default function History() {
                                         <h3 className="font-display mb-2 text-lg font-semibold text-[#123b8f]/80 transition-colors group-hover:text-[#d4a853] ">
                                             {item.event}
                                         </h3>
-                                        <p className="text-sm leading-relaxed text-[#f5f0e8]/90">{item.desc}</p>
+                                        <p className="text-sm leading-relaxed text-black">{item.desc}</p>
                                     </div>
                                 </ScrollReveal>
                             ))}

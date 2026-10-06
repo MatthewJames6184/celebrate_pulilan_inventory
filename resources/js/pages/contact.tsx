@@ -20,7 +20,7 @@ export default function Contact() {
     return (
         <PublicLayout>
             <Head title="Contact & Plan Your Visit" />
-            <div className="text-scale min-h-screen bg-[#123b8f]" style={{ fontSize: '16px' }}>
+            <div className="text-scale min-h-screen bg-[#4169E1]" style={{ fontSize: '16px' }}>
                 {/* Hero */}
                 <div className="mx-auto max-w-3xl px-6 pt-32 pb-16 text-center">
                     <div className="mb-4 flex items-center justify-center gap-2">
@@ -105,7 +105,7 @@ export default function Contact() {
                                                 required
                                                 value={form.subject}
                                                 onChange={(e) => setData('subject', e.target.value)}
-                                                className="h-[52px] w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#123b8f] px-4 text-sm text-[#f5f0e8]/70 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
+                                                className="h-[52px] w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-[#123b8f] px-4 text-sm text-[#f5f0e8]/20 transition-colors focus:border-[#d4a853]/50 focus:outline-none"
                                             >
                                                 <option value="">Select a topic...</option>
                                                 <option>Tourism Inquiry</option>

@@ -148,7 +148,7 @@ export default function Attractions() {
                                 <span className="text-xs font-bold tracking-widest text-[#d4a853] uppercase drop-shadow-md">Things to See & Do</span>
                                 <div className="h-px w-6 bg-[#d4a853]" />
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-[#000080] lg:text-6xl">What to See in Pulilan</h1>
+                            <h1 className="font-display text-5xl font-semibold text-[#173f82] lg:text-6xl">What to See in Pulilan</h1>
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@ export default function Attractions() {
                                 </div>
                                 <div className="p-5">
                                     <div className="mb-2 flex items-start justify-between gap-2">
-                                        <h3 className="font-display text-base leading-snug font-semibold text-[#000080] transition-colors group-hover:text-[#4169E1]">
+                                        <h3 className="font-display text-base leading-snug font-semibold text-[#173f82] transition-colors group-hover:text-[#4169E1]">
                                             {item.name}
                                         </h3>
                                     </div>
