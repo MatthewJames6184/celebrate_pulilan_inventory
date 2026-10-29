@@ -140,13 +140,13 @@ export default function History() {
 
                 {/* Intro */}
                 <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-10">
-                    <div className="rounded-3xl border border-white/5 bg-[#173f82]/95 p-5 sm:p-10">
-                        <p className="font-display text-center text-lg leading-relaxed text-[#f5f0e8]/70 italic">
+                    <div className="rounded-3xl border border-white/5 bg-[white]/95 p-5 sm:p-10">
+                        <p className="font-display text-center text-lg leading-relaxed text-[#d4a853] italic">
                             "Pulilan’s history is a story of agriculture, faith, resilience, and living cultural traditions. Its earliest settlement date
                             is unknown; January 20, 1796 is the municipality’s recorded foundation date."
                         </p>
                     </div>
-                </div>
+                        </div>   
 
                 {/* Timeline */}
                 <div className="mx-auto max-w-4xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-10" style={{ fontSize: '20px' }}>

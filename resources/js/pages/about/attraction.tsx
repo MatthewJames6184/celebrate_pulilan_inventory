@@ -141,14 +141,14 @@ export default function Attractions() {
                 <div className="relative h-80 overflow-hidden sm:h-96 lg:h-[24rem]">
                     <img src="/images/image-1.jpg" alt="Pulilan attractions" className="h-full w-full object-cover object-[100%_60%] transition-all duration-300 hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f5]/55 via-[#000080]/20 to-[#fbf9f5]" />
-                    <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
+                    <div className="absolute inset-0 flex items-end justify-center px-6 pb-30 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">
                                 <div className="h-px w-6 bg-[#d4a853]" />
-                                <span className="text-xs font-bold tracking-widest text-[#d4a853] uppercase drop-shadow-md">Things to See & Do</span>
+                                <span className="text-xs font-bold tracking-widest text-[#e9bc5b] drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] uppercase drop-shadow-md">Things to See & Do</span>
                                 <div className="h-px w-6 bg-[#d4a853]" />
                             </div>
-                            <h1 className="font-display text-5xl font-semibold text-[#173f82] lg:text-6xl">What to See in Pulilan</h1>
+                            <h1 className="font-display text-5xl font-semibold text-[#f5f0e8] drop-shadow-[0_3px_4px_rgba(0,0,0,0.85)] lg:text-6xl">What to See in Pulilan</h1>
                         </div>
                     </div>
                 </div>
