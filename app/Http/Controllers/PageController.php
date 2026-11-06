@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StayDineSubmission;
+use Illuminate\Support\Facades\Schema;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -45,14 +47,54 @@ class PageController extends Controller
         return Inertia::render('stay-dine');
     }
 
+    public function stayDineSubmitListing(): Response
+    {
+        return Inertia::render('stay-dine/submit-listing', [
+            'types' => ['accommodation', 'restaurant'],
+        ]);
+    }
+
     public function stayDineAccommodations(): Response
     {
-        return Inertia::render('stay-dine/accommodations');
+        return Inertia::render('stay-dine/accommodations', [
+            'approvedListings' => $this->approvedListingsFor('accommodation'),
+        ]);
     }
 
     public function stayDineRestaurants(): Response
     {
-        return Inertia::render('stay-dine/restaurants');
+        return Inertia::render('stay-dine/restaurants', [
+            'approvedListings' => $this->approvedListingsFor('restaurant'),
+        ]);
+    }
+
+    protected function approvedListingsFor(string $type): array
+    {
+        if (! Schema::hasTable('stay_dine_submissions')) {
+            return [];
+        }
+
+        return StayDineSubmission::query()
+            ->where('status', 'approved')
+            ->where('type', $type)
+            ->orderBy('name')
+            ->get()
+            ->map(fn (StayDineSubmission $submission) => [
+                'name' => $submission->name,
+                'category' => $submission->category ?? 'Listing',
+                'area' => $submission->area ?? 'Pulilan',
+                'address' => $submission->address ?? 'Pulilan, Bulacan',
+                'summary' => $submission->description ?? 'A local listing approved for the Pulilan Stay & Dine directory.',
+                'highlights' => [
+                    $submission->category ? $submission->category : 'Approved listing',
+                    $submission->area ?? 'Pulilan',
+                    'Verified listing',
+                ],
+                'featured' => false,
+                'image' => $type === 'restaurant'
+                    ? '/images/carousel-images/Cuisine.jpg'
+                    : '/images/other-images/stay-dine-resort.jpg',
+            ])->all();
     }
 
     public function stayDineDetail(string $type, string $slug): Response

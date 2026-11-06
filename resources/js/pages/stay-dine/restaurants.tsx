@@ -1,4 +1,5 @@
 import StayDineDirectoryPage, { type DirectoryItem } from '@/components/stay-dine-directory';
+import { usePage } from '@inertiajs/react';
 
 const listedRestaurants = [
     'Tsaad Enterprise', 'Sujeo Restaurant', 'Sarangyupsal Korean Restaurant', 'San Andres Fried Chicken House',
@@ -24,6 +25,9 @@ const restaurants: DirectoryItem[] = listedRestaurants.map((name, index) => ({
 }));
 
 export default function StayDineRestaurants() {
+    const { approvedListings = [] } = usePage<{ approvedListings?: DirectoryItem[] }>().props;
+    const restaurantList = [...approvedListings, ...restaurants];
+
     return (
         <StayDineDirectoryPage
             headTitle="Restaurants in Pulilan"
@@ -36,11 +40,11 @@ export default function StayDineRestaurants() {
                 { label: 'Restaurants' },
             ]}
             stats={[
-                { value: '35', label: 'Directory listings' },
+                { value: String(restaurantList.length), label: 'Directory listings' },
                 { value: '5', label: 'Dining categories' },
                 { value: '19', label: 'Barangays in Pulilan' },
             ]}
-            items={restaurants}
+            items={restaurantList}
             type="restaurants"
             defaultView="grid"
             focusLabel="Food guide"

@@ -52,8 +52,8 @@ const relatedRestaurants = [
 ];
 
 export default function StayDineListingDetail() {
-    const { props } = usePage<{ type: 'accommodations' | 'restaurants'; slug: string }>();
-    const type = props.type;
+    const { props } = usePage<{ type: 'accommodation' | 'restaurant'; slug: string }>();
+    const type = props.type === 'restaurant' ? 'restaurants' : 'accommodations';
     const source = type === 'restaurants' ? restaurantDetails : accommodationDetails;
     const fallback = type === 'restaurants' ? restaurantDetails['sujeo-restaurant'] : accommodationDetails['makahoy-private-resort'];
     const detail = source[props.slug as keyof typeof source] ?? fallback;

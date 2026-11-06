@@ -16,21 +16,43 @@ export type DirectoryItem = {
     image?: string;
 };
 
-type Props = {
-    headTitle: string;
-    eyebrow: string;
-    title: string;
-    intro: string;
-    imageSubHeader: { src: string; alt: string };
-    breadcrumbs?: { label: string; href?: string }[];
-    type?: string;
-    items: DirectoryItem[];
+type StatsItem = {
+    value: string;
+    label: string;
 };
 
-export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type = 'accommodations', items }: Props) {
+type Props = {
+    headTitle: string;
+    eyebrow?: string;
+    title: string;
+    intro?: string;
+    imageSubHeader: { src: string; alt: string };
+    breadcrumbs?: { label: string; href?: string }[];
+    stats?: StatsItem[];
+    type?: 'accommodations' | 'restaurants';
+    items: DirectoryItem[];
+    defaultView?: 'grid' | 'list';
+    focusLabel?: string;
+    focusNote?: string;
+};
+
+export default function StayDineDirectoryPage({
+    headTitle,
+    eyebrow = 'Where to Stay and Dine',
+    title,
+    intro = 'Explore recommended local stays and food spots in Pulilan.',
+    imageSubHeader,
+    breadcrumbs = [],
+    stats = [],
+    type = 'accommodations',
+    items,
+    defaultView = 'grid',
+    focusLabel,
+    focusNote,
+}: Props) {
     const [query, setQuery] = useState('');
     const [category, setCategory] = useState('All');
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+    const [viewMode, setViewMode] = useState<'grid' | 'list'>(defaultView);
     const categories = useMemo(() => ['All', ...new Set(items.map((item) => item.category))], [items]);
     const filteredItems = useMemo(
         () =>
@@ -58,6 +80,53 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                 </section>
 
                 <main className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+                    <div className="mb-6 rounded-[28px] border border-white/10 bg-[#1e40af]/75 p-5 shadow-[0_20px_50px_rgba(10,20,52,0.18)] backdrop-blur-sm">
+                        {breadcrumbs.length > 0 && (
+                            <nav aria-label="Breadcrumb" className="text-[0.625em] text-white/60">
+                                <ol className="flex flex-wrap items-center gap-2">
+                                    {breadcrumbs.map((item, index) => (
+                                        <li key={`${item.label}-${index}`} className="flex items-center gap-2">
+                                            {index > 0 && <span aria-hidden="true">/</span>}
+                                            {item.href ? (
+                                                <Link href={item.href} className="transition hover:text-[#d4a853]">
+                                                    {item.label}
+                                                </Link>
+                                            ) : (
+                                                <span>{item.label}</span>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ol>
+                            </nav>
+                        )}
+
+                        <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                            <div>
+                                <p className="text-[0.625em] font-medium tracking-[0.2em] text-[#d4a853] uppercase">{eyebrow}</p>
+                                <h2 className="mt-2 font-display text-[2em] font-semibold text-[#f5f0e8] lg:text-[2.7em]">{title}</h2>
+                                {intro && <p className="mt-2 max-w-2xl text-[0.7em] leading-relaxed text-white/70">{intro}</p>}
+                            </div>
+
+                            {stats.length > 0 && (
+                                <div className="grid grid-cols-3 gap-3 text-left sm:min-w-[21rem]">
+                                    {stats.map((stat) => (
+                                        <div key={stat.label} className="rounded-2xl border border-white/10 bg-[#0c2c6e]/70 p-3">
+                                            <div className="text-[1.125em] font-bold text-[#f5f0e8]">{stat.value}</div>
+                                            <div className="mt-1 text-[0.55em] text-white/60">{stat.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {focusLabel && (
+                            <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[#d4a853]/35 bg-[#d4a853]/8 p-3.5 text-left">
+                                <span className="rounded-full bg-[#d4a853] px-2 py-1 text-[0.625em] font-bold text-[#0b1640]">{focusLabel}</span>
+                                {focusNote && <p className="text-[0.625em] leading-relaxed text-white/70">{focusNote}</p>}
+                            </div>
+                        )}
+                    </div>
+
                     <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
                         <div className="relative flex rounded-2xl border border-white/10 bg-[#1e40af] p-1.5">
                             <span
@@ -68,14 +137,12 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                             />
                             <Link
                                 href={route('stay.dine.accommodations')}
-                                viewTransition
                                 className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'accommodations' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🏨 &nbsp; Accommodations
                             </Link>
                             <Link
                                 href={route('stay.dine.restaurants')}
-                                viewTransition
                                 className={`relative z-10 rounded-xl px-4 py-2.5 text-[0.75em] font-semibold transition-colors ${type === 'restaurants' ? 'text-[#0b1640]' : 'text-white/45 hover:text-white/75'}`}
                             >
                                 🍽 &nbsp; Restaurants &amp; Cafés
@@ -134,10 +201,12 @@ export default function StayDineDirectoryPage({ headTitle, imageSubHeader, type 
                                 .trim()
                                 .replace(/\s+/g, '-')
                                 .replace(/[^a-z0-9-]/g, '');
+                            const routeType = type === 'restaurants' ? 'restaurant' : 'accommodation';
+
                             return (
                                 <ScrollReveal key={item.name} delay={index * 70}>
                                     <Link
-                                        href={route('stay.dine.detail', { type, slug })}
+                                        href={`/stay-dine/${routeType}/${slug}`}
                                         className={`group block h-full overflow-hidden rounded-2xl border border-[#cbd8e8] bg-[#EAF0F8] text-left transition duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-[#C89B33] hover:shadow-xl hover:shadow-[#1A3B70]/15 ${viewMode === 'list' ? 'flex' : ''}`}
                                     >
                                         <div className={`relative overflow-hidden ${viewMode === 'list' ? 'h-36 w-52 shrink-0' : 'h-44'}`}>

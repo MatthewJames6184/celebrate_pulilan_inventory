@@ -1,6 +1,7 @@
 import StayDineDirectoryPage, { type DirectoryItem } from '@/components/stay-dine-directory';
+import { usePage } from '@inertiajs/react';
 
-const accommodations: DirectoryItem[] = [
+const accommodationsSeed: DirectoryItem[] = [
     {
         name: 'Villa Lorenzo Resort',
         category: 'Resort',
@@ -61,17 +62,19 @@ const accommodations: DirectoryItem[] = [
 ];
 
 export default function StayDineAccommodations() {
+    const { approvedListings = [] } = usePage<{ approvedListings?: DirectoryItem[] }>().props;
+    const accommodations = [...approvedListings, ...accommodationsSeed];
+
     return (
         <StayDineDirectoryPage
             headTitle="Pulilan Accommodations"
             eyebrow="Where to Stay and Dine"
-            // title="Accommodations, resorts, and practical overnight stays."
             title="Accommodations in Pulilan"
             intro="Accommodations, resorts, and practical overnight stays."
-            imageSubHeader={{ src: '/images/carousel-images/Resorts.jpg', alt: 'Pulilan resort stays' }}
+            imageSubHeader={{ src: '/images/other-images/stay-dine-resort.jpg', alt: 'Pulilan resort stays' }}
             breadcrumbs={[{ label: 'Where to Stay and Dine' }, { label: 'Accommodations' }]}
             stats={[
-                { value: '9', label: 'Directory listings' },
+                { value: String(accommodations.length), label: 'Directory listings' },
                 { value: '5', label: 'Stay categories' },
                 { value: '19', label: 'Barangays in Pulilan' },
             ]}

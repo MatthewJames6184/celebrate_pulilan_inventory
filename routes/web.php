@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\StayDineSubmissionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,12 +14,14 @@ Route::prefix('about')->name('about.')->controller(PageController::class)->group
     Route::get('/festivals', 'festivals')->name('festivals');
     Route::get('/{topic}/{slug}', 'detail')->name('detail');
 });
-Route::prefix('stay-dine')->name('stay.dine.')->controller(PageController::class)->group(function () {
-    Route::get('/accommodations', 'stayDineAccommodations')->name('accommodations');
-    Route::get('/restaurants', 'stayDineRestaurants')->name('restaurants');
-    // detail route for individual stay/dine listings
-    Route::get('/{type}/{slug}', 'stayDineDetail')->name('detail');
-});
+
+Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine.index');
+Route::get('/stay-dine/accommodations', [PageController::class, 'stayDineAccommodations'])->name('stay.dine.accommodations');
+Route::get('/stay-dine/restaurants', [PageController::class, 'stayDineRestaurants'])->name('stay.dine.restaurants');
+Route::get('/stay-dine/submit-listing', [PageController::class, 'stayDineSubmitListing'])->name('stay.dine.submit-listing');
+Route::post('/stay-dine/submit-listing', [StayDineSubmissionController::class, 'store'])->name('stay.dine.submit.store');
+Route::get('/stay-dine/{type:accommodation|restaurant}/{slug}', [PageController::class, 'stayDineDetail'])->name('stay.dine.detail');
+
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 Route::get('/others', [PageController::class, 'others'])->name('others');
@@ -44,6 +47,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('admin/dashboard');
     })->name('admin.dashboard');
+    Route::get('/stay-dine-requests', [StayDineSubmissionController::class, 'index'])->name('admin.stay-dine-requests');
+    Route::patch('/stay-dine-requests/{submission}', [StayDineSubmissionController::class, 'update'])->name('admin.stay-dine-request.update');
 });
 
 require __DIR__.'/settings.php';

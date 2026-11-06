@@ -181,7 +181,7 @@ export default function Attractions() {
                         {filtered.map((item, i) => (
                             <article
                                 key={i}
-                                className="group cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#f3ede2] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/50"
+                                className="group cursor-pointer overflow-hidden border border-white/10 bg-[#f3ede2] transition-all duration-300 hover:-translate-y-1 hover:border-[#d4a853]/50"
                             >
                                 <div className="relative h-52 overflow-hidden">
                                     <img

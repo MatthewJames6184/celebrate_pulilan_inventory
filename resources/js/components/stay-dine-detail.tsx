@@ -45,7 +45,8 @@ export default function StayDineDetail({
     phone,
     related,
 }: StayDineDetailProps) {
-    const listingRoute = type === 'accommodations' ? route('stay.dine.accommodations') : route('stay.dine.restaurants');
+    const normalizedType = type === 'accommodations' ? 'accommodation' : 'restaurant';
+    const listingRoute = normalizedType === 'restaurant' ? route('stay.dine.restaurants') : route('stay.dine.accommodations');
 
     return (
         <div className="min-h-screen bg-[#0b1640] text-white" style={{ fontSize: '20px' }}>
@@ -180,7 +181,7 @@ export default function StayDineDetail({
                         {related.map((item, index) => (
                             <ScrollReveal key={item.name} delay={index * 100}>
                                 <Link
-                                    href={route('stay.dine.detail', { type, slug: item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') })}
+                                    href={`/stay-dine/${normalizedType}/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                                     className="group block overflow-hidden rounded-2xl border border-white/5 bg-[#0e1c52] transition duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-[#d4a853]/30 hover:shadow-xl"
                                 >
                                     <div className="relative h-36 overflow-hidden">
