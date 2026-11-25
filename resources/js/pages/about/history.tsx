@@ -122,7 +122,7 @@ export default function History() {
                         alt="Pulilan heritage"
                         className="h-full w-full object-cover object-[100%_20%] transition-all duration-300 hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#E0C9A6]/55 via-[#E0C9A6]/20 to-[#E0C9A6]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#E0C9A6]/10 to-[#E0C9A6]" />
                     <div className="absolute inset-0 flex items-end justify-center px-6 pb-16 text-center">
                         <div>
                             <div className="mb-3 flex items-center justify-center gap-2">

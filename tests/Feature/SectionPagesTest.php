@@ -13,6 +13,18 @@ test('stay dine subpages are registered', function (string $routeName, string $c
     ['stay.dine.restaurants', 'stayDineRestaurants', 'stay-dine/restaurants'],
 ]);
 
+test('stay dine listing detail links resolve to the requested listing', function (string $type, string $slug) {
+    $this->get("/stay-dine/{$type}/{$slug}")
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->component('stay-dine/detail')
+            ->where('type', $type)
+            ->where('slug', $slug));
+})->with([
+    ['accommodation', 'villa-lorenzo-resort'],
+    ['restaurant', 'sujeo-restaurant'],
+]);
+
 test('news routes are removed', function () {
     expect(Route::has('news.archive'))->toBeFalse();
     expect(Route::has('news.show'))->toBeFalse();

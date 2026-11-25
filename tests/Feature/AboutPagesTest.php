@@ -20,3 +20,12 @@ test('about detail page route is registered', function () {
     expect(method_exists(PageController::class, 'detail'))->toBeTrue();
     expect(file_exists(resource_path('js/pages/about/detail.tsx')))->toBeTrue();
 });
+
+test('what to see detail links resolve to the selected attraction', function () {
+    $this->get('/about/heritage/casa-filomena')
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->component('about/detail')
+            ->where('topic', 'heritage')
+            ->where('slug', 'casa-filomena'));
+});

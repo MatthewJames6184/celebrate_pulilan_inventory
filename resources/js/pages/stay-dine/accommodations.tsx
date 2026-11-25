@@ -1,65 +1,6 @@
 import StayDineDirectoryPage, { type DirectoryItem } from '@/components/stay-dine-directory';
+import { accommodationsSeed } from '@/lib/stay-dine-listings';
 import { usePage } from '@inertiajs/react';
-
-const accommodationsSeed: DirectoryItem[] = [
-    {
-        name: 'Villa Lorenzo Resort',
-        category: 'Resort',
-        area: 'Poblacion',
-        address: 'Pulilan, Bulacan',
-        summary: 'A resort establishment listed in the municipal tourism directory.',
-        highlights: ['Pool access', 'Family stays', 'Events-friendly'],
-        featured: true,
-    },
-    {
-        name: 'ACI Garden Resort',
-        category: 'Resort',
-        area: 'Pulilan',
-        address: 'Pulilan, Bulacan',
-        summary: 'A garden resort establishment listed in the municipal tourism directory.',
-        highlights: ['Short stays', 'Budget friendly', 'Central access'],
-    },
-    {
-        name: 'River of Life Resort and Restaurant',
-        category: 'Resort & Restaurant',
-        area: 'Pulilan',
-        address: 'Pulilan, Bulacan',
-        summary: 'A resort and dining establishment listed in the municipal tourism directory.',
-        highlights: ['Quiet setting', 'Private hire', 'Scenic views'],
-    },
-    {
-        name: 'MRC Resort',
-        category: 'Resort',
-        area: 'Pulilan',
-        address: 'Pulilan, Bulacan',
-        summary: 'A resort establishment listed in the municipal tourism directory.',
-        highlights: ['Flexible stays', 'Parking nearby', 'Longer visits'],
-    },
-    {
-        name: 'Marahuyo Private Resort',
-        category: 'Private Resort',
-        area: 'Pulilan',
-        address: 'Pulilan, Bulacan',
-        summary: 'A private resort establishment listed in the municipal tourism directory.',
-        highlights: ['Easy check-in', 'Compact rooms', 'Good for groups'],
-    },
-    {
-        name: 'Sta. Peregrina Swimming Pool (Pugpog Resort)',
-        category: 'Resort',
-        area: 'Sta. Peregrina',
-        address: 'Pulilan, Bulacan',
-        summary: 'A swimming pool and resort establishment listed in the municipal business directory.',
-        highlights: ['Group-ready', 'Home-like', 'Local access'],
-    },
-    ...['Nature Care Resort and Farm', 'Green Haven Apartelle', 'Green Garden Court'].map((name) => ({
-        name,
-        category: name.includes('Apartelle') ? 'Apartelle' : name.includes('Court') ? 'Hotel / Inn' : 'Resort & Farm',
-        area: 'Pulilan',
-        address: 'Pulilan, Bulacan',
-        summary: 'An accommodation establishment listed in the municipal tourism or business directory.',
-        highlights: ['Directory listing', 'Check availability', 'Local stay'],
-    })),
-];
 
 export default function StayDineAccommodations() {
     const { approvedListings = [] } = usePage<{ approvedListings?: DirectoryItem[] }>().props;

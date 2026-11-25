@@ -1,4 +1,5 @@
 import PublicLayout from '@/layouts/public-layout';
+import { attractions, slugifyAttraction } from '@/lib/attractions';
 import { whatToSeePages, type WhatToSeeTopic } from '@/lib/what-to-see';
 import { Head, Link } from '@inertiajs/react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -10,7 +11,15 @@ type DetailPageProps = {
 
 export default function Detail({ topic, slug }: DetailPageProps) {
     const page = whatToSeePages[topic];
-    const card = page.cards.find((item) => item.slug === slug) ?? page.cards[0];
+    const attraction = attractions.find((item) => item.category === topic && slugifyAttraction(item.name) === slug);
+    const card = attraction
+        ? {
+              slug,
+              title: attraction.name,
+              description: attraction.desc,
+              image: attraction.img,
+          }
+        : (page.cards.find((item) => item.slug === slug) ?? page.cards[0]);
 
     return (
         <PublicLayout>
@@ -21,7 +30,9 @@ export default function Detail({ topic, slug }: DetailPageProps) {
                     <div className="absolute inset-0 bg-[#163b82]/60" />
                     <div className="absolute inset-0 flex items-end">
                         <div className="mx-auto w-full max-w-7xl px-6 pb-12 lg:px-10">
-                            <p className="text-[10px] font-bold tracking-[0.25em] text-[#f5bd2f] uppercase">{page.highlightLabel}</p>
+                            <p className="text-[10px] font-bold tracking-[0.25em] text-[#f5bd2f] uppercase">
+                                {attraction?.highlight ?? page.highlightLabel}
+                            </p>
                             <h1 className="font-display mt-3 text-4xl font-semibold text-white lg:text-6xl">{card.title}</h1>
                         </div>
                     </div>
@@ -30,6 +41,7 @@ export default function Detail({ topic, slug }: DetailPageProps) {
                 <section className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[1.4fr_0.8fr] lg:px-10">
                     <article className="rounded-2xl bg-white p-6 shadow-sm lg:p-10">
                         <p className="text-sm leading-7 text-slate-600">{card.description}</p>
+                        {attraction && <p className="mt-4 text-sm font-semibold text-slate-500">{attraction.location}</p>}
                         <p className="mt-5 text-sm leading-7 text-slate-600">{page.summary}</p>
                         <div className="mt-8 flex flex-wrap gap-2">
                             {page.highlights.map((highlight) => (

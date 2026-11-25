@@ -20,7 +20,9 @@ Route::get('/stay-dine/accommodations', [PageController::class, 'stayDineAccommo
 Route::get('/stay-dine/restaurants', [PageController::class, 'stayDineRestaurants'])->name('stay.dine.restaurants');
 Route::get('/stay-dine/submit-listing', [PageController::class, 'stayDineSubmitListing'])->name('stay.dine.submit-listing');
 Route::post('/stay-dine/submit-listing', [StayDineSubmissionController::class, 'store'])->name('stay.dine.submit.store');
-Route::get('/stay-dine/{type:accommodation|restaurant}/{slug}', [PageController::class, 'stayDineDetail'])->name('stay.dine.detail');
+Route::get('/stay-dine/{type}/{slug}', [PageController::class, 'stayDineDetail'])
+    ->whereIn('type', ['accommodation', 'restaurant'])
+    ->name('stay.dine.detail');
 
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 

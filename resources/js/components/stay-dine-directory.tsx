@@ -3,6 +3,7 @@ import { Grid2X2, List, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import ScrollReveal from '@/components/scroll-reveal';
+import { slugifyStayDineName } from '@/lib/stay-dine-listings';
 import PublicLayout from '@/layouts/public-layout';
 
 export type DirectoryItem = {
@@ -196,11 +197,7 @@ export default function StayDineDirectoryPage({
                         className={`${viewMode === 'grid' ? 'grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-4'} animate-[fade-up_500ms_ease-out]`}
                     >
                         {filteredItems.map((item, index) => {
-                            const slug = item.name
-                                .toLowerCase()
-                                .trim()
-                                .replace(/\s+/g, '-')
-                                .replace(/[^a-z0-9-]/g, '');
+                            const slug = slugifyStayDineName(item.name);
                             const routeType = type === 'restaurants' ? 'restaurant' : 'accommodation';
 
                             return (

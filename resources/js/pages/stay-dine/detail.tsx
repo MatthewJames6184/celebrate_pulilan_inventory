@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 
 import PublicLayout from '@/layouts/public-layout';
 import StayDineDetail from '@/components/stay-dine-detail';
+import { accommodationsSeed, restaurantsSeed, slugifyStayDineName } from '@/lib/stay-dine-listings';
 
 const accommodationDetails = {
     'makahoy-private-resort': {
@@ -54,9 +55,28 @@ const relatedRestaurants = [
 export default function StayDineListingDetail() {
     const { props } = usePage<{ type: 'accommodation' | 'restaurant'; slug: string }>();
     const type = props.type === 'restaurant' ? 'restaurants' : 'accommodations';
-    const source = type === 'restaurants' ? restaurantDetails : accommodationDetails;
-    const fallback = type === 'restaurants' ? restaurantDetails['sujeo-restaurant'] : accommodationDetails['makahoy-private-resort'];
-    const detail = source[props.slug as keyof typeof source] ?? fallback;
+    const listing = (type === 'restaurants' ? restaurantsSeed : accommodationsSeed).find((item) => slugifyStayDineName(item.name) === props.slug);
+    const preset =
+        type === 'restaurants'
+            ? restaurantDetails[props.slug as keyof typeof restaurantDetails]
+            : accommodationDetails[props.slug as keyof typeof accommodationDetails];
+    const detail = preset ?? {
+        name: listing?.name ?? props.slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+        category: listing?.category ?? (type === 'restaurants' ? 'Restaurant' : 'Accommodation'),
+        area: listing?.area ?? 'Pulilan',
+        image:
+            listing?.image ??
+            (type === 'restaurants' ? '/images/carousel-images/Cuisine.jpg' : '/images/other-images/stay-dine-resort.jpg'),
+        price: 'Contact for details',
+        rating: 0,
+        reviews: 0,
+        summary: listing?.summary ?? 'Contact this establishment directly for current details.',
+        description: listing?.summary ?? 'Contact this establishment directly for current details.',
+        highlights: listing?.highlights ?? [],
+        amenities: listing?.highlights ?? [],
+        hours: 'Confirm current hours before visiting.',
+        phone: 'Contact details are not listed.',
+    };
 
     return (
         <PublicLayout>

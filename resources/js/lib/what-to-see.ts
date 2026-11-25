@@ -15,8 +15,8 @@ export type WhatToSeeTopic =
 export type WhatToSeeCard = {
     slug: string;
     title: string;
-    category: string;
-    location: string;
+    category?: string;
+    location?: string;
     description: string;
     image: string;
 };

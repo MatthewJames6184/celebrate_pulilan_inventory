@@ -1,6 +1,7 @@
 import ScrollReveal from '@/components/scroll-reveal';
 import { Link } from '@inertiajs/react';
 import { Clock3, MapPin, Phone, Star } from 'lucide-react';
+import { slugifyStayDineName } from '@/lib/stay-dine-listings';
 
 type RelatedListing = {
     name: string;
@@ -181,7 +182,7 @@ export default function StayDineDetail({
                         {related.map((item, index) => (
                             <ScrollReveal key={item.name} delay={index * 100}>
                                 <Link
-                                    href={`/stay-dine/${normalizedType}/${item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                                    href={`/stay-dine/${normalizedType}/${slugifyStayDineName(item.name)}`}
                                     className="group block overflow-hidden rounded-2xl border border-white/5 bg-[#0e1c52] transition duration-500 hover:-translate-y-1 hover:scale-[1.01] hover:border-[#d4a853]/30 hover:shadow-xl"
                                 >
                                     <div className="relative h-36 overflow-hidden">
