@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class BusinessApplication extends Model
 {
@@ -15,6 +16,7 @@ class BusinessApplication extends Model
         'user_id',
         'business_name',
         'category',
+        'business_type',
         'area',
         'address',
         'email',
@@ -23,6 +25,7 @@ class BusinessApplication extends Model
         'description',
         'status',
         'reviewed_by',
+        'reviewed_by_admin_id',
         'reviewed_at',
     ];
 
@@ -40,6 +43,11 @@ class BusinessApplication extends Model
 
     public function reviewer(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'reviewed_by');
+        return $this->belongsTo(Admin::class, 'reviewed_by_admin_id');
+    }
+
+    public function stayDineSubmission(): HasOne
+    {
+        return $this->hasOne(StayDineSubmission::class);
     }
 }

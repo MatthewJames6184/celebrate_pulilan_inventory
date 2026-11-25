@@ -55,7 +55,7 @@ class BusinessApplicationController extends Controller
             'applications' => $applications->map(fn (BusinessApplication $application) => [
                 'id' => $application->id,
                 'business_name' => $application->business_name,
-                'category' => $application->category,
+                'business_type' => $application->business_type,
                 'area' => $application->area,
                 'address' => $application->address,
                 'email' => $application->email,
@@ -89,16 +89,12 @@ class BusinessApplicationController extends Controller
 
             $businessApplication->update([
                 'status' => $validated['status'],
-                'reviewed_by' => $request->user()->id,
+                'reviewed_by_admin_id' => $request->user('admin')->id,
                 'reviewed_at' => now(),
             ]);
 
             if ($validated['status'] === 'approved') {
-                $applicant = $businessApplication->user;
-
-                if (! $applicant->isAdmin()) {
-                    $applicant->update(['role' => 'business']);
-                }
+                $businessApplication->user()->update(['account_type' => 'business']);
             }
 
             return $businessApplication->load('user');

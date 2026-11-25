@@ -10,10 +10,11 @@ type Tab = 'overview' | 'saved' | 'itinerary' | 'settings';
 type BusinessApplication = {
     id: number;
     business_name: string;
-    category: string;
+    business_type: 'accommodation' | 'restaurant';
     email: string;
     status: 'pending' | 'approved' | 'rejected';
     created_at: string;
+    listing_status: 'pending' | 'approved' | 'rejected' | null;
 } | null;
 
 type DashboardPageProps = SharedData & {
@@ -44,7 +45,7 @@ export default function Dashboard() {
     const firstName = auth.user.name.split(' ')[0];
     const form = useForm({
         business_name: '',
-        category: '',
+        business_type: 'accommodation' as 'accommodation' | 'restaurant',
         area: '',
         address: '',
         email: auth.user.email,
@@ -144,9 +145,24 @@ export default function Dashboard() {
                                         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" />
                                         <div>
                                             <h2 className="text-sm font-semibold text-emerald-200">Business account approved</h2>
-                                            <p className="mt-1 text-xs text-white/60">
-                                                {businessApplication?.business_name} is verified for {businessApplication?.email}.
-                                            </p>
+                                            <p className="mt-1 text-xs text-white/60">{businessApplication?.business_name} is verified for {businessApplication?.email}.</p>
+                                            {businessApplication?.listing_status ? (
+                                                <div className="mt-2 text-xs text-white/75">
+                                                    <p>Directory listing status: <span className="font-semibold capitalize">{businessApplication.listing_status}</span></p>
+                                                    {businessApplication.listing_status === 'rejected' && (
+                                                        <Link href={route('stay.dine.submit-listing')} className="mt-2 inline-block font-semibold text-[#f4d27b]">
+                                                            Update and resubmit listing
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            ) : (
+                                                <Link
+                                                    href={route('stay.dine.submit-listing')}
+                                                    className="mt-3 inline-block rounded-full bg-[#d4a853] px-4 py-2 text-xs font-bold text-[#0b1640]"
+                                                >
+                                                    Add your business to Stay &amp; Dine
+                                                </Link>
+                                            )}
                                         </div>
                                     </section>
                                 )}
@@ -220,17 +236,27 @@ export default function Dashboard() {
                                             />
                                             <InputError message={form.errors.business_name} />
                                         </label>
-                                        <label className="grid gap-2 text-xs font-medium text-white/65">
-                                            Business type
-                                            <input
-                                                required
-                                                value={form.data.category}
-                                                onChange={(event) => form.setData('category', event.target.value)}
-                                                placeholder="Restaurant, resort, shop..."
-                                                className="rounded-lg border border-white/10 bg-[#0b1640] px-3 py-2.5 text-sm text-white outline-none focus:border-[#d4a853]"
-                                            />
-                                            <InputError message={form.errors.category} />
-                                        </label>
+                                        <fieldset className="grid gap-2 text-xs font-medium text-white/65">
+                                            <legend>Business type</legend>
+                                            <div className="grid grid-cols-2 gap-2">
+                                                {(['accommodation', 'restaurant'] as const).map((businessType) => (
+                                                    <button
+                                                        key={businessType}
+                                                        type="button"
+                                                        aria-pressed={form.data.business_type === businessType}
+                                                        onClick={() => form.setData('business_type', businessType)}
+                                                        className={`rounded-lg border px-3 py-2.5 text-sm transition ${
+                                                            form.data.business_type === businessType
+                                                                ? 'border-[#d4a853] bg-[#d4a853]/15 text-[#f4d27b]'
+                                                                : 'border-white/10 bg-[#0b1640] text-white/60'
+                                                        }`}
+                                                    >
+                                                        {businessType === 'accommodation' ? 'Accommodations' : 'Restaurants'}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <InputError message={form.errors.business_type} />
+                                        </fieldset>
                                         <label className="grid gap-2 text-xs font-medium text-white/65">
                                             Application email
                                             <input

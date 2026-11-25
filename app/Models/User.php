@@ -24,17 +24,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'account_type',
     ];
-
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
 
     public function isBusiness(): bool
     {
-        return $this->role === 'business';
+        return $this->account_type === 'business';
     }
 
     public function businessApplications(): HasMany

@@ -1,35 +1,98 @@
 <?php
 
-test('stay dine submission page is available', function () {
-    $response = $this->get(route('stay.dine.submit-listing', [], false));
+use App\Models\User;
 
-    $response->assertOk();
-    $response->assertSessionHasNoErrors();
-});
+function approvedBusinessUser(string $businessType = 'accommodation'): User
+{
+    $user = User::factory()->create(['account_type' => 'business']);
 
-it('supports the public listing route without dynamic route conflicts', function () {
-    $response = $this->get('/stay-dine/submit-listing');
-
-    $response->assertOk();
-});
-
-test('guest can submit a stay dine listing request', function () {
-    $response = $this->post(route('stay.dine.submit.store', [], false), [
-        'type' => 'accommodation',
-        'name' => 'Pulilan View Hotel',
-        'category' => 'Hotel',
+    $user->businessApplications()->create([
+        'business_name' => 'Pulilan Garden Resort',
+        'business_type' => $businessType,
+        'category' => $businessType === 'restaurant' ? 'Restaurant' : 'Accommodation',
         'area' => 'Poblacion',
         'address' => '123 Main Street, Pulilan',
-        'email' => 'owner@example.com',
-        'phone' => '09171234567',
-        'website' => 'https://example.com',
-        'description' => 'A cozy stay for travelers visiting the town.',
+        'email' => $user->email,
+        'description' => 'A local business serving visitors in Pulilan.',
+        'status' => 'approved',
     ]);
 
-    $response->assertRedirect();
+    return $user;
+}
+
+test('only an approved business owner can open the listing form', function () {
+    $owner = approvedBusinessUser();
+
+    $this->actingAs($owner)
+        ->get(route('stay.dine.submit-listing', [], false))
+        ->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->component('stay-dine/submit-listing')
+            ->where('businessType', 'accommodation')
+            ->where('businessEmail', $owner->email));
+
+});
+
+test('approved business owner submits listing details tied to approved type and email', function () {
+    $owner = approvedBusinessUser('restaurant');
+
+    $this->actingAs($owner)
+        ->post(route('stay.dine.submit.store', [], false), [
+            'type' => 'accommodation',
+            'name' => 'Pulilan Garden Restaurant',
+            'category' => 'Restaurant',
+            'area' => 'Poblacion',
+            'address' => '123 Main Street, Pulilan',
+            'email' => 'spoofed@example.com',
+            'phone' => '09171234567',
+            'website' => 'https://example.com',
+            'description' => 'Local dishes and refreshments.',
+        ])
+        ->assertRedirect(route('dashboard', [], false));
+
     $this->assertDatabaseHas('stay_dine_submissions', [
-        'name' => 'Pulilan View Hotel',
-        'type' => 'accommodation',
+        'user_id' => $owner->id,
+        'type' => 'restaurant',
+        'business_application_id' => $owner->businessApplications()->firstOrFail()->id,
+        'email' => $owner->email,
         'status' => 'pending',
     ]);
+});
+
+test('business owner can resubmit rejected listing details for review', function () {
+    $owner = approvedBusinessUser();
+    $application = $owner->businessApplications()->firstOrFail();
+    $application->stayDineSubmission()->create([
+        'user_id' => $owner->id,
+        'type' => 'accommodation',
+        'name' => 'Old listing',
+        'email' => $owner->email,
+        'status' => 'rejected',
+    ]);
+
+    $this->actingAs($owner)
+        ->post(route('stay.dine.submit.store', [], false), [
+            'name' => 'Updated listing',
+            'address' => '456 New Street, Pulilan',
+            'email' => $owner->email,
+        ])
+        ->assertRedirect(route('dashboard', [], false));
+
+    $this->assertDatabaseHas('stay_dine_submissions', [
+        'id' => $application->stayDineSubmission->id,
+        'name' => 'Updated listing',
+        'status' => 'pending',
+    ]);
+    $this->assertDatabaseCount('stay_dine_submissions', 1);
+});
+
+test('guests cannot submit a listing directly', function () {
+    $this->get(route('stay.dine.submit-listing', [], false))
+        ->assertRedirect(route('login', [], false));
+
+    $this->post(route('stay.dine.submit.store', [], false), [
+        'name' => 'Unauthorized listing',
+        'address' => '123 Main Street, Pulilan',
+        'email' => 'owner@example.com',
+    ])->assertRedirect(route('login', [], false));
 });

@@ -9,6 +9,7 @@ class StayDineSubmission extends Model
 {
     protected $fillable = [
         'user_id',
+        'business_application_id',
         'type',
         'name',
         'category',
@@ -20,6 +21,7 @@ class StayDineSubmission extends Model
         'description',
         'status',
         'reviewed_by',
+        'reviewed_by_admin_id',
         'reviewed_at',
     ];
 
@@ -37,6 +39,6 @@ class StayDineSubmission extends Model
 
     public function reviewer(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'reviewed_by');
+        return $this->belongsTo(Admin::class, 'reviewed_by_admin_id');
     }
 }

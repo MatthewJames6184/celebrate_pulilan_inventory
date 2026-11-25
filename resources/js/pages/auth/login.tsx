@@ -128,6 +128,10 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     <Link href={route('register')} className="text-[#d4a853]">
                         Register free
                     </Link>
+                    <span className="mx-2 text-white/20">·</span>
+                    <Link href={route('admin.login')} className="text-white/45 hover:text-[#d4a853]">
+                        Admin sign in
+                    </Link>
                 </div>
             </PortalAuthShell>
         </>

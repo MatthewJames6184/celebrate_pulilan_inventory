@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { Bell, Building2, FileText, Plus, Sparkles } from 'lucide-react';
+import { Bell, Building2, FileText, Plus, Sparkles, Store } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Dashboard', href: '/admin/dashboard' }];
 
@@ -19,7 +19,13 @@ const recentActivity = [
 
 const quickActions = ['+ Add News', '+ Add Event', '+ Add Place'];
 
-export default function AdminDashboard({ pendingApplications }: { pendingApplications: number }) {
+export default function AdminDashboard({
+    pendingApplications,
+    pendingListings,
+}: {
+    pendingApplications: number;
+    pendingListings: number;
+}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Admin Dashboard" />
@@ -52,6 +58,12 @@ export default function AdminDashboard({ pendingApplications }: { pendingApplica
                             value: String(pendingApplications),
                             label: 'Pending review',
                             tone: 'bg-blue-100 text-blue-700',
+                        },
+                        {
+                            title: 'Stay & Dine listings',
+                            value: String(pendingListings),
+                            label: 'Pending review',
+                            tone: 'bg-violet-100 text-violet-700',
                         },
                     ].map(({ title, value, label, tone }) => (
                         <div key={title} className="rounded-lg border border-dashed border-slate-300 bg-white p-4 shadow-sm">
@@ -108,6 +120,13 @@ export default function AdminDashboard({ pendingApplications }: { pendingApplica
                         >
                             <Building2 className="h-4 w-4" />
                             Review {pendingApplications} business applications
+                        </Link>
+                        <Link
+                            href={route('admin.stay-dine-requests')}
+                            className="inline-flex items-center gap-2 rounded-md border border-[#173f82]/20 bg-[#173f82]/5 px-3 py-2 text-sm font-medium text-[#173f82] transition hover:bg-[#173f82]/10"
+                        >
+                            <Store className="h-4 w-4" />
+                            Review {pendingListings} Stay &amp; Dine listings
                         </Link>
                     </div>
                 </div>

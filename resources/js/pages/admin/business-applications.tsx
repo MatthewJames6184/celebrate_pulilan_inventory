@@ -6,7 +6,7 @@ import { useState } from 'react';
 type BusinessApplication = {
     id: number;
     business_name: string;
-    category: string;
+    business_type: 'accommodation' | 'restaurant';
     area: string | null;
     address: string;
     email: string;
@@ -59,7 +59,7 @@ export default function BusinessApplications({ applications, pendingCount }: { a
                                     <div className="min-w-0 flex-1">
                                         <div className="mb-3 flex flex-wrap items-center gap-2">
                                             <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] text-slate-700 uppercase">
-                                                {application.category}
+                                                {application.business_type === 'restaurant' ? 'Restaurants' : 'Accommodations'}
                                             </span>
                                             <span
                                                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.16em] uppercase ${

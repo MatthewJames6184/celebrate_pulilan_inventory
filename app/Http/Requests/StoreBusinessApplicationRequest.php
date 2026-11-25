@@ -24,7 +24,8 @@ class StoreBusinessApplicationRequest extends FormRequest
     {
         return [
             'business_name' => ['required', 'string', 'max:255'],
-            'category' => ['required', 'string', 'max:255'],
+            'business_type' => ['required', 'in:accommodation,restaurant'],
+            'category' => ['nullable', 'string', 'max:255'],
             'area' => ['nullable', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::in([$this->user()->email])],

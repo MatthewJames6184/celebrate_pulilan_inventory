@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminSessionController;
 use App\Http\Controllers\BusinessApplicationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StayDineSubmissionController;
 use App\Models\BusinessApplication;
+use App\Models\StayDineSubmission;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,8 +22,10 @@ Route::prefix('about')->name('about.')->controller(PageController::class)->group
 Route::get('/stay-dine', [PageController::class, 'stayDine'])->name('stay.dine.index');
 Route::get('/stay-dine/accommodations', [PageController::class, 'stayDineAccommodations'])->name('stay.dine.accommodations');
 Route::get('/stay-dine/restaurants', [PageController::class, 'stayDineRestaurants'])->name('stay.dine.restaurants');
-Route::get('/stay-dine/submit-listing', [PageController::class, 'stayDineSubmitListing'])->name('stay.dine.submit-listing');
-Route::post('/stay-dine/submit-listing', [StayDineSubmissionController::class, 'store'])->name('stay.dine.submit.store');
+Route::middleware('auth')->group(function () {
+    Route::get('/stay-dine/submit-listing', [StayDineSubmissionController::class, 'create'])->name('stay.dine.submit-listing');
+    Route::post('/stay-dine/submit-listing', [StayDineSubmissionController::class, 'store'])->name('stay.dine.submit.store');
+});
 Route::get('/stay-dine/{type}/{slug}', [PageController::class, 'stayDineDetail'])
     ->whereIn('type', ['accommodation', 'restaurant'])
     ->name('stay.dine.detail');
@@ -43,17 +47,18 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
         $user = request()->user();
-        $application = $user->latestBusinessApplication;
+        $application = $user->latestBusinessApplication()->with('stayDineSubmission')->first();
 
         return Inertia::render('dashboard', [
             'isBusiness' => $user->isBusiness(),
             'businessApplication' => $application ? [
                 'id' => $application->id,
                 'business_name' => $application->business_name,
-                'category' => $application->category,
+                'business_type' => $application->business_type,
                 'email' => $application->email,
                 'status' => $application->status,
                 'created_at' => $application->created_at?->format('M d, Y'),
+                'listing_status' => $application->stayDineSubmission?->status,
             ] : null,
         ]);
     })->name('dashboard');
@@ -63,10 +68,22 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // for admin
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware('guest:admin')->group(function () {
+    Route::get('/admin/login', [AdminSessionController::class, 'create'])->name('admin.login');
+    Route::post('/admin/login', [AdminSessionController::class, 'store'])
+        ->middleware('throttle:5,1')
+        ->name('admin.login.store');
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::post('/admin/logout', [AdminSessionController::class, 'destroy'])->name('admin.logout');
+});
+
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('admin/dashboard', [
             'pendingApplications' => BusinessApplication::where('status', 'pending')->count(),
+            'pendingListings' => StayDineSubmission::where('status', 'pending')->count(),
         ]);
     })->name('admin.dashboard');
     Route::get('/business-applications', [BusinessApplicationController::class, 'index'])

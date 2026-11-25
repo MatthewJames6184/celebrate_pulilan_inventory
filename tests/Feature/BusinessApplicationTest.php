@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Notifications\BusinessApplicationApproved;
 use Illuminate\Support\Facades\Notification;
@@ -8,6 +9,7 @@ function businessApplicationPayload(string $email): array
 {
     return [
         'business_name' => 'Pulilan Garden Resort',
+        'business_type' => 'accommodation',
         'category' => 'Resort',
         'area' => 'Poblacion',
         'address' => '123 Main Street, Pulilan',
@@ -27,6 +29,7 @@ test('business registration creates a pending application for the registered ema
         'password_confirmation' => 'Password123!',
         'account_type' => 'business',
         'business_name' => 'Pulilan Garden Resort',
+        'business_type' => 'accommodation',
         'business_category' => 'Resort',
         'business_area' => 'Poblacion',
         'business_address' => '123 Main Street, Pulilan',
@@ -37,7 +40,7 @@ test('business registration creates a pending application for the registered ema
 
     $user = User::where('email', 'juan@example.com')->firstOrFail();
 
-    expect($user->role)->not->toBe('business');
+    expect($user->account_type)->toBe('visitor');
     $this->assertDatabaseHas('business_applications', [
         'user_id' => $user->id,
         'email' => $user->email,
@@ -90,16 +93,20 @@ test('guests cannot submit business applications', function () {
 test('admin approval grants business access and emails the applicant', function () {
     Notification::fake();
     $applicant = User::factory()->create();
-    $admin = User::factory()->create(['role' => 'admin']);
+    $admin = Admin::create([
+        'name' => 'Administrator',
+        'email' => 'admin@example.com',
+        'password' => 'password',
+    ]);
     $application = $applicant->businessApplications()->create(businessApplicationPayload($applicant->email));
 
-    $this->actingAs($admin)
+    $this->actingAs($admin, 'admin')
         ->patch(route('admin.business-applications.review', ['businessApplication' => $application->id], false), [
             'status' => 'approved',
         ])
         ->assertRedirect();
 
-    expect($applicant->fresh()->role)->toBe('business');
+    expect($applicant->fresh()->account_type)->toBe('business');
     expect($application->fresh()->status)->toBe('approved');
     Notification::assertSentTo($applicant, BusinessApplicationApproved::class);
 });
@@ -113,8 +120,8 @@ test('non-admin users cannot review business applications', function () {
         ->patch(route('admin.business-applications.review', ['businessApplication' => $application->id], false), [
             'status' => 'approved',
         ])
-        ->assertForbidden();
+        ->assertRedirect(route('admin.login', [], false));
 
     expect($application->fresh()->status)->toBe('pending');
-    expect($applicant->fresh()->role)->not->toBe('business');
+    expect($applicant->fresh()->account_type)->toBe('visitor');
 });

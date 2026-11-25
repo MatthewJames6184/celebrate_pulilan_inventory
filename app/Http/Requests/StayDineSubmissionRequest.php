@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StayDineSubmissionRequest extends FormRequest
@@ -12,22 +11,30 @@ class StayDineSubmissionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+        $application = $user?->businessApplications()
+            ->where('status', 'approved')
+            ->latest()
+            ->first();
+        $submission = $application?->stayDineSubmission;
+
+        return $user?->isBusiness() === true
+            && $application !== null
+            && (! $submission || $submission->status === 'rejected');
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'type' => ['required', 'in:accommodation,restaurant'],
             'name' => ['required', 'string', 'max:255'],
             'category' => ['nullable', 'string', 'max:255'],
             'area' => ['nullable', 'string', 'max:255'],
-            'address' => ['nullable', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'website' => ['nullable', 'url', 'max:255'],

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,13 +32,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        /** @var User $user */
-        $user = Auth::user();
-
-        if ($user->isAdmin()) {
-            return to_route('admin.dashboard');
-        }
 
         if ($request->input('account_type') === 'business') {
             return to_route('dashboard', ['apply-business' => 1]);

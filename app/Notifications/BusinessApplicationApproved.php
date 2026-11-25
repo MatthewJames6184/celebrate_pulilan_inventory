@@ -31,7 +31,7 @@ class BusinessApplicationApproved extends Notification
             ->subject('Your Pulilan business application was approved')
             ->greeting('Good news!')
             ->line("Your application for {$this->businessName} has been approved.")
-            ->line('Your account now has business access to the Pulilan tourism portal.')
-            ->action('Visit your dashboard', route('dashboard'));
+            ->line('Your account now has business access. Submit your business details so the admin can review your directory listing.')
+            ->action('Add your business listing', route('stay.dine.submit-listing'));
     }
 }

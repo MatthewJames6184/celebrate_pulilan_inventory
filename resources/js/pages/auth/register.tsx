@@ -13,7 +13,7 @@ interface RegisterForm {
     password_confirmation: string;
     account_type: 'visitor' | 'business';
     business_name: string;
-    business_category: string;
+    business_type: 'accommodation' | 'restaurant';
     business_area: string;
     business_address: string;
     business_phone: string;
@@ -30,7 +30,7 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
         password_confirmation: '',
         account_type: accountType,
         business_name: '',
-        business_category: '',
+        business_type: 'accommodation',
         business_area: '',
         business_address: '',
         business_phone: '',
@@ -38,8 +38,15 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
         business_description: '',
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [step, setStep] = useState<1 | 2>(1);
     const submit: FormEventHandler = (event) => {
         event.preventDefault();
+
+        if (data.account_type === 'business' && step === 1) {
+            setStep(2);
+            return;
+        }
+
         post(route('register'), { onFinish: () => reset('password', 'password_confirmation') });
     };
 
@@ -47,9 +54,16 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
         <>
             <Head title="Create Account" />
             <PortalAuthShell mode="register">
-                <h1 className="font-display text-3xl font-semibold">Join Pulilan</h1>
-                <p className="mt-1 text-sm text-white/45">Create your free account to explore and connect.</p>
+                <h1 className="font-display text-3xl font-semibold">{step === 1 ? 'Join Pulilan' : 'Business application'}</h1>
+                <p className="mt-1 text-sm text-white/45">
+                    {step === 1 ? 'Create your free account to explore and connect.' : 'Tell us about your business so our team can verify it.'}
+                </p>
+                {data.account_type === 'business' && (
+                    <p className="mt-4 text-xs font-semibold tracking-[0.12em] text-[#d4a853] uppercase">Step {step} of 2</p>
+                )}
                 <form onSubmit={submit} className="mt-8 grid gap-4">
+                    {step === 1 && (
+                        <>
                     <div className="grid grid-cols-2 gap-3">
                         <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
                             First Name
@@ -142,7 +156,9 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
                             ))}
                         </div>
                     </div>
-                    {data.account_type === 'business' && (
+                        </>
+                    )}
+                    {data.account_type === 'business' && step === 2 && (
                         <section className="grid gap-4 rounded-xl border border-[#d4a853]/30 bg-[#d4a853]/5 p-4">
                             <div>
                                 <h2 className="text-sm font-semibold tracking-normal text-white normal-case">Business application</h2>
@@ -160,17 +176,26 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
                                 />
                                 <InputError message={errors.business_name} />
                             </label>
-                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
-                                Business type
-                                <input
-                                    required
-                                    value={data.business_category}
-                                    onChange={(event) => setData('business_category', event.target.value)}
-                                    placeholder="Restaurant, resort, shop..."
-                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
-                                />
-                                <InputError message={errors.business_category} />
-                            </label>
+                            <fieldset className="grid gap-2">
+                                <legend className="text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">Business type</legend>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {(['accommodation', 'restaurant'] as const).map((businessType) => (
+                                        <button
+                                            key={businessType}
+                                            type="button"
+                                            aria-pressed={data.business_type === businessType}
+                                            onClick={() => setData('business_type', businessType)}
+                                            className={`rounded-xl border px-3 py-3 text-sm font-medium normal-case transition ${
+                                                data.business_type === businessType
+                                                    ? 'border-[#d4a853] bg-[#d4a853]/15 text-[#d4a853]'
+                                                    : 'border-[#294058] bg-[#173f82] text-white/55 hover:text-white'
+                                            }`}
+                                        >
+                                            {businessType === 'accommodation' ? 'Accommodations' : 'Restaurants'}
+                                        </button>
+                                    ))}
+                                </div>
+                            </fieldset>
                             <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
                                 Business address
                                 <input
@@ -234,16 +259,31 @@ export default function Register({ accountType = 'visitor' }: { accountType?: 'v
                             </label>
                         </section>
                     )}
-                    <label className="flex items-start gap-3 text-xs leading-5 text-white/45">
+                    {step === 1 && <label className="flex items-start gap-3 text-xs leading-5 text-white/45">
                         <input type="checkbox" required className="mt-1 h-5 w-5 rounded accent-[#d4a853]" />I agree to the Terms of Service and
                         Privacy Policy of the Municipality of Pulilan.
-                    </label>
-                    <button
-                        disabled={processing}
-                        className="h-[52px] rounded-xl bg-[#d4a853] text-sm font-bold text-[#0d1b2a] transition hover:bg-[#e5bc6b]"
-                    >
-                        Create My Account
-                    </button>
+                    </label>}
+                    <div className="flex gap-3">
+                        {step === 2 && (
+                            <button
+                                type="button"
+                                onClick={() => setStep(1)}
+                                className="h-[52px] rounded-xl border border-[#294058] px-5 text-sm font-semibold text-white/70 transition hover:text-white"
+                            >
+                                Back
+                            </button>
+                        )}
+                        <button
+                            disabled={processing}
+                            className="h-[52px] flex-1 rounded-xl bg-[#d4a853] text-sm font-bold text-[#0d1b2a] transition hover:bg-[#e5bc6b]"
+                        >
+                            {data.account_type === 'business' && step === 1
+                                ? 'Next: Business details'
+                                : step === 2
+                                  ? 'Submit application'
+                                  : 'Create My Account'}
+                        </button>
+                    </div>
                 </form>
                 <div className="mt-7 text-center text-sm text-white/45">
                     Already have an account?{' '}

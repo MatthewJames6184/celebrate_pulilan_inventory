@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -38,11 +39,19 @@ class RegisteredUserController extends Controller
             'name' => ['required_without_all:first_name,last_name', 'nullable', 'string', 'max:255'],
             'first_name' => ['required_without:name', 'string', 'max:120'],
             'last_name' => ['required_without:name', 'string', 'max:120'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:'.User::class,
+                Rule::notIn(Admin::query()->pluck('email')->all()),
+            ],
             'password' => ['required', 'confirmed', Password::defaults()],
             'account_type' => ['sometimes', Rule::in(['visitor', 'business'])],
             'business_name' => [Rule::requiredIf($request->input('account_type') === 'business'), 'nullable', 'string', 'max:255'],
-            'business_category' => [Rule::requiredIf($request->input('account_type') === 'business'), 'nullable', 'string', 'max:255'],
+            'business_type' => [Rule::requiredIf($request->input('account_type') === 'business'), 'in:accommodation,restaurant'],
             'business_area' => ['nullable', 'string', 'max:255'],
             'business_address' => [Rule::requiredIf($request->input('account_type') === 'business'), 'nullable', 'string', 'max:255'],
             'business_phone' => ['nullable', 'string', 'max:50'],
@@ -56,12 +65,14 @@ class RegisteredUserController extends Controller
                 'name' => trim($validated['name'] ?? $validated['first_name'].' '.$validated['last_name']),
                 'email' => $validated['email'],
                 'password' => $validated['password'],
+                'account_type' => 'visitor',
             ]);
 
             if ($accountType === 'business') {
                 $user->businessApplications()->create([
                     'business_name' => $validated['business_name'],
-                    'category' => $validated['business_category'],
+                    'category' => $validated['business_type'] === 'restaurant' ? 'Restaurant' : 'Accommodation',
+                    'business_type' => $validated['business_type'],
                     'area' => $validated['business_area'] ?? null,
                     'address' => $validated['business_address'],
                     'email' => $user->email,

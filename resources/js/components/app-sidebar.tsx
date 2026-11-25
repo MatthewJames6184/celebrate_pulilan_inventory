@@ -2,7 +2,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Building2, FileText, Grid2x2, LayoutGrid, Newspaper, Settings, UserRound } from 'lucide-react';
+import { Building2, LayoutGrid, Settings, Store, UserRound } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const userNavItems: NavItem[] = [
@@ -13,11 +13,8 @@ const userNavItems: NavItem[] = [
 
 const adminNavItems: NavItem[] = [
     { title: 'Dashboard', url: '/admin/dashboard', icon: LayoutGrid },
-    { title: 'Content', url: '/admin/dashboard', icon: FileText },
-    { title: 'News', url: '/admin/dashboard', icon: Newspaper },
-    { title: 'Events', url: '/admin/dashboard', icon: Grid2x2 },
     { title: 'Business Applications', url: '/admin/business-applications', icon: Building2 },
-    { title: 'Settings', url: '/settings/profile', icon: Settings },
+    { title: 'Stay & Dine Listings', url: '/admin/stay-dine-requests', icon: Store },
 ];
 
 export function AppSidebar() {
