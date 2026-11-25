@@ -6,9 +6,11 @@ import { Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
 import { FormEventHandler, useState } from 'react';
 
 interface LoginForm {
+    [key: string]: string | boolean;
     email: string;
     password: string;
     remember: boolean;
+    account_type: 'visitor' | 'business';
 }
 interface LoginProps {
     status?: string;
@@ -16,7 +18,12 @@ interface LoginProps {
 }
 
 export default function Login({ status, canResetPassword }: LoginProps) {
-    const { data, setData, post, processing, errors, reset } = useForm<LoginForm>({ email: '', password: '', remember: false });
+    const { data, setData, post, processing, errors, reset } = useForm<LoginForm>({
+        email: '',
+        password: '',
+        remember: false,
+        account_type: 'visitor',
+    });
     const [showPassword, setShowPassword] = useState(false);
     const submit: FormEventHandler = (event) => {
         event.preventDefault();
@@ -29,6 +36,29 @@ export default function Login({ status, canResetPassword }: LoginProps) {
             <PortalAuthShell mode="login">
                 <h1 className="font-display text-3xl font-semibold">Welcome back</h1>
                 <p className="mt-1 text-sm text-white/45">Sign in to access your community portal account.</p>
+                <div className="mt-5 grid grid-cols-2 gap-2 rounded-xl border border-[#294058] bg-[#173f82] p-1">
+                    {(['visitor', 'business'] as const).map((accountType) => (
+                        <button
+                            key={accountType}
+                            type="button"
+                            onClick={() => setData('account_type', accountType)}
+                            aria-pressed={data.account_type === accountType}
+                            className={`rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                                data.account_type === accountType ? 'bg-[#d4a853] text-[#0d1b2a]' : 'text-white/60 hover:text-white'
+                            }`}
+                        >
+                            {accountType === 'visitor' ? 'Visitor' : 'Business'}
+                        </button>
+                    ))}
+                </div>
+                {data.account_type === 'business' && (
+                    <p className="mt-3 text-xs leading-5 text-white/55">
+                        Business owners can sign in to check an application or submit one from their dashboard.{' '}
+                        <Link href={`${route('register')}?account_type=business`} className="text-[#d4a853]">
+                            Register a business
+                        </Link>
+                    </p>
+                )}
                 <form onSubmit={submit} className="mt-9 grid gap-5">
                     <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
                         Email Address

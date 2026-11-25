@@ -5,18 +5,37 @@ import { Eye, EyeOff, LockKeyhole, Mail } from 'lucide-react';
 import { FormEventHandler, useState } from 'react';
 
 interface RegisterForm {
-    name: string;
+    [key: string]: string;
+    first_name: string;
+    last_name: string;
     email: string;
     password: string;
     password_confirmation: string;
+    account_type: 'visitor' | 'business';
+    business_name: string;
+    business_category: string;
+    business_area: string;
+    business_address: string;
+    business_phone: string;
+    business_website: string;
+    business_description: string;
 }
 
-export default function Register() {
+export default function Register({ accountType = 'visitor' }: { accountType?: 'visitor' | 'business' }) {
     const { data, setData, post, processing, errors, reset } = useForm<RegisterForm>({
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         password_confirmation: '',
+        account_type: accountType,
+        business_name: '',
+        business_category: '',
+        business_area: '',
+        business_address: '',
+        business_phone: '',
+        business_website: '',
+        business_description: '',
     });
     const [showPassword, setShowPassword] = useState(false);
     const submit: FormEventHandler = (event) => {
@@ -37,17 +56,22 @@ export default function Register() {
                             <input
                                 required
                                 placeholder="Juan"
+                                value={data.first_name}
+                                onChange={(event) => setData('first_name', event.target.value)}
                                 className="h-[52px] rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
+                            <InputError message={errors.first_name} />
                         </label>
                         <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
                             Last Name
                             <input
                                 required
                                 placeholder="Dela Cruz"
-                                onChange={(event) => setData('name', event.target.value)}
+                                value={data.last_name}
+                                onChange={(event) => setData('last_name', event.target.value)}
                                 className="h-[52px] rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
                             />
+                            <InputError message={errors.last_name} />
                         </label>
                     </div>
                     <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
@@ -99,31 +123,120 @@ export default function Register() {
                         />
                     </label>
                     <div className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
-                        I am a
-                        <div className="grid grid-cols-3 gap-2">
-                            <button
-                                type="button"
-                                className="h-16 rounded-xl border border-[#d4a853] bg-[#d4a853]/15 px-2 text-xs tracking-normal text-[#d4a853] normal-case"
-                            >
-                                🗺 Visitor
-                            </button>
-                            <button
-                                type="button"
-                                className="h-16 rounded-xl border border-[#294058] bg-[#173f82] px-2 text-xs tracking-normal text-white/55 normal-case"
-                            >
-                                🏢 Business
-                            </button>
-                            <button
-                                type="button"
-                                className="h-16 rounded-xl border border-[#294058] bg-[#173f82] px-2 text-xs tracking-normal text-white/55 normal-case"
-                            >
-                                🏘 Resident
-                            </button>
+                        Account type
+                        <div className="grid grid-cols-2 gap-2">
+                            {(['visitor', 'business'] as const).map((accountType) => (
+                                <button
+                                    key={accountType}
+                                    type="button"
+                                    onClick={() => setData('account_type', accountType)}
+                                    aria-pressed={data.account_type === accountType}
+                                    className={`col-span-1 h-16 rounded-xl border px-2 text-xs tracking-normal normal-case transition ${
+                                        data.account_type === accountType
+                                            ? 'border-[#d4a853] bg-[#d4a853]/15 text-[#d4a853]'
+                                            : 'border-[#294058] bg-[#173f82] text-white/55 hover:text-white'
+                                    }`}
+                                >
+                                    {accountType === 'visitor' ? '🗺 Visitor' : '🏢 Business'}
+                                </button>
+                            ))}
                         </div>
                     </div>
+                    {data.account_type === 'business' && (
+                        <section className="grid gap-4 rounded-xl border border-[#d4a853]/30 bg-[#d4a853]/5 p-4">
+                            <div>
+                                <h2 className="text-sm font-semibold tracking-normal text-white normal-case">Business application</h2>
+                                <p className="mt-1 text-xs leading-5 font-normal tracking-normal text-white/50 normal-case">
+                                    Your account will remain a visitor account until an administrator verifies your business.
+                                </p>
+                            </div>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                Business name
+                                <input
+                                    required
+                                    value={data.business_name}
+                                    onChange={(event) => setData('business_name', event.target.value)}
+                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                />
+                                <InputError message={errors.business_name} />
+                            </label>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                Business type
+                                <input
+                                    required
+                                    value={data.business_category}
+                                    onChange={(event) => setData('business_category', event.target.value)}
+                                    placeholder="Restaurant, resort, shop..."
+                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                />
+                                <InputError message={errors.business_category} />
+                            </label>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                Business address
+                                <input
+                                    required
+                                    value={data.business_address}
+                                    onChange={(event) => setData('business_address', event.target.value)}
+                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                />
+                                <InputError message={errors.business_address} />
+                            </label>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                Email applying
+                                <input
+                                    readOnly
+                                    value={data.email}
+                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82]/60 px-4 text-sm font-normal tracking-normal text-white/70 outline-none"
+                                />
+                                <span className="text-[10px] font-normal tracking-normal text-white/40 normal-case">
+                                    This is the email the approval notice will be sent to.
+                                </span>
+                            </label>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                    Barangay / area
+                                    <input
+                                        value={data.business_area}
+                                        onChange={(event) => setData('business_area', event.target.value)}
+                                        className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none focus:border-[#d4a853]"
+                                    />
+                                </label>
+                                <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                    Phone
+                                    <input
+                                        value={data.business_phone}
+                                        onChange={(event) => setData('business_phone', event.target.value)}
+                                        className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none focus:border-[#d4a853]"
+                                    />
+                                </label>
+                            </div>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                Website (optional)
+                                <input
+                                    type="url"
+                                    value={data.business_website}
+                                    onChange={(event) => setData('business_website', event.target.value)}
+                                    placeholder="https://example.com"
+                                    className="h-11 rounded-xl border border-[#294058] bg-[#173f82] px-4 text-sm font-normal tracking-normal text-white outline-none placeholder:text-white/25 focus:border-[#d4a853]"
+                                />
+                                <InputError message={errors.business_website} />
+                            </label>
+                            <label className="grid gap-2 text-xs font-semibold tracking-[0.08em] text-white/45 uppercase">
+                                About the business
+                                <textarea
+                                    required
+                                    rows={3}
+                                    value={data.business_description}
+                                    onChange={(event) => setData('business_description', event.target.value)}
+                                    className="rounded-xl border border-[#294058] bg-[#173f82] px-4 py-3 text-sm font-normal tracking-normal text-white outline-none focus:border-[#d4a853]"
+                                />
+                                <InputError message={errors.business_description} />
+                            </label>
+                        </section>
+                    )}
                     <label className="flex items-start gap-3 text-xs leading-5 text-white/45">
-                        <input type="checkbox" required className="mt-1 h-5 w-5 rounded accent-[#d4a853]" />I agree to the Terms of Service and Privacy Policy of the
-                        Municipality of Pulilan.
+                        <input type="checkbox" required className="mt-1 h-5 w-5 rounded accent-[#d4a853]" />I agree to the Terms of Service and
+                        Privacy Policy of the Municipality of Pulilan.
                     </label>
                     <button
                         disabled={processing}

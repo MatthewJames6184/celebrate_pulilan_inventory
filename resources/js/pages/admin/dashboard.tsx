@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
-import { Bell, CheckCircle2, CircleDashed, FileText, Newspaper, Plus, Sparkles, TrendingUp, Users } from 'lucide-react';
+import { Head, Link } from '@inertiajs/react';
+import { Bell, Building2, FileText, Plus, Sparkles } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Dashboard', href: '/admin/dashboard' }];
 
@@ -19,7 +19,7 @@ const recentActivity = [
 
 const quickActions = ['+ Add News', '+ Add Event', '+ Add Place'];
 
-export default function AdminDashboard() {
+export default function AdminDashboard({ pendingApplications }: { pendingApplications: number }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Admin Dashboard" />
@@ -36,14 +36,24 @@ export default function AdminDashboard() {
                             <Bell className="h-4 w-4" />
                         </button>
                         <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-2 py-1.5 shadow-sm">
-                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">A</div>
+                            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
+                                A
+                            </div>
                             <span className="text-sm font-medium text-slate-700">Admin</span>
                         </div>
                     </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-3">
-                    {stats.map(({ title, value, label, tone }) => (
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                    {[
+                        ...stats,
+                        {
+                            title: 'Business applications',
+                            value: String(pendingApplications),
+                            label: 'Pending review',
+                            tone: 'bg-blue-100 text-blue-700',
+                        },
+                    ].map(({ title, value, label, tone }) => (
                         <div key={title} className="rounded-lg border border-dashed border-slate-300 bg-white p-4 shadow-sm">
                             <div className="flex items-center justify-between gap-3">
                                 <div className="text-base font-medium text-slate-700">{title}</div>
@@ -62,7 +72,10 @@ export default function AdminDashboard() {
 
                     <div className="space-y-3">
                         {recentActivity.map(({ text, when }) => (
-                            <div key={text} className="flex items-center justify-between gap-4 border-t border-slate-200 py-3 first:border-t-0 first:pt-0">
+                            <div
+                                key={text}
+                                className="flex items-center justify-between gap-4 border-t border-slate-200 py-3 first:border-t-0 first:pt-0"
+                            >
                                 <div className="flex items-center gap-3">
                                     <div className="h-2 w-2 rounded-full bg-slate-900" />
                                     <span className="text-sm text-slate-700">{text}</span>
@@ -79,7 +92,7 @@ export default function AdminDashboard() {
                         <h2 className="text-lg font-semibold">Quick Actions</h2>
                     </div>
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap items-center gap-3">
                         {quickActions.map((action) => (
                             <button
                                 key={action}
@@ -89,6 +102,13 @@ export default function AdminDashboard() {
                                 {action}
                             </button>
                         ))}
+                        <Link
+                            href={route('admin.business-applications')}
+                            className="inline-flex items-center gap-2 rounded-md border border-[#173f82]/20 bg-[#173f82]/5 px-3 py-2 text-sm font-medium text-[#173f82] transition hover:bg-[#173f82]/10"
+                        >
+                            <Building2 className="h-4 w-4" />
+                            Review {pendingApplications} business applications
+                        </Link>
                     </div>
                 </div>
             </div>

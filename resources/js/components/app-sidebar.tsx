@@ -2,7 +2,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { FileText, Grid2x2, LayoutGrid, Newspaper, Settings, UserRound, Users } from 'lucide-react';
+import { Building2, FileText, Grid2x2, LayoutGrid, Newspaper, Settings, UserRound } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const userNavItems: NavItem[] = [
@@ -16,7 +16,7 @@ const adminNavItems: NavItem[] = [
     { title: 'Content', url: '/admin/dashboard', icon: FileText },
     { title: 'News', url: '/admin/dashboard', icon: Newspaper },
     { title: 'Events', url: '/admin/dashboard', icon: Grid2x2 },
-    { title: 'Users', url: '/admin/dashboard', icon: Users },
+    { title: 'Business Applications', url: '/admin/business-applications', icon: Building2 },
     { title: 'Settings', url: '/settings/profile', icon: Settings },
 ];
 
@@ -43,7 +43,10 @@ export function AppSidebar() {
                 <SidebarMenu>
                     {items.map((item) => {
                         const Icon = item.icon;
-                        const active = page.url === item.url || (item.url === '/dashboard' && page.url.startsWith('/settings'));
+                        const active =
+                            page.url === item.url ||
+                            (item.url !== '/admin/dashboard' && item.url !== '/dashboard' && page.url.startsWith(`${item.url}/`)) ||
+                            (item.url === '/dashboard' && page.url.startsWith('/settings'));
 
                         return (
                             <SidebarMenuItem key={item.title}>

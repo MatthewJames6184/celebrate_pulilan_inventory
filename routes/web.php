@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\BusinessApplicationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StayDineSubmissionController;
+use App\Models\BusinessApplication;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -40,15 +42,37 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
+        $user = request()->user();
+        $application = $user->latestBusinessApplication;
+
+        return Inertia::render('dashboard', [
+            'isBusiness' => $user->isBusiness(),
+            'businessApplication' => $application ? [
+                'id' => $application->id,
+                'business_name' => $application->business_name,
+                'category' => $application->category,
+                'email' => $application->email,
+                'status' => $application->status,
+                'created_at' => $application->created_at?->format('M d, Y'),
+            ] : null,
+        ]);
     })->name('dashboard');
+
+    Route::post('/business-applications', [BusinessApplicationController::class, 'store'])
+        ->name('business-applications.store');
 });
 
 // for admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('admin/dashboard');
+        return Inertia::render('admin/dashboard', [
+            'pendingApplications' => BusinessApplication::where('status', 'pending')->count(),
+        ]);
     })->name('admin.dashboard');
+    Route::get('/business-applications', [BusinessApplicationController::class, 'index'])
+        ->name('admin.business-applications');
+    Route::patch('/business-applications/{businessApplication}', [BusinessApplicationController::class, 'review'])
+        ->name('admin.business-applications.review');
     Route::get('/stay-dine-requests', [StayDineSubmissionController::class, 'index'])->name('admin.stay-dine-requests');
     Route::patch('/stay-dine-requests/{submission}', [StayDineSubmissionController::class, 'update'])->name('admin.stay-dine-request.update');
 });

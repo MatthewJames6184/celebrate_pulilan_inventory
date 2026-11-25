@@ -37,11 +37,15 @@ class AuthenticatedSessionController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        return redirect()->intended(
-            $user->isAdmin()
-                ? route('admin.dashboard', absolute: false)
-                : route('dashboard', absolute: false)
-        );
+        if ($user->isAdmin()) {
+            return to_route('admin.dashboard');
+        }
+
+        if ($request->input('account_type') === 'business') {
+            return to_route('dashboard', ['apply-business' => 1]);
+        }
+
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
